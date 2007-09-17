@@ -90,12 +90,12 @@
 		</plugins>
 	</build>
 
-
+ 
 	<dependencies>
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>xerial-core</artifactId>
-			<version>[0.2,)</version>
+			<version>0.3-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
