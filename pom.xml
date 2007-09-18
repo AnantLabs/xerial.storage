@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xerial</groupId>
 	<artifactId>xerial-storage</artifactId>
-	<version>0.1</version>
+	<version>0.1-SNAPSHOT</version>
 	<name>Xerial Storage</name>
 	<description>
 		Xerial Storage: B-Trees, Column-Compressed Storage
@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.xerial</groupId>
 		<artifactId>xerial-base</artifactId>
-		<version>1</version>
+		<version>1.1</version>
 	</parent>
 
 	<repositories>
@@ -95,8 +95,21 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>xerial-core</artifactId>
-			<version>0.3-SNAPSHOT</version>
+			<version>0.3.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.sqlite</groupId>
