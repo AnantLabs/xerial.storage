@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.mlpress;
 
+import org.xerial.db.VariableLengthInteger;
+
 /**
  * The TagStructureEncoder repraces tag structures in XML documents to shorter representations by using 
  * tagIDs.

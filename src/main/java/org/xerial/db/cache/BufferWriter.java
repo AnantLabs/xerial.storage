@@ -24,56 +24,69 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.UTFDataFormatException;
+
 /**
  * BufferWriter is a helper class to support sequential write to the buffer
  * 
  * @author leo
- *
+ * 
  */
 public class BufferWriter
 {
     private final Buffer buffer;
     private int offset;
-    
+
     /**
      * Creates the {@link BufferWriter}
-     * @param buffer the buffer to write the data
+     * 
+     * @param buffer
+     *            the buffer to write the data
      */
     public BufferWriter(final Buffer buffer)
     {
         this(buffer, 0);
     }
-    
+
     /**
      * Creates the {@link BufferWriter}
-     * @param buffer the buffer to write the data
-     * @param offset the byte offset from which the data writing starts
+     * 
+     * @param buffer
+     *            the buffer to write the data
+     * @param offset
+     *            the byte offset from which the data writing starts
      */
     public BufferWriter(final Buffer buffer, final int offset)
     {
         this.buffer = buffer;
         this.offset = offset;
     }
- 
+
     public void writeInt(int value)
     {
         buffer.writeInt(offset, value);
-        offset += Buffer.INT_SIZE;    // integer byte size
+        offset += Buffer.INT_SIZE; // integer byte size
     }
+
     public void writeByte(byte value)
     {
         buffer.writeByte(offset, value);
         offset += Buffer.BYTE_SIZE;
     }
+
     public void writeLong(long value)
     {
         buffer.writeLong(offset, value);
-        offset += Buffer.LONG_SIZE;    // long byte size;
+        offset += Buffer.LONG_SIZE; // long byte size;
     }
+
     public void writeBoolean(boolean value)
     {
         buffer.writeBoolean(offset, value);
         offset += Buffer.BOOLEAN_SIZE;
     }
+
 
 }

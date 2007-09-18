@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.xerial.core.XerialException;
+import org.xerial.db.VariableLengthInteger;
 
 
 enum PageType { EMPTY, ARCHIVE_HEADER, DICTIONARY, TREE_STRUCTURE, TEXT, PAGE_INDEX };

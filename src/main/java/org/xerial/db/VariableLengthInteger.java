@@ -19,20 +19,21 @@
 // VariableLengthInteger.java
 // Since: 2005/07/21 14:59:45
 //
-// $Date$
 // $URL$
 // $Author$
 //--------------------------------------
-package org.xerial.mlpress;
+package org.xerial.db;
 
 import java.io.ByteArrayInputStream;
 import java.math.BigInteger;
 import java.util.Vector;
 
 import org.xerial.core.XerialException;
-import org.xerial.util.Algorithm;
 
 /**
+ * Variable length number representation.
+ * When the most significant bit (MSB) of a byte is 0, it means the termination of the value,
+ * when the MSB of a byte is 1, its following bytes must be read to compute the value. 
  * 
  * 0XXXXXXX                     :   [0, 127 (= M1 - 1)]
  * 1XXXXXXX 0XXXXXXX            :   [M1, M1 + 127 * 2^7 + 127 (= M2-1)]

@@ -11,7 +11,7 @@
 	</description>
 
 	<packaging>jar</packaging>
-
+ 
 	<parent>
 		<groupId>org.xerial</groupId>
 		<artifactId>xerial-base</artifactId>
@@ -95,7 +95,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>xerial-core</artifactId>
-			<version>0.3.1</version>
+			<version>[0.3,)</version>
 		</dependency>
 
 		<dependency>

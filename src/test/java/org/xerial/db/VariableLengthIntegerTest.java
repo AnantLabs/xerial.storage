@@ -22,9 +22,10 @@
 // $URL$
 // $Author$
 //--------------------------------------
-package org.xerial.mlpress;
+package org.xerial.db;
 
 import org.xerial.core.XerialException;
+import org.xerial.db.VariableLengthInteger;
 
 import junit.framework.TestCase;
 

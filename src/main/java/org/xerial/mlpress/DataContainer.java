@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.mlpress;
 
+import org.xerial.db.VariableLengthInteger;
+
 public interface DataContainer
 {
     public void push(byte[] data, int length);

@@ -24,6 +24,9 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
+import java.io.DataOutputStream;
+import java.io.UTFDataFormatException;
+
 import org.xerial.db.storage.DBFile;
 import org.xerial.db.storage.DBFileException;
 
@@ -139,6 +142,45 @@ public class Buffer {
 	{
 	    writeByte(pos, value ? 1 : 0);
 	}
+	
+    /**
+     * Writes an utf-8 data
+     * 
+     * 0xxxxxxx
+     * 110xxxxx 10xxxxxx
+     * 1110xxxx 10xxxxxx 10xxxxxx
+     * 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+     * 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+     * 
+     * @param pos   position to which data is written
+     * @param data
+     *            the data buffer to be read
+     * @param offset
+     *            an offset from the beginning of the data buffer
+     * @return the byte size actually written
+     * @throws UTFDataFormatException 
+     */
+	/*
+	public int writeUTF8(int pos, byte[] data, int offset) throws UTFDataFormatException
+    {
+        int utf8codeLength = 0;
+        
+        byte b = data[offset];
+        if(b <= 0x7F)
+        {
+            // 1-byte data
+            buffer[pos] = b;
+            return 1;
+        }
+        else if(b <= 0xCF)  // 10111111
+            throw new UTFDataFormatException("UTF-8 cannot begin with 10xxxxxx:" + Byte.toString(b));
+        else if(b <= 0x)    // 11111101
+            
+
+        
+    }
+    */
+	
 	
 	public void save(DBFile dbFile) throws DBFileException
 	{
