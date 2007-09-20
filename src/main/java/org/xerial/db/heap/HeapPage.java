@@ -25,12 +25,12 @@
 package org.xerial.db.heap;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
+import org.omg.CORBA.INVALID_ACTIVITY;
 import org.xerial.db.CommonPageHeader;
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.db.PageType;
 import org.xerial.db.Tuple;
 import org.xerial.db.TupleComparator;
@@ -75,19 +75,22 @@ public class HeapPage
     public HeapPage(int bufferSize, TupleFactory tupleFactory)
     {
         this.bufferSize = bufferSize;
-        
-        int headerSize = header.getHeaderSize() + Buffer.LONG_SIZE + Buffer.INT_SIZE * 2;
-        this.freeSpaceSize = bufferSize - headerSize; 
+        this.freeSpaceSize = bufferSize - getHeaderSize(); 
+    }
+    
+    public int getHeaderSize()
+    {
+        return header.getHeaderSize() + Buffer.LONG_SIZE + Buffer.INT_SIZE * 2;        
     }
     
         
     public void append(Tuple tuple) throws DBException
     {
         int tupleSize = tuple.getByteSize();
-        int requiredByteSizeForTheTuple = (tupleSize + Buffer.INT_SIZE);
+        int requiredByteSizeForTheTuple = (tupleSize + Buffer.INT_SIZE); // tuple size + pointer size
         if(freeSpaceSize < requiredByteSizeForTheTuple)
         {
-            throw new DBException("no enough space");
+            throw new DBException(ErrorCode.PageIsFull, "no enough space");
         }
         tupleList.add(tuple);
         numEntries++;
@@ -112,26 +115,45 @@ public class HeapPage
         numEntries = reader.readInt();
         entrySizeTotal = reader.readInt();
         
+        
         // load tuples
         for(int i=0; i<numEntries; i++)
         {
             Tuple tuple = tupleFactory.createTupleFromBuffer(reader);
             tupleList.add(tuple);
         }
-        
-        
+
+        // validation
         if(header.getPageType() != PageType.Heap)
-            throw new DBException("not the heap page type: " + header.getPageType());
+            throw new DBException(ErrorCode.InvalidPageHeader, "not the heap page type: " + header.getPageType());
+        
     }
     
+    /**
+     * Marshaling the heap contents, and write them to the page buffer
+     * @param pageBuffer
+     */
     public void saveTo(final Buffer pageBuffer)
     {
         assert(pageBuffer.size() == bufferSize);
         
         BufferWriter writer = new BufferWriter(pageBuffer);
+        
+        // write out the header
         header.save(writer);
         writer.writeInt(numEntries);
         writer.writeInt(entrySizeTotal);
+        
+        int pointerDataAddress = bufferSize - Buffer.INT_SIZE;
+        // write out tuples
+        for(Tuple t : tupleList)
+        {
+            int pointerToTuple = writer.getCursorPosition();
+            t.save(writer);
+            pageBuffer.writeInt(pointerDataAddress, pointerToTuple);
+            pointerDataAddress -= Buffer.INT_SIZE;
+        }
+        
     }
     
 }

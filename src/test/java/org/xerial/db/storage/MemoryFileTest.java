@@ -33,6 +33,7 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.db.DBException;
 
 public class MemoryFileTest {
 
@@ -67,7 +68,7 @@ public class MemoryFileTest {
 			String m2 = sb.toString();
 			assertEquals(m, m2);
 		}
-		catch(DBFileException e)
+		catch(DBException e)
 		{
 			fail(e.getMessage());
 		}	
@@ -102,7 +103,7 @@ public class MemoryFileTest {
 			String m2 = sb.toString();
 			assertEquals(m, m2);
 		}
-		catch(DBFileException e)
+		catch(DBException e)
 		{
 			fail(e.getMessage());
 		}	

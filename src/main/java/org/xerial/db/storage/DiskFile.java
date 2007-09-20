@@ -28,6 +28,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
+
 /**
  * The {@link DiskFile} wraps read/write accesses to files
  * 
@@ -48,37 +51,37 @@ public class DiskFile implements DBFile {
 		file = new RandomAccessFile(filePath, mode);
 	}
 	
-	public void read(byte[] buffer, int offset, int byteSize) throws DBFileException {
+	public void read(byte[] buffer, int offset, int byteSize) throws DBException {
 		assert(buffer.length >= byteSize);
 		
 		try {
 			file.readFully(buffer, offset, byteSize);
 		} catch (IOException e) {
-			throw new DBFileException(e);
+			throw new DBException(ErrorCode.IOError, e);
 		}
 	}
 
-	public void seek(long filePos) throws DBFileException {
+	public void seek(long filePos) throws DBException {
 		try {
 			file.seek(filePos);
 		} catch (IOException e) {
-			throw new DBFileException(e);
+			throw new DBException(ErrorCode.IOError, e);
 		}
 	}
 
-	public void write(byte[] buffer, int offset, int byteSize) throws DBFileException {
+	public void write(byte[] buffer, int offset, int byteSize) throws DBException {
 		try {
 			file.write(buffer, offset, byteSize);
 		} catch (IOException e) {
-			throw new DBFileException(e);
+			throw new DBException(ErrorCode.IOError, e);
 		}
 	}
 
-	public void close() throws DBFileException {
+	public void close() throws DBException {
 		try {
 			file.close();
 		} catch (IOException e) {
-			throw new DBFileException(e);
+			throw new DBException(ErrorCode.IOError, e);
 		}
 	}
 

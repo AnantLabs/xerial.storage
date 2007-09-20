@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.StringType;
@@ -101,7 +102,7 @@ public class SQLiteAccess
 			try {
 				dt = Relation.getDataType(name, type);
 			} catch (InvalidJSONDataException e) {
-				throw new DBException(e);
+				throw new DBException(ErrorCode.InvalidDataFormat, e);
 			}
 			dt = new StringType(name);
 			r.add(dt);
@@ -130,7 +131,7 @@ public class SQLiteAccess
 			JSONObject json = BeanUtil.toJSONObject(bean);
 			JSONValue value = json.get(key.getName());
 			if(value == null)
-				throw new DBException("key value cannot be null: " + key.getName());
+				throw new DBException(ErrorCode.InvalidDataFormat, "key value cannot be null: " + key.getName());
 			deleteTargetCondition.add(key.getName() + "=" + value.toJSONString());
 		}
 		

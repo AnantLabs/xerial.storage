@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.sql.RelationBuilder;
@@ -140,7 +141,7 @@ public class SQLiteCatalog {
 	{
 		Relation r = _relationTable.get(tableName);
 		if(r == null)
-			throw new DBException(tableName + " table doesn't exist in the database.");
+			throw new DBException(ErrorCode.TableIsNotFound, tableName + " table doesn't exist in the database.");
 		return r;
 	}
 	

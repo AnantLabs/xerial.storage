@@ -24,11 +24,10 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
-import java.io.DataOutputStream;
-import java.io.UTFDataFormatException;
 
+import org.xerial.db.DBException;
+import org.xerial.db.VariableLengthInteger;
 import org.xerial.db.storage.DBFile;
-import org.xerial.db.storage.DBFileException;
 
 /**
  * Buffer to read/write raw memory data
@@ -98,6 +97,11 @@ public class Buffer {
 	    return readByte(pos) > 0;
 	}
 	
+	public VariableLengthInteger readVariableLengthInteger(int pos) throws DBException
+	{
+	    return new VariableLengthInteger(buffer, pos);
+	}
+	
 	public boolean isSet(int bytePos, int bitPositionFromMSB)
 	{
 	    assert(bitPositionFromMSB >= 0 && bitPositionFromMSB < 8);
@@ -143,6 +147,15 @@ public class Buffer {
 	    writeByte(pos, value ? 1 : 0);
 	}
 	
+	public void writeVariablenLengthInteger(int pos, VariableLengthInteger value)
+	{
+	    byte[] rawBytes = value.getByte();
+	    for(int i=0; i<rawBytes.length; i++)
+	    {
+	        buffer[pos + i] = rawBytes[i];
+	    }
+	}
+	
     /**
      * Writes an utf-8 data
      * 
@@ -182,12 +195,12 @@ public class Buffer {
     */
 	
 	
-	public void save(DBFile dbFile) throws DBFileException
+	public void save(DBFile dbFile) throws DBException
 	{
 		dbFile.write(buffer, 0, buffer.length);
 	}
 	
-	public void load(DBFile dbFile) throws DBFileException 
+	public void load(DBFile dbFile) throws DBException 
 	{
 		dbFile.read(buffer, 0, buffer.length);
 	}

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.util.log.Logger;
 
 
@@ -30,15 +31,8 @@ public class DatabaseAccess {
 		_connectionPool = connectionPool;
         
         // validate connection
-        try
-        {
-            Connection con = _connectionPool.getConnection();
-            _connectionPool.returnConnection(con);
-        }
-        catch (DBException e)
-        {
-            throw new DBException("cannot open connection: " + e);
-        }
+		Connection con = _connectionPool.getConnection();
+		_connectionPool.returnConnection(con);
 	}
 
 	public void dispose() throws DBException
@@ -77,7 +71,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(e);
+            throw new DBException(ErrorCode.QueryError, e);
         }
         finally
         {
@@ -108,7 +102,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(e);
+            throw new DBException(ErrorCode.QueryError, e);
         }
         finally
         {
@@ -134,7 +128,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(e);
+            throw new DBException(ErrorCode.UpdateError, e);
         }
         finally
         {

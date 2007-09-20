@@ -29,6 +29,8 @@ import java.math.BigInteger;
 import java.util.Vector;
 
 import org.xerial.core.XerialException;
+import org.xerial.db.cache.Buffer;
+import org.xerial.db.cache.BufferWriter;
 
 /**
  * Variable length number representation.
@@ -47,10 +49,7 @@ import org.xerial.core.XerialException;
  */
 public class VariableLengthInteger
 {
-    byte[] _binaryRepresentation = null;
-    
     static private int[] upperBoundByByteSize; 
-    
     static
     {
         Vector<Integer> upperBoundArray = new Vector<Integer>();
@@ -76,16 +75,19 @@ public class VariableLengthInteger
             upperBoundByByteSize[i++] = val;
         }
     }
-    
+
+    byte[] _binaryRepresentation = null;
     public VariableLengthInteger(int value)
     {
         translate(value);
     }
     
-    public VariableLengthInteger(byte[] byteArray, int offset, int length) throws XerialException
+    public VariableLengthInteger(byte[] byteArray, int offset) throws DBException
     {
-        translate(byteArray, offset, length);
+        translate(byteArray, offset);
     }
+    
+    
     
     public byte[] getByte() 
     {
@@ -137,8 +139,60 @@ public class VariableLengthInteger
         }
         
     }
+
+    public static int byteSize(byte[] buffer, int offset) throws DBException
+    {
+        int byteLength = 1;
+        int index = offset;
+        while((buffer[index++] & 0x80) != 0)
+        {
+            byteLength++;
+            if(byteLength > upperBoundByByteSize.length)
+            {
+                throw new DBException(ErrorCode.InvalidDataFormat, "cannot read the variable length integer whose bite size is larger than " + upperBoundByByteSize.length);
+            }
+        }
+        return byteLength;
+        
+    }
     
-    public static VariableLengthInteger readFrom(ByteArrayInputStream buffer) throws XerialException
+    /**
+     * Gets the byte size of the value as an variable length integer
+     * @param value
+     * @return
+     */
+    public static int byteSize(int value)
+    {
+        int byteSize;
+        for(byteSize = 1; byteSize <= upperBoundByByteSize.length; byteSize++)
+        {
+            if(value <= upperBoundByByteSize[byteSize-1])
+                break;
+        }
+        return byteSize;
+    }
+    
+    public static int readFrom(byte[] buffer, int offset) throws DBException
+    {
+        int value = 0;
+        int byteLength = byteSize(buffer, offset);
+        if(byteLength > Buffer.INT_SIZE)
+        {
+            if(!(byteLength == (Buffer.INT_SIZE + 1) && (buffer[offset] > 0x87)))  // 1000 0111
+                throw new DBException(ErrorCode.InvalidDataFormat, "value larger than 2^31-1 cannot be read");
+        }
+        
+        for(int i=0; i<byteLength; i++)
+        {
+            value <<= 7;
+            value |= buffer[offset+i] & 0x7F;            
+        }
+        
+        return value;
+    }
+    
+    
+    public static VariableLengthInteger readFrom(ByteArrayInputStream buffer) throws DBException
     {
         byte[] byteArray = new byte[upperBoundByByteSize.length];
         int size = 0, b;
@@ -146,13 +200,13 @@ public class VariableLengthInteger
         {
             byteArray[size++] = (byte) b;
         }
-        return new VariableLengthInteger(byteArray, 0, size-1);
+        return new VariableLengthInteger(byteArray, 0);
     }
     
-    private void translate(byte[] byteArray, int offset, int length) throws XerialException
+    private void translate(byte[] byteArray, int offset) throws DBException
     {
         int index = offset;
-        while(index < offset + length)
+        while(index < byteArray.length)
         {
             if(((int) byteArray[index] & 0x80) == 0)
             {
@@ -164,7 +218,17 @@ public class VariableLengthInteger
             }
             index++;
         }
-        throw new XerialException("invalid code");
+        throw new DBException(ErrorCode.InvalidDataFormat, "invalid code");
+    }
+    
+    
+    public int writeTo(BufferWriter writer)
+    {
+        for(int i=0; i<_binaryRepresentation.length; i++)
+        {
+            writer.writeByte(_binaryRepresentation[i]);
+        }
+        return _binaryRepresentation.length;
     }
     
 }

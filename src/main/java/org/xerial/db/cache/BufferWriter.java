@@ -64,6 +64,10 @@ public class BufferWriter
         this.offset = offset;
     }
 
+    public int getCursorPosition() {
+        return offset;
+    }
+    
     public void writeInt(int value)
     {
         buffer.writeInt(offset, value);

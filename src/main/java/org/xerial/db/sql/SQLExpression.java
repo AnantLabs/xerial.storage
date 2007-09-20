@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 
 
 
@@ -65,7 +66,7 @@ public class SQLExpression
             
             Quote quoteType = withinWhatTypeOfQuote(assignedSQL, start, end);
             if(quoteType == Quote.INVALID)
-            	throw new DBException("invalid quotation around $" + (i+1) + " in " + assignedSQL);
+            	throw new DBException(ErrorCode.InvalidSQLExpression, "invalid quotation around $" + (i+1) + " in " + assignedSQL);
             
             String replacement = sanitize(arguments[i] != null ? arguments[i].toString() : "", quoteType);
             assignedSQL = assignedSQL.replaceAll(pattern, replacement);
@@ -151,7 +152,7 @@ public class SQLExpression
 
     	
     	if(arrayDeque.size() % 2 != 0)	// there is no matching quotes in the input
-    		throw new DBException("paren does not match: " + input);
+    		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
     	
     	// consume corresponding quotes
     	Quote previousQuotation = Quote.NONE;
@@ -162,14 +163,14 @@ public class SQLExpression
     			if(arrayDeque.getFirst() == previousQuotation)
     			{
     				// ALERT! duplicate quotation of the same quotation mark, e.g, ''; delete from table;''
-    				throw new DBException("duplicate quotation: " + input);
+    				throw new DBException(ErrorCode.InvalidSQLExpression, "duplicate quotation: " + input);
     			}
     			previousQuotation = arrayDeque.getFirst();
     			arrayDeque.removeLast();
     			arrayDeque.removeFirst();
     		}
     		else
-        		throw new DBException("paren does not match: " + input);
+        		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
     	}
     	
 		return input;

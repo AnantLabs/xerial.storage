@@ -17,6 +17,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
@@ -183,7 +184,7 @@ public class DataModel
 				query.insert(edge, "edge");
 		}
 		catch (InvalidBeanException e) {
-			throw new DBException(e);
+			throw new DBException(ErrorCode.InvalidBeanClass, e);
 		}
 	}
 
@@ -204,7 +205,7 @@ public class DataModel
 			
 			
 		} catch (InvalidBeanException e) {
-			throw new DBException(e);
+			throw new DBException(ErrorCode.InvalidBeanClass, e);
 		}
 		
 	}
@@ -256,7 +257,7 @@ public class DataModel
 				try {
 					relation.add(Relation.getDataType(dataType.getName(), dataType.getType()));
 				} catch (InvalidJSONDataException e) {
-					throw new DBException(e);
+					throw new DBException(ErrorCode.InvalidDataFormat, e);
 				}
 			}
 			addRelation(relation);
