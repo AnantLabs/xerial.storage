@@ -25,79 +25,114 @@
 package org.xerial.db.heap;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.xerial.db.CommonPageHeader;
 import org.xerial.db.DBException;
 import org.xerial.db.PageType;
 import org.xerial.db.Tuple;
+import org.xerial.db.TupleComparator;
+import org.xerial.db.TupleFactory;
 import org.xerial.db.cache.Buffer;
 import org.xerial.db.cache.BufferReader;
 import org.xerial.db.cache.BufferWriter;
 
 
 /**
- * Heap pages support sequential data appends to the database
+ * Heap pages support sequential data appends to the database.
+ * 
+ * 
+ * Page Layout:
+ * <pre>
+ * ----------------------
+ * |CommonPageHeader 
+ * |numEntries       
+ * |entrySizeTotal
+ * | (entries: ([entry size:VariableLengthInteger, entry data ...]) )
+ * |  ....
+ * | 
+ * ----------------------
+ * </pre>
  * @author leo
  *
  */
 public class HeapPage 
 {
+    // header contents 
     private final CommonPageHeader header = new CommonPageHeader();
-    private int freePageCursor; 
-    private long nextPageID = -1;   // -1 means no next page
+    private int numEntries = 0;     // the number of entries in this heap page
+    private int entrySizeTotal = 0;
+
     
-    private final Buffer pageBuffer;
+    private final int bufferSize;
+    private int freeSpaceSize;    // free space for entries and entry pointers 
+    private final ArrayList<Tuple> tupleList = new ArrayList<Tuple>();
     
-    public HeapPage(Buffer pageBuffer)
+
+    
+    public HeapPage(int bufferSize, TupleFactory tupleFactory)
     {
-        this.pageBuffer = pageBuffer;
+        this.bufferSize = bufferSize;
+        
+        int headerSize = header.getHeaderSize() + Buffer.LONG_SIZE + Buffer.INT_SIZE * 2;
+        this.freeSpaceSize = bufferSize - headerSize; 
     }
     
-    public void addEntry(Tuple tuple)
+        
+    public void append(Tuple tuple) throws DBException
     {
-        // write the tuple into the free space
-        BufferWriter writer = new BufferWriter(pageBuffer, freePageCursor);
-        int tupleSize = tuple.save(writer);
-        freePageCursor += tupleSize;
-        
-        // add the pointer to the entry in the HeapFooter
-        
+        int tupleSize = tuple.getByteSize();
+        int requiredByteSizeForTheTuple = (tupleSize + Buffer.INT_SIZE);
+        if(freeSpaceSize < requiredByteSizeForTheTuple)
+        {
+            throw new DBException("no enough space");
+        }
+        tupleList.add(tuple);
+        numEntries++;
+        freeSpaceSize -= requiredByteSizeForTheTuple;
     }
     
-    public void loadFromBuffer() throws DBException
+    public void sortTuples(TupleComparator comparator)
     {
+        Collections.sort(tupleList, comparator);
+    }
+    
+    public void loadFrom(final Buffer pageBuffer, final TupleFactory tupleFactory) throws DBException
+    {
+        assert(pageBuffer.size() == bufferSize);
+
+        tupleList.clear();
+        
         BufferReader reader = new BufferReader(pageBuffer);
+        
+        // load the header
         header.load(reader);
-        freePageCursor = reader.readInt();
-        nextPageID = reader.readLong();
+        numEntries = reader.readInt();
+        entrySizeTotal = reader.readInt();
+        
+        // load tuples
+        for(int i=0; i<numEntries; i++)
+        {
+            Tuple tuple = tupleFactory.createTupleFromBuffer(reader);
+            tupleList.add(tuple);
+        }
         
         
         if(header.getPageType() != PageType.Heap)
             throw new DBException("not the heap page type: " + header.getPageType());
     }
     
-    public void saveToBuffer()
+    public void saveTo(final Buffer pageBuffer)
     {
+        assert(pageBuffer.size() == bufferSize);
+        
         BufferWriter writer = new BufferWriter(pageBuffer);
         header.save(writer);
-        writer.writeInt(freePageCursor);
-        writer.writeLong(nextPageID);
+        writer.writeInt(numEntries);
+        writer.writeInt(entrySizeTotal);
     }
-    
-}
-
-
-class HeapEntryIndex
-{
-    private ArrayList<Integer> pointerList = new ArrayList<Integer>();
-    
-
-    public void save()
-    {
-        
-    }
-    
-    
     
 }
 
