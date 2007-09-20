@@ -29,6 +29,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
+
 /**
  * {@link MemoryFile} is a class to handle main memory as if it were a file  
  * 
@@ -86,7 +89,7 @@ public class MemoryFile implements DBFile {
 	{
 	}
 	
-	public void loadFromFile(String fileName) throws IOException, DBFileException
+	public void loadFromFile(String fileName) throws IOException, DBException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		int data;
@@ -122,10 +125,10 @@ public class MemoryFile implements DBFile {
 		}
 	}
 	
-	public void read(byte[] buffer, int offset, int byteSize) throws DBFileException 
+	public void read(byte[] buffer, int offset, int byteSize) throws DBException 
 	{
 		if((buffer.length - offset) < byteSize)
-			throw new DBFileException("insufficient read buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
+			throw new DBException(ErrorCode.InvalidInput, "insufficient read buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
 		
 		int remainingBytesToRead = byteSize;
 		while(remainingBytesToRead > 0)
@@ -141,16 +144,16 @@ public class MemoryFile implements DBFile {
 		}
 	}
 
-	public void seek(long fileBytePos) throws DBFileException {
+	public void seek(long fileBytePos) throws DBException {
 		if(fileBytePos < 0)
-			throw new DBFileException("the cursor cannot be less than 0: " + fileBytePos);
+			throw new DBException(ErrorCode.InvalidInput, "the cursor cannot be less than 0: " + fileBytePos);
 		
 		fileCursor = fileBytePos;
 	}
 
-	public void write(byte[] buffer, int offset, int byteSize)	throws DBFileException {
+	public void write(byte[] buffer, int offset, int byteSize)	throws DBException {
 		if((buffer.length - offset) < byteSize)
-			throw new DBFileException("insufficient data buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
+			throw new DBException(ErrorCode.InvalidInput, "insufficient data buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
 		
 		int remainingBytesToWrite = byteSize;
 		while(remainingBytesToWrite > 0)
@@ -166,7 +169,7 @@ public class MemoryFile implements DBFile {
 		}
 	}
 
-	public void close() throws DBFileException {
+	public void close() throws DBException {
 		// do nothing
 	}
 

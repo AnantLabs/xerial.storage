@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.util.StringUtil;
 
 
@@ -68,7 +69,7 @@ public class ConnectionPoolImpl implements ConnectionPool
 		try {
 			Class.forName(_driver);
 		} catch (ClassNotFoundException e) {
-			throw new DBException(e);
+			throw new DBException(ErrorCode.UnknownJDBCDriver, e);
 		}
 		
 		try
@@ -82,7 +83,7 @@ public class ConnectionPoolImpl implements ConnectionPool
 		}
 		catch(SQLException e)
 		{
-			throw new DBException(e);
+			throw new DBException(ErrorCode.SQLiteDBFileNotFound, e);
 		}
 	}
 	
@@ -106,7 +107,7 @@ public class ConnectionPoolImpl implements ConnectionPool
 			return connection;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			throw new DBException(e);
+			throw new DBException(ErrorCode.ThreadInterruption, e);
 		}			
 	}
 	
@@ -130,7 +131,7 @@ public class ConnectionPoolImpl implements ConnectionPool
 			}
 		}
 		if(!exceptionList.isEmpty())
-			throw new DBException(StringUtil.join(exceptionList, ", "));
+			throw new DBException(ErrorCode.FailureOnConnectionClose, StringUtil.join(exceptionList, ", "));
 	}
 	
 	

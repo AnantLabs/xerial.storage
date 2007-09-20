@@ -29,8 +29,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.db.DBException;
 import org.xerial.db.storage.DBFile;
-import org.xerial.db.storage.DBFileException;
 import org.xerial.db.storage.MemoryFile;
 
 public class BufferTest
@@ -107,7 +107,7 @@ public class BufferTest
     }
 
     @Test
-    public void testSaveLoad() throws DBFileException
+    public void testSaveLoad() throws DBException
     {
         DBFile file = new MemoryFile();
         

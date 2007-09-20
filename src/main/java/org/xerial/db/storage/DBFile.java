@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.storage;
 
+import org.xerial.db.DBException;
+
 /**
  * An interface to access disk files, or main memory buffers.
  * 
@@ -44,7 +46,7 @@ public interface DBFile {
 	 * @param byteSize the bytes to read
 	 * @throws DBFileException when failed to read the data
 	 */
-	public void read(byte[] buffer, int offset, int byteSize) throws DBFileException;
+	public void read(byte[] buffer, int offset, int byteSize) throws DBException;
 	
 	/**
 	 * Writes the given data into the file
@@ -53,7 +55,7 @@ public interface DBFile {
 	 * @param byteSize the bytes to write
 	 * @throws DBFileException when failed to write the data
 	 */
-	public void write(byte[] buffer, int offset, int byteSize) throws DBFileException; 
+	public void write(byte[] buffer, int offset, int byteSize) throws DBException; 
 	
 	/**
 	 * Sets the file pointer offset, measured from the beginning of the file, at which the next read/write request 
@@ -62,12 +64,12 @@ public interface DBFile {
 	 * @param fileBytePos 
 	 * @throws DBFileException
 	 */
-	public void seek(long fileBytePos) throws DBFileException;
+	public void seek(long fileBytePos) throws DBException;
 
 	
 	/**
 	 * Closes the file.
 	 * @throws DBFileException
 	 */
-	public void close() throws DBFileException;
+	public void close() throws DBException;
 }

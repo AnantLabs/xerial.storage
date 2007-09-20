@@ -26,6 +26,8 @@ package org.xerial.db;
 
 import org.xerial.core.XerialException;
 import org.xerial.db.VariableLengthInteger;
+import org.xerial.db.cache.Buffer;
+import org.xerial.db.cache.BufferWriter;
 
 import junit.framework.TestCase;
 
@@ -50,7 +52,7 @@ public class VariableLengthIntegerTest extends TestCase
     public void testTranslate() throws XerialException
     {
         byte[] buf = { 0x7F };
-        VariableLengthInteger v = new VariableLengthInteger(buf, 0, buf.length);
+        VariableLengthInteger v = new VariableLengthInteger(buf, 0);
         assertEquals(127, v.intValue());
     }
     
@@ -58,8 +60,19 @@ public class VariableLengthIntegerTest extends TestCase
     public void testTranslate2() throws XerialException
     {
         byte[] buf = { (byte) 0xFF, 0x7F };
-        VariableLengthInteger v = new VariableLengthInteger(buf, 0, buf.length);
+        VariableLengthInteger v = new VariableLengthInteger(buf, 0);
         assertEquals(16511,v.intValue());
         
+    }
+    
+    public void buffer()
+    {
+        Buffer buffer = new Buffer(1024);
+        VariableLengthInteger v = new VariableLengthInteger(143);
+        
+        BufferWriter writer = new BufferWriter(buffer);
+        v.writeTo(writer);
+        
+        //VariableLengthInteger.readFrom(
     }
 }

@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.db.DBException;
 
 import static org.junit.Assert.*;
 
@@ -44,7 +45,7 @@ public class DiskFileTest {
 	}
 	
 	@Test
-	public void write() throws DBFileException, FileNotFoundException
+	public void write() throws DBException, FileNotFoundException
 	{
 		DiskFile file = new DiskFile("diskfile.db");
 		try
@@ -66,7 +67,7 @@ public class DiskFileTest {
 			String m2 = sb.toString();
 			assertEquals(m, m2);
 		}
-		catch(DBFileException e)
+		catch(DBException e)
 		{
 			fail(e.getMessage());
 		}	
@@ -77,7 +78,7 @@ public class DiskFileTest {
 	}
 	
 	@Test
-	public void writeAtSpecificLocation() throws DBFileException, FileNotFoundException
+	public void writeAtSpecificLocation() throws DBException, FileNotFoundException
 	{
 		DiskFile file = new DiskFile("diskfile.db");
 		try
@@ -101,7 +102,7 @@ public class DiskFileTest {
 			String m2 = sb.toString();
 			assertEquals(m, m2);
 		}
-		catch(DBFileException e)
+		catch(DBException e)
 		{
 			fail(e.getMessage());
 		}	

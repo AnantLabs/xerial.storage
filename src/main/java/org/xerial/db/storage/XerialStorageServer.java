@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.List;
 
 import org.xerial.db.DBException;
+import org.xerial.db.ErrorCode;
 import org.xerial.db.RelationalQuery;
 import org.xerial.json.JSONObject;
 
@@ -45,7 +46,7 @@ public class XerialStorageServer {
 			folder.mkdir();
 
 		if (!folder.isDirectory())
-			throw new DBException(storageFolderPath + " is not a directory");
+			throw new DBException(ErrorCode.InvalidFile, storageFolderPath + " is not a directory");
 	}
 	
 	/**

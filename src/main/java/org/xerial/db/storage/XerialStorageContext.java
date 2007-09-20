@@ -27,6 +27,7 @@ package org.xerial.db.storage;
 import org.xerial.amoeba.AmoebaQuery;
 import org.xerial.amoeba.AmoebaQueryResultSetHandler;
 import org.xerial.amoeba.AmoebaTuple;
+import org.xerial.db.DBException;
 
 /**
  * 
@@ -123,7 +124,7 @@ public interface XerialStorageContext {
 	 * @return ResultSetHandler for amoeba query
 	 * @throws XerialFSException
 	 */
-	public AmoebaQueryResultSetHandler retrieve(AmoebaQuery query) throws XerialFSException;
+	public AmoebaQueryResultSetHandler retrieve(AmoebaQuery query) throws DBException;
 
 	/**
 	 * Retreives database data within the specified context
@@ -132,14 +133,14 @@ public interface XerialStorageContext {
 	 * @return ResultSetHandler for amoeba query
 	 * @throws XerialFSException
 	 */
-	public AmoebaQueryResultSetHandler retrieve(AmoebaQuery context, AmoebaQuery query) throws XerialFSException;
+	public AmoebaQueryResultSetHandler retrieve(AmoebaQuery context, AmoebaQuery query) throws DBException;
 	
 	/**
 	 * Appends the data without specifying a particular context, i.e., the data will be inserted into the global context 
 	 * @param tuple a data to insert
 	 * @throws XerialFSException
 	 */
-	public void append(AmoebaTuple tuple) throws XerialFSException;
+	public void append(AmoebaTuple tuple) throws DBException;
 
 	/**
 	 * Appends the data into the given context
@@ -147,7 +148,7 @@ public interface XerialStorageContext {
      * @param tuple a data to write
    	 * @throws XerialFSException
 	 */
-	public void append(AmoebaQuery contest, AmoebaTuple tuple) throws XerialFSException;
+	public void append(AmoebaQuery contest, AmoebaTuple tuple) throws DBException;
 	
 
 	/**
@@ -155,7 +156,7 @@ public interface XerialStorageContext {
 	 * @param tuple a data to write
 	 * @throws XerialFSException
 	 */
-	public void write(AmoebaTuple tuple) throws XerialFSException;
+	public void write(AmoebaTuple tuple) throws DBException;
 	
 	/**
 	 * Overwrites the data within the specified context 
@@ -163,7 +164,7 @@ public interface XerialStorageContext {
      * @param tuple a data to write
 	 * @throws XerialFSException 
 	 */
-	public void write(AmoebaQuery context, AmoebaTuple tuple) throws XerialFSException;
+	public void write(AmoebaQuery context, AmoebaTuple tuple) throws DBException;
 	
 	
 	
