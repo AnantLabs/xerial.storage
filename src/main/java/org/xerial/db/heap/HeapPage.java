@@ -27,7 +27,6 @@ package org.xerial.db.heap;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.omg.CORBA.INVALID_ACTIVITY;
 import org.xerial.db.CommonPageHeader;
 import org.xerial.db.DBException;
 import org.xerial.db.ErrorCode;
