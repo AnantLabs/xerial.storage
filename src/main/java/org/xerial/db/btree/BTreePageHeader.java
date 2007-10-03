@@ -29,6 +29,7 @@ import org.xerial.db.PageHeader;
 import org.xerial.db.cache.Buffer;
 import org.xerial.db.cache.BufferReader;
 import org.xerial.db.cache.BufferWriter;
+import org.xerial.db.datatype.TypeInformation;
 
 /**
  * Header of the page
@@ -94,7 +95,7 @@ public class BTreePageHeader implements PageHeader
 
     public int getHeaderSize()
     {
-        final int size = Buffer.INT_SIZE + Buffer.BOOLEAN_SIZE;
+        final int size = TypeInformation.INT_SIZE + TypeInformation.BOOLEAN_SIZE;
         return defaultHeader.getHeaderSize() + size;
     }
     

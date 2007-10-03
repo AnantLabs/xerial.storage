@@ -26,6 +26,8 @@ package org.xerial.db.heap;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+
 
 import org.xerial.db.CommonPageHeader;
 import org.xerial.db.DBException;
@@ -37,6 +39,7 @@ import org.xerial.db.TupleFactory;
 import org.xerial.db.cache.Buffer;
 import org.xerial.db.cache.BufferReader;
 import org.xerial.db.cache.BufferWriter;
+import org.xerial.db.datatype.TypeInformation;
 
 
 /**
@@ -52,12 +55,14 @@ import org.xerial.db.cache.BufferWriter;
  * | (entries: ([entry size:VariableLengthInteger, entry data ...]) )
  * |  ....
  * | 
+ * |
+ * | [ pointers to entries (in sorted order) ]
  * ----------------------
  * </pre>
  * @author leo
  *
  */
-public class HeapPage 
+public class HeapPage implements Iterable<Tuple> 
 {
     // header contents 
     private final CommonPageHeader header = new CommonPageHeader();
@@ -71,22 +76,28 @@ public class HeapPage
     
 
     
-    public HeapPage(int bufferSize, TupleFactory tupleFactory)
+    public HeapPage(int bufferSize)
     {
+        header.setPageType(PageType.Heap);
         this.bufferSize = bufferSize;
         this.freeSpaceSize = bufferSize - getHeaderSize(); 
     }
     
     public int getHeaderSize()
     {
-        return header.getHeaderSize() + Buffer.LONG_SIZE + Buffer.INT_SIZE * 2;        
+        return header.getHeaderSize() + TypeInformation.LONG_SIZE + TypeInformation.INT_SIZE * 2;        
     }
     
         
+    /**
+     * Appends the tuple to this heap page
+     * @param tuple
+     * @throws DBException when the page has no sufficient space for this tuple
+     */
     public void append(Tuple tuple) throws DBException
     {
         int tupleSize = tuple.getByteSize();
-        int requiredByteSizeForTheTuple = (tupleSize + Buffer.INT_SIZE); // tuple size + pointer size
+        int requiredByteSizeForTheTuple = (tupleSize + TypeInformation.INT_SIZE); // tuple size + pointer size
         if(freeSpaceSize < requiredByteSizeForTheTuple)
         {
             throw new DBException(ErrorCode.PageIsFull, "no enough space");
@@ -96,11 +107,21 @@ public class HeapPage
         freeSpaceSize -= requiredByteSizeForTheTuple;
     }
     
+    /**
+     * Sort the tuple in this heap page according to the given comparator 
+     * @param comparator {@link TupleComparator} defines total order of the tuples
+     */
     public void sortTuples(TupleComparator comparator)
     {
         Collections.sort(tupleList, comparator);
     }
     
+    /**
+     * Loads the heap contents from the buffer 
+     * @param pageBuffer the buffer
+     * @param tupleFactory factory that creates tuples from raw byte arrays
+     * @throws DBException when page type is not heap
+     */
     public void loadFrom(final Buffer pageBuffer, final TupleFactory tupleFactory) throws DBException
     {
         assert(pageBuffer.size() == bufferSize);
@@ -114,12 +135,15 @@ public class HeapPage
         numEntries = reader.readInt();
         entrySizeTotal = reader.readInt();
         
-        
-        // load tuples
+        int pointerDataAddress = pageBuffer.size() - TypeInformation.INT_SIZE;
+        // load tuples in the sorted order
         for(int i=0; i<numEntries; i++)
         {
-            Tuple tuple = tupleFactory.createTupleFromBuffer(reader);
+            int pointerToTuple = pageBuffer.readInt(pointerDataAddress);
+            Tuple tuple = tupleFactory.createTupleFromBuffer(new BufferReader(pageBuffer, pointerToTuple));
             tupleList.add(tuple);
+            
+            pointerDataAddress -= TypeInformation.INT_SIZE;
         }
 
         // validation
@@ -143,16 +167,24 @@ public class HeapPage
         writer.writeInt(numEntries);
         writer.writeInt(entrySizeTotal);
         
-        int pointerDataAddress = bufferSize - Buffer.INT_SIZE;
+        int pointerDataAddress = bufferSize - TypeInformation.INT_SIZE;
         // write out tuples
         for(Tuple t : tupleList)
         {
             int pointerToTuple = writer.getCursorPosition();
             t.save(writer);
             pageBuffer.writeInt(pointerDataAddress, pointerToTuple);
-            pointerDataAddress -= Buffer.INT_SIZE;
+            pointerDataAddress -= TypeInformation.INT_SIZE;
         }
         
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Iterable#iterator()
+     */
+    public Iterator<Tuple> iterator()
+    {
+        return tupleList.iterator();
     }
     
 }

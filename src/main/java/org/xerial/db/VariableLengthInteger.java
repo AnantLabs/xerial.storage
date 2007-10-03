@@ -31,6 +31,7 @@ import java.util.Vector;
 import org.xerial.core.XerialException;
 import org.xerial.db.cache.Buffer;
 import org.xerial.db.cache.BufferWriter;
+import org.xerial.db.datatype.TypeInformation;
 
 /**
  * Variable length number representation.
@@ -176,9 +177,9 @@ public class VariableLengthInteger
     {
         int value = 0;
         int byteLength = byteSize(buffer, offset);
-        if(byteLength > Buffer.INT_SIZE)
+        if(byteLength > TypeInformation.INT_SIZE)
         {
-            if(!(byteLength == (Buffer.INT_SIZE + 1) && (buffer[offset] > 0x87)))  // 1000 0111
+            if(!(byteLength == (TypeInformation.INT_SIZE + 1) && (buffer[offset] > 0x87)))  // 1000 0111
                 throw new DBException(ErrorCode.InvalidDataFormat, "value larger than 2^31-1 cannot be read");
         }
         

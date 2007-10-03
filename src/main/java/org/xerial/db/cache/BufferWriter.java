@@ -28,6 +28,8 @@ import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.UTFDataFormatException;
 
+import org.xerial.db.datatype.TypeInformation;
+
 /**
  * BufferWriter is a helper class to support sequential write to the buffer
  * 
@@ -71,25 +73,25 @@ public class BufferWriter
     public void writeInt(int value)
     {
         buffer.writeInt(offset, value);
-        offset += Buffer.INT_SIZE; // integer byte size
+        offset += TypeInformation.INT_SIZE; // integer byte size
     }
 
     public void writeByte(byte value)
     {
         buffer.writeByte(offset, value);
-        offset += Buffer.BYTE_SIZE;
+        offset += TypeInformation.BYTE_SIZE;
     }
 
     public void writeLong(long value)
     {
         buffer.writeLong(offset, value);
-        offset += Buffer.LONG_SIZE; // long byte size;
+        offset += TypeInformation.LONG_SIZE; // long byte size;
     }
 
     public void writeBoolean(boolean value)
     {
         buffer.writeBoolean(offset, value);
-        offset += Buffer.BOOLEAN_SIZE;
+        offset += TypeInformation.BOOLEAN_SIZE;
     }
 
 
