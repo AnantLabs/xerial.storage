@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
+import org.xerial.db.datatype.TypeInformation;
+
 /**
  * BufferReader is a helper class to support sequential read from a buffer
  * @author leo
@@ -48,28 +50,28 @@ public class BufferReader
     public int readInt()
     {
         int value = buffer.readInt(offset);
-        offset += Buffer.INT_SIZE;
+        offset += TypeInformation.INT_SIZE;
         return value;
     }
     
     public long readLong()
     {
         long value = buffer.readLong(offset);
-        offset += Buffer.LONG_SIZE;
+        offset += TypeInformation.LONG_SIZE;
         return value;
     }
     
     public byte readByte()
     {
         byte value = buffer.readByte(offset);
-        offset += Buffer.BYTE_SIZE;
+        offset += TypeInformation.BYTE_SIZE;
         return value;
     }
     
     public boolean readBoolean()
     {
         boolean value = buffer.readBoolean(offset);
-        offset += Buffer.BOOLEAN_SIZE;
+        offset += TypeInformation.BOOLEAN_SIZE;
         return value;
     }
     

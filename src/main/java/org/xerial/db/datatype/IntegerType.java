@@ -39,7 +39,12 @@ public class IntegerType extends DataTypeBase
 		return "integer";
 	}
 
-	
+	public static int parseInt(String value)
+	{
+	    return Integer.parseInt(value);
+	}
+
+
 
 }
 

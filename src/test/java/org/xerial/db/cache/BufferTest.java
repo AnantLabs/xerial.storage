@@ -30,6 +30,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBException;
+import org.xerial.db.datatype.TypeInformation;
 import org.xerial.db.storage.DBFile;
 import org.xerial.db.storage.MemoryFile;
 
@@ -50,7 +51,7 @@ public class BufferTest
     @Test
     public void testBufferInt()
     {
-        assertEquals(Integer.SIZE / 8, Buffer.INT_SIZE); 
+        assertEquals(Integer.SIZE / 8, TypeInformation.INT_SIZE); 
     }
 
     @Test

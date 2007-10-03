@@ -127,7 +127,7 @@ public class Relation
         throw new IllegalArgumentException("unknown parameter: " + parameterName);
     }
     
-    public List getDataTypeList()
+    public List<DataType> getDataTypeList()
     {
     	return dataTypeList;
     }
