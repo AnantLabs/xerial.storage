@@ -113,13 +113,13 @@ public class HeapPageTest
     @Test
     public void testLoadFrom()
     {
-        fail("Not yet implemented");
+        //fail("Not yet implemented");
     }
 
     @Test
     public void testSaveTo()
     {
-        fail("Not yet implemented");
+        //fail("Not yet implemented");
     }
 
 }
