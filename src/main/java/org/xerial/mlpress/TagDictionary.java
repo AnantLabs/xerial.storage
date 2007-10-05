@@ -33,7 +33,7 @@ import java.util.TreeSet;
  * @author leo
  *
  */
-public class TagDictionary
+public class TagDictionary 
 {
     private TreeMap<String, Integer> _tagMap = new TreeMap<String, Integer>();
     private TreeSet<Integer> _attributeIDSet = new TreeSet<Integer>();  // It remembers attribute name IDs

@@ -114,7 +114,7 @@
 		<dependency>
 			<groupId>org.sqlite</groupId>
 			<artifactId>sqlitejdbc</artifactId>
-			<version>v033-nested</version>
+			<version>v037-nested</version>
 		</dependency>
 
 	</dependencies>

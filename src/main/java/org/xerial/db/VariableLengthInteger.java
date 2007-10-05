@@ -32,7 +32,7 @@ import org.xerial.core.XerialException;
 import org.xerial.db.cache.Buffer;
 import org.xerial.db.cache.BufferWriter;
 import org.xerial.db.datatype.TypeInformation;
-
+ 
 /**
  * Variable length number representation.
  * When the most significant bit (MSB) of a byte is 0, it means the termination of the value,

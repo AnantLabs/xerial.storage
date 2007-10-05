@@ -23,15 +23,17 @@
 // $Author$
 //--------------------------------------
 package org.xerial.mlpress;
+ 
+import static org.xmlpull.v1.XmlPullParser.END_DOCUMENT;
+import static org.xmlpull.v1.XmlPullParser.END_TAG;
+import static org.xmlpull.v1.XmlPullParser.START_TAG;
+import static org.xmlpull.v1.XmlPullParser.TEXT;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.TreeMap;
-
-import javax.print.PrintException;
 
 import org.xerial.core.XerialException;
 import org.xerial.util.cui.OptionParser;
@@ -42,8 +44,6 @@ import org.xerial.util.xml.index.DataGuide;
 import org.xerial.util.xml.pullparser.PullParserUtil;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
-import static org.xmlpull.v1.XmlPullParser.*;
 
 public class MLPress {
 	
@@ -107,9 +107,9 @@ public class MLPress {
 		
 		String xmlFileName = _opt.getArgument(0);
         BufferedReader xmlReader = new BufferedReader(new FileReader(xmlFileName));
-		XmlPullParser parser =PullParserUtil.newParser(xmlReader);
+		//XmlPullParser parser =PullParserUtil.newParser(xmlReader);
 		
-		parse(parser);
+		//xparse(parser);
 	}
 
     private TagDictionary _tagDict = new TagDictionary();
@@ -119,8 +119,10 @@ public class MLPress {
 	private void parse(XmlPullParser parser)
     {
         int state;
+        /*
 	    try
         {
+
 	        while((state = parser.next()) != END_DOCUMENT)
             {
 	            switch(state)
@@ -146,11 +148,11 @@ public class MLPress {
                 }
             }
             
-            
+          
         }
         catch (XmlPullParserException e)
         {
-            // TODO Auto-generated catch block
+            // TODO Auto-generated catch block 
             e.printStackTrace();
         }
         catch(XMLException e)
@@ -161,6 +163,7 @@ public class MLPress {
         {
             e.printStackTrace();
         }
+          */
         
         
     }

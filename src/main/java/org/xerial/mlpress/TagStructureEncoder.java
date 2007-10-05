@@ -71,7 +71,7 @@ public class TagStructureEncoder
     {
         _tagDict = tagDict;
     }    
-        
+         
     public VariableLengthInteger encodeTag(String tagName)
     {
         return new VariableLengthInteger(_tagDict.getTagID(tagName));
