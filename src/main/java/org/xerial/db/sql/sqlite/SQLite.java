@@ -10,6 +10,9 @@
 //--------------------------------------
 package org.xerial.db.sql.sqlite;
 
+import java.io.File;
+import java.net.URI;
+
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.DoubleType;
@@ -33,7 +36,18 @@ public class SQLite
 	
 	public static String getDatabaseAddress(String filePath)
 	{
-		return dbFilePrefix + filePath;
+	    File file = new File(filePath);
+	    String fileFullPath = file.toURI().getPath();
+	    
+	    /** 
+	     * change the drive letter C:/...  into c:/... since the SQLite JDBC driver does not recognize capital large drive letters. 
+	     */
+	    int driveLetterSeparatorPos = fileFullPath.indexOf(":");
+	    if(driveLetterSeparatorPos > 0)
+	        fileFullPath = fileFullPath.substring(0, driveLetterSeparatorPos).toLowerCase() + fileFullPath.substring(driveLetterSeparatorPos);
+	    if(!fileFullPath.startsWith("/"))
+	        fileFullPath = "/" + fileFullPath;
+		return dbFilePrefix + fileFullPath;
 	}
 	
 	public static String getMemoryDatabaseAddress()
