@@ -35,6 +35,9 @@ public class NaiveConnectionPool implements ConnectionPool {
 	public NaiveConnectionPool(String driver, String address) {
 		this.driver = driver;
 		this.address = address;
+		
+		_logger.debug("driver: " + driver);
+		_logger.debug("addredss: " + address);
 	}
 
 	public void closeAll() throws DBException {
