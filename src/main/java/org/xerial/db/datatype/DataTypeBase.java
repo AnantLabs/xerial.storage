@@ -74,6 +74,12 @@ public abstract class DataTypeBase implements DataType
 	{
 		return isNotNull;
 	}
+	
+	public String toString()
+	{
+	    return name;
+	}
+	 
 
 }
 
