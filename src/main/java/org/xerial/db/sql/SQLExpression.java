@@ -4,7 +4,6 @@
 // SQLExpression.java
 // Since: May 8, 2007
 //
-// $Date$
 // $URL$ 
 // $Author$
 //--------------------------------------
@@ -176,21 +175,32 @@ public class SQLExpression
     	assert(contextQuotation != Quote.INVALID);
 
     	
-    	if(arrayDeque.size() % 2 != 0)	// there is no matching quotes in the input
-    		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
-    	
     	// consume corresponding quotes
-    	Quote previousQuotation = contextQuotation;
+    	Quote currentContextQuotation = contextQuotation;
     	while(!arrayDeque.isEmpty())
     	{
     		if(arrayDeque.getFirst() == arrayDeque.getLast())
     		{
-    			previousQuotation = arrayDeque.getFirst();
-    			arrayDeque.removeLast();
+    			currentContextQuotation = arrayDeque.getFirst();
+
     			arrayDeque.removeFirst();
+                arrayDeque.removeLast();
+                
+    			if(currentContextQuotation == Quote.DOUBLE_QUOTE)
+    			{
+    			    while(!arrayDeque.isEmpty() && arrayDeque.getFirst() == Quote.SINGLE_QUOTE)
+    			        arrayDeque.removeFirst();
+    			}
+    			else if(currentContextQuotation == Quote.SINGLE_QUOTE)
+    			{
+                    while(!arrayDeque.isEmpty() && arrayDeque.getFirst() == Quote.DOUBLE_QUOTE)
+                        arrayDeque.removeFirst();
+    			}
     		}
     		else
+    		{
         		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
+    		}
     	}
     	
 		return input;

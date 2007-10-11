@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Oct 11 12:45:26 GMT+09:00 2007
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=XMLOrganizer.jar
+manifest.mergeall=true
+manifest.mainclass=org.xerial.amoeba.XMLOrganizer
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
