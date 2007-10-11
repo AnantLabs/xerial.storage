@@ -101,7 +101,7 @@ public class Relation
 		else if(typeName.equals("integer"))
 			return new IntegerType(parameterName);
 		else
-			throw new InvalidJSONDataException("unknown data type: " + typeName);
+			return new StringType("string");
     }
     
     
