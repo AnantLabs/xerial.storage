@@ -16,6 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBException;
+import org.xerial.db.sql.SQLExpression.Quote;
 import org.xerial.util.log.Logger;
 
 public class SQLExpressionTest {
@@ -64,9 +65,42 @@ public class SQLExpressionTest {
 			String sql = SQLExpression.fillTemplate(valnableSQL, maliciousCode);
 			fail(sql + " must be sanitized");
 		} catch (DBException e) {
-			// okey
+			// okay
 		}
 	}
+	
+	@Test
+	public void sanitizeWhereClause()
+	{
+	    try
+        {
+            SQLExpression.sanitize("where species=\"drosophila\" and kind=\"\"", Quote.NONE);
+            SQLExpression.sanitize("where kind=\"\" and species=\"medaka\" and name=\"5'sage tag\"", Quote.NONE);
+        }
+        catch (DBException e)
+        {
+            fail(e.getMessage());
+        }
+	}
+	
+	@Test
+	public void emptyQuote()
+	{
+        try
+        {
+            String sql= SQLExpression.fillTemplate("select * from person $1", "where name=\"\"");
+            
+            _logger.debug(sql);
+            String sql2 = SQLExpression.fillTemplate("select count(*) as count from (select * from tracks where kind=\"\" group by $1)", "kind");
+        }
+        catch (DBException e)
+        {
+            fail(e.getMessage());
+        }
+	    
+	}
+	
+	
 }
 
 

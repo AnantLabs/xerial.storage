@@ -76,39 +76,60 @@ public class SQLExpression
     
     private Quote withinWhatTypeOfQuote(String sql, int targetBegin, int targetEnd)
     {
-    	Quote forwardQuote = Quote.NONE;
-    	for(int i = targetBegin-1; i>=0; i--)
+        LinkedList<Quote> quoteStack = new LinkedList<Quote>();
+        quoteStack.push(Quote.NONE);
+    	for(int i = 0; i<targetBegin; i++)
     	{
-    		if(sql.charAt(i) == '\'')
+    	    if(quoteStack.isEmpty())
+    	        return Quote.INVALID;
+    		
+    	    if(sql.charAt(i) == '\'')
     		{
-    			forwardQuote = Quote.SINGLE_QUOTE;
-    			break;
+    		    if(quoteStack.getLast() == Quote.SINGLE_QUOTE)
+    		        quoteStack.removeLast();
+    		    else
+    		        quoteStack.addLast(Quote.SINGLE_QUOTE);
     		}
     		else if(sql.charAt(i) == '"')
     		{
-    			forwardQuote = Quote.DOUBLE_QUOTE;
-    			break;
+    			if(quoteStack.getLast() == Quote.DOUBLE_QUOTE)
+    			    quoteStack.removeLast();
+    			else
+    			    quoteStack.addLast(Quote.DOUBLE_QUOTE);
     		}
     	}
+    	Quote forwardQuote = quoteStack.getLast();
     	
-    	Quote backwardQuote = Quote.NONE;
-    	for(int i=targetEnd; i<sql.length(); i++)
+    	LinkedList<Quote> quoteStack2 = new LinkedList<Quote>();
+    	quoteStack2.push(Quote.NONE);
+    	for(int i=sql.length()-1; i>targetEnd; i--)
     	{
-    		if(sql.charAt(i) == '\'')
-    		{
-    			backwardQuote = Quote.SINGLE_QUOTE;
-    			break;
-    		} else if (sql.charAt(i) == '"')
-    		{
-    			backwardQuote = Quote.DOUBLE_QUOTE;
-    			break;
-    		}
+            if(quoteStack2.isEmpty())
+                return Quote.INVALID;
+            
+            if(sql.charAt(i) == '\'')
+            {
+                if(quoteStack2.getLast() == Quote.SINGLE_QUOTE)
+                    quoteStack2.removeLast();
+                else
+                    quoteStack2.addLast(Quote.SINGLE_QUOTE);
+            }
+            else if(sql.charAt(i) == '"')
+            {
+                if(quoteStack2.getLast() == Quote.DOUBLE_QUOTE)
+                    quoteStack2.removeLast();
+                else
+                    quoteStack2.addLast(Quote.DOUBLE_QUOTE);
+            }
     	}
+    	Quote backwardQuote = quoteStack.getLast();
     	
     	if(forwardQuote == backwardQuote)
-    		return forwardQuote;
+    	{
+    	    return forwardQuote;
+    	}
     	else
-    		return Quote.INVALID; 
+    	    return Quote.INVALID;
     }
     
     public enum Quote { SINGLE_QUOTE, DOUBLE_QUOTE, NONE, INVALID}
@@ -122,49 +143,48 @@ public class SQLExpression
      * @return 
      * @throws DBException when the input value has invalid quotation
      */
-    private String sanitize(String input, Quote contextQuotation) throws DBException
+    public static String sanitize(String input, Quote contextQuotation) throws DBException
     {
     	LinkedList<Quote> arrayDeque = new LinkedList<Quote>();
-    	
+    	arrayDeque.addLast(contextQuotation);
+    	    
     	int cursor = 0;
-    	int bracketCount = 0;
     	while(cursor < input.length())
     	{
+    	    if(arrayDeque.isEmpty())
+    	        throw new DBException(ErrorCode.InvalidSQLExpression, "get out from the context of " + contextQuotation.name() + ": " + input);
+    	        
     		if(input.charAt(cursor) == '\'')
     		{
-    			arrayDeque.addLast(Quote.SINGLE_QUOTE);
-    			bracketCount++;
+    		    if(arrayDeque.getLast() == Quote.SINGLE_QUOTE)
+    		        arrayDeque.removeLast();
+    		    else
+    		        arrayDeque.addLast(Quote.SINGLE_QUOTE);
     		}
     		else if(input.charAt(cursor) == '"')
     		{
-    			arrayDeque.addLast(Quote.DOUBLE_QUOTE);
-    			bracketCount++;
+    		    if(arrayDeque.getLast() == Quote.DOUBLE_QUOTE)
+    		        arrayDeque.removeLast();
+    		    else
+    		        arrayDeque.addLast(Quote.DOUBLE_QUOTE);
     		}
     		cursor++;
     	}
+        
+    	arrayDeque.addLast(contextQuotation);
     	
     	assert(contextQuotation != Quote.INVALID);
-    	if(contextQuotation != Quote.NONE)
-    	{
-    		arrayDeque.addFirst(contextQuotation);
-    		arrayDeque.addLast(contextQuotation);
-    	}
 
     	
     	if(arrayDeque.size() % 2 != 0)	// there is no matching quotes in the input
     		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
     	
     	// consume corresponding quotes
-    	Quote previousQuotation = Quote.NONE;
+    	Quote previousQuotation = contextQuotation;
     	while(!arrayDeque.isEmpty())
     	{
     		if(arrayDeque.getFirst() == arrayDeque.getLast())
     		{
-    			if(arrayDeque.getFirst() == previousQuotation)
-    			{
-    				// ALERT! duplicate quotation of the same quotation mark, e.g, ''; delete from table;''
-    				throw new DBException(ErrorCode.InvalidSQLExpression, "duplicate quotation: " + input);
-    			}
     			previousQuotation = arrayDeque.getFirst();
     			arrayDeque.removeLast();
     			arrayDeque.removeFirst();

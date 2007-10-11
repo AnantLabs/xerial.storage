@@ -51,7 +51,7 @@ public class DBException extends XerialException {
     @Override
     public String getMessage()
     {
-        return "[" + errorCode.name() + "] " + super.getMessage();
+        return "<" + errorCode.name() + "> " + super.getMessage();
     }
 
 
