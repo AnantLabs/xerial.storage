@@ -254,12 +254,15 @@ public class XMLOrganizer
                 LinkedList<String> conditionList, boolean isTopElement) throws DBException, InvalidXMLException
         {
             int rowCount = countQuery(tableName, conditionList);
+            if(rowCount <= 0)
+                return;
 
             _logger.debug("recursive: " + columnDataTypeList);
             
             while (!columnDataTypeList.isEmpty())
             {
                 Count minCount = getMinGroupCount(tableName, columnDataTypeList, conditionList);
+
                 if (minCount.count >= rowCount)
                 {
                     // no aggregation is required
@@ -282,8 +285,8 @@ public class XMLOrganizer
                                 limit, readRowCount));
                         for (JSONObject obj : rowData)
                         {
-                            if (isTopElement)
-                                xmlOut.startTag(tableName);
+                            xmlOut.startTag(tableName);
+
                             for (String key : obj.keys())
                             {
                                 try
@@ -296,9 +299,10 @@ public class XMLOrganizer
                                     _logger.error(e);
                                 }
                             }
-                            if (isTopElement)
-                                xmlOut.endTag(); // table
+
+                            xmlOut.endTag(); // table
                         }
+
                         readRowCount += rowData.size();
                     }
                     return; // exit the loop
@@ -309,7 +313,7 @@ public class XMLOrganizer
                     DataType targetColumnOfAggregation = minCount.dataType;
 
                     List distinctValueList = sqliteDB.query(SQLExpression.fillTemplate(
-                            "select distinct $1 from $2 order by $1", targetColumnOfAggregation.getName(), tableName),
+                            "select distinct $1 from $2 $3 order by $1", targetColumnOfAggregation.getName(), tableName, generateWhereClause(conditionList)),
                             targetColumnOfAggregation.getName(), String.class);
 
                     for (Object columnValueObj : distinctValueList)
@@ -319,10 +323,11 @@ public class XMLOrganizer
                         xmlOut.startTag(targetColumnOfAggregation.getName(), new XMLAttribute("value", columnValue));
 
                         columnDataTypeList.remove(targetColumnOfAggregation);
+
                         conditionList.addLast(targetColumnOfAggregation.getName() + "=\"" + columnValue + "\"");
 
-                        recursivelyOutputColumnData(tableName, columnDataTypeList, conditionList, false);
-
+                        recursivelyOutputColumnData(tableName, (LinkedList<DataType>) columnDataTypeList.clone(), (LinkedList<String>) conditionList, false);
+                        
                         conditionList.removeLast();
                         xmlOut.endTag(); // targetColumnNameOfAggregation
                     }
