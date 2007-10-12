@@ -24,14 +24,17 @@
 //--------------------------------------
 package org.xerial.amoeba;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,8 +42,6 @@ import org.xerial.core.XerialException;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.sql.ConnectionPoolImpl;
-import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ResultSetHandler;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
@@ -62,7 +63,7 @@ public class XMLOrganizer
     public static Logger _logger = Logger.getLogger(XMLOrganizer.class);
 
     private enum Opt {
-        HELP, FLAT, AGGREGATE
+        HELP, OUTPUT_FILE, FLAT, AGGREGATE
     }
 
     private enum StructureType {
@@ -70,6 +71,8 @@ public class XMLOrganizer
     }
 
     private StructureType structureType = StructureType.FLAT_XML;
+
+    private Writer output = new OutputStreamWriter(System.out);
 
     public static void main(String[] args)
     {
@@ -89,7 +92,7 @@ public class XMLOrganizer
                 organizer.structureType = StructureType.AGGREATED_XML;
             }
         });
-
+        option.addOptionWithArgument(Opt.OUTPUT_FILE, "o", "output", "FILE", "output file");
         _logger.setOutputWriter(new OutputStreamWriter(System.err));
 
         try
@@ -107,18 +110,35 @@ public class XMLOrganizer
             }
 
             String dbFileName = option.getArgument(0);
+            
+            if(option.isSet(Opt.OUTPUT_FILE))
+            {
+                String outputFileName = option.getValue(Opt.OUTPUT_FILE);
+                File outputFile = new File(outputFileName);
+                File parentDirOfOutputFile = outputFile.getParentFile();
+                if(parentDirOfOutputFile != null)
+                {
+                    parentDirOfOutputFile.mkdirs();
+                }
+                organizer.output = new BufferedWriter(new FileWriter(outputFile));
+            }
+            
             organizer.load(dbFileName);
         }
         catch (XerialException e)
         {
             System.err.println(e);
         }
+        catch (IOException e)
+        {
+            System.err.println("error while opening file: " + e);
+        }
     }
 
     public void load(String sqliteDBFileName) throws XerialException
     {
         SQLiteAccess sqliteDB = new SQLiteAccess(sqliteDBFileName);
-        XMLGenerator xmlOut = new XMLGenerator();
+        XMLGenerator xmlOut = new XMLGenerator(output);
 
         xmlOut.startTag("database", new XMLAttribute("file", sqliteDBFileName));
 
@@ -373,8 +393,10 @@ public class XMLOrganizer
                 // aggregate relational data beginning from a column with the
                 // fewest number of distinct values.
                 LinkedList<String> conditionList = new LinkedList<String>();
-                recursivelyOutputColumnData(table, columnDataTypeList, conditionList, true);
 
+                xmlOut.startTag("table", new XMLAttribute("value", table));
+                recursivelyOutputColumnData(table, columnDataTypeList, conditionList, true);
+                xmlOut.endTag(); // table
             }
 
         }
