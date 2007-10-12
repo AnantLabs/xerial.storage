@@ -25,7 +25,13 @@
 package org.xerial.amoeba;
 
 import java.io.OutputStreamWriter;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,11 +39,13 @@ import org.xerial.core.XerialException;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
+import org.xerial.db.sql.ConnectionPoolImpl;
+import org.xerial.db.sql.DatabaseAccess;
+import org.xerial.db.sql.ResultSetHandler;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
-import org.xerial.util.Algorithm;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.Functor;
 import org.xerial.util.StringUtil;
@@ -198,8 +206,7 @@ public class XMLOrganizer
         public int groupCountQuery(String tableName, String column, List<String> conditionList) throws DBException
         {
             List<Integer> count = sqliteDB.query(SQLExpression.fillTemplate(
-                    "select count(*) as count from (select * from $1 $2 group by $3)", 
-                    tableName,
+                    "select count(*) as count from (select * from $1 $2 group by $3)", tableName,
                     generateWhereClause(conditionList), column), "count", Integer.class);
             if (count.size() <= 0)
                 return 0;
@@ -209,8 +216,7 @@ public class XMLOrganizer
         public int countQuery(String tableName, List<String> conditionList) throws DBException
         {
             List<Integer> count = sqliteDB.query(SQLExpression.fillTemplate("select count(*) as count from $1 $2",
-                    tableName, generateWhereClause(conditionList)),
-                    "count", Integer.class);
+                    tableName, generateWhereClause(conditionList)), "count", Integer.class);
             return (count.size() <= 0) ? 0 : count.get(0);
         }
 
@@ -231,108 +237,127 @@ public class XMLOrganizer
 
         }
 
+        class DistinctCountList implements ResultSetHandler<ArrayList<Integer>>
+        {
+            ArrayList<Integer> countList = new ArrayList<Integer>();
+
+            public ArrayList<Integer> handle(ResultSet rs) throws SQLException
+            {
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                countList.clear();
+                for (int i = 1; i <= columnCount; i++)
+                {
+                    countList.add(rs.getInt(i));
+                }
+                return countList;
+            }
+        }
+
         public Count getMinGroupCount(String tableName, List<DataType> remainingDataTypeList, List<String> conditionList)
                 throws DBException
         {
-            int minGroupCountIndex = 0;
-            int minGroupCount = Integer.MAX_VALUE;
-            int index = 0;
+            ArrayList<String> distinctCountColumnList = new ArrayList<String>();
             for (DataType dt : remainingDataTypeList)
             {
-                int groupEntryCount = groupCountQuery(tableName, dt.getName(), conditionList);
-                if (groupEntryCount < minGroupCount)
-                {
-                    minGroupCountIndex = index;
-                    minGroupCount = groupEntryCount;
-                }
-                index++;
+                distinctCountColumnList.add("count(distinct " + dt.getName() + ")");
             }
-            return new Count(remainingDataTypeList.get(minGroupCountIndex), minGroupCount);
+            String selectColumnStmt = StringUtil.join(distinctCountColumnList, ", ");
+
+            // select count(distinct column1), count(distinct column1) from
+            // (select * from tableName where ...)
+            String sql = SQLExpression.fillTemplate("select $1 from (select * from $2 $3)", selectColumnStmt,
+                    tableName, generateWhereClause(conditionList));
+
+            ArrayList<Integer> distinctCountList = sqliteDB.accumulate(sql, new DistinctCountList());
+
+            int index = distinctCountList.indexOf(Collections.min(distinctCountList));
+            return new Count(remainingDataTypeList.get(index), distinctCountList.get(index));
         }
 
         public void recursivelyOutputColumnData(String tableName, LinkedList<DataType> columnDataTypeList,
                 LinkedList<String> conditionList, boolean isTopElement) throws DBException, InvalidXMLException
         {
             int rowCount = countQuery(tableName, conditionList);
-            if(rowCount <= 0)
+            if (rowCount <= 0)
                 return;
 
             _logger.debug("recursive: " + columnDataTypeList);
-            
-            while (!columnDataTypeList.isEmpty())
+
+            if (columnDataTypeList.isEmpty())
+                return;
+
+            Count minCount = getMinGroupCount(tableName, columnDataTypeList, conditionList);
+
+            if (minCount.count >= rowCount)
             {
-                Count minCount = getMinGroupCount(tableName, columnDataTypeList, conditionList);
+                // no aggregation is required
 
-                if (minCount.count >= rowCount)
-                {
-                    // no aggregation is required
-
-                    List selectColumnList = CollectionUtil.collect(columnDataTypeList, new Functor<DataType>() {
-                        public Object apply(DataType input)
-                        {
-                            return input.getName();
-                        }
-                    });
-                    String selectColumn = StringUtil.join(selectColumnList, ", ");
-                    String condition = generateWhereClause(conditionList);
-
-                    final int limit = 100;
-                    int readRowCount = 0;
-                    while (readRowCount < rowCount)
+                List selectColumnList = CollectionUtil.collect(columnDataTypeList, new Functor<DataType>() {
+                    public Object apply(DataType input)
                     {
-                        List<JSONObject> rowData = sqliteDB.jsonQuery(SQLExpression.fillTemplate(
-                                "select $1 from $2 $3 limit $4 offset $5", selectColumn, tableName, condition,
-                                limit, readRowCount));
-                        for (JSONObject obj : rowData)
-                        {
-                            xmlOut.startTag(tableName);
+                        return input.getName();
+                    }
+                });
+                String selectColumn = StringUtil.join(selectColumnList, ", ");
+                String condition = generateWhereClause(conditionList);
 
-                            for (String key : obj.keys())
+                final int limit = 100;
+                int readRowCount = 0;
+                while (readRowCount < rowCount)
+                {
+                    List<JSONObject> rowData = sqliteDB.jsonQuery(SQLExpression.fillTemplate(
+                            "select $1 from $2 $3 limit $4 offset $5", selectColumn, tableName, condition, limit,
+                            readRowCount));
+                    for (JSONObject obj : rowData)
+                    {
+                        xmlOut.startTag(tableName);
+
+                        for (String key : obj.keys())
+                        {
+                            try
                             {
-                                try
-                                {
-                                    String value = obj.getString(key);
-                                    xmlOut.element(key, value);
-                                }
-                                catch (JSONException e)
-                                {
-                                    _logger.error(e);
-                                }
+                                String value = obj.getString(key);
+                                xmlOut.element(key, value);
                             }
-
-                            xmlOut.endTag(); // table
+                            catch (JSONException e)
+                            {
+                                _logger.error(e);
+                            }
                         }
 
-                        readRowCount += rowData.size();
+                        xmlOut.endTag(); // table
                     }
-                    return; // exit the loop
+
+                    readRowCount += rowData.size();
                 }
-                else
+                return; // exit the loop
+            }
+            else
+            {
+                // further aggregation is possible
+                DataType targetColumnOfAggregation = minCount.dataType;
+
+                List distinctValueList = sqliteDB.query(SQLExpression.fillTemplate(
+                        "select distinct $1 from $2 $3 order by $1", targetColumnOfAggregation.getName(), tableName,
+                        generateWhereClause(conditionList)), targetColumnOfAggregation.getName(), String.class);
+
+                for (Object columnValueObj : distinctValueList)
                 {
-                    // further aggregation is possible
-                    DataType targetColumnOfAggregation = minCount.dataType;
+                    String columnValue = columnValueObj.toString();
 
-                    List distinctValueList = sqliteDB.query(SQLExpression.fillTemplate(
-                            "select distinct $1 from $2 $3 order by $1", targetColumnOfAggregation.getName(), tableName, generateWhereClause(conditionList)),
-                            targetColumnOfAggregation.getName(), String.class);
+                    xmlOut.startTag(targetColumnOfAggregation.getName(), new XMLAttribute("value", columnValue));
 
-                    for (Object columnValueObj : distinctValueList)
-                    {
-                        String columnValue = columnValueObj.toString();
-                        
-                        xmlOut.startTag(targetColumnOfAggregation.getName(), new XMLAttribute("value", columnValue));
+                    columnDataTypeList.remove(targetColumnOfAggregation);
 
-                        columnDataTypeList.remove(targetColumnOfAggregation);
+                    conditionList.addLast(targetColumnOfAggregation.getName() + "=\"" + columnValue + "\"");
 
-                        conditionList.addLast(targetColumnOfAggregation.getName() + "=\"" + columnValue + "\"");
+                    recursivelyOutputColumnData(tableName, (LinkedList<DataType>) columnDataTypeList.clone(),
+                            (LinkedList<String>) conditionList, false);
 
-                        recursivelyOutputColumnData(tableName, (LinkedList<DataType>) columnDataTypeList.clone(), (LinkedList<String>) conditionList, false);
-                        
-                        conditionList.removeLast();
-                        xmlOut.endTag(); // targetColumnNameOfAggregation
-                    }
+                    conditionList.removeLast();
+                    xmlOut.endTag(); // targetColumnNameOfAggregation
                 }
-
             }
 
         }

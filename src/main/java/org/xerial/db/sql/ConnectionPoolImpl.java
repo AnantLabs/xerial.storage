@@ -35,7 +35,7 @@ public class ConnectionPoolImpl implements ConnectionPool
 	
 	private String _driver;
 	private String _address;
-	private int _numMaximumConnections = 1;
+	private int _numMaximumConnections = 5;
 
 	
 	/**

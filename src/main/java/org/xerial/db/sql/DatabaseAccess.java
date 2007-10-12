@@ -26,6 +26,9 @@ public class DatabaseAccess {
 	private ConnectionPool _connectionPool;
 	private static Logger _logger = Logger.getLogger(DatabaseAccess.class);
 	
+	private int queryTimeout = 60; 
+	
+	
 	public DatabaseAccess(ConnectionPool connectionPool) throws DBException
 	{
 		_connectionPool = connectionPool;
@@ -34,12 +37,21 @@ public class DatabaseAccess {
 		Connection con = _connectionPool.getConnection();
 		_connectionPool.returnConnection(con);
 	}
+	
+	
 
 	public void dispose() throws DBException
 	{	
 		_connectionPool.closeAll();
 	}
 
+	protected Statement createStatement(Connection connection) throws SQLException
+	{
+	    Statement statement = connection.createStatement();
+	    statement.setQueryTimeout(queryTimeout);
+	    return statement;
+	}
+	
     /**
      * perforam a given SQL query, then output its results 
      * @param <T> row type	: Bean class type
@@ -60,7 +72,7 @@ public class DatabaseAccess {
         try
         {
         	connection = _connectionPool.getConnection();
-            Statement statement = connection.createStatement();
+            Statement statement = createStatement(connection);
             _logger.debug(sql);
             
             ResultSet rs = statement.executeQuery(sql);
@@ -87,7 +99,7 @@ public class DatabaseAccess {
         try
         {
         	connection = _connectionPool.getConnection();
-            Statement statement = connection.createStatement();
+            Statement statement = createStatement(connection);
             _logger.debug(sql);
             
             ResultSet rs = statement.executeQuery(sql);
@@ -112,6 +124,43 @@ public class DatabaseAccess {
         return result;
     }
 
+    /**
+     * Accumulate the query result within the ResultSetHandler, then return the result from the handler
+     * @param <T>
+     * @param sql
+     * @param handler
+     * @return
+     * @throws DBException
+     */
+    public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException 
+    {
+        Connection connection = null;
+        T result = null;
+        try
+        {
+            connection = _connectionPool.getConnection();
+            Statement statement = createStatement(connection);
+            _logger.debug(sql);
+            
+            ResultSet rs = statement.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                result = handler.handle(rs);
+            }
+        }
+        catch(SQLException e)
+        {
+            throw new DBException(ErrorCode.QueryError, e);
+        }
+        finally
+        {
+            if(connection != null)
+                _connectionPool.returnConnection(connection);
+        }
+        return result;
+    }
+    
 
     public int update(String sql) throws DBException
     {
@@ -120,7 +169,7 @@ public class DatabaseAccess {
         {
         	connection = _connectionPool.getConnection();
         	connection.setAutoCommit(true);
-            Statement statement = connection.createStatement();
+            Statement statement = createStatement(connection);
             
             _logger.debug(sql);
             int ret = statement.executeUpdate(sql);
