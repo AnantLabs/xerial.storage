@@ -23,12 +23,14 @@ import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.ColumnReader;
 import org.xerial.db.sql.ConnectionPool;
+import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.JSONObjectReader;
 import org.xerial.db.sql.JSONValueReader;
 import org.xerial.db.sql.NaiveConnectionPool;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.ResultPullReader;
+import org.xerial.db.sql.ResultSetHandler;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONObject;
@@ -51,10 +53,9 @@ public class SQLiteAccess
 	private SQLiteCatalog _catalog = null;
 	private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
 	
-	
 	public SQLiteAccess(String filePath) throws DBException
 	{
-		this._dbAccess = new DatabaseAccess(new NaiveConnectionPool(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
+		this._dbAccess = new DatabaseAccess(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
 	}
 	
 	
@@ -209,6 +210,16 @@ public class SQLiteAccess
 	public <T> List<T> query(String sql, String targetColumn, Class<T> resultRowType) throws DBException
 	{
 		return _dbAccess.query(sql, new ColumnReader<T>(targetColumn));
+	}
+	
+	public <T> List<T> query(String sql, ResultSetHandler<T> handler) throws DBException
+	{
+	    return _dbAccess.query(sql, handler);
+	}
+	
+	public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException 
+	{
+	    return _dbAccess.accumulate(sql, handler);
 	}
 	
 	public void pullQuery(String sql, Writer out) throws DBException
