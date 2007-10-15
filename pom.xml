@@ -90,7 +90,43 @@
 		</plugins>
 	</build>
 
- 
+   <!--  OS dependent settings for SQLite-JDBC driver -->
+  <profiles>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <properties>
+        <sqlite.os.name>win</sqlite.os.name>
+      </properties>
+    </profile>
+    <profile>
+      <id>unix</id>
+      <activation>
+        <os>
+          <family>unix</family>
+        </os>
+      </activation>
+      <properties>
+        <sqlite.os.name>linux</sqlite.os.name>
+      </properties>
+    </profile>
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <sqlite.os.name>mac</sqlite.os.name>
+      </properties>
+    </profile>
+  </profiles>
+  
 	<dependencies>
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -110,13 +146,13 @@
 			<version>3.2</version>
 		</dependency>
 
-
+      
 		<dependency>
-			<groupId>org.sqlite</groupId>
-			<artifactId>sqlitejdbc</artifactId>
-			<version>v037-nested</version>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>${sqlite.os.name}-v037</version>
 		</dependency>
-
-	</dependencies>
+    
+ 	</dependencies>
 
 </project>
