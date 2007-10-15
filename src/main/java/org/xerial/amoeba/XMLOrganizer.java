@@ -322,6 +322,7 @@ public class XMLOrganizer
                 String selectColumn = StringUtil.join(selectColumnList, ", ");
                 String condition = generateWhereClause(conditionList);
 
+                
                 final int limit = 100;
                 int readRowCount = 0;
                 while (readRowCount < rowCount)

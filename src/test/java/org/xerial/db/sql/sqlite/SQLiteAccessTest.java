@@ -30,7 +30,6 @@ import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.sqlite.SQLite;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.CollectionUtil;
-import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.bean.InvalidBeanException;
 import org.xerial.util.log.Logger;
 
@@ -46,7 +45,6 @@ public class SQLiteAccessTest {
 	@BeforeClass
 	public static void openDatabase() throws DBException
 	{
-		
 
 	}
 	

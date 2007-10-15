@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xerial</groupId>
 	<artifactId>xerial-storage</artifactId>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>0.3</version>
 	<name>Xerial Storage</name>
 	<description>
 		Xerial Storage: B-Trees, Column-Compressed Storage
@@ -152,7 +152,7 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>${sqlite.os.name}-v037</version>
 		</dependency>
-    
+     
  	</dependencies>
 
 </project>

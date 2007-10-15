@@ -39,15 +39,15 @@ public class ConnectionPoolImpl implements ConnectionPool
 
 	
 	/**
+	 * Create an connection pool, in which only a single connection is pooled
+	 * This constructer is suited for memory database usage, which demands the same connection must always be returned to the user 
 	 * @param JDBCdriver	driver name: e.g. "org.sqlite.JDBC"
 	 * @param databaseAddress database address, e.g. "jdbc:sqlite:db.sqilte3"		
 	 * @throws DBException	when loading the driver or to establish connections fail 
 	 */
 	public ConnectionPoolImpl(String JDBCdriver, String databaseAddress) throws DBException
 	{
-		_driver = JDBCdriver;
-		_address = databaseAddress;
-		establishConnections();
+	    this(JDBCdriver, databaseAddress, 1);
 	}
 	
 	/**

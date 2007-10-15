@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Oct 12 12:51:12 GMT+09:00 2007
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=XMLOrganizer.jar
+manifest.mergeall=true
+manifest.mainclass=org.xerial.amoeba.XMLOrganizer
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|xerial-storage>~sqlite/;<po|xerial-storage>~empty.file;<po|xerial-storage>~log.config;<cl|F\:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-core>;<po|xerial-core>~empty.file;<po|xerial-core>~log.config
+includes=
