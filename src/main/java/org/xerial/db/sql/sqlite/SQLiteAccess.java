@@ -49,6 +49,11 @@ import org.xerial.util.log.Logger;
  */
 public class SQLiteAccess 
 {
+    static 
+    {
+        SQLite.setSQLiteNativeLibraryPath();
+    }
+    
 	private DatabaseAccess _dbAccess;
 	private SQLiteCatalog _catalog = null;
 	private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
