@@ -29,8 +29,7 @@ public class SQLiteReaderTest {
 	@BeforeClass
 	public static void setUpClass()
 	{
-		// set the path to the SQLite JDBC dll
-		//System.setProperty("org.sqlite.lib.path", "lib");
+
 	}
 	
 	@Before

@@ -38,12 +38,12 @@ public class SQLite
 
     static
     {
-        initialize();
+        initialize(); 
     }
     
     public static void initialize()
     {
-        SQLiteJDBCLoader.setSQLiteNativeLibraryPath();
+        SQLiteJDBCLoader.initialize();
     }
     
     private SQLite()
