@@ -51,7 +51,7 @@ public class SQLiteAccess
 {
     static 
     {
-        SQLite.setSQLiteNativeLibraryPath();
+        SQLite.initialize();
     }
     
 	private DatabaseAccess _dbAccess;
