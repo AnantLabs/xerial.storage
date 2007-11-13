@@ -63,13 +63,19 @@ public class BenchmarkTableGenerator
         HELP, FANOUT, COLUMN, SCALABILITY_FACTOR, MODE, OUTPUT
     }
     
-
+    private boolean isReady = true;
+    
     private OptionParser<Opt> optionParser;
 
     public BenchmarkTableGenerator(String[] args) throws OptionParserException
     {
         optionParser = new OptionParser<Opt>();
-        optionParser.addOption(Opt.HELP, "h", "help", "display help messsage");
+        optionParser.addOption(Opt.HELP, "h", "help", "display help messsage", new OptionHandler<Opt>(){
+            public void handle(OptionParser<Opt> parser) throws OptionParserException
+            {
+                System.out.println(optionParser.helpMessage());
+                isReady = false;
+            }});
         optionParser.addOptionWithArgument(Opt.FANOUT, "f", "fanout", "FANOUT", "set fanout. default = 5",
                 new OptionHandler<Opt>() {
                     public void handle(OptionParser<Opt> parser) throws OptionParserException
@@ -130,6 +136,8 @@ public class BenchmarkTableGenerator
         
 
         optionParser.parse(args);
+        
+        
     }
 
     private String[] colName; 
@@ -336,7 +344,8 @@ public class BenchmarkTableGenerator
         try
         {
             BenchmarkTableGenerator btg = new BenchmarkTableGenerator(args);
-            btg.generate();
+            if(btg.isReady)
+                btg.generate();
         }
         catch (Exception e)
         {
