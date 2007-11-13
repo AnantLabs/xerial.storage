@@ -53,7 +53,7 @@ public class BenchmarkTableGenerator
 
     
     private int fanout = 2;
-    private int numColumn = 3;
+    private int numColumn = 4;
     private double factor = 0.1; // factor * 1,000 rows will be generated
     private Mode mode = Mode.SIMPLE;
 
@@ -87,7 +87,7 @@ public class BenchmarkTableGenerator
                 new OptionHandler<Opt>() {
                     public void handle(OptionParser<Opt> parser) throws OptionParserException
                     {
-                        numColumn = parser.getIntValue(Opt.COLUMN);
+                        numColumn = parser.getIntValue(Opt.COLUMN) + 1;
                     }
                 });
         optionParser.addOptionWithArgument(Opt.SCALABILITY_FACTOR, "s", "scalability", "FACTOR",
@@ -144,10 +144,11 @@ public class BenchmarkTableGenerator
     
     public void generate() throws InvalidXMLException, IOException
     {
-        colName = new String[numColumn];
-        for(int i=0; i<colName.length; i++)
+        colName = new String[numColumn+1];
+        colName[0] = "item";
+        for(int i=1; i<colName.length; i++)
         {
-            char c = (char) ('a' + i);
+            char c = (char) ('a' + i - 1);
             colName[i] = String.valueOf(c);
         }
         
