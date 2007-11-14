@@ -218,8 +218,6 @@ public class BenchmarkTableGenerator
                 return;
             }
             
-            if(numRow <= 0)
-                return;
             
             int numChildren = (col == 0) ? 1 : fanout;
             for(int f=0; f<numChildren; f++)
@@ -227,6 +225,8 @@ public class BenchmarkTableGenerator
                 xmlOut.startTag(getColName(col), new XMLAttribute("value", f+1+offset));
                 process(col + 1, 0);
                 xmlOut.endTag();
+                if(numRow <= 0)
+                    return;
             }
 
         }
@@ -236,7 +236,7 @@ public class BenchmarkTableGenerator
     {
         int numRow;
         XMLGenerator xmlOut;
-        Random r = new Random(1);
+        Random r = new Random(40);
         
         public RandomGen(int numRow, XMLGenerator xmlOut) throws InvalidXMLException
         {
@@ -247,28 +247,6 @@ public class BenchmarkTableGenerator
             int numTree = numRow / treeSize + (numRow % treeSize == 0 ? 0 : 1);
         }
         
-        public void generate() throws InvalidXMLException
-        {
-            int offset = 0;
-            while(numRow > 0)
-            {
-                LinkedList<Integer> colSet = new LinkedList<Integer>();  
-                for(int i=1; i<numColumn; i++)
-                {
-                    colSet.add(i);
-                }
-                LinkedList<Integer> randomOrder = new LinkedList<Integer>();  
-                while(!colSet.isEmpty())
-                {
-                    int targetIndex = r.nextInt(colSet.size());
-                    int targetCol = colSet.remove(targetIndex);
-                    randomOrder.add(targetCol);
-                }
-                //xmlOut.startTag("item", new XMLAttribute("value", ++offset));
-                process(randomOrder, 0, new LinkedList<Element>());
-                //xmlOut.endTag();
-            }
-        }
         
         class Element
         {
@@ -304,22 +282,48 @@ public class BenchmarkTableGenerator
         
         private int smallestFDColumnIndex(LinkedList<Integer> randomOrder, int index)
         {
-            int currentColumn = randomOrder.get(index);
+            
             for(int i=0; i<index; i++)
             {
                 int column = randomOrder.get(i);
-                if(column > currentColumn)
+                for(int j=randomOrder.size()-1; j>=index; j--)
                 {
-                    return i;
+                    int currentColumn = randomOrder.get(j);
+                    if(column > currentColumn)
+                    {
+                        return i;
+                    }
                 }
             }
             return -1;
         }
         
+        public void generate() throws InvalidXMLException
+        {
+            int offset = 0;
+            while(numRow > 0)
+            {
+                LinkedList<Integer> colSet = new LinkedList<Integer>();  
+                for(int i=1; i<numColumn; i++)
+                {
+                    colSet.add(i);
+                }
+                LinkedList<Integer> randomOrder = new LinkedList<Integer>();  
+                while(!colSet.isEmpty())
+                {
+                    int targetIndex = r.nextInt(colSet.size());
+                    int targetCol = colSet.remove(targetIndex);
+                    randomOrder.add(targetCol);
+                }
+                xmlOut.startTag("item", new XMLAttribute("value", ++offset));
+                process(randomOrder, 0, new LinkedList<Element>());
+                xmlOut.endTag();
+            }
+        }
         
         private void process(LinkedList<Integer> randomOrder, int cursor, LinkedList<Element> elementStack) throws InvalidXMLException
         {
-            if(cursor >= numColumn - 1)
+            if(cursor >= randomOrder.size())
             {
                 numRow--;
                 return;
@@ -385,31 +389,35 @@ public class BenchmarkTableGenerator
             int offset = 0;
             while(numRow > 0)
             {
-                process(0, offset++);
+                xmlOut.startTag("item", new XMLAttribute("value", ++offset));
+                process(1);
+                xmlOut.endTag();
             }
         }
         
-        private void process(int col, int offset) throws InvalidXMLException
+        private void process(int col) throws InvalidXMLException
         {
+            if(numRow <= 0)
+                return;
+            
+
             if(col >= numColumn)
             {
-                for(int c=0; c<numColumn; c++)
+                for(int c=1; c<numColumn; c++)
                     xmlOut.startTag(getColName(c), new XMLAttribute("value", value[c]));
-                for(int c=0; c<numColumn; c++)
+                for(int c=1; c<numColumn; c++)
                     xmlOut.endTag();
                 xmlOut.flush();
                 numRow--;
                 return;
             }
             
-            if(numRow <= 0)
-                return;
-            
             int numChildren = (col == 0) ? 1 : fanout;
             for(int f=0; f<numChildren; f++)
             {
-                value[col] = f+1+offset;
-                process(col + 1, 0);
+                value[col] = f+1;
+                process(col + 1);
+                
             }
 
         }
