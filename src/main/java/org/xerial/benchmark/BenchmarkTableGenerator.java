@@ -39,6 +39,8 @@ import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
 
+import com.sun.xml.internal.bind.v2.runtime.output.XmlOutput;
+
 /**
  * Generates Benchmark Tables
  * 
@@ -250,38 +252,106 @@ public class BenchmarkTableGenerator
             int offset = 0;
             while(numRow > 0)
             {
-                LinkedList<String> colSet = new LinkedList<String>();  
+                LinkedList<Integer> colSet = new LinkedList<Integer>();  
                 for(int i=1; i<numColumn; i++)
                 {
-                    colSet.add(getColName(i));
+                    colSet.add(i);
                 }
-                xmlOut.startTag(getColName(0), new XMLAttribute("value", ++offset));
-                process(colSet);
+                LinkedList<Integer> randomOrder = new LinkedList<Integer>();  
+                while(!colSet.isEmpty())
+                {
+                    int targetIndex = r.nextInt(colSet.size());
+                    int targetCol = colSet.remove(targetIndex);
+                    randomOrder.add(targetCol);
+                }
+                xmlOut.startTag("item", new XMLAttribute("value", ++offset));
+                process(randomOrder, 0, new LinkedList<Element>());
                 xmlOut.endTag();
             }
         }
         
-        private void process(LinkedList<String> colList) throws InvalidXMLException
+        class Element
         {
-            if(colList.isEmpty())
+            int col;
+            int value;
+            public Element(int col, int value)
             {
-                xmlOut.flush();
+                super();
+                this.col = col;
+                this.value = value;
+            }
+        }
+        
+        private boolean canHaveMulpleNodes(LinkedList<Integer> randomOrder, int index)
+        {
+            int currentColumn = randomOrder.get(index);
+            int maxInFirstHalf = -1;
+            for(int i=0; i<index; i++)
+            {
+                int column = randomOrder.get(i);
+                if(column > currentColumn)
+                    return false;
+                if(maxInFirstHalf < column)
+                    maxInFirstHalf = column;
+            }
+            for(int i=index+1; i<randomOrder.size(); i++)
+            {
+                if(maxInFirstHalf > randomOrder.get(i))
+                    return false;
+            }
+            return true;
+        }
+        
+        private int smallestFDColumnIndex(LinkedList<Integer> randomOrder, int index)
+        {
+            int currentColumn = randomOrder.get(index);
+            for(int i=0; i<index; i++)
+            {
+                int column = randomOrder.get(i);
+                if(column > currentColumn)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        
+        private void process(LinkedList<Integer> randomOrder, int cursor, LinkedList<Element> elementStack) throws InvalidXMLException
+        {
+            if(cursor >= numColumn - 1)
+            {
                 numRow--;
                 return;
             }
-            
+
             if(numRow <= 0)
                 return;
-            
 
-            int targetIndex = r.nextInt(colList.size());
-            String colName = colList.remove(targetIndex);
-            
+            int currentColumn = randomOrder.get(cursor);
+            int smallestFDColumnIndex = smallestFDColumnIndex(randomOrder, cursor);
+            if(smallestFDColumnIndex == -1)
+                smallestFDColumnIndex = cursor;
             for(int f=0; f<fanout; f++)
             {
-                xmlOut.startTag(colName, new XMLAttribute("value", f+1));
-                process((LinkedList<String>) colList.clone());
+                Element e = new Element(currentColumn, f+1);
+                elementStack.add(e);
+                xmlOut.startTag(getColName(e.col), new XMLAttribute("value", e.value));
+                process(randomOrder, cursor+1, elementStack);
                 xmlOut.endTag();
+                if(f < (fanout - 1))
+                {
+                    for(int i=cursor-1; i>=smallestFDColumnIndex; i--)
+                    {
+                        xmlOut.endTag();
+                    }
+                    for(int i=smallestFDColumnIndex; i<cursor; i++)
+                    {
+                        Element e2 = elementStack.get(i);
+                        xmlOut.startTag(getColName(e2.col), new XMLAttribute("value", e2.value));
+                    }
+                }
+                elementStack.removeLast();
             }
         }
     }
