@@ -1,10 +1,10 @@
 #Fat Jar Configuration File
-#Wed Nov 14 01:12:13 JST 2007
+#Wed Nov 14 01:36:27 JST 2007
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=true
 onejar.checkbox=false
-jarname=XMLBench.jar
+jarname=tools/XMLBench.jar
 manifest.mergeall=true
 manifest.mainclass=org.xerial.benchmark.BenchmarkTableGenerator
 manifest.file=<createnew>
