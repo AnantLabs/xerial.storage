@@ -264,9 +264,9 @@ public class BenchmarkTableGenerator
                     int targetCol = colSet.remove(targetIndex);
                     randomOrder.add(targetCol);
                 }
-                xmlOut.startTag("item", new XMLAttribute("value", ++offset));
+                //xmlOut.startTag("item", new XMLAttribute("value", ++offset));
                 process(randomOrder, 0, new LinkedList<Element>());
-                xmlOut.endTag();
+                //xmlOut.endTag();
             }
         }
         
@@ -325,8 +325,6 @@ public class BenchmarkTableGenerator
                 return;
             }
 
-            if(numRow <= 0)
-                return;
 
             int currentColumn = randomOrder.get(cursor);
             int smallestFDColumnIndex = smallestFDColumnIndex(randomOrder, cursor);
@@ -339,16 +337,24 @@ public class BenchmarkTableGenerator
                 xmlOut.startTag(getColName(e.col), new XMLAttribute("value", e.value));
                 process(randomOrder, cursor+1, elementStack);
                 xmlOut.endTag();
-                if(f < (fanout - 1))
+                if(numRow <= 0)
                 {
-                    for(int i=cursor-1; i>=smallestFDColumnIndex; i--)
+                    elementStack.removeLast();
+                    break;
+                }
+                else
+                {
+                    if(f < (fanout - 1))
                     {
-                        xmlOut.endTag();
-                    }
-                    for(int i=smallestFDColumnIndex; i<cursor; i++)
-                    {
-                        Element e2 = elementStack.get(i);
-                        xmlOut.startTag(getColName(e2.col), new XMLAttribute("value", e2.value));
+                        for(int i=cursor-1; i>=smallestFDColumnIndex; i--)
+                        {
+                            xmlOut.endTag();
+                        }
+                        for(int i=smallestFDColumnIndex; i<cursor; i++)
+                        {
+                            Element e2 = elementStack.get(i);
+                            xmlOut.startTag(getColName(e2.col), new XMLAttribute("value", e2.value));
+                        }
                     }
                 }
                 elementStack.removeLast();
