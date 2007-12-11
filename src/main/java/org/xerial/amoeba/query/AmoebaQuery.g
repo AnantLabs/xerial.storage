@@ -37,6 +37,7 @@ SELECTION;
 CONDITION;
 PROJECTION;
 PROJECT_ALL;
+REF_ALL;
 TARGET;
 FUNCTION;
 AND;
@@ -51,11 +52,18 @@ VALUE;
 CONTAINED_IN;
 RELATION;
 INSERT;
-TARGET;
 VALUE_SET;
 NEW_VALUE;
 NEW_RELATION;
 UPDATE;
+
+ATTRIBUTE_DEF;
+SORT_TARGET;
+
+ONE_TO_MANY;
+
+OBJECT_DEF;
+
 }
 
 
@@ -148,7 +156,7 @@ LESS : '<';
 LEQ  : '<=';
 GREATER : '>';
 GEQ : '>=';
-
+SPLIT : '|';
 
 Select: 'select' | 'SELECT';
 From: 'from' | 'FROM';
@@ -156,7 +164,11 @@ Where: 'where' | 'WHERE';
 In: 'in' | 'IN';
 Insert: 'insert' | 'INSERT';
 Into: 'into' | 'INTO';
+Object: 'object' | 'OBJECT';
+Relationship: 'relationship' | 'RELATIONSHIP';
+HasMany : 'hasmany' | 'HASMANY' | 'HasMany';
 
+DataType: 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text';
 
 
 fragment Letter: 'a' .. 'z' | 'A' .. 'Z';
@@ -181,7 +193,6 @@ QName
 	;
 
 
-
 integerLiteral: Digits;
 decimalLiteral: Dot Digits| Digits Dot Digits;
 
@@ -197,6 +208,37 @@ numericLiteral
 	;
 
 
+lang:
+	| expr+
+	;
+
+expr
+	: objectExpr
+	| amoebaQuery
+	| relationshipExpr
+	;
+
+relationshipExpr
+	: Relationship obj=QName HasMany qnameList 
+	 -> ^(ONE_TO_MANY $obj qnameList) 
+	;
+
+qnameList
+	: QName (Comma QName)? -> QName+
+	;
+
+objectExpr
+	: Object objName=QName LParen attributeDefExpr? (SPLIT sortOrder=qnameList)? RParen
+	 -> ^(OBJECT_DEF[$objName] ^(ATTRIBUTE attributeDefExpr)? ^(SORT_TARGET $sortOrder)?)
+	;
+	
+attributeDefExpr
+	: attributeDef (Comma attributeDef)* 
+	;
+
+attributeDef
+	: QName DataType -> ^(ATTRIBUTE_DEF QName DataType) 
+	;
 
 amoebaQuery
 	: selectExpr
@@ -296,6 +338,7 @@ value
 attributeName
 	: QName -> ^(ATTRIBUTE QName)
 	| relation=QName Dot attribute=QName -> ^(REF $relation $attribute)
+	| relation=QName Dot Wildcard -> ^(REF_ALL $relation)
 	; 
 
 	
