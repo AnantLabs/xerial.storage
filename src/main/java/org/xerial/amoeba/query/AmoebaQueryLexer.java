@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2007-12-11 14:57:36
+// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2007-12-11 17:43:08
 
 /*--------------------------------------------------------------------------
  *  Copyright 2007 Taro L. Saito
@@ -32,209 +32,107 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AmoebaQueryLexer extends Lexer {
-    public static final int T75=75;
-    public static final int FUNCTION=12;
-    public static final int T76=76;
-    public static final int T73=73;
-    public static final int T74=74;
-    public static final int DataType=62;
-    public static final int Insert=57;
-    public static final int SORT_TARGET=30;
+    public static final int FUNCTION=13;
+    public static final int DataType=68;
+    public static final int Insert=59;
+    public static final int SORT_TARGET=31;
+    public static final int T79=79;
     public static final int T77=77;
-    public static final int Apos=43;
+    public static final int Apos=45;
     public static final int T78=78;
-    public static final int Wildcard=45;
-    public static final int HasMany=61;
-    public static final int SPLIT=52;
-    public static final int ATTRIBUTE=19;
-    public static final int INPUT=15;
-    public static final int Where=55;
-    public static final int UPDATE=28;
+    public static final int Wildcard=47;
+    public static final int HasMany=63;
+    public static final int SPLIT=54;
+    public static final int ATTRIBUTE=20;
+    public static final int INPUT=16;
+    public static final int Where=57;
+    public static final int UPDATE=29;
     public static final int CONDITION=7;
-    public static final int Into=58;
-    public static final int AND=13;
+    public static final int Into=60;
+    public static final int AND=14;
     public static final int EOF=-1;
-    public static final int T72=72;
-    public static final int T71=71;
     public static final int SELECTION=6;
-    public static final int ML_COMMENT=35;
-    public static final int GREATER=50;
-    public static final int ASSIGN_LABEL=17;
-    public static final int INSERT=24;
-    public static final int OBJECT=33;
-    public static final int Digits=65;
-    public static final int NOT_EQUAL=47;
-    public static final int CONTAINED_IN=22;
-    public static final int WhiteSpaceChar=67;
-    public static final int NEW_VALUE=26;
-    public static final int EQUAL=46;
-    public static final int LESS=48;
-    public static final int COMPARE=18;
-    public static final int Select=53;
-    public static final int REF_ALL=10;
-    public static final int GEQ=51;
-    public static final int VALUE_SET=25;
-    public static final int Relationship=60;
-    public static final int NEW_RELATION=27;
-    public static final int Quot=42;
+    public static final int ML_COMMENT=37;
+    public static final int GREATER=52;
+    public static final int ASSIGN_LABEL=18;
+    public static final int INSERT=25;
+    public static final int OBJECT=35;
+    public static final int Digits=71;
+    public static final int NOT_EQUAL=49;
+    public static final int CONTAINED_IN=23;
+    public static final int WhiteSpaceChar=73;
+    public static final int NEW_VALUE=27;
+    public static final int EQUAL=48;
+    public static final int LESS=50;
+    public static final int COMPARE=19;
+    public static final int Select=55;
+    public static final int REF_ALL=11;
+    public static final int GEQ=53;
+    public static final int VALUE_SET=26;
+    public static final int Relationship=62;
+    public static final int NEW_RELATION=28;
+    public static final int Quot=44;
+    public static final int DIVIDE=65;
     public static final int PROJECT_ALL=9;
-    public static final int RParen=40;
-    public static final int In=56;
-    public static final int At=44;
-    public static final int QName=70;
-    public static final int LParen=41;
-    public static final int LINE_COMMENT=36;
+    public static final int RParen=42;
+    public static final int In=58;
+    public static final int At=46;
+    public static final int QName=76;
+    public static final int LParen=43;
+    public static final int LINE_COMMENT=38;
     public static final int NUMBER=4;
-    public static final int NameChar=66;
-    public static final int RELATION=23;
-    public static final int Colon=38;
-    public static final int TARGET=11;
-    public static final int VALUE=21;
-    public static final int Digit=64;
-    public static final int Tokens=79;
-    public static final int ONE_TO_MANY=31;
-    public static final int ATTRIBUTE_DEF=29;
-    public static final int REF=20;
-    public static final int From=54;
-    public static final int Object=59;
-    public static final int StringLiteral=68;
-    public static final int OR=14;
-    public static final int Dot=37;
-    public static final int Name=69;
+    public static final int HasOne=64;
+    public static final int NameChar=72;
+    public static final int RELATION=24;
+    public static final int RANGE=67;
+    public static final int Colon=40;
+    public static final int TARGET=12;
+    public static final int VALUE=22;
+    public static final int Digit=70;
+    public static final int Tokens=89;
+    public static final int ONE_TO_MANY=32;
+    public static final int ATTRIBUTE_DEF=30;
+    public static final int REF=21;
+    public static final int From=56;
+    public static final int Object=61;
+    public static final int T88=88;
+    public static final int StringLiteral=74;
+    public static final int ONE_TO_ONE=33;
+    public static final int T84=84;
+    public static final int T85=85;
+    public static final int T86=86;
+    public static final int T87=87;
+    public static final int OR=15;
+    public static final int Dot=39;
+    public static final int Name=75;
+    public static final int T81=81;
+    public static final int T80=80;
     public static final int PROJECTION=8;
-    public static final int Comma=39;
-    public static final int OUTPUT=16;
-    public static final int Letter=63;
-    public static final int LANG=34;
+    public static final int T83=83;
+    public static final int Comma=41;
+    public static final int DISTINCT=66;
+    public static final int T82=82;
+    public static final int ORDER_BY=10;
+    public static final int OUTPUT=17;
+    public static final int Letter=69;
+    public static final int LANG=36;
     public static final int STRING=5;
-    public static final int OBJECT_DEF=32;
-    public static final int LEQ=49;
+    public static final int OBJECT_DEF=34;
+    public static final int LEQ=51;
     public AmoebaQueryLexer() {;} 
     public AmoebaQueryLexer(CharStream input) {
         super(input);
     }
     public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g"; }
 
-    // $ANTLR start T71
-    public final void mT71() throws RecognitionException {
-        try {
-            int _type = T71;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:5: ( 'update' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:7: 'update'
-            {
-            match("update"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T71
-
-    // $ANTLR start T72
-    public final void mT72() throws RecognitionException {
-        try {
-            int _type = T72;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:5: ( 'set' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:7: 'set'
-            {
-            match("set"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T72
-
-    // $ANTLR start T73
-    public final void mT73() throws RecognitionException {
-        try {
-            int _type = T73;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:5: ( '{' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:7: '{'
-            {
-            match('{'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T73
-
-    // $ANTLR start T74
-    public final void mT74() throws RecognitionException {
-        try {
-            int _type = T74;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:5: ( '}' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:7: '}'
-            {
-            match('}'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T74
-
-    // $ANTLR start T75
-    public final void mT75() throws RecognitionException {
-        try {
-            int _type = T75;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:5: ( 'as' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:7: 'as'
-            {
-            match("as"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T75
-
-    // $ANTLR start T76
-    public final void mT76() throws RecognitionException {
-        try {
-            int _type = T76;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:5: ( 'or' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:7: 'or'
-            {
-            match("or"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T76
-
     // $ANTLR start T77
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:5: ( 'and' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:7: 'and'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:5: ( 'by' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:7: 'by'
             {
-            match("and"); 
+            match("by"); 
 
 
             }
@@ -250,10 +148,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:5: ( 'like' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:7: 'like'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:5: ( 'auto' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:7: 'auto'
             {
-            match("like"); 
+            match("auto"); 
 
 
             }
@@ -265,16 +163,204 @@ public class AmoebaQueryLexer extends Lexer {
     }
     // $ANTLR end T78
 
+    // $ANTLR start T79
+    public final void mT79() throws RecognitionException {
+        try {
+            int _type = T79;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:5: ( 'AUTO' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:7: 'AUTO'
+            {
+            match("AUTO"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T79
+
+    // $ANTLR start T80
+    public final void mT80() throws RecognitionException {
+        try {
+            int _type = T80;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:5: ( 'update' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:7: 'update'
+            {
+            match("update"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T80
+
+    // $ANTLR start T81
+    public final void mT81() throws RecognitionException {
+        try {
+            int _type = T81;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:5: ( 'set' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:7: 'set'
+            {
+            match("set"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T81
+
+    // $ANTLR start T82
+    public final void mT82() throws RecognitionException {
+        try {
+            int _type = T82;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:5: ( '{' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:7: '{'
+            {
+            match('{'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T82
+
+    // $ANTLR start T83
+    public final void mT83() throws RecognitionException {
+        try {
+            int _type = T83;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:5: ( '}' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:7: '}'
+            {
+            match('}'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T83
+
+    // $ANTLR start T84
+    public final void mT84() throws RecognitionException {
+        try {
+            int _type = T84;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:5: ( 'as' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:7: 'as'
+            {
+            match("as"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T84
+
+    // $ANTLR start T85
+    public final void mT85() throws RecognitionException {
+        try {
+            int _type = T85;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:41:5: ( 'order' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:41:7: 'order'
+            {
+            match("order"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T85
+
+    // $ANTLR start T86
+    public final void mT86() throws RecognitionException {
+        try {
+            int _type = T86;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:42:5: ( 'or' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:42:7: 'or'
+            {
+            match("or"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T86
+
+    // $ANTLR start T87
+    public final void mT87() throws RecognitionException {
+        try {
+            int _type = T87;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:43:5: ( 'and' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:43:7: 'and'
+            {
+            match("and"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T87
+
+    // $ANTLR start T88
+    public final void mT88() throws RecognitionException {
+        try {
+            int _type = T88;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:44:5: ( 'like' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:44:7: 'like'
+            {
+            match("like"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T88
+
     // $ANTLR start ML_COMMENT
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:14: ( options {greedy=false; } : . )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:14: ( options {greedy=false; } : . )*
             loop1:
             do {
                 int alt1=2;
@@ -299,7 +385,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:41: .
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:41: .
             	    {
             	    matchAny(); 
 
@@ -328,12 +414,12 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:12: (~ ( '\\n' | '\\r' ) )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:12: (~ ( '\\n' | '\\r' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -346,7 +432,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:12: ~ ( '\\n' | '\\r' )
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -367,7 +453,7 @@ public class AmoebaQueryLexer extends Lexer {
                 }
             } while (true);
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:26: ( '\\r' )?
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:26: ( '\\r' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -376,7 +462,7 @@ public class AmoebaQueryLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:26: '\\r'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:26: '\\r'
                     {
                     match('\r'); 
 
@@ -401,8 +487,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mDot() throws RecognitionException {
         try {
             int _type = Dot;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:4: ( '.' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:6: '.'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:4: ( '.' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:6: '.'
             {
             match('.'); 
 
@@ -419,8 +505,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mColon() throws RecognitionException {
         try {
             int _type = Colon;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:6: ( ';' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:8: ';'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:6: ( ';' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:8: ';'
             {
             match(';'); 
 
@@ -437,8 +523,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mComma() throws RecognitionException {
         try {
             int _type = Comma;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:6: ( ',' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:8: ','
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:6: ( ',' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:8: ','
             {
             match(','); 
 
@@ -455,8 +541,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mRParen() throws RecognitionException {
         try {
             int _type = RParen;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:7: ( ')' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:9: ')'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:7: ( ')' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:9: ')'
             {
             match(')'); 
 
@@ -473,8 +559,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLParen() throws RecognitionException {
         try {
             int _type = LParen;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:7: ( '(' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:9: '('
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:7: ( '(' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:9: '('
             {
             match('('); 
 
@@ -490,8 +576,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Quot
     public final void mQuot() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:14: ( '\"' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:16: '\"'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:14: ( '\"' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:16: '\"'
             {
             match('\"'); 
 
@@ -506,8 +592,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Apos
     public final void mApos() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:14: ( '\\'' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:16: '\\''
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:14: ( '\\'' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:16: '\\''
             {
             match('\''); 
 
@@ -523,8 +609,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mAt() throws RecognitionException {
         try {
             int _type = At;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:3: ( '@' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:5: '@'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:3: ( '@' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:5: '@'
             {
             match('@'); 
 
@@ -541,8 +627,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWildcard() throws RecognitionException {
         try {
             int _type = Wildcard;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:10: ( '*' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:12: '*'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:10: ( '*' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:12: '*'
             {
             match('*'); 
 
@@ -559,8 +645,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mEQUAL() throws RecognitionException {
         try {
             int _type = EQUAL;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:7: ( '=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:9: '='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:163:7: ( '=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:163:9: '='
             {
             match('='); 
 
@@ -577,8 +663,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mNOT_EQUAL() throws RecognitionException {
         try {
             int _type = NOT_EQUAL;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:11: ( '!=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:13: '!='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:11: ( '!=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:13: '!='
             {
             match("!="); 
 
@@ -596,8 +682,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLESS() throws RecognitionException {
         try {
             int _type = LESS;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:6: ( '<' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:8: '<'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:6: ( '<' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:8: '<'
             {
             match('<'); 
 
@@ -614,8 +700,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLEQ() throws RecognitionException {
         try {
             int _type = LEQ;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:6: ( '<=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:8: '<='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:6: ( '<=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:8: '<='
             {
             match("<="); 
 
@@ -633,8 +719,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mGREATER() throws RecognitionException {
         try {
             int _type = GREATER;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:9: ( '>' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:11: '>'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:9: ( '>' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:11: '>'
             {
             match('>'); 
 
@@ -651,8 +737,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mGEQ() throws RecognitionException {
         try {
             int _type = GEQ;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:5: ( '>=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:7: '>='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:5: ( '>=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:7: '>='
             {
             match(">="); 
 
@@ -670,8 +756,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mSPLIT() throws RecognitionException {
         try {
             int _type = SPLIT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:7: ( '|' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:9: '|'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:7: ( '|' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:9: '|'
             {
             match('|'); 
 
@@ -688,7 +774,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mSelect() throws RecognitionException {
         try {
             int _type = Select;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:7: ( 'select' | 'SELECT' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:7: ( 'select' | 'SELECT' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -700,13 +786,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("164:1: Select : ( 'select' | 'SELECT' );", 4, 0, input);
+                    new NoViableAltException("171:1: Select : ( 'select' | 'SELECT' );", 4, 0, input);
 
                 throw nvae;
             }
             switch (alt4) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:9: 'select'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:9: 'select'
                     {
                     match("select"); 
 
@@ -714,7 +800,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:20: 'SELECT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:20: 'SELECT'
                     {
                     match("SELECT"); 
 
@@ -734,7 +820,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mFrom() throws RecognitionException {
         try {
             int _type = From;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:5: ( 'from' | 'FROM' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:5: ( 'from' | 'FROM' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -746,13 +832,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("165:1: From : ( 'from' | 'FROM' );", 5, 0, input);
+                    new NoViableAltException("172:1: From : ( 'from' | 'FROM' );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:7: 'from'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:7: 'from'
                     {
                     match("from"); 
 
@@ -760,7 +846,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:16: 'FROM'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:16: 'FROM'
                     {
                     match("FROM"); 
 
@@ -780,7 +866,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWhere() throws RecognitionException {
         try {
             int _type = Where;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:6: ( 'where' | 'WHERE' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:173:6: ( 'where' | 'WHERE' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -792,13 +878,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("166:1: Where : ( 'where' | 'WHERE' );", 6, 0, input);
+                    new NoViableAltException("173:1: Where : ( 'where' | 'WHERE' );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:8: 'where'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:173:8: 'where'
                     {
                     match("where"); 
 
@@ -806,7 +892,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:18: 'WHERE'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:173:18: 'WHERE'
                     {
                     match("WHERE"); 
 
@@ -826,7 +912,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mIn() throws RecognitionException {
         try {
             int _type = In;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:3: ( 'in' | 'IN' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:3: ( 'in' | 'IN' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -838,13 +924,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("167:1: In : ( 'in' | 'IN' );", 7, 0, input);
+                    new NoViableAltException("174:1: In : ( 'in' | 'IN' );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:5: 'in'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:5: 'in'
                     {
                     match("in"); 
 
@@ -852,7 +938,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:12: 'IN'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:12: 'IN'
                     {
                     match("IN"); 
 
@@ -872,7 +958,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mInsert() throws RecognitionException {
         try {
             int _type = Insert;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:7: ( 'insert' | 'INSERT' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:175:7: ( 'insert' | 'INSERT' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -884,13 +970,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("168:1: Insert : ( 'insert' | 'INSERT' );", 8, 0, input);
+                    new NoViableAltException("175:1: Insert : ( 'insert' | 'INSERT' );", 8, 0, input);
 
                 throw nvae;
             }
             switch (alt8) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:9: 'insert'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:175:9: 'insert'
                     {
                     match("insert"); 
 
@@ -898,7 +984,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:20: 'INSERT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:175:20: 'INSERT'
                     {
                     match("INSERT"); 
 
@@ -918,7 +1004,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mInto() throws RecognitionException {
         try {
             int _type = Into;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:5: ( 'into' | 'INTO' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:5: ( 'into' | 'INTO' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -930,13 +1016,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("169:1: Into : ( 'into' | 'INTO' );", 9, 0, input);
+                    new NoViableAltException("176:1: Into : ( 'into' | 'INTO' );", 9, 0, input);
 
                 throw nvae;
             }
             switch (alt9) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:7: 'into'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:7: 'into'
                     {
                     match("into"); 
 
@@ -944,7 +1030,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:16: 'INTO'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:16: 'INTO'
                     {
                     match("INTO"); 
 
@@ -964,25 +1050,38 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mObject() throws RecognitionException {
         try {
             int _type = Object;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:7: ( 'object' | 'OBJECT' )
-            int alt10=2;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:7: ( 'object' | 'OBJECT' | 'Object' )
+            int alt10=3;
             int LA10_0 = input.LA(1);
 
             if ( (LA10_0=='o') ) {
                 alt10=1;
             }
             else if ( (LA10_0=='O') ) {
-                alt10=2;
+                int LA10_2 = input.LA(2);
+
+                if ( (LA10_2=='B') ) {
+                    alt10=2;
+                }
+                else if ( (LA10_2=='b') ) {
+                    alt10=3;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("177:1: Object : ( 'object' | 'OBJECT' | 'Object' );", 10, 2, input);
+
+                    throw nvae;
+                }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("170:1: Object : ( 'object' | 'OBJECT' );", 10, 0, input);
+                    new NoViableAltException("177:1: Object : ( 'object' | 'OBJECT' | 'Object' );", 10, 0, input);
 
                 throw nvae;
             }
             switch (alt10) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:9: 'object'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:9: 'object'
                     {
                     match("object"); 
 
@@ -990,9 +1089,17 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:20: 'OBJECT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:20: 'OBJECT'
                     {
                     match("OBJECT"); 
+
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:31: 'Object'
+                    {
+                    match("Object"); 
 
 
                     }
@@ -1010,25 +1117,38 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mRelationship() throws RecognitionException {
         try {
             int _type = Relationship;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:13: ( 'relationship' | 'RELATIONSHIP' )
-            int alt11=2;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:13: ( 'relationship' | 'RELATIONSHIP' | 'Relationship' )
+            int alt11=3;
             int LA11_0 = input.LA(1);
 
             if ( (LA11_0=='r') ) {
                 alt11=1;
             }
             else if ( (LA11_0=='R') ) {
-                alt11=2;
+                int LA11_2 = input.LA(2);
+
+                if ( (LA11_2=='E') ) {
+                    alt11=2;
+                }
+                else if ( (LA11_2=='e') ) {
+                    alt11=3;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("178:1: Relationship : ( 'relationship' | 'RELATIONSHIP' | 'Relationship' );", 11, 2, input);
+
+                    throw nvae;
+                }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("171:1: Relationship : ( 'relationship' | 'RELATIONSHIP' );", 11, 0, input);
+                    new NoViableAltException("178:1: Relationship : ( 'relationship' | 'RELATIONSHIP' | 'Relationship' );", 11, 0, input);
 
                 throw nvae;
             }
             switch (alt11) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:15: 'relationship'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:15: 'relationship'
                     {
                     match("relationship"); 
 
@@ -1036,9 +1156,17 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:32: 'RELATIONSHIP'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:32: 'RELATIONSHIP'
                     {
                     match("RELATIONSHIP"); 
+
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:49: 'Relationship'
+                    {
+                    match("Relationship"); 
 
 
                     }
@@ -1056,7 +1184,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mHasMany() throws RecognitionException {
         try {
             int _type = HasMany;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:9: ( 'hasmany' | 'HASMANY' | 'HasMany' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:9: ( 'hasmany' | 'HASMANY' | 'HasMany' )
             int alt12=3;
             int LA12_0 = input.LA(1);
 
@@ -1074,20 +1202,20 @@ public class AmoebaQueryLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("172:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 2, input);
+                        new NoViableAltException("179:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 2, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("172:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 0, input);
+                    new NoViableAltException("179:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 0, input);
 
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:11: 'hasmany'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:11: 'hasmany'
                     {
                     match("hasmany"); 
 
@@ -1095,7 +1223,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:23: 'HASMANY'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:23: 'HASMANY'
                     {
                     match("HASMANY"); 
 
@@ -1103,7 +1231,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:35: 'HasMany'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:35: 'HasMany'
                     {
                     match("HasMany"); 
 
@@ -1119,53 +1247,279 @@ public class AmoebaQueryLexer extends Lexer {
     }
     // $ANTLR end HasMany
 
+    // $ANTLR start HasOne
+    public final void mHasOne() throws RecognitionException {
+        try {
+            int _type = HasOne;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:8: ( 'hasone' | 'HASONE' | 'HasOne' )
+            int alt13=3;
+            int LA13_0 = input.LA(1);
+
+            if ( (LA13_0=='h') ) {
+                alt13=1;
+            }
+            else if ( (LA13_0=='H') ) {
+                int LA13_2 = input.LA(2);
+
+                if ( (LA13_2=='a') ) {
+                    alt13=3;
+                }
+                else if ( (LA13_2=='A') ) {
+                    alt13=2;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("180:1: HasOne : ( 'hasone' | 'HASONE' | 'HasOne' );", 13, 2, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("180:1: HasOne : ( 'hasone' | 'HASONE' | 'HasOne' );", 13, 0, input);
+
+                throw nvae;
+            }
+            switch (alt13) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:10: 'hasone'
+                    {
+                    match("hasone"); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:21: 'HASONE'
+                    {
+                    match("HASONE"); 
+
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:32: 'HasOne'
+                    {
+                    match("HasOne"); 
+
+
+                    }
+                    break;
+
+            }
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end HasOne
+
+    // $ANTLR start DIVIDE
+    public final void mDIVIDE() throws RecognitionException {
+        try {
+            int _type = DIVIDE;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:7: ( 'divide' | 'DIVIDE' | 'Divide' )
+            int alt14=3;
+            int LA14_0 = input.LA(1);
+
+            if ( (LA14_0=='d') ) {
+                alt14=1;
+            }
+            else if ( (LA14_0=='D') ) {
+                int LA14_2 = input.LA(2);
+
+                if ( (LA14_2=='i') ) {
+                    alt14=3;
+                }
+                else if ( (LA14_2=='I') ) {
+                    alt14=2;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("181:1: DIVIDE : ( 'divide' | 'DIVIDE' | 'Divide' );", 14, 2, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("181:1: DIVIDE : ( 'divide' | 'DIVIDE' | 'Divide' );", 14, 0, input);
+
+                throw nvae;
+            }
+            switch (alt14) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:9: 'divide'
+                    {
+                    match("divide"); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:20: 'DIVIDE'
+                    {
+                    match("DIVIDE"); 
+
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:31: 'Divide'
+                    {
+                    match("Divide"); 
+
+
+                    }
+                    break;
+
+            }
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end DIVIDE
+
+    // $ANTLR start DISTINCT
+    public final void mDISTINCT() throws RecognitionException {
+        try {
+            int _type = DISTINCT;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:182:9: ( 'distinct' | 'DISTINCT' )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
+
+            if ( (LA15_0=='d') ) {
+                alt15=1;
+            }
+            else if ( (LA15_0=='D') ) {
+                alt15=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("182:1: DISTINCT : ( 'distinct' | 'DISTINCT' );", 15, 0, input);
+
+                throw nvae;
+            }
+            switch (alt15) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:182:11: 'distinct'
+                    {
+                    match("distinct"); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:182:24: 'DISTINCT'
+                    {
+                    match("DISTINCT"); 
+
+
+                    }
+                    break;
+
+            }
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end DISTINCT
+
+    // $ANTLR start RANGE
+    public final void mRANGE() throws RecognitionException {
+        try {
+            int _type = RANGE;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:6: ( 'range' | 'RANGE' )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
+
+            if ( (LA16_0=='r') ) {
+                alt16=1;
+            }
+            else if ( (LA16_0=='R') ) {
+                alt16=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("183:1: RANGE : ( 'range' | 'RANGE' );", 16, 0, input);
+
+                throw nvae;
+            }
+            switch (alt16) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:8: 'range'
+                    {
+                    match("range"); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:18: 'RANGE'
+                    {
+                    match("RANGE"); 
+
+
+                    }
+                    break;
+
+            }
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end RANGE
+
     // $ANTLR start DataType
     public final void mDataType() throws RecognitionException {
         try {
             int _type = DataType;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:9: ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' )
-            int alt13=6;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:9: ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' )
+            int alt17=6;
             switch ( input.LA(1) ) {
             case 's':
                 {
-                alt13=1;
+                alt17=1;
                 }
                 break;
             case 'i':
                 {
-                alt13=2;
+                alt17=2;
                 }
                 break;
             case 'b':
                 {
-                alt13=3;
+                alt17=3;
                 }
                 break;
             case 'f':
                 {
-                alt13=4;
+                alt17=4;
                 }
                 break;
             case 'd':
                 {
-                alt13=5;
+                alt17=5;
                 }
                 break;
             case 't':
                 {
-                alt13=6;
+                alt17=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("174:1: DataType : ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' );", 13, 0, input);
+                    new NoViableAltException("186:1: DataType : ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' );", 17, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt13) {
+            switch (alt17) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:11: 'string'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:11: 'string'
                     {
                     match("string"); 
 
@@ -1173,7 +1527,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:22: 'integer'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:22: 'integer'
                     {
                     match("integer"); 
 
@@ -1181,7 +1535,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:34: 'boolean'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:34: 'boolean'
                     {
                     match("boolean"); 
 
@@ -1189,7 +1543,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:46: 'float'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:46: 'float'
                     {
                     match("float"); 
 
@@ -1197,7 +1551,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:56: 'double'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:56: 'double'
                     {
                     match("double"); 
 
@@ -1205,7 +1559,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:67: 'text'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:67: 'text'
                     {
                     match("text"); 
 
@@ -1224,7 +1578,7 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Letter
     public final void mLetter() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:16: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:189:16: ( 'a' .. 'z' | 'A' .. 'Z' )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1249,8 +1603,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Digit
     public final void mDigit() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:15: ( '0' .. '9' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:17: '0' .. '9'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:190:15: ( '0' .. '9' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:190:17: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1266,24 +1620,24 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mDigits() throws RecognitionException {
         try {
             int _type = Digits;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:7: ( ( Digit )+ )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:9: ( Digit )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:7: ( ( Digit )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:9: ( Digit )+
             {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:9: ( Digit )+
-            int cnt14=0;
-            loop14:
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:9: ( Digit )+
+            int cnt18=0;
+            loop18:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( ((LA14_0>='0' && LA14_0<='9')) ) {
-                    alt14=1;
+                if ( ((LA18_0>='0' && LA18_0<='9')) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt18) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:10: Digit
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:10: Digit
             	    {
             	    mDigit(); 
 
@@ -1291,12 +1645,12 @@ public class AmoebaQueryLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt14 >= 1 ) break loop14;
+            	    if ( cnt18 >= 1 ) break loop18;
                         EarlyExitException eee =
-                            new EarlyExitException(14, input);
+                            new EarlyExitException(18, input);
                         throw eee;
                 }
-                cnt14++;
+                cnt18++;
             } while (true);
 
 
@@ -1312,7 +1666,7 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start NameChar
     public final void mNameChar() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:18: ( Letter | Digit | '_' | '-' | At )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:193:18: ( Letter | Digit | '_' | '-' | At )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
             {
             if ( input.LA(1)=='-'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='@' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1338,22 +1692,22 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWhiteSpaceChar() throws RecognitionException {
         try {
             int _type = WhiteSpaceChar;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:15: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+ )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:195:15: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:195:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
             {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
-            int cnt15=0;
-            loop15:
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:195:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
+            int cnt19=0;
+            loop19:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( ((LA15_0>='\t' && LA15_0<='\n')||(LA15_0>='\f' && LA15_0<='\r')||LA15_0==' ') ) {
-                    alt15=1;
+                if ( ((LA19_0>='\t' && LA19_0<='\n')||(LA19_0>='\f' && LA19_0<='\r')||LA19_0==' ') ) {
+                    alt19=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt19) {
             	case 1 :
             	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
             	    {
@@ -1372,12 +1726,12 @@ public class AmoebaQueryLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt15 >= 1 ) break loop15;
+            	    if ( cnt19 >= 1 ) break loop19;
                         EarlyExitException eee =
-                            new EarlyExitException(15, input);
+                            new EarlyExitException(19, input);
                         throw eee;
                 }
-                cnt15++;
+                cnt19++;
             } while (true);
 
              channel=HIDDEN; 
@@ -1395,41 +1749,41 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mStringLiteral() throws RecognitionException {
         try {
             int _type = StringLiteral;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:1: ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:198:1: ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA18_0=='\"') ) {
-                alt18=1;
+            if ( (LA22_0=='\"') ) {
+                alt22=1;
             }
-            else if ( (LA18_0=='\'') ) {
-                alt18=2;
+            else if ( (LA22_0=='\'') ) {
+                alt22=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("185:1: StringLiteral : ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos );", 18, 0, input);
+                    new NoViableAltException("197:1: StringLiteral : ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos );", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt18) {
+            switch (alt22) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:3: Quot (~ '\"' )* Quot
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:198:3: Quot (~ '\"' )* Quot
                     {
                     mQuot(); 
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:9: (~ '\"' )*
-                    loop16:
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:198:9: (~ '\"' )*
+                    loop20:
                     do {
-                        int alt16=2;
-                        int LA16_0 = input.LA(1);
+                        int alt20=2;
+                        int LA20_0 = input.LA(1);
 
-                        if ( ((LA16_0>='\u0000' && LA16_0<='!')||(LA16_0>='#' && LA16_0<='\uFFFE')) ) {
-                            alt16=1;
+                        if ( ((LA20_0>='\u0000' && LA20_0<='!')||(LA20_0>='#' && LA20_0<='\uFFFE')) ) {
+                            alt20=1;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt20) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:10: ~ '\"'
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:198:10: ~ '\"'
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1446,7 +1800,7 @@ public class AmoebaQueryLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop16;
+                    	    break loop20;
                         }
                     } while (true);
 
@@ -1455,23 +1809,23 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:3: Apos (~ '\\'' )* Apos
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:199:3: Apos (~ '\\'' )* Apos
                     {
                     mApos(); 
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:9: (~ '\\'' )*
-                    loop17:
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:199:9: (~ '\\'' )*
+                    loop21:
                     do {
-                        int alt17=2;
-                        int LA17_0 = input.LA(1);
+                        int alt21=2;
+                        int LA21_0 = input.LA(1);
 
-                        if ( ((LA17_0>='\u0000' && LA17_0<='&')||(LA17_0>='(' && LA17_0<='\uFFFE')) ) {
-                            alt17=1;
+                        if ( ((LA21_0>='\u0000' && LA21_0<='&')||(LA21_0>='(' && LA21_0<='\uFFFE')) ) {
+                            alt21=1;
                         }
 
 
-                        switch (alt17) {
+                        switch (alt21) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:10: ~ '\\''
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:199:10: ~ '\\''
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1488,7 +1842,7 @@ public class AmoebaQueryLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop17;
+                    	    break loop21;
                         }
                     } while (true);
 
@@ -1508,8 +1862,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Name
     public final void mName() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:14: ( ( Letter | '_' ) ( NameChar )* )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:16: ( Letter | '_' ) ( NameChar )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:203:14: ( ( Letter | '_' ) ( NameChar )* )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:203:16: ( Letter | '_' ) ( NameChar )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1521,20 +1875,20 @@ public class AmoebaQueryLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:31: ( NameChar )*
-            loop19:
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:203:31: ( NameChar )*
+            loop23:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA19_0=='-'||(LA19_0>='0' && LA19_0<='9')||(LA19_0>='@' && LA19_0<='Z')||LA19_0=='_'||(LA19_0>='a' && LA19_0<='z')) ) {
-                    alt19=1;
+                if ( (LA23_0=='-'||(LA23_0>='0' && LA23_0<='9')||(LA23_0>='@' && LA23_0<='Z')||LA23_0=='_'||(LA23_0>='a' && LA23_0<='z')) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt23) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:31: NameChar
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:203:31: NameChar
             	    {
             	    mNameChar(); 
 
@@ -1542,7 +1896,7 @@ public class AmoebaQueryLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop23;
                 }
             } while (true);
 
@@ -1559,12 +1913,12 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mQName() throws RecognitionException {
         try {
             int _type = QName;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:194:2: ( Name Colon Name | Name )
-            int alt20=2;
-            alt20 = dfa20.predict(input);
-            switch (alt20) {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:206:2: ( Name Colon Name | Name )
+            int alt24=2;
+            alt24 = dfa24.predict(input);
+            switch (alt24) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:194:4: Name Colon Name
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:206:4: Name Colon Name
                     {
                     mName(); 
                     mColon(); 
@@ -1573,7 +1927,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:195:4: Name
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:207:4: Name
                     {
                     mName(); 
 
@@ -1589,283 +1943,484 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR end QName
 
     public void mTokens() throws RecognitionException {
-        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:8: ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName )
-        int alt21=38;
+        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:8: ( T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | HasOne | DIVIDE | DISTINCT | RANGE | DataType | Digits | WhiteSpaceChar | StringLiteral | QName )
+        int alt25=46;
         switch ( input.LA(1) ) {
-        case 'u':
-            {
-            int LA21_1 = input.LA(2);
-
-            if ( (LA21_1=='p') ) {
-                int LA21_40 = input.LA(3);
-
-                if ( (LA21_40=='d') ) {
-                    int LA21_71 = input.LA(4);
-
-                    if ( (LA21_71=='a') ) {
-                        int LA21_100 = input.LA(5);
-
-                        if ( (LA21_100=='t') ) {
-                            int LA21_127 = input.LA(6);
-
-                            if ( (LA21_127=='e') ) {
-                                int LA21_150 = input.LA(7);
-
-                                if ( (LA21_150=='-'||(LA21_150>='0' && LA21_150<='9')||LA21_150==';'||(LA21_150>='@' && LA21_150<='Z')||LA21_150=='_'||(LA21_150>='a' && LA21_150<='z')) ) {
-                                    alt21=38;
-                                }
-                                else {
-                                    alt21=1;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
-                }
-                else {
-                    alt21=38;}
-            }
-            else {
-                alt21=38;}
-            }
-            break;
-        case 's':
+        case 'b':
             {
             switch ( input.LA(2) ) {
-            case 'e':
+            case 'y':
                 {
-                switch ( input.LA(3) ) {
-                case 'l':
-                    {
-                    int LA21_72 = input.LA(4);
+                int LA25_42 = input.LA(3);
 
-                    if ( (LA21_72=='e') ) {
-                        int LA21_101 = input.LA(5);
-
-                        if ( (LA21_101=='c') ) {
-                            int LA21_128 = input.LA(6);
-
-                            if ( (LA21_128=='t') ) {
-                                int LA21_151 = input.LA(7);
-
-                                if ( (LA21_151=='-'||(LA21_151>='0' && LA21_151<='9')||LA21_151==';'||(LA21_151>='@' && LA21_151<='Z')||LA21_151=='_'||(LA21_151>='a' && LA21_151<='z')) ) {
-                                    alt21=38;
-                                }
-                                else {
-                                    alt21=25;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
-                    }
-                    break;
-                case 't':
-                    {
-                    int LA21_73 = input.LA(4);
-
-                    if ( (LA21_73=='-'||(LA21_73>='0' && LA21_73<='9')||LA21_73==';'||(LA21_73>='@' && LA21_73<='Z')||LA21_73=='_'||(LA21_73>='a' && LA21_73<='z')) ) {
-                        alt21=38;
-                    }
-                    else {
-                        alt21=2;}
-                    }
-                    break;
-                default:
-                    alt21=38;}
-
-                }
-                break;
-            case 't':
-                {
-                int LA21_42 = input.LA(3);
-
-                if ( (LA21_42=='r') ) {
-                    int LA21_74 = input.LA(4);
-
-                    if ( (LA21_74=='i') ) {
-                        int LA21_103 = input.LA(5);
-
-                        if ( (LA21_103=='n') ) {
-                            int LA21_129 = input.LA(6);
-
-                            if ( (LA21_129=='g') ) {
-                                int LA21_152 = input.LA(7);
-
-                                if ( (LA21_152=='-'||(LA21_152>='0' && LA21_152<='9')||LA21_152==';'||(LA21_152>='@' && LA21_152<='Z')||LA21_152=='_'||(LA21_152>='a' && LA21_152<='z')) ) {
-                                    alt21=38;
-                                }
-                                else {
-                                    alt21=34;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
+                if ( (LA25_42=='-'||(LA25_42>='0' && LA25_42<='9')||LA25_42==';'||(LA25_42>='@' && LA25_42<='Z')||LA25_42=='_'||(LA25_42>='a' && LA25_42<='z')) ) {
+                    alt25=46;
                 }
                 else {
-                    alt21=38;}
+                    alt25=1;}
+                }
+                break;
+            case 'o':
+                {
+                int LA25_43 = input.LA(3);
+
+                if ( (LA25_43=='o') ) {
+                    int LA25_84 = input.LA(4);
+
+                    if ( (LA25_84=='l') ) {
+                        int LA25_125 = input.LA(5);
+
+                        if ( (LA25_125=='e') ) {
+                            int LA25_167 = input.LA(6);
+
+                            if ( (LA25_167=='a') ) {
+                                int LA25_205 = input.LA(7);
+
+                                if ( (LA25_205=='n') ) {
+                                    int LA25_234 = input.LA(8);
+
+                                    if ( (LA25_234=='-'||(LA25_234>='0' && LA25_234<='9')||LA25_234==';'||(LA25_234>='@' && LA25_234<='Z')||LA25_234=='_'||(LA25_234>='a' && LA25_234<='z')) ) {
+                                        alt25=46;
+                                    }
+                                    else {
+                                        alt25=42;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
                 }
                 break;
             default:
-                alt21=38;}
+                alt25=46;}
 
-            }
-            break;
-        case '{':
-            {
-            alt21=3;
-            }
-            break;
-        case '}':
-            {
-            alt21=4;
             }
             break;
         case 'a':
             {
             switch ( input.LA(2) ) {
-            case 'n':
+            case 'u':
                 {
-                int LA21_43 = input.LA(3);
+                int LA25_44 = input.LA(3);
 
-                if ( (LA21_43=='d') ) {
-                    int LA21_75 = input.LA(4);
+                if ( (LA25_44=='t') ) {
+                    int LA25_85 = input.LA(4);
 
-                    if ( (LA21_75=='-'||(LA21_75>='0' && LA21_75<='9')||LA21_75==';'||(LA21_75>='@' && LA21_75<='Z')||LA21_75=='_'||(LA21_75>='a' && LA21_75<='z')) ) {
-                        alt21=38;
+                    if ( (LA25_85=='o') ) {
+                        int LA25_126 = input.LA(5);
+
+                        if ( (LA25_126=='-'||(LA25_126>='0' && LA25_126<='9')||LA25_126==';'||(LA25_126>='@' && LA25_126<='Z')||LA25_126=='_'||(LA25_126>='a' && LA25_126<='z')) ) {
+                            alt25=46;
+                        }
+                        else {
+                            alt25=2;}
                     }
                     else {
-                        alt21=7;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'n':
+                {
+                int LA25_45 = input.LA(3);
+
+                if ( (LA25_45=='d') ) {
+                    int LA25_86 = input.LA(4);
+
+                    if ( (LA25_86=='-'||(LA25_86>='0' && LA25_86<='9')||LA25_86==';'||(LA25_86>='@' && LA25_86<='Z')||LA25_86=='_'||(LA25_86>='a' && LA25_86<='z')) ) {
+                        alt25=46;
+                    }
+                    else {
+                        alt25=11;}
+                }
+                else {
+                    alt25=46;}
                 }
                 break;
             case 's':
                 {
-                int LA21_44 = input.LA(3);
+                int LA25_46 = input.LA(3);
 
-                if ( (LA21_44=='-'||(LA21_44>='0' && LA21_44<='9')||LA21_44==';'||(LA21_44>='@' && LA21_44<='Z')||LA21_44=='_'||(LA21_44>='a' && LA21_44<='z')) ) {
-                    alt21=38;
+                if ( (LA25_46=='-'||(LA25_46>='0' && LA25_46<='9')||LA25_46==';'||(LA25_46>='@' && LA25_46<='Z')||LA25_46=='_'||(LA25_46>='a' && LA25_46<='z')) ) {
+                    alt25=46;
                 }
                 else {
-                    alt21=5;}
+                    alt25=8;}
                 }
                 break;
             default:
-                alt21=38;}
+                alt25=46;}
 
+            }
+            break;
+        case 'A':
+            {
+            int LA25_3 = input.LA(2);
+
+            if ( (LA25_3=='U') ) {
+                int LA25_47 = input.LA(3);
+
+                if ( (LA25_47=='T') ) {
+                    int LA25_88 = input.LA(4);
+
+                    if ( (LA25_88=='O') ) {
+                        int LA25_128 = input.LA(5);
+
+                        if ( (LA25_128=='-'||(LA25_128>='0' && LA25_128<='9')||LA25_128==';'||(LA25_128>='@' && LA25_128<='Z')||LA25_128=='_'||(LA25_128>='a' && LA25_128<='z')) ) {
+                            alt25=46;
+                        }
+                        else {
+                            alt25=3;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+            }
+            else {
+                alt25=46;}
+            }
+            break;
+        case 'u':
+            {
+            int LA25_4 = input.LA(2);
+
+            if ( (LA25_4=='p') ) {
+                int LA25_48 = input.LA(3);
+
+                if ( (LA25_48=='d') ) {
+                    int LA25_89 = input.LA(4);
+
+                    if ( (LA25_89=='a') ) {
+                        int LA25_129 = input.LA(5);
+
+                        if ( (LA25_129=='t') ) {
+                            int LA25_170 = input.LA(6);
+
+                            if ( (LA25_170=='e') ) {
+                                int LA25_206 = input.LA(7);
+
+                                if ( (LA25_206=='-'||(LA25_206>='0' && LA25_206<='9')||LA25_206==';'||(LA25_206>='@' && LA25_206<='Z')||LA25_206=='_'||(LA25_206>='a' && LA25_206<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=4;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+            }
+            else {
+                alt25=46;}
+            }
+            break;
+        case 's':
+            {
+            switch ( input.LA(2) ) {
+            case 't':
+                {
+                int LA25_49 = input.LA(3);
+
+                if ( (LA25_49=='r') ) {
+                    int LA25_90 = input.LA(4);
+
+                    if ( (LA25_90=='i') ) {
+                        int LA25_130 = input.LA(5);
+
+                        if ( (LA25_130=='n') ) {
+                            int LA25_171 = input.LA(6);
+
+                            if ( (LA25_171=='g') ) {
+                                int LA25_207 = input.LA(7);
+
+                                if ( (LA25_207=='-'||(LA25_207>='0' && LA25_207<='9')||LA25_207==';'||(LA25_207>='@' && LA25_207<='Z')||LA25_207=='_'||(LA25_207>='a' && LA25_207<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=42;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            case 'e':
+                {
+                switch ( input.LA(3) ) {
+                case 't':
+                    {
+                    int LA25_91 = input.LA(4);
+
+                    if ( (LA25_91=='-'||(LA25_91>='0' && LA25_91<='9')||LA25_91==';'||(LA25_91>='@' && LA25_91<='Z')||LA25_91=='_'||(LA25_91>='a' && LA25_91<='z')) ) {
+                        alt25=46;
+                    }
+                    else {
+                        alt25=5;}
+                    }
+                    break;
+                case 'l':
+                    {
+                    int LA25_92 = input.LA(4);
+
+                    if ( (LA25_92=='e') ) {
+                        int LA25_132 = input.LA(5);
+
+                        if ( (LA25_132=='c') ) {
+                            int LA25_172 = input.LA(6);
+
+                            if ( (LA25_172=='t') ) {
+                                int LA25_208 = input.LA(7);
+
+                                if ( (LA25_208=='-'||(LA25_208>='0' && LA25_208<='9')||LA25_208==';'||(LA25_208>='@' && LA25_208<='Z')||LA25_208=='_'||(LA25_208>='a' && LA25_208<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=29;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
+                default:
+                    alt25=46;}
+
+                }
+                break;
+            default:
+                alt25=46;}
+
+            }
+            break;
+        case '{':
+            {
+            alt25=6;
+            }
+            break;
+        case '}':
+            {
+            alt25=7;
             }
             break;
         case 'o':
             {
             switch ( input.LA(2) ) {
-            case 'r':
-                {
-                int LA21_45 = input.LA(3);
-
-                if ( (LA21_45=='-'||(LA21_45>='0' && LA21_45<='9')||LA21_45==';'||(LA21_45>='@' && LA21_45<='Z')||LA21_45=='_'||(LA21_45>='a' && LA21_45<='z')) ) {
-                    alt21=38;
-                }
-                else {
-                    alt21=6;}
-                }
-                break;
             case 'b':
                 {
-                int LA21_46 = input.LA(3);
+                int LA25_51 = input.LA(3);
 
-                if ( (LA21_46=='j') ) {
-                    int LA21_78 = input.LA(4);
+                if ( (LA25_51=='j') ) {
+                    int LA25_93 = input.LA(4);
 
-                    if ( (LA21_78=='e') ) {
-                        int LA21_105 = input.LA(5);
+                    if ( (LA25_93=='e') ) {
+                        int LA25_133 = input.LA(5);
 
-                        if ( (LA21_105=='c') ) {
-                            int LA21_130 = input.LA(6);
+                        if ( (LA25_133=='c') ) {
+                            int LA25_173 = input.LA(6);
 
-                            if ( (LA21_130=='t') ) {
-                                int LA21_153 = input.LA(7);
+                            if ( (LA25_173=='t') ) {
+                                int LA25_209 = input.LA(7);
 
-                                if ( (LA21_153=='-'||(LA21_153>='0' && LA21_153<='9')||LA21_153==';'||(LA21_153>='@' && LA21_153<='Z')||LA21_153=='_'||(LA21_153>='a' && LA21_153<='z')) ) {
-                                    alt21=38;
+                                if ( (LA25_209=='-'||(LA25_209>='0' && LA25_209<='9')||LA25_209==';'||(LA25_209>='@' && LA25_209<='Z')||LA25_209=='_'||(LA25_209>='a' && LA25_209<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=31;}
+                                    alt25=35;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'r':
+                {
+                switch ( input.LA(3) ) {
+                case 'd':
+                    {
+                    int LA25_94 = input.LA(4);
+
+                    if ( (LA25_94=='e') ) {
+                        int LA25_134 = input.LA(5);
+
+                        if ( (LA25_134=='r') ) {
+                            int LA25_174 = input.LA(6);
+
+                            if ( (LA25_174=='-'||(LA25_174>='0' && LA25_174<='9')||LA25_174==';'||(LA25_174>='@' && LA25_174<='Z')||LA25_174=='_'||(LA25_174>='a' && LA25_174<='z')) ) {
+                                alt25=46;
+                            }
+                            else {
+                                alt25=9;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
+                case '-':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case ';':
+                case '@':
+                case 'A':
+                case 'B':
+                case 'C':
+                case 'D':
+                case 'E':
+                case 'F':
+                case 'G':
+                case 'H':
+                case 'I':
+                case 'J':
+                case 'K':
+                case 'L':
+                case 'M':
+                case 'N':
+                case 'O':
+                case 'P':
+                case 'Q':
+                case 'R':
+                case 'S':
+                case 'T':
+                case 'U':
+                case 'V':
+                case 'W':
+                case 'X':
+                case 'Y':
+                case 'Z':
+                case '_':
+                case 'a':
+                case 'b':
+                case 'c':
+                case 'e':
+                case 'f':
+                case 'g':
+                case 'h':
+                case 'i':
+                case 'j':
+                case 'k':
+                case 'l':
+                case 'm':
+                case 'n':
+                case 'o':
+                case 'p':
+                case 'q':
+                case 'r':
+                case 's':
+                case 't':
+                case 'u':
+                case 'v':
+                case 'w':
+                case 'x':
+                case 'y':
+                case 'z':
+                    {
+                    alt25=46;
+                    }
+                    break;
+                default:
+                    alt25=10;}
+
                 }
                 break;
             default:
-                alt21=38;}
+                alt25=46;}
 
             }
             break;
         case 'l':
             {
-            int LA21_7 = input.LA(2);
+            int LA25_9 = input.LA(2);
 
-            if ( (LA21_7=='i') ) {
-                int LA21_47 = input.LA(3);
+            if ( (LA25_9=='i') ) {
+                int LA25_53 = input.LA(3);
 
-                if ( (LA21_47=='k') ) {
-                    int LA21_79 = input.LA(4);
+                if ( (LA25_53=='k') ) {
+                    int LA25_96 = input.LA(4);
 
-                    if ( (LA21_79=='e') ) {
-                        int LA21_106 = input.LA(5);
+                    if ( (LA25_96=='e') ) {
+                        int LA25_135 = input.LA(5);
 
-                        if ( (LA21_106=='-'||(LA21_106>='0' && LA21_106<='9')||LA21_106==';'||(LA21_106>='@' && LA21_106<='Z')||LA21_106=='_'||(LA21_106>='a' && LA21_106<='z')) ) {
-                            alt21=38;
+                        if ( (LA25_135=='-'||(LA25_135>='0' && LA25_135<='9')||LA25_135==';'||(LA25_135>='@' && LA25_135<='Z')||LA25_135=='_'||(LA25_135>='a' && LA25_135<='z')) ) {
+                            alt25=46;
                         }
                         else {
-                            alt21=8;}
+                            alt25=12;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case '/':
             {
-            int LA21_8 = input.LA(2);
+            int LA25_10 = input.LA(2);
 
-            if ( (LA21_8=='*') ) {
-                alt21=9;
+            if ( (LA25_10=='/') ) {
+                alt25=14;
             }
-            else if ( (LA21_8=='/') ) {
-                alt21=10;
+            else if ( (LA25_10=='*') ) {
+                alt25=13;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1:1: Tokens : ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 8, input);
+                    new NoViableAltException("1:1: Tokens : ( T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | HasOne | DIVIDE | DISTINCT | RANGE | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 25, 10, input);
 
                 throw nvae;
             }
@@ -1873,357 +2428,357 @@ public class AmoebaQueryLexer extends Lexer {
             break;
         case '.':
             {
-            alt21=11;
+            alt25=15;
             }
             break;
         case ';':
             {
-            alt21=12;
+            alt25=16;
             }
             break;
         case ',':
             {
-            alt21=13;
+            alt25=17;
             }
             break;
         case ')':
             {
-            alt21=14;
+            alt25=18;
             }
             break;
         case '(':
             {
-            alt21=15;
+            alt25=19;
             }
             break;
         case '@':
             {
-            alt21=16;
+            alt25=20;
             }
             break;
         case '*':
             {
-            alt21=17;
+            alt25=21;
             }
             break;
         case '=':
             {
-            alt21=18;
+            alt25=22;
             }
             break;
         case '!':
             {
-            alt21=19;
+            alt25=23;
             }
             break;
         case '<':
             {
-            int LA21_18 = input.LA(2);
+            int LA25_20 = input.LA(2);
 
-            if ( (LA21_18=='=') ) {
-                alt21=21;
+            if ( (LA25_20=='=') ) {
+                alt25=25;
             }
             else {
-                alt21=20;}
+                alt25=24;}
             }
             break;
         case '>':
             {
-            int LA21_19 = input.LA(2);
+            int LA25_21 = input.LA(2);
 
-            if ( (LA21_19=='=') ) {
-                alt21=23;
+            if ( (LA25_21=='=') ) {
+                alt25=27;
             }
             else {
-                alt21=22;}
+                alt25=26;}
             }
             break;
         case '|':
             {
-            alt21=24;
+            alt25=28;
             }
             break;
         case 'S':
             {
-            int LA21_21 = input.LA(2);
+            int LA25_23 = input.LA(2);
 
-            if ( (LA21_21=='E') ) {
-                int LA21_54 = input.LA(3);
+            if ( (LA25_23=='E') ) {
+                int LA25_60 = input.LA(3);
 
-                if ( (LA21_54=='L') ) {
-                    int LA21_80 = input.LA(4);
+                if ( (LA25_60=='L') ) {
+                    int LA25_97 = input.LA(4);
 
-                    if ( (LA21_80=='E') ) {
-                        int LA21_107 = input.LA(5);
+                    if ( (LA25_97=='E') ) {
+                        int LA25_136 = input.LA(5);
 
-                        if ( (LA21_107=='C') ) {
-                            int LA21_132 = input.LA(6);
+                        if ( (LA25_136=='C') ) {
+                            int LA25_176 = input.LA(6);
 
-                            if ( (LA21_132=='T') ) {
-                                int LA21_154 = input.LA(7);
+                            if ( (LA25_176=='T') ) {
+                                int LA25_211 = input.LA(7);
 
-                                if ( (LA21_154=='-'||(LA21_154>='0' && LA21_154<='9')||LA21_154==';'||(LA21_154>='@' && LA21_154<='Z')||LA21_154=='_'||(LA21_154>='a' && LA21_154<='z')) ) {
-                                    alt21=38;
+                                if ( (LA25_211=='-'||(LA25_211>='0' && LA25_211<='9')||LA25_211==';'||(LA25_211>='@' && LA25_211<='Z')||LA25_211=='_'||(LA25_211>='a' && LA25_211<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=25;}
+                                    alt25=29;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'f':
             {
             switch ( input.LA(2) ) {
-            case 'r':
-                {
-                int LA21_55 = input.LA(3);
-
-                if ( (LA21_55=='o') ) {
-                    int LA21_81 = input.LA(4);
-
-                    if ( (LA21_81=='m') ) {
-                        int LA21_108 = input.LA(5);
-
-                        if ( (LA21_108=='-'||(LA21_108>='0' && LA21_108<='9')||LA21_108==';'||(LA21_108>='@' && LA21_108<='Z')||LA21_108=='_'||(LA21_108>='a' && LA21_108<='z')) ) {
-                            alt21=38;
-                        }
-                        else {
-                            alt21=26;}
-                    }
-                    else {
-                        alt21=38;}
-                }
-                else {
-                    alt21=38;}
-                }
-                break;
             case 'l':
                 {
-                int LA21_56 = input.LA(3);
+                int LA25_61 = input.LA(3);
 
-                if ( (LA21_56=='o') ) {
-                    int LA21_82 = input.LA(4);
+                if ( (LA25_61=='o') ) {
+                    int LA25_98 = input.LA(4);
 
-                    if ( (LA21_82=='a') ) {
-                        int LA21_109 = input.LA(5);
+                    if ( (LA25_98=='a') ) {
+                        int LA25_137 = input.LA(5);
 
-                        if ( (LA21_109=='t') ) {
-                            int LA21_134 = input.LA(6);
+                        if ( (LA25_137=='t') ) {
+                            int LA25_177 = input.LA(6);
 
-                            if ( (LA21_134=='-'||(LA21_134>='0' && LA21_134<='9')||LA21_134==';'||(LA21_134>='@' && LA21_134<='Z')||LA21_134=='_'||(LA21_134>='a' && LA21_134<='z')) ) {
-                                alt21=38;
+                            if ( (LA25_177=='-'||(LA25_177>='0' && LA25_177<='9')||LA25_177==';'||(LA25_177>='@' && LA25_177<='Z')||LA25_177=='_'||(LA25_177>='a' && LA25_177<='z')) ) {
+                                alt25=46;
                             }
                             else {
-                                alt21=34;}
+                                alt25=42;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'r':
+                {
+                int LA25_62 = input.LA(3);
+
+                if ( (LA25_62=='o') ) {
+                    int LA25_99 = input.LA(4);
+
+                    if ( (LA25_99=='m') ) {
+                        int LA25_138 = input.LA(5);
+
+                        if ( (LA25_138=='-'||(LA25_138>='0' && LA25_138<='9')||LA25_138==';'||(LA25_138>='@' && LA25_138<='Z')||LA25_138=='_'||(LA25_138>='a' && LA25_138<='z')) ) {
+                            alt25=46;
+                        }
+                        else {
+                            alt25=30;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
                 }
                 break;
             default:
-                alt21=38;}
+                alt25=46;}
 
             }
             break;
         case 'F':
             {
-            int LA21_23 = input.LA(2);
+            int LA25_25 = input.LA(2);
 
-            if ( (LA21_23=='R') ) {
-                int LA21_57 = input.LA(3);
+            if ( (LA25_25=='R') ) {
+                int LA25_63 = input.LA(3);
 
-                if ( (LA21_57=='O') ) {
-                    int LA21_83 = input.LA(4);
+                if ( (LA25_63=='O') ) {
+                    int LA25_100 = input.LA(4);
 
-                    if ( (LA21_83=='M') ) {
-                        int LA21_110 = input.LA(5);
+                    if ( (LA25_100=='M') ) {
+                        int LA25_139 = input.LA(5);
 
-                        if ( (LA21_110=='-'||(LA21_110>='0' && LA21_110<='9')||LA21_110==';'||(LA21_110>='@' && LA21_110<='Z')||LA21_110=='_'||(LA21_110>='a' && LA21_110<='z')) ) {
-                            alt21=38;
+                        if ( (LA25_139=='-'||(LA25_139>='0' && LA25_139<='9')||LA25_139==';'||(LA25_139>='@' && LA25_139<='Z')||LA25_139=='_'||(LA25_139>='a' && LA25_139<='z')) ) {
+                            alt25=46;
                         }
                         else {
-                            alt21=26;}
+                            alt25=30;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'w':
             {
-            int LA21_24 = input.LA(2);
+            int LA25_26 = input.LA(2);
 
-            if ( (LA21_24=='h') ) {
-                int LA21_58 = input.LA(3);
+            if ( (LA25_26=='h') ) {
+                int LA25_64 = input.LA(3);
 
-                if ( (LA21_58=='e') ) {
-                    int LA21_84 = input.LA(4);
+                if ( (LA25_64=='e') ) {
+                    int LA25_101 = input.LA(4);
 
-                    if ( (LA21_84=='r') ) {
-                        int LA21_111 = input.LA(5);
+                    if ( (LA25_101=='r') ) {
+                        int LA25_140 = input.LA(5);
 
-                        if ( (LA21_111=='e') ) {
-                            int LA21_135 = input.LA(6);
+                        if ( (LA25_140=='e') ) {
+                            int LA25_179 = input.LA(6);
 
-                            if ( (LA21_135=='-'||(LA21_135>='0' && LA21_135<='9')||LA21_135==';'||(LA21_135>='@' && LA21_135<='Z')||LA21_135=='_'||(LA21_135>='a' && LA21_135<='z')) ) {
-                                alt21=38;
+                            if ( (LA25_179=='-'||(LA25_179>='0' && LA25_179<='9')||LA25_179==';'||(LA25_179>='@' && LA25_179<='Z')||LA25_179=='_'||(LA25_179>='a' && LA25_179<='z')) ) {
+                                alt25=46;
                             }
                             else {
-                                alt21=27;}
+                                alt25=31;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'W':
             {
-            int LA21_25 = input.LA(2);
+            int LA25_27 = input.LA(2);
 
-            if ( (LA21_25=='H') ) {
-                int LA21_59 = input.LA(3);
+            if ( (LA25_27=='H') ) {
+                int LA25_65 = input.LA(3);
 
-                if ( (LA21_59=='E') ) {
-                    int LA21_85 = input.LA(4);
+                if ( (LA25_65=='E') ) {
+                    int LA25_102 = input.LA(4);
 
-                    if ( (LA21_85=='R') ) {
-                        int LA21_112 = input.LA(5);
+                    if ( (LA25_102=='R') ) {
+                        int LA25_141 = input.LA(5);
 
-                        if ( (LA21_112=='E') ) {
-                            int LA21_136 = input.LA(6);
+                        if ( (LA25_141=='E') ) {
+                            int LA25_180 = input.LA(6);
 
-                            if ( (LA21_136=='-'||(LA21_136>='0' && LA21_136<='9')||LA21_136==';'||(LA21_136>='@' && LA21_136<='Z')||LA21_136=='_'||(LA21_136>='a' && LA21_136<='z')) ) {
-                                alt21=38;
+                            if ( (LA25_180=='-'||(LA25_180>='0' && LA25_180<='9')||LA25_180==';'||(LA25_180>='@' && LA25_180<='Z')||LA25_180=='_'||(LA25_180>='a' && LA25_180<='z')) ) {
+                                alt25=46;
                             }
                             else {
-                                alt21=27;}
+                                alt25=31;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'i':
             {
-            int LA21_26 = input.LA(2);
+            int LA25_28 = input.LA(2);
 
-            if ( (LA21_26=='n') ) {
+            if ( (LA25_28=='n') ) {
                 switch ( input.LA(3) ) {
+                case 's':
+                    {
+                    int LA25_103 = input.LA(4);
+
+                    if ( (LA25_103=='e') ) {
+                        int LA25_142 = input.LA(5);
+
+                        if ( (LA25_142=='r') ) {
+                            int LA25_181 = input.LA(6);
+
+                            if ( (LA25_181=='t') ) {
+                                int LA25_213 = input.LA(7);
+
+                                if ( (LA25_213=='-'||(LA25_213>='0' && LA25_213<='9')||LA25_213==';'||(LA25_213>='@' && LA25_213<='Z')||LA25_213=='_'||(LA25_213>='a' && LA25_213<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=33;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
                 case 't':
                     {
                     switch ( input.LA(4) ) {
-                    case 'e':
-                        {
-                        int LA21_113 = input.LA(5);
-
-                        if ( (LA21_113=='g') ) {
-                            int LA21_137 = input.LA(6);
-
-                            if ( (LA21_137=='e') ) {
-                                int LA21_156 = input.LA(7);
-
-                                if ( (LA21_156=='r') ) {
-                                    int LA21_170 = input.LA(8);
-
-                                    if ( (LA21_170=='-'||(LA21_170>='0' && LA21_170<='9')||LA21_170==';'||(LA21_170>='@' && LA21_170<='Z')||LA21_170=='_'||(LA21_170>='a' && LA21_170<='z')) ) {
-                                        alt21=38;
-                                    }
-                                    else {
-                                        alt21=34;}
-                                }
-                                else {
-                                    alt21=38;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                        }
-                        break;
                     case 'o':
                         {
-                        int LA21_114 = input.LA(5);
+                        int LA25_143 = input.LA(5);
 
-                        if ( (LA21_114=='-'||(LA21_114>='0' && LA21_114<='9')||LA21_114==';'||(LA21_114>='@' && LA21_114<='Z')||LA21_114=='_'||(LA21_114>='a' && LA21_114<='z')) ) {
-                            alt21=38;
+                        if ( (LA25_143=='-'||(LA25_143>='0' && LA25_143<='9')||LA25_143==';'||(LA25_143>='@' && LA25_143<='Z')||LA25_143=='_'||(LA25_143>='a' && LA25_143<='z')) ) {
+                            alt25=46;
                         }
                         else {
-                            alt21=30;}
+                            alt25=34;}
+                        }
+                        break;
+                    case 'e':
+                        {
+                        int LA25_144 = input.LA(5);
+
+                        if ( (LA25_144=='g') ) {
+                            int LA25_183 = input.LA(6);
+
+                            if ( (LA25_183=='e') ) {
+                                int LA25_214 = input.LA(7);
+
+                                if ( (LA25_214=='r') ) {
+                                    int LA25_239 = input.LA(8);
+
+                                    if ( (LA25_239=='-'||(LA25_239>='0' && LA25_239<='9')||LA25_239==';'||(LA25_239>='@' && LA25_239<='Z')||LA25_239=='_'||(LA25_239>='a' && LA25_239<='z')) ) {
+                                        alt25=46;
+                                    }
+                                    else {
+                                        alt25=42;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
                         }
                         break;
                     default:
-                        alt21=38;}
+                        alt25=46;}
 
-                    }
-                    break;
-                case 's':
-                    {
-                    int LA21_87 = input.LA(4);
-
-                    if ( (LA21_87=='e') ) {
-                        int LA21_115 = input.LA(5);
-
-                        if ( (LA21_115=='r') ) {
-                            int LA21_139 = input.LA(6);
-
-                            if ( (LA21_139=='t') ) {
-                                int LA21_157 = input.LA(7);
-
-                                if ( (LA21_157=='-'||(LA21_157>='0' && LA21_157<='9')||LA21_157==';'||(LA21_157>='@' && LA21_157<='Z')||LA21_157=='_'||(LA21_157>='a' && LA21_157<='z')) ) {
-                                    alt21=38;
-                                }
-                                else {
-                                    alt21=29;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
                     }
                     break;
                 case '-':
@@ -2291,67 +2846,67 @@ public class AmoebaQueryLexer extends Lexer {
                 case 'y':
                 case 'z':
                     {
-                    alt21=38;
+                    alt25=46;
                     }
                     break;
                 default:
-                    alt21=28;}
+                    alt25=32;}
 
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'I':
             {
-            int LA21_27 = input.LA(2);
+            int LA25_29 = input.LA(2);
 
-            if ( (LA21_27=='N') ) {
+            if ( (LA25_29=='N') ) {
                 switch ( input.LA(3) ) {
-                case 'T':
-                    {
-                    int LA21_89 = input.LA(4);
-
-                    if ( (LA21_89=='O') ) {
-                        int LA21_116 = input.LA(5);
-
-                        if ( (LA21_116=='-'||(LA21_116>='0' && LA21_116<='9')||LA21_116==';'||(LA21_116>='@' && LA21_116<='Z')||LA21_116=='_'||(LA21_116>='a' && LA21_116<='z')) ) {
-                            alt21=38;
-                        }
-                        else {
-                            alt21=30;}
-                    }
-                    else {
-                        alt21=38;}
-                    }
-                    break;
                 case 'S':
                     {
-                    int LA21_90 = input.LA(4);
+                    int LA25_106 = input.LA(4);
 
-                    if ( (LA21_90=='E') ) {
-                        int LA21_117 = input.LA(5);
+                    if ( (LA25_106=='E') ) {
+                        int LA25_145 = input.LA(5);
 
-                        if ( (LA21_117=='R') ) {
-                            int LA21_140 = input.LA(6);
+                        if ( (LA25_145=='R') ) {
+                            int LA25_184 = input.LA(6);
 
-                            if ( (LA21_140=='T') ) {
-                                int LA21_158 = input.LA(7);
+                            if ( (LA25_184=='T') ) {
+                                int LA25_215 = input.LA(7);
 
-                                if ( (LA21_158=='-'||(LA21_158>='0' && LA21_158<='9')||LA21_158==';'||(LA21_158>='@' && LA21_158<='Z')||LA21_158=='_'||(LA21_158>='a' && LA21_158<='z')) ) {
-                                    alt21=38;
+                                if ( (LA25_215=='-'||(LA25_215>='0' && LA25_215<='9')||LA25_215==';'||(LA25_215>='@' && LA25_215<='Z')||LA25_215=='_'||(LA25_215>='a' && LA25_215<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=29;}
+                                    alt25=33;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
+                    }
+                    break;
+                case 'T':
+                    {
+                    int LA25_107 = input.LA(4);
+
+                    if ( (LA25_107=='O') ) {
+                        int LA25_146 = input.LA(5);
+
+                        if ( (LA25_146=='-'||(LA25_146>='0' && LA25_146<='9')||LA25_146==';'||(LA25_146>='@' && LA25_146<='Z')||LA25_146=='_'||(LA25_146>='a' && LA25_146<='z')) ) {
+                            alt25=46;
+                        }
+                        else {
+                            alt25=34;}
+                    }
+                    else {
+                        alt25=46;}
                     }
                     break;
                 case '-':
@@ -2419,464 +2974,863 @@ public class AmoebaQueryLexer extends Lexer {
                 case 'y':
                 case 'z':
                     {
-                    alt21=38;
+                    alt25=46;
                     }
                     break;
                 default:
-                    alt21=28;}
+                    alt25=32;}
 
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'O':
             {
-            int LA21_28 = input.LA(2);
+            switch ( input.LA(2) ) {
+            case 'B':
+                {
+                int LA25_68 = input.LA(3);
 
-            if ( (LA21_28=='B') ) {
-                int LA21_62 = input.LA(3);
+                if ( (LA25_68=='J') ) {
+                    int LA25_108 = input.LA(4);
 
-                if ( (LA21_62=='J') ) {
-                    int LA21_91 = input.LA(4);
+                    if ( (LA25_108=='E') ) {
+                        int LA25_147 = input.LA(5);
 
-                    if ( (LA21_91=='E') ) {
-                        int LA21_118 = input.LA(5);
+                        if ( (LA25_147=='C') ) {
+                            int LA25_185 = input.LA(6);
 
-                        if ( (LA21_118=='C') ) {
-                            int LA21_141 = input.LA(6);
+                            if ( (LA25_185=='T') ) {
+                                int LA25_216 = input.LA(7);
 
-                            if ( (LA21_141=='T') ) {
-                                int LA21_159 = input.LA(7);
-
-                                if ( (LA21_159=='-'||(LA21_159>='0' && LA21_159<='9')||LA21_159==';'||(LA21_159>='@' && LA21_159<='Z')||LA21_159=='_'||(LA21_159>='a' && LA21_159<='z')) ) {
-                                    alt21=38;
+                                if ( (LA25_216=='-'||(LA25_216>='0' && LA25_216<='9')||LA25_216==';'||(LA25_216>='@' && LA25_216<='Z')||LA25_216=='_'||(LA25_216>='a' && LA25_216<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=31;}
+                                    alt25=35;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
-            }
-            else {
-                alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'b':
+                {
+                int LA25_69 = input.LA(3);
+
+                if ( (LA25_69=='j') ) {
+                    int LA25_109 = input.LA(4);
+
+                    if ( (LA25_109=='e') ) {
+                        int LA25_148 = input.LA(5);
+
+                        if ( (LA25_148=='c') ) {
+                            int LA25_186 = input.LA(6);
+
+                            if ( (LA25_186=='t') ) {
+                                int LA25_217 = input.LA(7);
+
+                                if ( (LA25_217=='-'||(LA25_217>='0' && LA25_217<='9')||LA25_217==';'||(LA25_217>='@' && LA25_217<='Z')||LA25_217=='_'||(LA25_217>='a' && LA25_217<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=35;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            default:
+                alt25=46;}
+
             }
             break;
         case 'r':
             {
-            int LA21_29 = input.LA(2);
+            switch ( input.LA(2) ) {
+            case 'e':
+                {
+                int LA25_70 = input.LA(3);
 
-            if ( (LA21_29=='e') ) {
-                int LA21_63 = input.LA(3);
+                if ( (LA25_70=='l') ) {
+                    int LA25_110 = input.LA(4);
 
-                if ( (LA21_63=='l') ) {
-                    int LA21_92 = input.LA(4);
+                    if ( (LA25_110=='a') ) {
+                        int LA25_149 = input.LA(5);
 
-                    if ( (LA21_92=='a') ) {
-                        int LA21_119 = input.LA(5);
+                        if ( (LA25_149=='t') ) {
+                            int LA25_187 = input.LA(6);
 
-                        if ( (LA21_119=='t') ) {
-                            int LA21_142 = input.LA(6);
+                            if ( (LA25_187=='i') ) {
+                                int LA25_218 = input.LA(7);
 
-                            if ( (LA21_142=='i') ) {
-                                int LA21_160 = input.LA(7);
+                                if ( (LA25_218=='o') ) {
+                                    int LA25_240 = input.LA(8);
 
-                                if ( (LA21_160=='o') ) {
-                                    int LA21_172 = input.LA(8);
+                                    if ( (LA25_240=='n') ) {
+                                        int LA25_250 = input.LA(9);
 
-                                    if ( (LA21_172=='n') ) {
-                                        int LA21_178 = input.LA(9);
+                                        if ( (LA25_250=='s') ) {
+                                            int LA25_256 = input.LA(10);
 
-                                        if ( (LA21_178=='s') ) {
-                                            int LA21_181 = input.LA(10);
+                                            if ( (LA25_256=='h') ) {
+                                                int LA25_260 = input.LA(11);
 
-                                            if ( (LA21_181=='h') ) {
-                                                int LA21_183 = input.LA(11);
+                                                if ( (LA25_260=='i') ) {
+                                                    int LA25_263 = input.LA(12);
 
-                                                if ( (LA21_183=='i') ) {
-                                                    int LA21_185 = input.LA(12);
+                                                    if ( (LA25_263=='p') ) {
+                                                        int LA25_266 = input.LA(13);
 
-                                                    if ( (LA21_185=='p') ) {
-                                                        int LA21_187 = input.LA(13);
-
-                                                        if ( (LA21_187=='-'||(LA21_187>='0' && LA21_187<='9')||LA21_187==';'||(LA21_187>='@' && LA21_187<='Z')||LA21_187=='_'||(LA21_187>='a' && LA21_187<='z')) ) {
-                                                            alt21=38;
+                                                        if ( (LA25_266=='-'||(LA25_266>='0' && LA25_266<='9')||LA25_266==';'||(LA25_266>='@' && LA25_266<='Z')||LA25_266=='_'||(LA25_266>='a' && LA25_266<='z')) ) {
+                                                            alt25=46;
                                                         }
                                                         else {
-                                                            alt21=32;}
+                                                            alt25=36;}
                                                     }
                                                     else {
-                                                        alt21=38;}
+                                                        alt25=46;}
                                                 }
                                                 else {
-                                                    alt21=38;}
+                                                    alt25=46;}
                                             }
                                             else {
-                                                alt21=38;}
+                                                alt25=46;}
                                         }
                                         else {
-                                            alt21=38;}
+                                            alt25=46;}
                                     }
                                     else {
-                                        alt21=38;}
+                                        alt25=46;}
                                 }
                                 else {
-                                    alt21=38;}
+                                    alt25=46;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
-            }
-            else {
-                alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'a':
+                {
+                int LA25_71 = input.LA(3);
+
+                if ( (LA25_71=='n') ) {
+                    int LA25_111 = input.LA(4);
+
+                    if ( (LA25_111=='g') ) {
+                        int LA25_150 = input.LA(5);
+
+                        if ( (LA25_150=='e') ) {
+                            int LA25_188 = input.LA(6);
+
+                            if ( (LA25_188=='-'||(LA25_188>='0' && LA25_188<='9')||LA25_188==';'||(LA25_188>='@' && LA25_188<='Z')||LA25_188=='_'||(LA25_188>='a' && LA25_188<='z')) ) {
+                                alt25=46;
+                            }
+                            else {
+                                alt25=41;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            default:
+                alt25=46;}
+
             }
             break;
         case 'R':
             {
-            int LA21_30 = input.LA(2);
+            switch ( input.LA(2) ) {
+            case 'e':
+                {
+                int LA25_72 = input.LA(3);
 
-            if ( (LA21_30=='E') ) {
-                int LA21_64 = input.LA(3);
+                if ( (LA25_72=='l') ) {
+                    int LA25_112 = input.LA(4);
 
-                if ( (LA21_64=='L') ) {
-                    int LA21_93 = input.LA(4);
+                    if ( (LA25_112=='a') ) {
+                        int LA25_151 = input.LA(5);
 
-                    if ( (LA21_93=='A') ) {
-                        int LA21_120 = input.LA(5);
+                        if ( (LA25_151=='t') ) {
+                            int LA25_189 = input.LA(6);
 
-                        if ( (LA21_120=='T') ) {
-                            int LA21_143 = input.LA(6);
+                            if ( (LA25_189=='i') ) {
+                                int LA25_220 = input.LA(7);
 
-                            if ( (LA21_143=='I') ) {
-                                int LA21_161 = input.LA(7);
+                                if ( (LA25_220=='o') ) {
+                                    int LA25_241 = input.LA(8);
 
-                                if ( (LA21_161=='O') ) {
-                                    int LA21_173 = input.LA(8);
+                                    if ( (LA25_241=='n') ) {
+                                        int LA25_251 = input.LA(9);
 
-                                    if ( (LA21_173=='N') ) {
-                                        int LA21_179 = input.LA(9);
+                                        if ( (LA25_251=='s') ) {
+                                            int LA25_257 = input.LA(10);
 
-                                        if ( (LA21_179=='S') ) {
-                                            int LA21_182 = input.LA(10);
+                                            if ( (LA25_257=='h') ) {
+                                                int LA25_261 = input.LA(11);
 
-                                            if ( (LA21_182=='H') ) {
-                                                int LA21_184 = input.LA(11);
+                                                if ( (LA25_261=='i') ) {
+                                                    int LA25_264 = input.LA(12);
 
-                                                if ( (LA21_184=='I') ) {
-                                                    int LA21_186 = input.LA(12);
+                                                    if ( (LA25_264=='p') ) {
+                                                        int LA25_267 = input.LA(13);
 
-                                                    if ( (LA21_186=='P') ) {
-                                                        int LA21_188 = input.LA(13);
-
-                                                        if ( (LA21_188=='-'||(LA21_188>='0' && LA21_188<='9')||LA21_188==';'||(LA21_188>='@' && LA21_188<='Z')||LA21_188=='_'||(LA21_188>='a' && LA21_188<='z')) ) {
-                                                            alt21=38;
+                                                        if ( (LA25_267=='-'||(LA25_267>='0' && LA25_267<='9')||LA25_267==';'||(LA25_267>='@' && LA25_267<='Z')||LA25_267=='_'||(LA25_267>='a' && LA25_267<='z')) ) {
+                                                            alt25=46;
                                                         }
                                                         else {
-                                                            alt21=32;}
+                                                            alt25=36;}
                                                     }
                                                     else {
-                                                        alt21=38;}
+                                                        alt25=46;}
                                                 }
                                                 else {
-                                                    alt21=38;}
+                                                    alt25=46;}
                                             }
                                             else {
-                                                alt21=38;}
+                                                alt25=46;}
                                         }
                                         else {
-                                            alt21=38;}
+                                            alt25=46;}
                                     }
                                     else {
-                                        alt21=38;}
+                                        alt25=46;}
                                 }
                                 else {
-                                    alt21=38;}
+                                    alt25=46;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
-            }
-            else {
-                alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'E':
+                {
+                int LA25_73 = input.LA(3);
+
+                if ( (LA25_73=='L') ) {
+                    int LA25_113 = input.LA(4);
+
+                    if ( (LA25_113=='A') ) {
+                        int LA25_152 = input.LA(5);
+
+                        if ( (LA25_152=='T') ) {
+                            int LA25_190 = input.LA(6);
+
+                            if ( (LA25_190=='I') ) {
+                                int LA25_221 = input.LA(7);
+
+                                if ( (LA25_221=='O') ) {
+                                    int LA25_242 = input.LA(8);
+
+                                    if ( (LA25_242=='N') ) {
+                                        int LA25_252 = input.LA(9);
+
+                                        if ( (LA25_252=='S') ) {
+                                            int LA25_258 = input.LA(10);
+
+                                            if ( (LA25_258=='H') ) {
+                                                int LA25_262 = input.LA(11);
+
+                                                if ( (LA25_262=='I') ) {
+                                                    int LA25_265 = input.LA(12);
+
+                                                    if ( (LA25_265=='P') ) {
+                                                        int LA25_268 = input.LA(13);
+
+                                                        if ( (LA25_268=='-'||(LA25_268>='0' && LA25_268<='9')||LA25_268==';'||(LA25_268>='@' && LA25_268<='Z')||LA25_268=='_'||(LA25_268>='a' && LA25_268<='z')) ) {
+                                                            alt25=46;
+                                                        }
+                                                        else {
+                                                            alt25=36;}
+                                                    }
+                                                    else {
+                                                        alt25=46;}
+                                                }
+                                                else {
+                                                    alt25=46;}
+                                            }
+                                            else {
+                                                alt25=46;}
+                                        }
+                                        else {
+                                            alt25=46;}
+                                    }
+                                    else {
+                                        alt25=46;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            case 'A':
+                {
+                int LA25_74 = input.LA(3);
+
+                if ( (LA25_74=='N') ) {
+                    int LA25_114 = input.LA(4);
+
+                    if ( (LA25_114=='G') ) {
+                        int LA25_153 = input.LA(5);
+
+                        if ( (LA25_153=='E') ) {
+                            int LA25_191 = input.LA(6);
+
+                            if ( (LA25_191=='-'||(LA25_191>='0' && LA25_191<='9')||LA25_191==';'||(LA25_191>='@' && LA25_191<='Z')||LA25_191=='_'||(LA25_191>='a' && LA25_191<='z')) ) {
+                                alt25=46;
+                            }
+                            else {
+                                alt25=41;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            default:
+                alt25=46;}
+
             }
             break;
         case 'h':
             {
-            int LA21_31 = input.LA(2);
+            int LA25_33 = input.LA(2);
 
-            if ( (LA21_31=='a') ) {
-                int LA21_65 = input.LA(3);
+            if ( (LA25_33=='a') ) {
+                int LA25_75 = input.LA(3);
 
-                if ( (LA21_65=='s') ) {
-                    int LA21_94 = input.LA(4);
+                if ( (LA25_75=='s') ) {
+                    switch ( input.LA(4) ) {
+                    case 'o':
+                        {
+                        int LA25_154 = input.LA(5);
 
-                    if ( (LA21_94=='m') ) {
-                        int LA21_121 = input.LA(5);
+                        if ( (LA25_154=='n') ) {
+                            int LA25_192 = input.LA(6);
 
-                        if ( (LA21_121=='a') ) {
-                            int LA21_144 = input.LA(6);
+                            if ( (LA25_192=='e') ) {
+                                int LA25_222 = input.LA(7);
 
-                            if ( (LA21_144=='n') ) {
-                                int LA21_162 = input.LA(7);
-
-                                if ( (LA21_162=='y') ) {
-                                    int LA21_174 = input.LA(8);
-
-                                    if ( (LA21_174=='-'||(LA21_174>='0' && LA21_174<='9')||LA21_174==';'||(LA21_174>='@' && LA21_174<='Z')||LA21_174=='_'||(LA21_174>='a' && LA21_174<='z')) ) {
-                                        alt21=38;
-                                    }
-                                    else {
-                                        alt21=33;}
+                                if ( (LA25_222=='-'||(LA25_222>='0' && LA25_222<='9')||LA25_222==';'||(LA25_222>='@' && LA25_222<='Z')||LA25_222=='_'||(LA25_222>='a' && LA25_222<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=38;}
+                                    alt25=38;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
+                            alt25=46;}
+                        }
+                        break;
+                    case 'm':
+                        {
+                        int LA25_155 = input.LA(5);
+
+                        if ( (LA25_155=='a') ) {
+                            int LA25_193 = input.LA(6);
+
+                            if ( (LA25_193=='n') ) {
+                                int LA25_223 = input.LA(7);
+
+                                if ( (LA25_223=='y') ) {
+                                    int LA25_244 = input.LA(8);
+
+                                    if ( (LA25_244=='-'||(LA25_244>='0' && LA25_244<='9')||LA25_244==';'||(LA25_244>='@' && LA25_244<='Z')||LA25_244=='_'||(LA25_244>='a' && LA25_244<='z')) ) {
+                                        alt25=46;
+                                    }
+                                    else {
+                                        alt25=37;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                        }
+                        break;
+                    default:
+                        alt25=46;}
+
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case 'H':
             {
             switch ( input.LA(2) ) {
-            case 'a':
-                {
-                int LA21_66 = input.LA(3);
-
-                if ( (LA21_66=='s') ) {
-                    int LA21_95 = input.LA(4);
-
-                    if ( (LA21_95=='M') ) {
-                        int LA21_122 = input.LA(5);
-
-                        if ( (LA21_122=='a') ) {
-                            int LA21_145 = input.LA(6);
-
-                            if ( (LA21_145=='n') ) {
-                                int LA21_163 = input.LA(7);
-
-                                if ( (LA21_163=='y') ) {
-                                    int LA21_175 = input.LA(8);
-
-                                    if ( (LA21_175=='-'||(LA21_175>='0' && LA21_175<='9')||LA21_175==';'||(LA21_175>='@' && LA21_175<='Z')||LA21_175=='_'||(LA21_175>='a' && LA21_175<='z')) ) {
-                                        alt21=38;
-                                    }
-                                    else {
-                                        alt21=33;}
-                                }
-                                else {
-                                    alt21=38;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
-                }
-                else {
-                    alt21=38;}
-                }
-                break;
             case 'A':
                 {
-                int LA21_67 = input.LA(3);
+                int LA25_76 = input.LA(3);
 
-                if ( (LA21_67=='S') ) {
-                    int LA21_96 = input.LA(4);
+                if ( (LA25_76=='S') ) {
+                    switch ( input.LA(4) ) {
+                    case 'O':
+                        {
+                        int LA25_156 = input.LA(5);
 
-                    if ( (LA21_96=='M') ) {
-                        int LA21_123 = input.LA(5);
+                        if ( (LA25_156=='N') ) {
+                            int LA25_194 = input.LA(6);
 
-                        if ( (LA21_123=='A') ) {
-                            int LA21_146 = input.LA(6);
+                            if ( (LA25_194=='E') ) {
+                                int LA25_224 = input.LA(7);
 
-                            if ( (LA21_146=='N') ) {
-                                int LA21_164 = input.LA(7);
-
-                                if ( (LA21_164=='Y') ) {
-                                    int LA21_176 = input.LA(8);
-
-                                    if ( (LA21_176=='-'||(LA21_176>='0' && LA21_176<='9')||LA21_176==';'||(LA21_176>='@' && LA21_176<='Z')||LA21_176=='_'||(LA21_176>='a' && LA21_176<='z')) ) {
-                                        alt21=38;
-                                    }
-                                    else {
-                                        alt21=33;}
+                                if ( (LA25_224=='-'||(LA25_224>='0' && LA25_224<='9')||LA25_224==';'||(LA25_224>='@' && LA25_224<='Z')||LA25_224=='_'||(LA25_224>='a' && LA25_224<='z')) ) {
+                                    alt25=46;
                                 }
                                 else {
-                                    alt21=38;}
+                                    alt25=38;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
+                            alt25=46;}
+                        }
+                        break;
+                    case 'M':
+                        {
+                        int LA25_157 = input.LA(5);
+
+                        if ( (LA25_157=='A') ) {
+                            int LA25_195 = input.LA(6);
+
+                            if ( (LA25_195=='N') ) {
+                                int LA25_225 = input.LA(7);
+
+                                if ( (LA25_225=='Y') ) {
+                                    int LA25_245 = input.LA(8);
+
+                                    if ( (LA25_245=='-'||(LA25_245>='0' && LA25_245<='9')||LA25_245==';'||(LA25_245>='@' && LA25_245<='Z')||LA25_245=='_'||(LA25_245>='a' && LA25_245<='z')) ) {
+                                        alt25=46;
+                                    }
+                                    else {
+                                        alt25=37;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                        }
+                        break;
+                    default:
+                        alt25=46;}
+
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            case 'a':
+                {
+                int LA25_77 = input.LA(3);
+
+                if ( (LA25_77=='s') ) {
+                    switch ( input.LA(4) ) {
+                    case 'M':
+                        {
+                        int LA25_158 = input.LA(5);
+
+                        if ( (LA25_158=='a') ) {
+                            int LA25_196 = input.LA(6);
+
+                            if ( (LA25_196=='n') ) {
+                                int LA25_226 = input.LA(7);
+
+                                if ( (LA25_226=='y') ) {
+                                    int LA25_246 = input.LA(8);
+
+                                    if ( (LA25_246=='-'||(LA25_246>='0' && LA25_246<='9')||LA25_246==';'||(LA25_246>='@' && LA25_246<='Z')||LA25_246=='_'||(LA25_246>='a' && LA25_246<='z')) ) {
+                                        alt25=46;
+                                    }
+                                    else {
+                                        alt25=37;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                        }
+                        break;
+                    case 'O':
+                        {
+                        int LA25_159 = input.LA(5);
+
+                        if ( (LA25_159=='n') ) {
+                            int LA25_197 = input.LA(6);
+
+                            if ( (LA25_197=='e') ) {
+                                int LA25_227 = input.LA(7);
+
+                                if ( (LA25_227=='-'||(LA25_227>='0' && LA25_227<='9')||LA25_227==';'||(LA25_227>='@' && LA25_227<='Z')||LA25_227=='_'||(LA25_227>='a' && LA25_227<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=38;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                        }
+                        break;
+                    default:
+                        alt25=46;}
+
+                }
+                else {
+                    alt25=46;}
                 }
                 break;
             default:
-                alt21=38;}
+                alt25=46;}
 
-            }
-            break;
-        case 'b':
-            {
-            int LA21_33 = input.LA(2);
-
-            if ( (LA21_33=='o') ) {
-                int LA21_68 = input.LA(3);
-
-                if ( (LA21_68=='o') ) {
-                    int LA21_97 = input.LA(4);
-
-                    if ( (LA21_97=='l') ) {
-                        int LA21_124 = input.LA(5);
-
-                        if ( (LA21_124=='e') ) {
-                            int LA21_147 = input.LA(6);
-
-                            if ( (LA21_147=='a') ) {
-                                int LA21_165 = input.LA(7);
-
-                                if ( (LA21_165=='n') ) {
-                                    int LA21_177 = input.LA(8);
-
-                                    if ( (LA21_177=='-'||(LA21_177>='0' && LA21_177<='9')||LA21_177==';'||(LA21_177>='@' && LA21_177<='Z')||LA21_177=='_'||(LA21_177>='a' && LA21_177<='z')) ) {
-                                        alt21=38;
-                                    }
-                                    else {
-                                        alt21=34;}
-                                }
-                                else {
-                                    alt21=38;}
-                            }
-                            else {
-                                alt21=38;}
-                        }
-                        else {
-                            alt21=38;}
-                    }
-                    else {
-                        alt21=38;}
-                }
-                else {
-                    alt21=38;}
-            }
-            else {
-                alt21=38;}
             }
             break;
         case 'd':
             {
-            int LA21_34 = input.LA(2);
+            switch ( input.LA(2) ) {
+            case 'i':
+                {
+                switch ( input.LA(3) ) {
+                case 's':
+                    {
+                    int LA25_118 = input.LA(4);
 
-            if ( (LA21_34=='o') ) {
-                int LA21_69 = input.LA(3);
+                    if ( (LA25_118=='t') ) {
+                        int LA25_160 = input.LA(5);
 
-                if ( (LA21_69=='u') ) {
-                    int LA21_98 = input.LA(4);
+                        if ( (LA25_160=='i') ) {
+                            int LA25_198 = input.LA(6);
 
-                    if ( (LA21_98=='b') ) {
-                        int LA21_125 = input.LA(5);
+                            if ( (LA25_198=='n') ) {
+                                int LA25_228 = input.LA(7);
 
-                        if ( (LA21_125=='l') ) {
-                            int LA21_148 = input.LA(6);
+                                if ( (LA25_228=='c') ) {
+                                    int LA25_247 = input.LA(8);
 
-                            if ( (LA21_148=='e') ) {
-                                int LA21_166 = input.LA(7);
+                                    if ( (LA25_247=='t') ) {
+                                        int LA25_254 = input.LA(9);
 
-                                if ( (LA21_166=='-'||(LA21_166>='0' && LA21_166<='9')||LA21_166==';'||(LA21_166>='@' && LA21_166<='Z')||LA21_166=='_'||(LA21_166>='a' && LA21_166<='z')) ) {
-                                    alt21=38;
+                                        if ( (LA25_254=='-'||(LA25_254>='0' && LA25_254<='9')||LA25_254==';'||(LA25_254>='@' && LA25_254<='Z')||LA25_254=='_'||(LA25_254>='a' && LA25_254<='z')) ) {
+                                            alt25=46;
+                                        }
+                                        else {
+                                            alt25=40;}
+                                    }
+                                    else {
+                                        alt25=46;}
                                 }
                                 else {
-                                    alt21=34;}
+                                    alt25=46;}
                             }
                             else {
-                                alt21=38;}
+                                alt25=46;}
                         }
                         else {
-                            alt21=38;}
+                            alt25=46;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
+                    }
+                    break;
+                case 'v':
+                    {
+                    int LA25_119 = input.LA(4);
+
+                    if ( (LA25_119=='i') ) {
+                        int LA25_161 = input.LA(5);
+
+                        if ( (LA25_161=='d') ) {
+                            int LA25_199 = input.LA(6);
+
+                            if ( (LA25_199=='e') ) {
+                                int LA25_229 = input.LA(7);
+
+                                if ( (LA25_229=='-'||(LA25_229>='0' && LA25_229<='9')||LA25_229==';'||(LA25_229>='@' && LA25_229<='Z')||LA25_229=='_'||(LA25_229>='a' && LA25_229<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=39;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
+                default:
+                    alt25=46;}
+
+                }
+                break;
+            case 'o':
+                {
+                int LA25_79 = input.LA(3);
+
+                if ( (LA25_79=='u') ) {
+                    int LA25_120 = input.LA(4);
+
+                    if ( (LA25_120=='b') ) {
+                        int LA25_162 = input.LA(5);
+
+                        if ( (LA25_162=='l') ) {
+                            int LA25_200 = input.LA(6);
+
+                            if ( (LA25_200=='e') ) {
+                                int LA25_230 = input.LA(7);
+
+                                if ( (LA25_230=='-'||(LA25_230>='0' && LA25_230<='9')||LA25_230==';'||(LA25_230>='@' && LA25_230<='Z')||LA25_230=='_'||(LA25_230>='a' && LA25_230<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=42;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
+                }
+                break;
+            default:
+                alt25=46;}
+
             }
-            else {
-                alt21=38;}
+            break;
+        case 'D':
+            {
+            switch ( input.LA(2) ) {
+            case 'I':
+                {
+                switch ( input.LA(3) ) {
+                case 'S':
+                    {
+                    int LA25_121 = input.LA(4);
+
+                    if ( (LA25_121=='T') ) {
+                        int LA25_163 = input.LA(5);
+
+                        if ( (LA25_163=='I') ) {
+                            int LA25_201 = input.LA(6);
+
+                            if ( (LA25_201=='N') ) {
+                                int LA25_231 = input.LA(7);
+
+                                if ( (LA25_231=='C') ) {
+                                    int LA25_249 = input.LA(8);
+
+                                    if ( (LA25_249=='T') ) {
+                                        int LA25_255 = input.LA(9);
+
+                                        if ( (LA25_255=='-'||(LA25_255>='0' && LA25_255<='9')||LA25_255==';'||(LA25_255>='@' && LA25_255<='Z')||LA25_255=='_'||(LA25_255>='a' && LA25_255<='z')) ) {
+                                            alt25=46;
+                                        }
+                                        else {
+                                            alt25=40;}
+                                    }
+                                    else {
+                                        alt25=46;}
+                                }
+                                else {
+                                    alt25=46;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
+                case 'V':
+                    {
+                    int LA25_122 = input.LA(4);
+
+                    if ( (LA25_122=='I') ) {
+                        int LA25_164 = input.LA(5);
+
+                        if ( (LA25_164=='D') ) {
+                            int LA25_202 = input.LA(6);
+
+                            if ( (LA25_202=='E') ) {
+                                int LA25_232 = input.LA(7);
+
+                                if ( (LA25_232=='-'||(LA25_232>='0' && LA25_232<='9')||LA25_232==';'||(LA25_232>='@' && LA25_232<='Z')||LA25_232=='_'||(LA25_232>='a' && LA25_232<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=39;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                    }
+                    break;
+                default:
+                    alt25=46;}
+
+                }
+                break;
+            case 'i':
+                {
+                int LA25_81 = input.LA(3);
+
+                if ( (LA25_81=='v') ) {
+                    int LA25_123 = input.LA(4);
+
+                    if ( (LA25_123=='i') ) {
+                        int LA25_165 = input.LA(5);
+
+                        if ( (LA25_165=='d') ) {
+                            int LA25_203 = input.LA(6);
+
+                            if ( (LA25_203=='e') ) {
+                                int LA25_233 = input.LA(7);
+
+                                if ( (LA25_233=='-'||(LA25_233>='0' && LA25_233<='9')||LA25_233==';'||(LA25_233>='@' && LA25_233<='Z')||LA25_233=='_'||(LA25_233>='a' && LA25_233<='z')) ) {
+                                    alt25=46;
+                                }
+                                else {
+                                    alt25=39;}
+                            }
+                            else {
+                                alt25=46;}
+                        }
+                        else {
+                            alt25=46;}
+                    }
+                    else {
+                        alt25=46;}
+                }
+                else {
+                    alt25=46;}
+                }
+                break;
+            default:
+                alt25=46;}
+
             }
             break;
         case 't':
             {
-            int LA21_35 = input.LA(2);
+            int LA25_37 = input.LA(2);
 
-            if ( (LA21_35=='e') ) {
-                int LA21_70 = input.LA(3);
+            if ( (LA25_37=='e') ) {
+                int LA25_82 = input.LA(3);
 
-                if ( (LA21_70=='x') ) {
-                    int LA21_99 = input.LA(4);
+                if ( (LA25_82=='x') ) {
+                    int LA25_124 = input.LA(4);
 
-                    if ( (LA21_99=='t') ) {
-                        int LA21_126 = input.LA(5);
+                    if ( (LA25_124=='t') ) {
+                        int LA25_166 = input.LA(5);
 
-                        if ( (LA21_126=='-'||(LA21_126>='0' && LA21_126<='9')||LA21_126==';'||(LA21_126>='@' && LA21_126<='Z')||LA21_126=='_'||(LA21_126>='a' && LA21_126<='z')) ) {
-                            alt21=38;
+                        if ( (LA25_166=='-'||(LA25_166>='0' && LA25_166<='9')||LA25_166==';'||(LA25_166>='@' && LA25_166<='Z')||LA25_166=='_'||(LA25_166>='a' && LA25_166<='z')) ) {
+                            alt25=46;
                         }
                         else {
-                            alt21=34;}
+                            alt25=42;}
                     }
                     else {
-                        alt21=38;}
+                        alt25=46;}
                 }
                 else {
-                    alt21=38;}
+                    alt25=46;}
             }
             else {
-                alt21=38;}
+                alt25=46;}
             }
             break;
         case '0':
@@ -2890,7 +3844,7 @@ public class AmoebaQueryLexer extends Lexer {
         case '8':
         case '9':
             {
-            alt21=35;
+            alt25=43;
             }
             break;
         case '\t':
@@ -2899,19 +3853,17 @@ public class AmoebaQueryLexer extends Lexer {
         case '\r':
         case ' ':
             {
-            alt21=36;
+            alt25=44;
             }
             break;
         case '\"':
         case '\'':
             {
-            alt21=37;
+            alt25=45;
             }
             break;
-        case 'A':
         case 'B':
         case 'C':
-        case 'D':
         case 'E':
         case 'G':
         case 'J':
@@ -2942,278 +3894,334 @@ public class AmoebaQueryLexer extends Lexer {
         case 'y':
         case 'z':
             {
-            alt21=38;
+            alt25=46;
             }
             break;
         default:
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | HasOne | DIVIDE | DISTINCT | RANGE | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 25, 0, input);
 
             throw nvae;
         }
 
-        switch (alt21) {
+        switch (alt25) {
             case 1 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:10: T71
-                {
-                mT71(); 
-
-                }
-                break;
-            case 2 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:14: T72
-                {
-                mT72(); 
-
-                }
-                break;
-            case 3 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:18: T73
-                {
-                mT73(); 
-
-                }
-                break;
-            case 4 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:22: T74
-                {
-                mT74(); 
-
-                }
-                break;
-            case 5 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:26: T75
-                {
-                mT75(); 
-
-                }
-                break;
-            case 6 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:30: T76
-                {
-                mT76(); 
-
-                }
-                break;
-            case 7 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:34: T77
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:10: T77
                 {
                 mT77(); 
 
                 }
                 break;
-            case 8 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:38: T78
+            case 2 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:14: T78
                 {
                 mT78(); 
 
                 }
                 break;
+            case 3 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:18: T79
+                {
+                mT79(); 
+
+                }
+                break;
+            case 4 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:22: T80
+                {
+                mT80(); 
+
+                }
+                break;
+            case 5 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:26: T81
+                {
+                mT81(); 
+
+                }
+                break;
+            case 6 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:30: T82
+                {
+                mT82(); 
+
+                }
+                break;
+            case 7 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:34: T83
+                {
+                mT83(); 
+
+                }
+                break;
+            case 8 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:38: T84
+                {
+                mT84(); 
+
+                }
+                break;
             case 9 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:42: ML_COMMENT
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:42: T85
+                {
+                mT85(); 
+
+                }
+                break;
+            case 10 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:46: T86
+                {
+                mT86(); 
+
+                }
+                break;
+            case 11 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:50: T87
+                {
+                mT87(); 
+
+                }
+                break;
+            case 12 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:54: T88
+                {
+                mT88(); 
+
+                }
+                break;
+            case 13 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:58: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
                 }
                 break;
-            case 10 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:53: LINE_COMMENT
+            case 14 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:69: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
-            case 11 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:66: Dot
+            case 15 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:82: Dot
                 {
                 mDot(); 
 
                 }
                 break;
-            case 12 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:70: Colon
+            case 16 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:86: Colon
                 {
                 mColon(); 
 
                 }
                 break;
-            case 13 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:76: Comma
+            case 17 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:92: Comma
                 {
                 mComma(); 
 
                 }
                 break;
-            case 14 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:82: RParen
+            case 18 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:98: RParen
                 {
                 mRParen(); 
 
                 }
                 break;
-            case 15 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:89: LParen
+            case 19 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:105: LParen
                 {
                 mLParen(); 
 
                 }
                 break;
-            case 16 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:96: At
+            case 20 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:112: At
                 {
                 mAt(); 
 
                 }
                 break;
-            case 17 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:99: Wildcard
+            case 21 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:115: Wildcard
                 {
                 mWildcard(); 
 
                 }
                 break;
-            case 18 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:108: EQUAL
+            case 22 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:124: EQUAL
                 {
                 mEQUAL(); 
 
                 }
                 break;
-            case 19 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:114: NOT_EQUAL
+            case 23 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:130: NOT_EQUAL
                 {
                 mNOT_EQUAL(); 
 
                 }
                 break;
-            case 20 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:124: LESS
+            case 24 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:140: LESS
                 {
                 mLESS(); 
 
                 }
                 break;
-            case 21 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:129: LEQ
+            case 25 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:145: LEQ
                 {
                 mLEQ(); 
 
                 }
                 break;
-            case 22 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:133: GREATER
+            case 26 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:149: GREATER
                 {
                 mGREATER(); 
 
                 }
                 break;
-            case 23 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:141: GEQ
+            case 27 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:157: GEQ
                 {
                 mGEQ(); 
 
                 }
                 break;
-            case 24 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:145: SPLIT
+            case 28 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:161: SPLIT
                 {
                 mSPLIT(); 
 
                 }
                 break;
-            case 25 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:151: Select
+            case 29 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:167: Select
                 {
                 mSelect(); 
 
                 }
                 break;
-            case 26 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:158: From
+            case 30 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:174: From
                 {
                 mFrom(); 
 
                 }
                 break;
-            case 27 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:163: Where
+            case 31 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:179: Where
                 {
                 mWhere(); 
 
                 }
                 break;
-            case 28 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:169: In
+            case 32 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:185: In
                 {
                 mIn(); 
 
                 }
                 break;
-            case 29 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:172: Insert
+            case 33 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:188: Insert
                 {
                 mInsert(); 
 
                 }
                 break;
-            case 30 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:179: Into
+            case 34 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:195: Into
                 {
                 mInto(); 
 
                 }
                 break;
-            case 31 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:184: Object
+            case 35 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:200: Object
                 {
                 mObject(); 
 
                 }
                 break;
-            case 32 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:191: Relationship
+            case 36 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:207: Relationship
                 {
                 mRelationship(); 
 
                 }
                 break;
-            case 33 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:204: HasMany
+            case 37 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:220: HasMany
                 {
                 mHasMany(); 
 
                 }
                 break;
-            case 34 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:212: DataType
+            case 38 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:228: HasOne
+                {
+                mHasOne(); 
+
+                }
+                break;
+            case 39 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:235: DIVIDE
+                {
+                mDIVIDE(); 
+
+                }
+                break;
+            case 40 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:242: DISTINCT
+                {
+                mDISTINCT(); 
+
+                }
+                break;
+            case 41 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:251: RANGE
+                {
+                mRANGE(); 
+
+                }
+                break;
+            case 42 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:257: DataType
                 {
                 mDataType(); 
 
                 }
                 break;
-            case 35 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:221: Digits
+            case 43 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:266: Digits
                 {
                 mDigits(); 
 
                 }
                 break;
-            case 36 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:228: WhiteSpaceChar
+            case 44 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:273: WhiteSpaceChar
                 {
                 mWhiteSpaceChar(); 
 
                 }
                 break;
-            case 37 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:243: StringLiteral
+            case 45 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:288: StringLiteral
                 {
                 mStringLiteral(); 
 
                 }
                 break;
-            case 38 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:257: QName
+            case 46 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:302: QName
                 {
                 mQName(); 
 
@@ -3225,20 +4233,20 @@ public class AmoebaQueryLexer extends Lexer {
     }
 
 
-    protected DFA20 dfa20 = new DFA20(this);
-    static final String DFA20_eotS =
+    protected DFA24 dfa24 = new DFA24(this);
+    static final String DFA24_eotS =
         "\1\uffff\2\3\2\uffff";
-    static final String DFA20_eofS =
+    static final String DFA24_eofS =
         "\5\uffff";
-    static final String DFA20_minS =
+    static final String DFA24_minS =
         "\1\101\2\55\2\uffff";
-    static final String DFA20_maxS =
+    static final String DFA24_maxS =
         "\3\172\2\uffff";
-    static final String DFA20_acceptS =
+    static final String DFA24_acceptS =
         "\3\uffff\1\2\1\1";
-    static final String DFA20_specialS =
+    static final String DFA24_specialS =
         "\5\uffff}>";
-    static final String[] DFA20_transitionS = {
+    static final String[] DFA24_transitionS = {
             "\32\1\4\uffff\1\1\1\uffff\32\1",
             "\1\2\2\uffff\12\2\1\uffff\1\4\4\uffff\33\2\4\uffff\1\2\1\uffff"+
             "\32\2",
@@ -3248,37 +4256,37 @@ public class AmoebaQueryLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA20_eot = DFA.unpackEncodedString(DFA20_eotS);
-    static final short[] DFA20_eof = DFA.unpackEncodedString(DFA20_eofS);
-    static final char[] DFA20_min = DFA.unpackEncodedStringToUnsignedChars(DFA20_minS);
-    static final char[] DFA20_max = DFA.unpackEncodedStringToUnsignedChars(DFA20_maxS);
-    static final short[] DFA20_accept = DFA.unpackEncodedString(DFA20_acceptS);
-    static final short[] DFA20_special = DFA.unpackEncodedString(DFA20_specialS);
-    static final short[][] DFA20_transition;
+    static final short[] DFA24_eot = DFA.unpackEncodedString(DFA24_eotS);
+    static final short[] DFA24_eof = DFA.unpackEncodedString(DFA24_eofS);
+    static final char[] DFA24_min = DFA.unpackEncodedStringToUnsignedChars(DFA24_minS);
+    static final char[] DFA24_max = DFA.unpackEncodedStringToUnsignedChars(DFA24_maxS);
+    static final short[] DFA24_accept = DFA.unpackEncodedString(DFA24_acceptS);
+    static final short[] DFA24_special = DFA.unpackEncodedString(DFA24_specialS);
+    static final short[][] DFA24_transition;
 
     static {
-        int numStates = DFA20_transitionS.length;
-        DFA20_transition = new short[numStates][];
+        int numStates = DFA24_transitionS.length;
+        DFA24_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA20_transition[i] = DFA.unpackEncodedString(DFA20_transitionS[i]);
+            DFA24_transition[i] = DFA.unpackEncodedString(DFA24_transitionS[i]);
         }
     }
 
-    class DFA20 extends DFA {
+    class DFA24 extends DFA {
 
-        public DFA20(BaseRecognizer recognizer) {
+        public DFA24(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 20;
-            this.eot = DFA20_eot;
-            this.eof = DFA20_eof;
-            this.min = DFA20_min;
-            this.max = DFA20_max;
-            this.accept = DFA20_accept;
-            this.special = DFA20_special;
-            this.transition = DFA20_transition;
+            this.decisionNumber = 24;
+            this.eot = DFA24_eot;
+            this.eof = DFA24_eof;
+            this.min = DFA24_min;
+            this.max = DFA24_max;
+            this.accept = DFA24_accept;
+            this.special = DFA24_special;
+            this.transition = DFA24_transition;
         }
         public String getDescription() {
-            return "193:1: QName : ( Name Colon Name | Name );";
+            return "205:1: QName : ( Name Colon Name | Name );";
         }
     }
  

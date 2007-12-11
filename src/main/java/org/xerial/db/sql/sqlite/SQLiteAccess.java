@@ -105,11 +105,7 @@ public class SQLiteAccess
 			type = type.toLowerCase();
 				
 			DataType dt;
-			try {
-				dt = Relation.getDataType(name, type);
-			} catch (InvalidJSONDataException e) {
-				throw new DBException(ErrorCode.InvalidDataFormat, e);
-			}
+			dt = Relation.getDataType(name, type);
 			dt = new StringType(name);
 			r.add(dt);
 		}
