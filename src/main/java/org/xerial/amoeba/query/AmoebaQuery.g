@@ -63,6 +63,9 @@ SORT_TARGET;
 ONE_TO_MANY;
 
 OBJECT_DEF;
+OBJECT;
+
+LANG;
 
 }
 
@@ -209,35 +212,51 @@ numericLiteral
 
 
 lang:
-	| expr+
+	| expr+ -> ^(LANG expr+)
 	;
 
 expr
-	: objectExpr
+	: objectDefExpr
 	| amoebaQuery
 	| relationshipExpr
 	;
 
 relationshipExpr
-	: Relationship obj=QName HasMany qnameList 
-	 -> ^(ONE_TO_MANY $obj qnameList) 
+	: Relationship obj=QName HasMany objectList
+	 -> ^(ONE_TO_MANY[$obj] objectList)
 	;
 
 qnameList
 	: QName (Comma QName)? -> QName+
 	;
+	
+objectList
+	: object (Comma object)? -> object+
+	;
 
-objectExpr
-	: Object objName=QName LParen attributeDefExpr? (SPLIT sortOrder=qnameList)? RParen
-	 -> ^(OBJECT_DEF[$objName] ^(ATTRIBUTE attributeDefExpr)? ^(SORT_TARGET $sortOrder)?)
+object
+	: QName -> ^(OBJECT[$QName])
+	;
+
+objectDefExpr
+	: Object objName=QName LParen attributeDefExpr? (SPLIT sortOrder=sortTargetList)? RParen
+	 -> ^(OBJECT_DEF[$objName] attributeDefExpr? ^(SORT_TARGET $sortOrder)?)
 	;
 	
 attributeDefExpr
-	: attributeDef (Comma attributeDef)* 
+	: attributeDef (Comma attributeDef)* -> attributeDef+
 	;
 
 attributeDef
-	: QName DataType -> ^(ATTRIBUTE_DEF QName DataType) 
+	: QName DataType -> ^(ATTRIBUTE_DEF[$QName] DataType) 
+	;
+	
+sortTargetList
+	: sortTarget (Comma sortTarget)* -> sortTarget+
+	;
+
+sortTarget
+	: QName -> ^(ATTRIBUTE[$QName])
 	;
 
 amoebaQuery

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2007-12-11 14:27:42
+// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2007-12-11 14:57:36
 
 /*--------------------------------------------------------------------------
  *  Copyright 2007 Taro L. Saito
@@ -37,128 +37,93 @@ public class AmoebaQueryLexer extends Lexer {
     public static final int T76=76;
     public static final int T73=73;
     public static final int T74=74;
-    public static final int DataType=60;
-    public static final int Insert=55;
+    public static final int DataType=62;
+    public static final int Insert=57;
     public static final int SORT_TARGET=30;
-    public static final int Apos=41;
-    public static final int Wildcard=43;
-    public static final int HasMany=59;
-    public static final int SPLIT=50;
+    public static final int T77=77;
+    public static final int Apos=43;
+    public static final int T78=78;
+    public static final int Wildcard=45;
+    public static final int HasMany=61;
+    public static final int SPLIT=52;
     public static final int ATTRIBUTE=19;
     public static final int INPUT=15;
-    public static final int Where=53;
+    public static final int Where=55;
     public static final int UPDATE=28;
     public static final int CONDITION=7;
-    public static final int Into=56;
+    public static final int Into=58;
     public static final int AND=13;
     public static final int EOF=-1;
     public static final int T72=72;
     public static final int T71=71;
-    public static final int T70=70;
     public static final int SELECTION=6;
-    public static final int ML_COMMENT=33;
-    public static final int GREATER=48;
+    public static final int ML_COMMENT=35;
+    public static final int GREATER=50;
     public static final int ASSIGN_LABEL=17;
     public static final int INSERT=24;
-    public static final int T69=69;
-    public static final int Digits=63;
-    public static final int NOT_EQUAL=45;
+    public static final int OBJECT=33;
+    public static final int Digits=65;
+    public static final int NOT_EQUAL=47;
     public static final int CONTAINED_IN=22;
-    public static final int WhiteSpaceChar=65;
+    public static final int WhiteSpaceChar=67;
     public static final int NEW_VALUE=26;
-    public static final int EQUAL=44;
-    public static final int LESS=46;
+    public static final int EQUAL=46;
+    public static final int LESS=48;
     public static final int COMPARE=18;
-    public static final int Select=51;
+    public static final int Select=53;
     public static final int REF_ALL=10;
-    public static final int GEQ=49;
+    public static final int GEQ=51;
     public static final int VALUE_SET=25;
-    public static final int Relationship=58;
+    public static final int Relationship=60;
     public static final int NEW_RELATION=27;
-    public static final int Quot=40;
+    public static final int Quot=42;
     public static final int PROJECT_ALL=9;
-    public static final int RParen=38;
-    public static final int In=54;
-    public static final int QName=68;
-    public static final int At=42;
-    public static final int LParen=39;
-    public static final int LINE_COMMENT=34;
+    public static final int RParen=40;
+    public static final int In=56;
+    public static final int At=44;
+    public static final int QName=70;
+    public static final int LParen=41;
+    public static final int LINE_COMMENT=36;
     public static final int NUMBER=4;
-    public static final int NameChar=64;
+    public static final int NameChar=66;
     public static final int RELATION=23;
-    public static final int Colon=36;
+    public static final int Colon=38;
     public static final int TARGET=11;
     public static final int VALUE=21;
-    public static final int Digit=62;
-    public static final int Tokens=77;
+    public static final int Digit=64;
+    public static final int Tokens=79;
     public static final int ONE_TO_MANY=31;
     public static final int ATTRIBUTE_DEF=29;
     public static final int REF=20;
-    public static final int From=52;
-    public static final int Object=57;
-    public static final int StringLiteral=66;
+    public static final int From=54;
+    public static final int Object=59;
+    public static final int StringLiteral=68;
     public static final int OR=14;
-    public static final int Dot=35;
-    public static final int Name=67;
+    public static final int Dot=37;
+    public static final int Name=69;
     public static final int PROJECTION=8;
-    public static final int Comma=37;
+    public static final int Comma=39;
     public static final int OUTPUT=16;
-    public static final int Letter=61;
+    public static final int Letter=63;
+    public static final int LANG=34;
     public static final int STRING=5;
     public static final int OBJECT_DEF=32;
-    public static final int LEQ=47;
+    public static final int LEQ=49;
     public AmoebaQueryLexer() {;} 
     public AmoebaQueryLexer(CharStream input) {
         super(input);
     }
     public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g"; }
 
-    // $ANTLR start T69
-    public final void mT69() throws RecognitionException {
+    // $ANTLR start T71
+    public final void mT71() throws RecognitionException {
         try {
-            int _type = T69;
+            int _type = T71;
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:5: ( 'update' )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:33:7: 'update'
             {
             match("update"); 
 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T69
-
-    // $ANTLR start T70
-    public final void mT70() throws RecognitionException {
-        try {
-            int _type = T70;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:5: ( 'set' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:7: 'set'
-            {
-            match("set"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T70
-
-    // $ANTLR start T71
-    public final void mT71() throws RecognitionException {
-        try {
-            int _type = T71;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:5: ( '{' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:7: '{'
-            {
-            match('{'); 
 
             }
 
@@ -173,10 +138,11 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:5: ( '}' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:7: '}'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:5: ( 'set' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:34:7: 'set'
             {
-            match('}'); 
+            match("set"); 
+
 
             }
 
@@ -191,11 +157,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:5: ( 'as' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:7: 'as'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:5: ( '{' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:35:7: '{'
             {
-            match("as"); 
-
+            match('{'); 
 
             }
 
@@ -210,11 +175,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:5: ( 'or' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:7: 'or'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:5: ( '}' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:36:7: '}'
             {
-            match("or"); 
-
+            match('}'); 
 
             }
 
@@ -229,10 +193,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:5: ( 'and' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:7: 'and'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:5: ( 'as' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:37:7: 'as'
             {
-            match("and"); 
+            match("as"); 
 
 
             }
@@ -248,6 +212,44 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:5: ( 'or' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:38:7: 'or'
+            {
+            match("or"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T76
+
+    // $ANTLR start T77
+    public final void mT77() throws RecognitionException {
+        try {
+            int _type = T77;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:5: ( 'and' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:39:7: 'and'
+            {
+            match("and"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T77
+
+    // $ANTLR start T78
+    public final void mT78() throws RecognitionException {
+        try {
+            int _type = T78;
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:5: ( 'like' )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:40:7: 'like'
             {
@@ -261,18 +263,18 @@ public class AmoebaQueryLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T76
+    // $ANTLR end T78
 
     // $ANTLR start ML_COMMENT
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:137:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:137:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:137:14: ( options {greedy=false; } : . )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:14: ( options {greedy=false; } : . )*
             loop1:
             do {
                 int alt1=2;
@@ -297,7 +299,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:137:41: .
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:140:41: .
             	    {
             	    matchAny(); 
 
@@ -326,12 +328,12 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:12: (~ ( '\\n' | '\\r' ) )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:12: (~ ( '\\n' | '\\r' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -344,7 +346,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:12: ~ ( '\\n' | '\\r' )
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -365,7 +367,7 @@ public class AmoebaQueryLexer extends Lexer {
                 }
             } while (true);
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:26: ( '\\r' )?
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:26: ( '\\r' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -374,7 +376,7 @@ public class AmoebaQueryLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:141:26: '\\r'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:26: '\\r'
                     {
                     match('\r'); 
 
@@ -399,8 +401,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mDot() throws RecognitionException {
         try {
             int _type = Dot;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:4: ( '.' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:144:6: '.'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:4: ( '.' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:6: '.'
             {
             match('.'); 
 
@@ -417,8 +419,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mColon() throws RecognitionException {
         try {
             int _type = Colon;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:145:6: ( ';' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:145:8: ';'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:6: ( ';' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:8: ';'
             {
             match(';'); 
 
@@ -435,8 +437,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mComma() throws RecognitionException {
         try {
             int _type = Comma;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:146:6: ( ',' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:146:8: ','
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:6: ( ',' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:8: ','
             {
             match(','); 
 
@@ -453,8 +455,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mRParen() throws RecognitionException {
         try {
             int _type = RParen;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:7: ( ')' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:147:9: ')'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:7: ( ')' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:9: ')'
             {
             match(')'); 
 
@@ -471,8 +473,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLParen() throws RecognitionException {
         try {
             int _type = LParen;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:7: ( '(' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:148:9: '('
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:7: ( '(' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:9: '('
             {
             match('('); 
 
@@ -488,8 +490,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Quot
     public final void mQuot() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:14: ( '\"' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:149:16: '\"'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:14: ( '\"' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:16: '\"'
             {
             match('\"'); 
 
@@ -504,8 +506,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Apos
     public final void mApos() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:14: ( '\\'' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:150:16: '\\''
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:14: ( '\\'' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:16: '\\''
             {
             match('\''); 
 
@@ -521,8 +523,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mAt() throws RecognitionException {
         try {
             int _type = At;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:3: ( '@' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:151:5: '@'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:3: ( '@' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:5: '@'
             {
             match('@'); 
 
@@ -539,8 +541,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWildcard() throws RecognitionException {
         try {
             int _type = Wildcard;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:10: ( '*' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:152:12: '*'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:10: ( '*' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:12: '*'
             {
             match('*'); 
 
@@ -557,8 +559,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mEQUAL() throws RecognitionException {
         try {
             int _type = EQUAL;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:7: ( '=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:153:9: '='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:7: ( '=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:9: '='
             {
             match('='); 
 
@@ -575,8 +577,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mNOT_EQUAL() throws RecognitionException {
         try {
             int _type = NOT_EQUAL;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:11: ( '!=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:154:13: '!='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:11: ( '!=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:13: '!='
             {
             match("!="); 
 
@@ -594,8 +596,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLESS() throws RecognitionException {
         try {
             int _type = LESS;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:6: ( '<' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:155:8: '<'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:6: ( '<' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:8: '<'
             {
             match('<'); 
 
@@ -612,8 +614,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mLEQ() throws RecognitionException {
         try {
             int _type = LEQ;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:6: ( '<=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:156:8: '<='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:6: ( '<=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:8: '<='
             {
             match("<="); 
 
@@ -631,8 +633,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mGREATER() throws RecognitionException {
         try {
             int _type = GREATER;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:9: ( '>' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:157:11: '>'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:9: ( '>' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:160:11: '>'
             {
             match('>'); 
 
@@ -649,8 +651,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mGEQ() throws RecognitionException {
         try {
             int _type = GEQ;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:5: ( '>=' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:158:7: '>='
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:5: ( '>=' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:7: '>='
             {
             match(">="); 
 
@@ -668,8 +670,8 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mSPLIT() throws RecognitionException {
         try {
             int _type = SPLIT;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:7: ( '|' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:159:9: '|'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:7: ( '|' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:9: '|'
             {
             match('|'); 
 
@@ -686,7 +688,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mSelect() throws RecognitionException {
         try {
             int _type = Select;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:7: ( 'select' | 'SELECT' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:7: ( 'select' | 'SELECT' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -698,13 +700,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("161:1: Select : ( 'select' | 'SELECT' );", 4, 0, input);
+                    new NoViableAltException("164:1: Select : ( 'select' | 'SELECT' );", 4, 0, input);
 
                 throw nvae;
             }
             switch (alt4) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:9: 'select'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:9: 'select'
                     {
                     match("select"); 
 
@@ -712,7 +714,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:161:20: 'SELECT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:20: 'SELECT'
                     {
                     match("SELECT"); 
 
@@ -732,7 +734,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mFrom() throws RecognitionException {
         try {
             int _type = From;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:5: ( 'from' | 'FROM' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:5: ( 'from' | 'FROM' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -744,13 +746,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("162:1: From : ( 'from' | 'FROM' );", 5, 0, input);
+                    new NoViableAltException("165:1: From : ( 'from' | 'FROM' );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:7: 'from'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:7: 'from'
                     {
                     match("from"); 
 
@@ -758,7 +760,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:162:16: 'FROM'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:16: 'FROM'
                     {
                     match("FROM"); 
 
@@ -778,7 +780,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWhere() throws RecognitionException {
         try {
             int _type = Where;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:163:6: ( 'where' | 'WHERE' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:6: ( 'where' | 'WHERE' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -790,13 +792,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("163:1: Where : ( 'where' | 'WHERE' );", 6, 0, input);
+                    new NoViableAltException("166:1: Where : ( 'where' | 'WHERE' );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:163:8: 'where'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:8: 'where'
                     {
                     match("where"); 
 
@@ -804,7 +806,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:163:18: 'WHERE'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:18: 'WHERE'
                     {
                     match("WHERE"); 
 
@@ -824,7 +826,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mIn() throws RecognitionException {
         try {
             int _type = In;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:3: ( 'in' | 'IN' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:3: ( 'in' | 'IN' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -836,13 +838,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("164:1: In : ( 'in' | 'IN' );", 7, 0, input);
+                    new NoViableAltException("167:1: In : ( 'in' | 'IN' );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:5: 'in'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:5: 'in'
                     {
                     match("in"); 
 
@@ -850,7 +852,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:164:12: 'IN'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:12: 'IN'
                     {
                     match("IN"); 
 
@@ -870,7 +872,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mInsert() throws RecognitionException {
         try {
             int _type = Insert;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:7: ( 'insert' | 'INSERT' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:7: ( 'insert' | 'INSERT' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -882,13 +884,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("165:1: Insert : ( 'insert' | 'INSERT' );", 8, 0, input);
+                    new NoViableAltException("168:1: Insert : ( 'insert' | 'INSERT' );", 8, 0, input);
 
                 throw nvae;
             }
             switch (alt8) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:9: 'insert'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:9: 'insert'
                     {
                     match("insert"); 
 
@@ -896,7 +898,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:165:20: 'INSERT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:20: 'INSERT'
                     {
                     match("INSERT"); 
 
@@ -916,7 +918,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mInto() throws RecognitionException {
         try {
             int _type = Into;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:5: ( 'into' | 'INTO' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:5: ( 'into' | 'INTO' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -928,13 +930,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("166:1: Into : ( 'into' | 'INTO' );", 9, 0, input);
+                    new NoViableAltException("169:1: Into : ( 'into' | 'INTO' );", 9, 0, input);
 
                 throw nvae;
             }
             switch (alt9) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:7: 'into'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:7: 'into'
                     {
                     match("into"); 
 
@@ -942,7 +944,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:166:16: 'INTO'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:16: 'INTO'
                     {
                     match("INTO"); 
 
@@ -962,7 +964,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mObject() throws RecognitionException {
         try {
             int _type = Object;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:7: ( 'object' | 'OBJECT' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:7: ( 'object' | 'OBJECT' )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -974,13 +976,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("167:1: Object : ( 'object' | 'OBJECT' );", 10, 0, input);
+                    new NoViableAltException("170:1: Object : ( 'object' | 'OBJECT' );", 10, 0, input);
 
                 throw nvae;
             }
             switch (alt10) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:9: 'object'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:9: 'object'
                     {
                     match("object"); 
 
@@ -988,7 +990,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:167:20: 'OBJECT'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:170:20: 'OBJECT'
                     {
                     match("OBJECT"); 
 
@@ -1008,7 +1010,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mRelationship() throws RecognitionException {
         try {
             int _type = Relationship;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:13: ( 'relationship' | 'RELATIONSHIP' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:13: ( 'relationship' | 'RELATIONSHIP' )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1020,13 +1022,13 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("168:1: Relationship : ( 'relationship' | 'RELATIONSHIP' );", 11, 0, input);
+                    new NoViableAltException("171:1: Relationship : ( 'relationship' | 'RELATIONSHIP' );", 11, 0, input);
 
                 throw nvae;
             }
             switch (alt11) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:15: 'relationship'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:15: 'relationship'
                     {
                     match("relationship"); 
 
@@ -1034,7 +1036,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:168:32: 'RELATIONSHIP'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:32: 'RELATIONSHIP'
                     {
                     match("RELATIONSHIP"); 
 
@@ -1054,7 +1056,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mHasMany() throws RecognitionException {
         try {
             int _type = HasMany;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:9: ( 'hasmany' | 'HASMANY' | 'HasMany' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:9: ( 'hasmany' | 'HASMANY' | 'HasMany' )
             int alt12=3;
             int LA12_0 = input.LA(1);
 
@@ -1072,20 +1074,20 @@ public class AmoebaQueryLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("169:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 2, input);
+                        new NoViableAltException("172:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 2, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("169:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 0, input);
+                    new NoViableAltException("172:1: HasMany : ( 'hasmany' | 'HASMANY' | 'HasMany' );", 12, 0, input);
 
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:11: 'hasmany'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:11: 'hasmany'
                     {
                     match("hasmany"); 
 
@@ -1093,7 +1095,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:23: 'HASMANY'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:23: 'HASMANY'
                     {
                     match("HASMANY"); 
 
@@ -1101,7 +1103,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:169:35: 'HasMany'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:172:35: 'HasMany'
                     {
                     match("HasMany"); 
 
@@ -1121,7 +1123,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mDataType() throws RecognitionException {
         try {
             int _type = DataType;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:9: ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:9: ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' )
             int alt13=6;
             switch ( input.LA(1) ) {
             case 's':
@@ -1156,14 +1158,14 @@ public class AmoebaQueryLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("171:1: DataType : ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' );", 13, 0, input);
+                    new NoViableAltException("174:1: DataType : ( 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text' );", 13, 0, input);
 
                 throw nvae;
             }
 
             switch (alt13) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:11: 'string'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:11: 'string'
                     {
                     match("string"); 
 
@@ -1171,7 +1173,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:22: 'integer'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:22: 'integer'
                     {
                     match("integer"); 
 
@@ -1179,7 +1181,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:34: 'boolean'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:34: 'boolean'
                     {
                     match("boolean"); 
 
@@ -1187,7 +1189,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:46: 'float'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:46: 'float'
                     {
                     match("float"); 
 
@@ -1195,7 +1197,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:56: 'double'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:56: 'double'
                     {
                     match("double"); 
 
@@ -1203,7 +1205,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:171:67: 'text'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:67: 'text'
                     {
                     match("text"); 
 
@@ -1222,7 +1224,7 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Letter
     public final void mLetter() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:174:16: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:177:16: ( 'a' .. 'z' | 'A' .. 'Z' )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1247,8 +1249,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Digit
     public final void mDigit() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:175:15: ( '0' .. '9' )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:175:17: '0' .. '9'
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:15: ( '0' .. '9' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:17: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1264,10 +1266,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mDigits() throws RecognitionException {
         try {
             int _type = Digits;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:7: ( ( Digit )+ )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:9: ( Digit )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:7: ( ( Digit )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:9: ( Digit )+
             {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:9: ( Digit )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:9: ( Digit )+
             int cnt14=0;
             loop14:
             do {
@@ -1281,7 +1283,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:176:10: Digit
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:179:10: Digit
             	    {
             	    mDigit(); 
 
@@ -1310,7 +1312,7 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start NameChar
     public final void mNameChar() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:178:18: ( Letter | Digit | '_' | '-' | At )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:181:18: ( Letter | Digit | '_' | '-' | At )
             // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
             {
             if ( input.LA(1)=='-'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='@' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1336,10 +1338,10 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mWhiteSpaceChar() throws RecognitionException {
         try {
             int _type = WhiteSpaceChar;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:15: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+ )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:15: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
             {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:180:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:17: ( ' ' | '\\t' | '\\n' | '\\r' | '\\u000C' )+
             int cnt15=0;
             loop15:
             do {
@@ -1393,7 +1395,7 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mStringLiteral() throws RecognitionException {
         try {
             int _type = StringLiteral;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:1: ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:1: ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1405,16 +1407,16 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("182:1: StringLiteral : ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos );", 18, 0, input);
+                    new NoViableAltException("185:1: StringLiteral : ( Quot (~ '\"' )* Quot | Apos (~ '\\'' )* Apos );", 18, 0, input);
 
                 throw nvae;
             }
             switch (alt18) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:3: Quot (~ '\"' )* Quot
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:3: Quot (~ '\"' )* Quot
                     {
                     mQuot(); 
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:9: (~ '\"' )*
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:9: (~ '\"' )*
                     loop16:
                     do {
                         int alt16=2;
@@ -1427,7 +1429,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:183:10: ~ '\"'
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:186:10: ~ '\"'
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1453,10 +1455,10 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:184:3: Apos (~ '\\'' )* Apos
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:3: Apos (~ '\\'' )* Apos
                     {
                     mApos(); 
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:184:9: (~ '\\'' )*
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:9: (~ '\\'' )*
                     loop17:
                     do {
                         int alt17=2;
@@ -1469,7 +1471,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:184:10: ~ '\\''
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:187:10: ~ '\\''
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1506,8 +1508,8 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR start Name
     public final void mName() throws RecognitionException {
         try {
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:188:14: ( ( Letter | '_' ) ( NameChar )* )
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:188:16: ( Letter | '_' ) ( NameChar )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:14: ( ( Letter | '_' ) ( NameChar )* )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:16: ( Letter | '_' ) ( NameChar )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1519,7 +1521,7 @@ public class AmoebaQueryLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:188:31: ( NameChar )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:31: ( NameChar )*
             loop19:
             do {
                 int alt19=2;
@@ -1532,7 +1534,7 @@ public class AmoebaQueryLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:188:31: NameChar
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:31: NameChar
             	    {
             	    mNameChar(); 
 
@@ -1557,12 +1559,12 @@ public class AmoebaQueryLexer extends Lexer {
     public final void mQName() throws RecognitionException {
         try {
             int _type = QName;
-            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:2: ( Name Colon Name | Name )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:194:2: ( Name Colon Name | Name )
             int alt20=2;
             alt20 = dfa20.predict(input);
             switch (alt20) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:191:4: Name Colon Name
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:194:4: Name Colon Name
                     {
                     mName(); 
                     mColon(); 
@@ -1571,7 +1573,7 @@ public class AmoebaQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:192:4: Name
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:195:4: Name
                     {
                     mName(); 
 
@@ -1587,7 +1589,7 @@ public class AmoebaQueryLexer extends Lexer {
     // $ANTLR end QName
 
     public void mTokens() throws RecognitionException {
-        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:8: ( T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName )
+        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:8: ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName )
         int alt21=38;
         switch ( input.LA(1) ) {
         case 'u':
@@ -1863,7 +1865,7 @@ public class AmoebaQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1:1: Tokens : ( T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 8, input);
+                    new NoViableAltException("1:1: Tokens : ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 8, input);
 
                 throw nvae;
             }
@@ -2945,65 +2947,65 @@ public class AmoebaQueryLexer extends Lexer {
             break;
         default:
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | ML_COMMENT | LINE_COMMENT | Dot | Colon | Comma | RParen | LParen | At | Wildcard | EQUAL | NOT_EQUAL | LESS | LEQ | GREATER | GEQ | SPLIT | Select | From | Where | In | Insert | Into | Object | Relationship | HasMany | DataType | Digits | WhiteSpaceChar | StringLiteral | QName );", 21, 0, input);
 
             throw nvae;
         }
 
         switch (alt21) {
             case 1 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:10: T69
-                {
-                mT69(); 
-
-                }
-                break;
-            case 2 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:14: T70
-                {
-                mT70(); 
-
-                }
-                break;
-            case 3 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:18: T71
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:10: T71
                 {
                 mT71(); 
 
                 }
                 break;
-            case 4 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:22: T72
+            case 2 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:14: T72
                 {
                 mT72(); 
 
                 }
                 break;
-            case 5 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:26: T73
+            case 3 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:18: T73
                 {
                 mT73(); 
 
                 }
                 break;
-            case 6 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:30: T74
+            case 4 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:22: T74
                 {
                 mT74(); 
 
                 }
                 break;
-            case 7 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:34: T75
+            case 5 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:26: T75
                 {
                 mT75(); 
 
                 }
                 break;
-            case 8 :
-                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:38: T76
+            case 6 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:30: T76
                 {
                 mT76(); 
+
+                }
+                break;
+            case 7 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:34: T77
+                {
+                mT77(); 
+
+                }
+                break;
+            case 8 :
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:1:38: T78
+                {
+                mT78(); 
 
                 }
                 break;
@@ -3276,7 +3278,7 @@ public class AmoebaQueryLexer extends Lexer {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "190:1: QName : ( Name Colon Name | Name );";
+            return "193:1: QName : ( Name Colon Name | Name );";
         }
     }
  
