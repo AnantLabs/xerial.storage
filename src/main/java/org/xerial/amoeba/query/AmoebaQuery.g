@@ -37,6 +37,7 @@ SELECTION;
 CONDITION;
 PROJECTION;
 PROJECT_ALL;
+ORDER_BY;
 REF_ALL;
 TARGET;
 FUNCTION;
@@ -61,9 +62,12 @@ ATTRIBUTE_DEF;
 SORT_TARGET;
 
 ONE_TO_MANY;
+ONE_TO_ONE;
+
 
 OBJECT_DEF;
 OBJECT;
+
 
 LANG;
 
@@ -124,6 +128,7 @@ package org.xerial.amoeba.query;
 // 
 //--------------------------------------------------
 package org.xerial.amoeba.query;
+
 }
 
 
@@ -134,6 +139,8 @@ catch(RecognitionException e){
 }
 } 
 */
+
+
 
 
 ML_COMMENT
@@ -167,9 +174,14 @@ Where: 'where' | 'WHERE';
 In: 'in' | 'IN';
 Insert: 'insert' | 'INSERT';
 Into: 'into' | 'INTO';
-Object: 'object' | 'OBJECT';
-Relationship: 'relationship' | 'RELATIONSHIP';
+Object: 'object' | 'OBJECT' | 'Object';
+Relationship: 'relationship' | 'RELATIONSHIP' | 'Relationship';
 HasMany : 'hasmany' | 'HASMANY' | 'HasMany';
+HasOne : 'hasone' | 'HASONE' | 'HasOne';
+DIVIDE: 'divide' | 'DIVIDE' | 'Divide';
+DISTINCT: 'distinct' | 'DISTINCT'; 
+RANGE: 'range' | 'RANGE';
+
 
 DataType: 'string' | 'integer' | 'boolean' | 'float' | 'double' | 'text';
 
@@ -219,11 +231,29 @@ expr
 	: objectDefExpr
 	| amoebaQuery
 	| relationshipExpr
+	| divideExpr
+	;
+	
+
+divideExpr
+	: DIVIDE QName 'by' divideElem (Comma divideElem)*
+	  -> ^(DIVIDE[$QName] divideElem+)
+	;
+	
+divideElem
+	: DISTINCT QName -> ^(DISTINCT[$QName])
+	| RANGE QName rangeType? -> ^(RANGE[$QName] rangeType?)
+	;
+
+rangeType
+	: 'auto' | 'AUTO'
 	;
 
 relationshipExpr
 	: Relationship obj=QName HasMany objectList
 	 -> ^(ONE_TO_MANY[$obj] objectList)
+	| Relationship obj2=QName HasOne objectList
+	 -> ^(ONE_TO_ONE[$obj2] objectList)
 	;
 
 qnameList
@@ -239,9 +269,10 @@ object
 	;
 
 objectDefExpr
-	: Object objName=QName LParen attributeDefExpr? (SPLIT sortOrder=sortTargetList)? RParen
+	: Object objName=QName LParen attributeDefExpr? (SPLIT sortOrder=attributeList)? RParen
 	 -> ^(OBJECT_DEF[$objName] attributeDefExpr? ^(SORT_TARGET $sortOrder)?)
 	;
+	
 	
 attributeDefExpr
 	: attributeDef (Comma attributeDef)* -> attributeDef+
@@ -251,11 +282,11 @@ attributeDef
 	: QName DataType -> ^(ATTRIBUTE_DEF[$QName] DataType) 
 	;
 	
-sortTargetList
-	: sortTarget (Comma sortTarget)* -> sortTarget+
+attributeList
+	: attribute (Comma attributeName)* -> attribute+
 	;
 
-sortTarget
+attribute
 	: QName -> ^(ATTRIBUTE[$QName])
 	;
 
@@ -299,8 +330,8 @@ subQuery
 		
 	
 selectExpr
-	: Select selectTarget fromClause? whereClause?
-	 -> ^(SELECTION selectTarget ^(INPUT fromClause)? ^(CONDITION whereClause)?)
+	: Select selectTarget fromClause? whereClause? orderByClause?
+	 -> ^(SELECTION selectTarget ^(INPUT fromClause)? ^(CONDITION whereClause)? ^(ORDER_BY orderByClause)?)
 	;
 
 
@@ -325,6 +356,11 @@ targetRelation
 whereClause
 	: Where! orExpr	
 	;
+
+orderByClause
+	: 'order' 'by' (attributeName (Comma attributeName)*) -> attributeName+ 
+	;
+
 	
 orExpr
 	: (andExpr -> andExpr) ('or' a=andExpr -> ^(OR $orExpr $a))* 
@@ -355,8 +391,8 @@ value
 	;
 
 attributeName
-	: QName -> ^(ATTRIBUTE QName)
-	| relation=QName Dot attribute=QName -> ^(REF $relation $attribute)
+	: qn=QName -> ^(ATTRIBUTE[$qn])
+	| relation=QName Dot at=QName -> ^(REF $relation $at)
 	| relation=QName Dot Wildcard -> ^(REF_ALL $relation)
 	; 
 

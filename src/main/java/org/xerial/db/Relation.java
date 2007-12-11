@@ -17,6 +17,7 @@ import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.DoubleType;
 import org.xerial.db.datatype.IntegerType;
+import org.xerial.db.datatype.LongType;
 import org.xerial.db.datatype.PasswordType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.datatype.TextType;
@@ -86,20 +87,22 @@ public class Relation
     	}
     }
     
-    public static DataType getDataType(String parameterName, String typeName) throws InvalidJSONDataException 
+    public static DataType getDataType(String parameterName, String typeName) 
     {
 		if(typeName.equals("boolean"))
 			return new BooleanType(parameterName);
+        else if(typeName.equals("integer"))
+            return new IntegerType(parameterName);
 		else if(typeName.equals("double"))
 			return new DoubleType(parameterName);
-		else if(typeName.equals("string"))
-			return new StringType(parameterName);
+        else if(typeName.equals("string"))
+            return new StringType(parameterName);
+        else if(typeName.equals("long"))
+            return new LongType(parameterName);
 		else if(typeName.equals("password"))
 			return new PasswordType(parameterName);
 		else if(typeName.equals("text"))
 			return new TextType(parameterName);
-		else if(typeName.equals("integer"))
-			return new IntegerType(parameterName);
 		else
 			return new StringType("string");
     }

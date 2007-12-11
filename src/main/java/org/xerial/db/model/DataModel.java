@@ -254,11 +254,7 @@ public class DataModel
 			Relation relation = new Relation();
 			for(SQLiteDataTypeInfo dataType : query.getSQLiteDataTypeInfo(dataTable))
 			{
-				try {
-					relation.add(Relation.getDataType(dataType.getName(), dataType.getType()));
-				} catch (InvalidJSONDataException e) {
-					throw new DBException(ErrorCode.InvalidDataFormat, e);
-				}
+				relation.add(Relation.getDataType(dataType.getName(), dataType.getType()));
 			}
 			addRelation(relation);
 		}

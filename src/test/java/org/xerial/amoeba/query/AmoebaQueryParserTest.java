@@ -60,7 +60,7 @@ public class AmoebaQueryParserTest {
 			_logger.debug(query);
 			AmoebaQueryParser.amoebaQuery_return r = parser(query).amoebaQuery();
 			CommonTree t = (CommonTree) r.getTree();
-			_logger.debug(StringUtil.NEW_LINE + parseTreeToString(t));
+			_logger.debug(StringUtil.NEW_LINE + ANTLRUtil.toString(t));
 		} catch (RecognitionException e) {
 		    reportError(query, e);
 		}
@@ -88,7 +88,7 @@ public class AmoebaQueryParserTest {
             AmoebaQueryParser parser = parser(new AmoebaQueryLexer(new ANTLRInputStream(this.getClass().getResourceAsStream(resourceName))));
             AmoebaQueryParser.lang_return r = parser.lang();
             CommonTree t = (CommonTree) r.getTree();
-            _logger.debug(StringUtil.NEW_LINE + parseTreeToString(t));
+            _logger.debug(StringUtil.NEW_LINE + ANTLRUtil.toString(t));
         }
         catch (RecognitionException e)
         {
@@ -96,40 +96,6 @@ public class AmoebaQueryParserTest {
         }
 	}
 	
-	public static String parseTreeToString(Tree t)
-	{
-	    StringBuilder buf = new StringBuilder();
-	    parseTreeToStringInternal(t.getChild(0), buf, 0);
-	    return buf.toString();
-	}
-	
-	public static void parseTreeToStringInternal(Tree t, StringBuilder buf, int level)
-	{
-	    if(t == null)
-	        return;
-	    
-        int type = t.getType();
-        String tokenName = AmoebaQueryParser.tokenNames[type];
-        String text = t.getText();
-        
-        for(int i=0; i<level; i++)
-            buf.append("  ");
-        buf.append("[");
-        buf.append(tokenName);
-        buf.append("] ");
-        if(text != null)
-        {
-            buf.append(text);
-        }
-        buf.append(StringUtil.NEW_LINE);
-        
-        for(int i=0; i<t.getChildCount(); i++)
-        {
-            Tree child = (Tree) t.getChild(i);
-            parseTreeToStringInternal(child, buf, level+1);
-        }
-	    
-	}
 	
 	
 	@Test 
