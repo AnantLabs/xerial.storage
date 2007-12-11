@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 AmoebaQuery.g 2007-09-13 13:36:48
+// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2007-12-11 14:27:42
 
 /*--------------------------------------------------------------------------
  *  Copyright 2007 Taro L. Saito
@@ -36,68 +36,78 @@ import org.antlr.runtime.tree.*;
 
 public class AmoebaQueryParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NUMBER", "STRING", "SELECTION", "CONDITION", "PROJECTION", "PROJECT_ALL", "TARGET", "FUNCTION", "AND", "OR", "INPUT", "OUTPUT", "ASSIGN_LABEL", "COMPARE", "ATTRIBUTE", "REF", "VALUE", "CONTAINED_IN", "RELATION", "INSERT", "VALUE_SET", "NEW_VALUE", "NEW_RELATION", "UPDATE", "ML_COMMENT", "LINE_COMMENT", "Dot", "Colon", "Comma", "RParen", "LParen", "Quot", "Apos", "At", "Wildcard", "EQUAL", "NOT_EQUAL", "LESS", "LEQ", "GREATER", "GEQ", "Select", "From", "Where", "In", "Insert", "Into", "Letter", "Digit", "Digits", "NameChar", "WhiteSpaceChar", "StringLiteral", "Name", "QName", "'update'", "'set'", "'{'", "'}'", "'as'", "'or'", "'and'", "'like'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NUMBER", "STRING", "SELECTION", "CONDITION", "PROJECTION", "PROJECT_ALL", "REF_ALL", "TARGET", "FUNCTION", "AND", "OR", "INPUT", "OUTPUT", "ASSIGN_LABEL", "COMPARE", "ATTRIBUTE", "REF", "VALUE", "CONTAINED_IN", "RELATION", "INSERT", "VALUE_SET", "NEW_VALUE", "NEW_RELATION", "UPDATE", "ATTRIBUTE_DEF", "SORT_TARGET", "ONE_TO_MANY", "OBJECT_DEF", "ML_COMMENT", "LINE_COMMENT", "Dot", "Colon", "Comma", "RParen", "LParen", "Quot", "Apos", "At", "Wildcard", "EQUAL", "NOT_EQUAL", "LESS", "LEQ", "GREATER", "GEQ", "SPLIT", "Select", "From", "Where", "In", "Insert", "Into", "Object", "Relationship", "HasMany", "DataType", "Letter", "Digit", "Digits", "NameChar", "WhiteSpaceChar", "StringLiteral", "Name", "QName", "'update'", "'set'", "'{'", "'}'", "'as'", "'or'", "'and'", "'like'"
     };
-    public static final int FUNCTION=11;
-    public static final int Insert=49;
-    public static final int Apos=36;
-    public static final int Wildcard=38;
-    public static final int ATTRIBUTE=18;
-    public static final int Where=47;
-    public static final int INPUT=14;
-    public static final int UPDATE=27;
+    public static final int FUNCTION=12;
+    public static final int DataType=60;
+    public static final int Insert=55;
+    public static final int SORT_TARGET=30;
+    public static final int Apos=41;
+    public static final int Wildcard=43;
+    public static final int HasMany=59;
+    public static final int SPLIT=50;
+    public static final int ATTRIBUTE=19;
+    public static final int Where=53;
+    public static final int INPUT=15;
+    public static final int UPDATE=28;
     public static final int CONDITION=7;
-    public static final int Into=50;
-    public static final int AND=12;
+    public static final int Into=56;
+    public static final int AND=13;
     public static final int EOF=-1;
     public static final int SELECTION=6;
-    public static final int ML_COMMENT=28;
-    public static final int GREATER=43;
-    public static final int ASSIGN_LABEL=16;
-    public static final int INSERT=23;
-    public static final int Digits=53;
-    public static final int CONTAINED_IN=21;
-    public static final int NOT_EQUAL=40;
-    public static final int WhiteSpaceChar=55;
-    public static final int NEW_VALUE=25;
-    public static final int EQUAL=39;
-    public static final int LESS=41;
-    public static final int COMPARE=17;
-    public static final int Select=45;
-    public static final int GEQ=44;
-    public static final int VALUE_SET=24;
-    public static final int NEW_RELATION=26;
-    public static final int Quot=35;
+    public static final int ML_COMMENT=33;
+    public static final int GREATER=48;
+    public static final int ASSIGN_LABEL=17;
+    public static final int INSERT=24;
+    public static final int Digits=63;
+    public static final int NOT_EQUAL=45;
+    public static final int CONTAINED_IN=22;
+    public static final int WhiteSpaceChar=65;
+    public static final int NEW_VALUE=26;
+    public static final int EQUAL=44;
+    public static final int LESS=46;
+    public static final int COMPARE=18;
+    public static final int Select=51;
+    public static final int REF_ALL=10;
+    public static final int GEQ=49;
+    public static final int VALUE_SET=25;
+    public static final int Relationship=58;
+    public static final int NEW_RELATION=27;
+    public static final int Quot=40;
     public static final int PROJECT_ALL=9;
-    public static final int RParen=33;
-    public static final int In=48;
-    public static final int QName=58;
-    public static final int At=37;
-    public static final int LParen=34;
-    public static final int LINE_COMMENT=29;
+    public static final int RParen=38;
+    public static final int In=54;
+    public static final int QName=68;
+    public static final int At=42;
+    public static final int LParen=39;
+    public static final int LINE_COMMENT=34;
     public static final int NUMBER=4;
-    public static final int NameChar=54;
-    public static final int RELATION=22;
-    public static final int Colon=31;
-    public static final int TARGET=10;
-    public static final int VALUE=20;
-    public static final int Digit=52;
-    public static final int From=46;
-    public static final int REF=19;
-    public static final int StringLiteral=56;
-    public static final int OR=13;
-    public static final int Name=57;
-    public static final int Dot=30;
+    public static final int NameChar=64;
+    public static final int RELATION=23;
+    public static final int Colon=36;
+    public static final int TARGET=11;
+    public static final int VALUE=21;
+    public static final int Digit=62;
+    public static final int ONE_TO_MANY=31;
+    public static final int Object=57;
+    public static final int From=52;
+    public static final int REF=20;
+    public static final int ATTRIBUTE_DEF=29;
+    public static final int StringLiteral=66;
+    public static final int OR=14;
+    public static final int Name=67;
+    public static final int Dot=35;
     public static final int PROJECTION=8;
-    public static final int Comma=32;
-    public static final int Letter=51;
-    public static final int OUTPUT=15;
+    public static final int Comma=37;
+    public static final int Letter=61;
+    public static final int OUTPUT=16;
     public static final int STRING=5;
-    public static final int LEQ=42;
+    public static final int LEQ=47;
+    public static final int OBJECT_DEF=32;
 
         public AmoebaQueryParser(TokenStream input) {
             super(input);
-            ruleMemo = new HashMap[26+1];
+            ruleMemo = new HashMap[33+1];
          }
         
     protected TreeAdaptor adaptor = new CommonTreeAdaptor();
@@ -110,7 +120,7 @@ public class AmoebaQueryParser extends Parser {
     }
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "AmoebaQuery.g"; }
+    public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g"; }
 
 
     public static class integerLiteral_return extends ParserRuleReturnScope {
@@ -119,7 +129,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start integerLiteral
-    // AmoebaQuery.g:185:1: integerLiteral : Digits ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:196:1: integerLiteral : Digits ;
     public final integerLiteral_return integerLiteral() throws RecognitionException {
         integerLiteral_return retval = new integerLiteral_return();
         retval.start = input.LT(1);
@@ -131,13 +141,13 @@ public class AmoebaQueryParser extends Parser {
         Object Digits1_tree=null;
 
         try {
-            // AmoebaQuery.g:185:15: ( Digits )
-            // AmoebaQuery.g:185:17: Digits
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:196:15: ( Digits )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:196:17: Digits
             {
             root_0 = (Object)adaptor.nil();
 
             Digits1=(Token)input.LT(1);
-            match(input,Digits,FOLLOW_Digits_in_integerLiteral558); if (failed) return retval;
+            match(input,Digits,FOLLOW_Digits_in_integerLiteral640); if (failed) return retval;
             if ( backtracking==0 ) {
             Digits1_tree = (Object)adaptor.create(Digits1);
             adaptor.addChild(root_0, Digits1_tree);
@@ -168,7 +178,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start decimalLiteral
-    // AmoebaQuery.g:186:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:197:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );
     public final decimalLiteral_return decimalLiteral() throws RecognitionException {
         decimalLiteral_return retval = new decimalLiteral_return();
         retval.start = input.LT(1);
@@ -188,7 +198,7 @@ public class AmoebaQueryParser extends Parser {
         Object Digits6_tree=null;
 
         try {
-            // AmoebaQuery.g:186:15: ( Dot Digits | Digits Dot Digits )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:197:15: ( Dot Digits | Digits Dot Digits )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -201,24 +211,24 @@ public class AmoebaQueryParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("186:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );", 1, 0, input);
+                    new NoViableAltException("197:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // AmoebaQuery.g:186:17: Dot Digits
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:197:17: Dot Digits
                     {
                     root_0 = (Object)adaptor.nil();
 
                     Dot2=(Token)input.LT(1);
-                    match(input,Dot,FOLLOW_Dot_in_decimalLiteral564); if (failed) return retval;
+                    match(input,Dot,FOLLOW_Dot_in_decimalLiteral646); if (failed) return retval;
                     if ( backtracking==0 ) {
                     Dot2_tree = (Object)adaptor.create(Dot2);
                     adaptor.addChild(root_0, Dot2_tree);
                     }
                     Digits3=(Token)input.LT(1);
-                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral566); if (failed) return retval;
+                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral648); if (failed) return retval;
                     if ( backtracking==0 ) {
                     Digits3_tree = (Object)adaptor.create(Digits3);
                     adaptor.addChild(root_0, Digits3_tree);
@@ -227,24 +237,24 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:186:29: Digits Dot Digits
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:197:29: Digits Dot Digits
                     {
                     root_0 = (Object)adaptor.nil();
 
                     Digits4=(Token)input.LT(1);
-                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral569); if (failed) return retval;
+                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral651); if (failed) return retval;
                     if ( backtracking==0 ) {
                     Digits4_tree = (Object)adaptor.create(Digits4);
                     adaptor.addChild(root_0, Digits4_tree);
                     }
                     Dot5=(Token)input.LT(1);
-                    match(input,Dot,FOLLOW_Dot_in_decimalLiteral571); if (failed) return retval;
+                    match(input,Dot,FOLLOW_Dot_in_decimalLiteral653); if (failed) return retval;
                     if ( backtracking==0 ) {
                     Dot5_tree = (Object)adaptor.create(Dot5);
                     adaptor.addChild(root_0, Dot5_tree);
                     }
                     Digits6=(Token)input.LT(1);
-                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral573); if (failed) return retval;
+                    match(input,Digits,FOLLOW_Digits_in_decimalLiteral655); if (failed) return retval;
                     if ( backtracking==0 ) {
                     Digits6_tree = (Object)adaptor.create(Digits6);
                     adaptor.addChild(root_0, Digits6_tree);
@@ -277,7 +287,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start literal
-    // AmoebaQuery.g:188:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:199:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );
     public final literal_return literal() throws RecognitionException {
         literal_return retval = new literal_return();
         retval.start = input.LT(1);
@@ -292,7 +302,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_StringLiteral=new RewriteRuleTokenStream(adaptor,"token StringLiteral");
         RewriteRuleSubtreeStream stream_numericLiteral=new RewriteRuleSubtreeStream(adaptor,"rule numericLiteral");
         try {
-            // AmoebaQuery.g:188:8: ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:199:8: ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) )
             int alt2=3;
             switch ( input.LA(1) ) {
             case EOF:
@@ -304,13 +314,18 @@ public class AmoebaQueryParser extends Parser {
             case LEQ:
             case GREATER:
             case GEQ:
+            case Select:
             case From:
             case Where:
             case In:
-            case 62:
-            case 64:
-            case 65:
-            case 66:
+            case Insert:
+            case Object:
+            case Relationship:
+            case 69:
+            case 72:
+            case 74:
+            case 75:
+            case 76:
                 {
                 alt2=1;
                 }
@@ -329,23 +344,23 @@ public class AmoebaQueryParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("188:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );", 2, 0, input);
+                    new NoViableAltException("199:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );", 2, 0, input);
 
                 throw nvae;
             }
 
             switch (alt2) {
                 case 1 :
-                    // AmoebaQuery.g:189:2: 
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:200:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:189:4: numericLiteral
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:200:4: numericLiteral
                     {
-                    pushFollow(FOLLOW_numericLiteral_in_literal584);
+                    pushFollow(FOLLOW_numericLiteral_in_literal666);
                     numericLiteral7=numericLiteral();
                     _fsp--;
                     if (failed) return retval;
@@ -362,9 +377,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 189:19: -> ^( NUMBER numericLiteral )
+                    // 200:19: -> ^( NUMBER numericLiteral )
                     {
-                        // AmoebaQuery.g:189:22: ^( NUMBER numericLiteral )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:200:22: ^( NUMBER numericLiteral )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(NUMBER, "NUMBER"), root_1);
@@ -381,10 +396,10 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // AmoebaQuery.g:190:4: StringLiteral
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:201:4: StringLiteral
                     {
                     StringLiteral8=(Token)input.LT(1);
-                    match(input,StringLiteral,FOLLOW_StringLiteral_in_literal597); if (failed) return retval;
+                    match(input,StringLiteral,FOLLOW_StringLiteral_in_literal679); if (failed) return retval;
                     if ( backtracking==0 ) stream_StringLiteral.add(StringLiteral8);
 
 
@@ -399,9 +414,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 190:18: -> ^( STRING StringLiteral )
+                    // 201:18: -> ^( STRING StringLiteral )
                     {
-                        // AmoebaQuery.g:190:21: ^( STRING StringLiteral )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:201:21: ^( STRING StringLiteral )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(STRING, "STRING"), root_1);
@@ -442,7 +457,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start numericLiteral
-    // AmoebaQuery.g:193:1: numericLiteral : ( integerLiteral | decimalLiteral );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:204:1: numericLiteral : ( integerLiteral | decimalLiteral );
     public final numericLiteral_return numericLiteral() throws RecognitionException {
         numericLiteral_return retval = new numericLiteral_return();
         retval.start = input.LT(1);
@@ -456,7 +471,7 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // AmoebaQuery.g:194:2: ( integerLiteral | decimalLiteral )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:205:2: ( integerLiteral | decimalLiteral )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -466,13 +481,13 @@ public class AmoebaQueryParser extends Parser {
                 if ( (LA3_1==Dot) ) {
                     alt3=2;
                 }
-                else if ( (LA3_1==EOF||(LA3_1>=Comma && LA3_1<=RParen)||(LA3_1>=EQUAL && LA3_1<=GEQ)||(LA3_1>=From && LA3_1<=In)||LA3_1==62||(LA3_1>=64 && LA3_1<=66)) ) {
+                else if ( (LA3_1==EOF||(LA3_1>=Comma && LA3_1<=RParen)||(LA3_1>=EQUAL && LA3_1<=GEQ)||(LA3_1>=Select && LA3_1<=Insert)||(LA3_1>=Object && LA3_1<=Relationship)||LA3_1==69||LA3_1==72||(LA3_1>=74 && LA3_1<=76)) ) {
                     alt3=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("193:1: numericLiteral : ( integerLiteral | decimalLiteral );", 3, 1, input);
+                        new NoViableAltException("204:1: numericLiteral : ( integerLiteral | decimalLiteral );", 3, 1, input);
 
                     throw nvae;
                 }
@@ -483,17 +498,17 @@ public class AmoebaQueryParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("193:1: numericLiteral : ( integerLiteral | decimalLiteral );", 3, 0, input);
+                    new NoViableAltException("204:1: numericLiteral : ( integerLiteral | decimalLiteral );", 3, 0, input);
 
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // AmoebaQuery.g:194:4: integerLiteral
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:205:4: integerLiteral
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_integerLiteral_in_numericLiteral617);
+                    pushFollow(FOLLOW_integerLiteral_in_numericLiteral699);
                     integerLiteral9=integerLiteral();
                     _fsp--;
                     if (failed) return retval;
@@ -502,11 +517,11 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:195:4: decimalLiteral
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:206:4: decimalLiteral
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_decimalLiteral_in_numericLiteral623);
+                    pushFollow(FOLLOW_decimalLiteral_in_numericLiteral705);
                     decimalLiteral10=decimalLiteral();
                     _fsp--;
                     if (failed) return retval;
@@ -533,67 +548,825 @@ public class AmoebaQueryParser extends Parser {
     }
     // $ANTLR end numericLiteral
 
+    public static class lang_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start lang
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:211:1: lang : ( | ( expr )+ );
+    public final lang_return lang() throws RecognitionException {
+        lang_return retval = new lang_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        expr_return expr11 = null;
+
+
+
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:211:5: ( | ( expr )+ )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0==EOF) ) {
+                alt5=1;
+            }
+            else if ( (LA5_0==Select||LA5_0==Insert||(LA5_0>=Object && LA5_0<=Relationship)||LA5_0==69) ) {
+                alt5=2;
+            }
+            else {
+                if (backtracking>0) {failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("211:1: lang : ( | ( expr )+ );", 5, 0, input);
+
+                throw nvae;
+            }
+            switch (alt5) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:2: 
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:4: ( expr )+
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:4: ( expr )+
+                    int cnt4=0;
+                    loop4:
+                    do {
+                        int alt4=2;
+                        int LA4_0 = input.LA(1);
+
+                        if ( (LA4_0==Select||LA4_0==Insert||(LA4_0>=Object && LA4_0<=Relationship)||LA4_0==69) ) {
+                            alt4=1;
+                        }
+
+
+                        switch (alt4) {
+                    	case 1 :
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:4: expr
+                    	    {
+                    	    pushFollow(FOLLOW_expr_in_lang720);
+                    	    expr11=expr();
+                    	    _fsp--;
+                    	    if (failed) return retval;
+                    	    if ( backtracking==0 ) adaptor.addChild(root_0, expr11.getTree());
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt4 >= 1 ) break loop4;
+                    	    if (backtracking>0) {failed=true; return retval;}
+                                EarlyExitException eee =
+                                    new EarlyExitException(4, input);
+                                throw eee;
+                        }
+                        cnt4++;
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end lang
+
+    public static class expr_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start expr
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:215:1: expr : ( objectExpr | amoebaQuery | relationshipExpr );
+    public final expr_return expr() throws RecognitionException {
+        expr_return retval = new expr_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        objectExpr_return objectExpr12 = null;
+
+        amoebaQuery_return amoebaQuery13 = null;
+
+        relationshipExpr_return relationshipExpr14 = null;
+
+
+
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:216:2: ( objectExpr | amoebaQuery | relationshipExpr )
+            int alt6=3;
+            switch ( input.LA(1) ) {
+            case Object:
+                {
+                alt6=1;
+                }
+                break;
+            case Select:
+            case Insert:
+            case 69:
+                {
+                alt6=2;
+                }
+                break;
+            case Relationship:
+                {
+                alt6=3;
+                }
+                break;
+            default:
+                if (backtracking>0) {failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("215:1: expr : ( objectExpr | amoebaQuery | relationshipExpr );", 6, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt6) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:216:4: objectExpr
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_objectExpr_in_expr732);
+                    objectExpr12=objectExpr();
+                    _fsp--;
+                    if (failed) return retval;
+                    if ( backtracking==0 ) adaptor.addChild(root_0, objectExpr12.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:217:4: amoebaQuery
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_amoebaQuery_in_expr737);
+                    amoebaQuery13=amoebaQuery();
+                    _fsp--;
+                    if (failed) return retval;
+                    if ( backtracking==0 ) adaptor.addChild(root_0, amoebaQuery13.getTree());
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:218:4: relationshipExpr
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_relationshipExpr_in_expr742);
+                    relationshipExpr14=relationshipExpr();
+                    _fsp--;
+                    if (failed) return retval;
+                    if ( backtracking==0 ) adaptor.addChild(root_0, relationshipExpr14.getTree());
+
+                    }
+                    break;
+
+            }
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end expr
+
+    public static class relationshipExpr_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start relationshipExpr
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:221:1: relationshipExpr : Relationship obj= QName HasMany qnameList -> ^( ONE_TO_MANY $obj qnameList ) ;
+    public final relationshipExpr_return relationshipExpr() throws RecognitionException {
+        relationshipExpr_return retval = new relationshipExpr_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token obj=null;
+        Token Relationship15=null;
+        Token HasMany16=null;
+        qnameList_return qnameList17 = null;
+
+
+        Object obj_tree=null;
+        Object Relationship15_tree=null;
+        Object HasMany16_tree=null;
+        RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
+        RewriteRuleTokenStream stream_Relationship=new RewriteRuleTokenStream(adaptor,"token Relationship");
+        RewriteRuleTokenStream stream_HasMany=new RewriteRuleTokenStream(adaptor,"token HasMany");
+        RewriteRuleSubtreeStream stream_qnameList=new RewriteRuleSubtreeStream(adaptor,"rule qnameList");
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:222:2: ( Relationship obj= QName HasMany qnameList -> ^( ONE_TO_MANY $obj qnameList ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:222:4: Relationship obj= QName HasMany qnameList
+            {
+            Relationship15=(Token)input.LT(1);
+            match(input,Relationship,FOLLOW_Relationship_in_relationshipExpr753); if (failed) return retval;
+            if ( backtracking==0 ) stream_Relationship.add(Relationship15);
+
+            obj=(Token)input.LT(1);
+            match(input,QName,FOLLOW_QName_in_relationshipExpr757); if (failed) return retval;
+            if ( backtracking==0 ) stream_QName.add(obj);
+
+            HasMany16=(Token)input.LT(1);
+            match(input,HasMany,FOLLOW_HasMany_in_relationshipExpr759); if (failed) return retval;
+            if ( backtracking==0 ) stream_HasMany.add(HasMany16);
+
+            pushFollow(FOLLOW_qnameList_in_relationshipExpr761);
+            qnameList17=qnameList();
+            _fsp--;
+            if (failed) return retval;
+            if ( backtracking==0 ) stream_qnameList.add(qnameList17.getTree());
+
+            // AST REWRITE
+            // elements: qnameList, obj
+            // token labels: obj
+            // rule labels: retval
+            // token list labels: 
+            // rule list labels: 
+            if ( backtracking==0 ) {
+            retval.tree = root_0;
+            RewriteRuleTokenStream stream_obj=new RewriteRuleTokenStream(adaptor,"token obj",obj);
+            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+            root_0 = (Object)adaptor.nil();
+            // 223:3: -> ^( ONE_TO_MANY $obj qnameList )
+            {
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:223:6: ^( ONE_TO_MANY $obj qnameList )
+                {
+                Object root_1 = (Object)adaptor.nil();
+                root_1 = (Object)adaptor.becomeRoot(adaptor.create(ONE_TO_MANY, "ONE_TO_MANY"), root_1);
+
+                adaptor.addChild(root_1, stream_obj.next());
+                adaptor.addChild(root_1, stream_qnameList.next());
+
+                adaptor.addChild(root_0, root_1);
+                }
+
+            }
+
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end relationshipExpr
+
+    public static class qnameList_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start qnameList
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:226:1: qnameList : QName ( Comma QName )? -> ( QName )+ ;
+    public final qnameList_return qnameList() throws RecognitionException {
+        qnameList_return retval = new qnameList_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token QName18=null;
+        Token Comma19=null;
+        Token QName20=null;
+
+        Object QName18_tree=null;
+        Object Comma19_tree=null;
+        Object QName20_tree=null;
+        RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
+        RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
+
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:2: ( QName ( Comma QName )? -> ( QName )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:4: QName ( Comma QName )?
+            {
+            QName18=(Token)input.LT(1);
+            match(input,QName,FOLLOW_QName_in_qnameList787); if (failed) return retval;
+            if ( backtracking==0 ) stream_QName.add(QName18);
+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:10: ( Comma QName )?
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0==Comma) ) {
+                alt7=1;
+            }
+            switch (alt7) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:11: Comma QName
+                    {
+                    Comma19=(Token)input.LT(1);
+                    match(input,Comma,FOLLOW_Comma_in_qnameList790); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Comma.add(Comma19);
+
+                    QName20=(Token)input.LT(1);
+                    match(input,QName,FOLLOW_QName_in_qnameList792); if (failed) return retval;
+                    if ( backtracking==0 ) stream_QName.add(QName20);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // AST REWRITE
+            // elements: QName
+            // token labels: 
+            // rule labels: retval
+            // token list labels: 
+            // rule list labels: 
+            if ( backtracking==0 ) {
+            retval.tree = root_0;
+            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+            root_0 = (Object)adaptor.nil();
+            // 227:25: -> ( QName )+
+            {
+                if ( !(stream_QName.hasNext()) ) {
+                    throw new RewriteEarlyExitException();
+                }
+                while ( stream_QName.hasNext() ) {
+                    adaptor.addChild(root_0, stream_QName.next());
+
+                }
+                stream_QName.reset();
+
+            }
+
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end qnameList
+
+    public static class objectExpr_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start objectExpr
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:230:1: objectExpr : Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= qnameList )? RParen -> ^( OBJECT_DEF[$objName] ( ^( ATTRIBUTE attributeDefExpr ) )? ( ^( SORT_TARGET $sortOrder) )? ) ;
+    public final objectExpr_return objectExpr() throws RecognitionException {
+        objectExpr_return retval = new objectExpr_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token objName=null;
+        Token Object21=null;
+        Token LParen22=null;
+        Token SPLIT24=null;
+        Token RParen25=null;
+        qnameList_return sortOrder = null;
+
+        attributeDefExpr_return attributeDefExpr23 = null;
+
+
+        Object objName_tree=null;
+        Object Object21_tree=null;
+        Object LParen22_tree=null;
+        Object SPLIT24_tree=null;
+        Object RParen25_tree=null;
+        RewriteRuleTokenStream stream_RParen=new RewriteRuleTokenStream(adaptor,"token RParen");
+        RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
+        RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
+        RewriteRuleTokenStream stream_SPLIT=new RewriteRuleTokenStream(adaptor,"token SPLIT");
+        RewriteRuleTokenStream stream_Object=new RewriteRuleTokenStream(adaptor,"token Object");
+        RewriteRuleSubtreeStream stream_qnameList=new RewriteRuleSubtreeStream(adaptor,"rule qnameList");
+        RewriteRuleSubtreeStream stream_attributeDefExpr=new RewriteRuleSubtreeStream(adaptor,"rule attributeDefExpr");
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:2: ( Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= qnameList )? RParen -> ^( OBJECT_DEF[$objName] ( ^( ATTRIBUTE attributeDefExpr ) )? ( ^( SORT_TARGET $sortOrder) )? ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:4: Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= qnameList )? RParen
+            {
+            Object21=(Token)input.LT(1);
+            match(input,Object,FOLLOW_Object_in_objectExpr810); if (failed) return retval;
+            if ( backtracking==0 ) stream_Object.add(Object21);
+
+            objName=(Token)input.LT(1);
+            match(input,QName,FOLLOW_QName_in_objectExpr814); if (failed) return retval;
+            if ( backtracking==0 ) stream_QName.add(objName);
+
+            LParen22=(Token)input.LT(1);
+            match(input,LParen,FOLLOW_LParen_in_objectExpr816); if (failed) return retval;
+            if ( backtracking==0 ) stream_LParen.add(LParen22);
+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:32: ( attributeDefExpr )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
+
+            if ( (LA8_0==QName) ) {
+                alt8=1;
+            }
+            switch (alt8) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:32: attributeDefExpr
+                    {
+                    pushFollow(FOLLOW_attributeDefExpr_in_objectExpr818);
+                    attributeDefExpr23=attributeDefExpr();
+                    _fsp--;
+                    if (failed) return retval;
+                    if ( backtracking==0 ) stream_attributeDefExpr.add(attributeDefExpr23.getTree());
+
+                    }
+                    break;
+
+            }
+
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:50: ( SPLIT sortOrder= qnameList )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0==SPLIT) ) {
+                alt9=1;
+            }
+            switch (alt9) {
+                case 1 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:51: SPLIT sortOrder= qnameList
+                    {
+                    SPLIT24=(Token)input.LT(1);
+                    match(input,SPLIT,FOLLOW_SPLIT_in_objectExpr822); if (failed) return retval;
+                    if ( backtracking==0 ) stream_SPLIT.add(SPLIT24);
+
+                    pushFollow(FOLLOW_qnameList_in_objectExpr826);
+                    sortOrder=qnameList();
+                    _fsp--;
+                    if (failed) return retval;
+                    if ( backtracking==0 ) stream_qnameList.add(sortOrder.getTree());
+
+                    }
+                    break;
+
+            }
+
+            RParen25=(Token)input.LT(1);
+            match(input,RParen,FOLLOW_RParen_in_objectExpr830); if (failed) return retval;
+            if ( backtracking==0 ) stream_RParen.add(RParen25);
+
+
+            // AST REWRITE
+            // elements: attributeDefExpr, sortOrder
+            // token labels: 
+            // rule labels: retval, sortOrder
+            // token list labels: 
+            // rule list labels: 
+            if ( backtracking==0 ) {
+            retval.tree = root_0;
+            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_sortOrder=new RewriteRuleSubtreeStream(adaptor,"token sortOrder",sortOrder!=null?sortOrder.tree:null);
+
+            root_0 = (Object)adaptor.nil();
+            // 232:3: -> ^( OBJECT_DEF[$objName] ( ^( ATTRIBUTE attributeDefExpr ) )? ( ^( SORT_TARGET $sortOrder) )? )
+            {
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:6: ^( OBJECT_DEF[$objName] ( ^( ATTRIBUTE attributeDefExpr ) )? ( ^( SORT_TARGET $sortOrder) )? )
+                {
+                Object root_1 = (Object)adaptor.nil();
+                root_1 = (Object)adaptor.becomeRoot(adaptor.create(OBJECT_DEF, objName), root_1);
+
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:29: ( ^( ATTRIBUTE attributeDefExpr ) )?
+                if ( stream_attributeDefExpr.hasNext() ) {
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:29: ^( ATTRIBUTE attributeDefExpr )
+                    {
+                    Object root_2 = (Object)adaptor.nil();
+                    root_2 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE, "ATTRIBUTE"), root_2);
+
+                    adaptor.addChild(root_2, stream_attributeDefExpr.next());
+
+                    adaptor.addChild(root_1, root_2);
+                    }
+
+                }
+                stream_attributeDefExpr.reset();
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:60: ( ^( SORT_TARGET $sortOrder) )?
+                if ( stream_sortOrder.hasNext() ) {
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:60: ^( SORT_TARGET $sortOrder)
+                    {
+                    Object root_2 = (Object)adaptor.nil();
+                    root_2 = (Object)adaptor.becomeRoot(adaptor.create(SORT_TARGET, "SORT_TARGET"), root_2);
+
+                    adaptor.addChild(root_2, stream_sortOrder.next());
+
+                    adaptor.addChild(root_1, root_2);
+                    }
+
+                }
+                stream_sortOrder.reset();
+
+                adaptor.addChild(root_0, root_1);
+                }
+
+            }
+
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end objectExpr
+
+    public static class attributeDefExpr_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start attributeDefExpr
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:235:1: attributeDefExpr : attributeDef ( Comma attributeDef )* ;
+    public final attributeDefExpr_return attributeDefExpr() throws RecognitionException {
+        attributeDefExpr_return retval = new attributeDefExpr_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token Comma27=null;
+        attributeDef_return attributeDef26 = null;
+
+        attributeDef_return attributeDef28 = null;
+
+
+        Object Comma27_tree=null;
+
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:236:2: ( attributeDef ( Comma attributeDef )* )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:236:4: attributeDef ( Comma attributeDef )*
+            {
+            root_0 = (Object)adaptor.nil();
+
+            pushFollow(FOLLOW_attributeDef_in_attributeDefExpr866);
+            attributeDef26=attributeDef();
+            _fsp--;
+            if (failed) return retval;
+            if ( backtracking==0 ) adaptor.addChild(root_0, attributeDef26.getTree());
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:236:17: ( Comma attributeDef )*
+            loop10:
+            do {
+                int alt10=2;
+                int LA10_0 = input.LA(1);
+
+                if ( (LA10_0==Comma) ) {
+                    alt10=1;
+                }
+
+
+                switch (alt10) {
+            	case 1 :
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:236:18: Comma attributeDef
+            	    {
+            	    Comma27=(Token)input.LT(1);
+            	    match(input,Comma,FOLLOW_Comma_in_attributeDefExpr869); if (failed) return retval;
+            	    if ( backtracking==0 ) {
+            	    Comma27_tree = (Object)adaptor.create(Comma27);
+            	    adaptor.addChild(root_0, Comma27_tree);
+            	    }
+            	    pushFollow(FOLLOW_attributeDef_in_attributeDefExpr871);
+            	    attributeDef28=attributeDef();
+            	    _fsp--;
+            	    if (failed) return retval;
+            	    if ( backtracking==0 ) adaptor.addChild(root_0, attributeDef28.getTree());
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop10;
+                }
+            } while (true);
+
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end attributeDefExpr
+
+    public static class attributeDef_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start attributeDef
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:239:1: attributeDef : QName DataType -> ^( ATTRIBUTE_DEF QName DataType ) ;
+    public final attributeDef_return attributeDef() throws RecognitionException {
+        attributeDef_return retval = new attributeDef_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token QName29=null;
+        Token DataType30=null;
+
+        Object QName29_tree=null;
+        Object DataType30_tree=null;
+        RewriteRuleTokenStream stream_DataType=new RewriteRuleTokenStream(adaptor,"token DataType");
+        RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
+
+        try {
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:240:2: ( QName DataType -> ^( ATTRIBUTE_DEF QName DataType ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:240:4: QName DataType
+            {
+            QName29=(Token)input.LT(1);
+            match(input,QName,FOLLOW_QName_in_attributeDef885); if (failed) return retval;
+            if ( backtracking==0 ) stream_QName.add(QName29);
+
+            DataType30=(Token)input.LT(1);
+            match(input,DataType,FOLLOW_DataType_in_attributeDef887); if (failed) return retval;
+            if ( backtracking==0 ) stream_DataType.add(DataType30);
+
+
+            // AST REWRITE
+            // elements: QName, DataType
+            // token labels: 
+            // rule labels: retval
+            // token list labels: 
+            // rule list labels: 
+            if ( backtracking==0 ) {
+            retval.tree = root_0;
+            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+            root_0 = (Object)adaptor.nil();
+            // 240:19: -> ^( ATTRIBUTE_DEF QName DataType )
+            {
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:240:22: ^( ATTRIBUTE_DEF QName DataType )
+                {
+                Object root_1 = (Object)adaptor.nil();
+                root_1 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE_DEF, "ATTRIBUTE_DEF"), root_1);
+
+                adaptor.addChild(root_1, stream_QName.next());
+                adaptor.addChild(root_1, stream_DataType.next());
+
+                adaptor.addChild(root_0, root_1);
+                }
+
+            }
+
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( backtracking==0 ) {
+                retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+                adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end attributeDef
+
     public static class amoebaQuery_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start amoebaQuery
-    // AmoebaQuery.g:201:1: amoebaQuery : ( selectExpr | updateExpr );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:243:1: amoebaQuery : ( selectExpr | updateExpr );
     public final amoebaQuery_return amoebaQuery() throws RecognitionException {
         amoebaQuery_return retval = new amoebaQuery_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        selectExpr_return selectExpr11 = null;
+        selectExpr_return selectExpr31 = null;
 
-        updateExpr_return updateExpr12 = null;
+        updateExpr_return updateExpr32 = null;
 
 
 
         try {
-            // AmoebaQuery.g:202:2: ( selectExpr | updateExpr )
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:244:2: ( selectExpr | updateExpr )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA4_0==Select) ) {
-                alt4=1;
+            if ( (LA11_0==Select) ) {
+                alt11=1;
             }
-            else if ( (LA4_0==Insert||LA4_0==59) ) {
-                alt4=2;
+            else if ( (LA11_0==Insert||LA11_0==69) ) {
+                alt11=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("201:1: amoebaQuery : ( selectExpr | updateExpr );", 4, 0, input);
+                    new NoViableAltException("243:1: amoebaQuery : ( selectExpr | updateExpr );", 11, 0, input);
 
                 throw nvae;
             }
-            switch (alt4) {
+            switch (alt11) {
                 case 1 :
-                    // AmoebaQuery.g:202:4: selectExpr
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:244:4: selectExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_selectExpr_in_amoebaQuery638);
-                    selectExpr11=selectExpr();
+                    pushFollow(FOLLOW_selectExpr_in_amoebaQuery909);
+                    selectExpr31=selectExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, selectExpr11.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, selectExpr31.getTree());
 
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:203:4: updateExpr
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:4: updateExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_updateExpr_in_amoebaQuery643);
-                    updateExpr12=updateExpr();
+                    pushFollow(FOLLOW_updateExpr_in_amoebaQuery914);
+                    updateExpr32=updateExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, updateExpr12.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, updateExpr32.getTree());
 
                     }
                     break;
@@ -622,88 +1395,88 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start updateExpr
-    // AmoebaQuery.g:206:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:248:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );
     public final updateExpr_return updateExpr() throws RecognitionException {
         updateExpr_return retval = new updateExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token Insert13=null;
-        Token Into15=null;
-        Token string_literal17=null;
-        Token string_literal18=null;
-        newRelation_return newRelation14 = null;
+        Token Insert33=null;
+        Token Into35=null;
+        Token string_literal37=null;
+        Token string_literal38=null;
+        newRelation_return newRelation34 = null;
 
-        targetRelation_return targetRelation16 = null;
+        targetRelation_return targetRelation36 = null;
 
-        newRelation_return newRelation19 = null;
+        newRelation_return newRelation39 = null;
 
-        whereClause_return whereClause20 = null;
+        whereClause_return whereClause40 = null;
 
 
-        Object Insert13_tree=null;
-        Object Into15_tree=null;
-        Object string_literal17_tree=null;
-        Object string_literal18_tree=null;
-        RewriteRuleTokenStream stream_59=new RewriteRuleTokenStream(adaptor,"token 59");
+        Object Insert33_tree=null;
+        Object Into35_tree=null;
+        Object string_literal37_tree=null;
+        Object string_literal38_tree=null;
+        RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
         RewriteRuleTokenStream stream_Insert=new RewriteRuleTokenStream(adaptor,"token Insert");
         RewriteRuleTokenStream stream_Into=new RewriteRuleTokenStream(adaptor,"token Into");
-        RewriteRuleTokenStream stream_60=new RewriteRuleTokenStream(adaptor,"token 60");
+        RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
         RewriteRuleSubtreeStream stream_whereClause=new RewriteRuleSubtreeStream(adaptor,"rule whereClause");
         RewriteRuleSubtreeStream stream_newRelation=new RewriteRuleSubtreeStream(adaptor,"rule newRelation");
         RewriteRuleSubtreeStream stream_targetRelation=new RewriteRuleSubtreeStream(adaptor,"rule targetRelation");
         try {
-            // AmoebaQuery.g:207:2: ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:249:2: ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA7_0==Insert) ) {
-                alt7=1;
+            if ( (LA14_0==Insert) ) {
+                alt14=1;
             }
-            else if ( (LA7_0==59) ) {
-                alt7=2;
+            else if ( (LA14_0==69) ) {
+                alt14=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("206:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );", 7, 0, input);
+                    new NoViableAltException("248:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt14) {
                 case 1 :
-                    // AmoebaQuery.g:207:4: Insert newRelation ( Into targetRelation )?
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:249:4: Insert newRelation ( Into targetRelation )?
                     {
-                    Insert13=(Token)input.LT(1);
-                    match(input,Insert,FOLLOW_Insert_in_updateExpr655); if (failed) return retval;
-                    if ( backtracking==0 ) stream_Insert.add(Insert13);
+                    Insert33=(Token)input.LT(1);
+                    match(input,Insert,FOLLOW_Insert_in_updateExpr926); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Insert.add(Insert33);
 
-                    pushFollow(FOLLOW_newRelation_in_updateExpr657);
-                    newRelation14=newRelation();
+                    pushFollow(FOLLOW_newRelation_in_updateExpr928);
+                    newRelation34=newRelation();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_newRelation.add(newRelation14.getTree());
-                    // AmoebaQuery.g:207:23: ( Into targetRelation )?
-                    int alt5=2;
-                    int LA5_0 = input.LA(1);
+                    if ( backtracking==0 ) stream_newRelation.add(newRelation34.getTree());
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:249:23: ( Into targetRelation )?
+                    int alt12=2;
+                    int LA12_0 = input.LA(1);
 
-                    if ( (LA5_0==Into) ) {
-                        alt5=1;
+                    if ( (LA12_0==Into) ) {
+                        alt12=1;
                     }
-                    switch (alt5) {
+                    switch (alt12) {
                         case 1 :
-                            // AmoebaQuery.g:207:24: Into targetRelation
+                            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:249:24: Into targetRelation
                             {
-                            Into15=(Token)input.LT(1);
-                            match(input,Into,FOLLOW_Into_in_updateExpr660); if (failed) return retval;
-                            if ( backtracking==0 ) stream_Into.add(Into15);
+                            Into35=(Token)input.LT(1);
+                            match(input,Into,FOLLOW_Into_in_updateExpr931); if (failed) return retval;
+                            if ( backtracking==0 ) stream_Into.add(Into35);
 
-                            pushFollow(FOLLOW_targetRelation_in_updateExpr662);
-                            targetRelation16=targetRelation();
+                            pushFollow(FOLLOW_targetRelation_in_updateExpr933);
+                            targetRelation36=targetRelation();
                             _fsp--;
                             if (failed) return retval;
-                            if ( backtracking==0 ) stream_targetRelation.add(targetRelation16.getTree());
+                            if ( backtracking==0 ) stream_targetRelation.add(targetRelation36.getTree());
 
                             }
                             break;
@@ -722,14 +1495,14 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 208:4: -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
+                    // 250:4: -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
                     {
-                        // AmoebaQuery.g:208:7: ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:250:7: ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(INSERT, "INSERT"), root_1);
 
-                        // AmoebaQuery.g:208:16: ^( NEW_RELATION newRelation )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:250:16: ^( NEW_RELATION newRelation )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(adaptor.create(NEW_RELATION, "NEW_RELATION"), root_2);
@@ -738,9 +1511,9 @@ public class AmoebaQueryParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // AmoebaQuery.g:208:44: ( ^( TARGET targetRelation ) )?
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:250:44: ( ^( TARGET targetRelation ) )?
                         if ( stream_targetRelation.hasNext() ) {
-                            // AmoebaQuery.g:208:44: ^( TARGET targetRelation )
+                            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:250:44: ^( TARGET targetRelation )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(adaptor.create(TARGET, "TARGET"), root_2);
@@ -763,37 +1536,37 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:209:4: 'update' 'set' newRelation ( whereClause )?
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:251:4: 'update' 'set' newRelation ( whereClause )?
                     {
-                    string_literal17=(Token)input.LT(1);
-                    match(input,59,FOLLOW_59_in_updateExpr692); if (failed) return retval;
-                    if ( backtracking==0 ) stream_59.add(string_literal17);
+                    string_literal37=(Token)input.LT(1);
+                    match(input,69,FOLLOW_69_in_updateExpr963); if (failed) return retval;
+                    if ( backtracking==0 ) stream_69.add(string_literal37);
 
-                    string_literal18=(Token)input.LT(1);
-                    match(input,60,FOLLOW_60_in_updateExpr694); if (failed) return retval;
-                    if ( backtracking==0 ) stream_60.add(string_literal18);
+                    string_literal38=(Token)input.LT(1);
+                    match(input,70,FOLLOW_70_in_updateExpr965); if (failed) return retval;
+                    if ( backtracking==0 ) stream_70.add(string_literal38);
 
-                    pushFollow(FOLLOW_newRelation_in_updateExpr696);
-                    newRelation19=newRelation();
+                    pushFollow(FOLLOW_newRelation_in_updateExpr967);
+                    newRelation39=newRelation();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_newRelation.add(newRelation19.getTree());
-                    // AmoebaQuery.g:209:31: ( whereClause )?
-                    int alt6=2;
-                    int LA6_0 = input.LA(1);
+                    if ( backtracking==0 ) stream_newRelation.add(newRelation39.getTree());
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:251:31: ( whereClause )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
 
-                    if ( (LA6_0==Where) ) {
-                        alt6=1;
+                    if ( (LA13_0==Where) ) {
+                        alt13=1;
                     }
-                    switch (alt6) {
+                    switch (alt13) {
                         case 1 :
-                            // AmoebaQuery.g:209:31: whereClause
+                            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:251:31: whereClause
                             {
-                            pushFollow(FOLLOW_whereClause_in_updateExpr698);
-                            whereClause20=whereClause();
+                            pushFollow(FOLLOW_whereClause_in_updateExpr969);
+                            whereClause40=whereClause();
                             _fsp--;
                             if (failed) return retval;
-                            if ( backtracking==0 ) stream_whereClause.add(whereClause20.getTree());
+                            if ( backtracking==0 ) stream_whereClause.add(whereClause40.getTree());
 
                             }
                             break;
@@ -802,7 +1575,7 @@ public class AmoebaQueryParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: newRelation, whereClause
+                    // elements: whereClause, newRelation
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -812,14 +1585,14 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 210:4: -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
+                    // 252:4: -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
                     {
-                        // AmoebaQuery.g:210:7: ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:252:7: ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(UPDATE, "UPDATE"), root_1);
 
-                        // AmoebaQuery.g:210:16: ^( NEW_RELATION newRelation )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:252:16: ^( NEW_RELATION newRelation )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(adaptor.create(NEW_RELATION, "NEW_RELATION"), root_2);
@@ -828,9 +1601,9 @@ public class AmoebaQueryParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // AmoebaQuery.g:210:44: ( ^( CONDITION whereClause ) )?
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:252:44: ( ^( CONDITION whereClause ) )?
                         if ( stream_whereClause.hasNext() ) {
-                            // AmoebaQuery.g:210:44: ^( CONDITION whereClause )
+                            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:252:44: ^( CONDITION whereClause )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -877,77 +1650,77 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start newRelation
-    // AmoebaQuery.g:213:1: newRelation : LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:255:1: newRelation : LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ ;
     public final newRelation_return newRelation() throws RecognitionException {
         newRelation_return retval = new newRelation_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token LParen21=null;
-        Token Comma23=null;
-        Token RParen25=null;
-        tupleElement_return tupleElement22 = null;
+        Token LParen41=null;
+        Token Comma43=null;
+        Token RParen45=null;
+        tupleElement_return tupleElement42 = null;
 
-        tupleElement_return tupleElement24 = null;
+        tupleElement_return tupleElement44 = null;
 
 
-        Object LParen21_tree=null;
-        Object Comma23_tree=null;
-        Object RParen25_tree=null;
+        Object LParen41_tree=null;
+        Object Comma43_tree=null;
+        Object RParen45_tree=null;
         RewriteRuleTokenStream stream_RParen=new RewriteRuleTokenStream(adaptor,"token RParen");
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_tupleElement=new RewriteRuleSubtreeStream(adaptor,"rule tupleElement");
         try {
-            // AmoebaQuery.g:214:2: ( LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ )
-            // AmoebaQuery.g:214:4: LParen tupleElement ( Comma tupleElement )* RParen
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:256:2: ( LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:256:4: LParen tupleElement ( Comma tupleElement )* RParen
             {
-            LParen21=(Token)input.LT(1);
-            match(input,LParen,FOLLOW_LParen_in_newRelation734); if (failed) return retval;
-            if ( backtracking==0 ) stream_LParen.add(LParen21);
+            LParen41=(Token)input.LT(1);
+            match(input,LParen,FOLLOW_LParen_in_newRelation1005); if (failed) return retval;
+            if ( backtracking==0 ) stream_LParen.add(LParen41);
 
-            pushFollow(FOLLOW_tupleElement_in_newRelation736);
-            tupleElement22=tupleElement();
+            pushFollow(FOLLOW_tupleElement_in_newRelation1007);
+            tupleElement42=tupleElement();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_tupleElement.add(tupleElement22.getTree());
-            // AmoebaQuery.g:214:24: ( Comma tupleElement )*
-            loop8:
+            if ( backtracking==0 ) stream_tupleElement.add(tupleElement42.getTree());
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:256:24: ( Comma tupleElement )*
+            loop15:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA8_0==Comma) ) {
-                    alt8=1;
+                if ( (LA15_0==Comma) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt15) {
             	case 1 :
-            	    // AmoebaQuery.g:214:25: Comma tupleElement
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:256:25: Comma tupleElement
             	    {
-            	    Comma23=(Token)input.LT(1);
-            	    match(input,Comma,FOLLOW_Comma_in_newRelation739); if (failed) return retval;
-            	    if ( backtracking==0 ) stream_Comma.add(Comma23);
+            	    Comma43=(Token)input.LT(1);
+            	    match(input,Comma,FOLLOW_Comma_in_newRelation1010); if (failed) return retval;
+            	    if ( backtracking==0 ) stream_Comma.add(Comma43);
 
-            	    pushFollow(FOLLOW_tupleElement_in_newRelation741);
-            	    tupleElement24=tupleElement();
+            	    pushFollow(FOLLOW_tupleElement_in_newRelation1012);
+            	    tupleElement44=tupleElement();
             	    _fsp--;
             	    if (failed) return retval;
-            	    if ( backtracking==0 ) stream_tupleElement.add(tupleElement24.getTree());
+            	    if ( backtracking==0 ) stream_tupleElement.add(tupleElement44.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop15;
                 }
             } while (true);
 
-            RParen25=(Token)input.LT(1);
-            match(input,RParen,FOLLOW_RParen_in_newRelation745); if (failed) return retval;
-            if ( backtracking==0 ) stream_RParen.add(RParen25);
+            RParen45=(Token)input.LT(1);
+            match(input,RParen,FOLLOW_RParen_in_newRelation1016); if (failed) return retval;
+            if ( backtracking==0 ) stream_RParen.add(RParen45);
 
 
             // AST REWRITE
@@ -961,7 +1734,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 215:3: -> ( tupleElement )+
+            // 257:3: -> ( tupleElement )+
             {
                 if ( !(stream_tupleElement.hasNext()) ) {
                     throw new RewriteEarlyExitException();
@@ -1001,35 +1774,35 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start tupleElement
-    // AmoebaQuery.g:218:1: tupleElement : ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:260:1: tupleElement : ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? ;
     public final tupleElement_return tupleElement() throws RecognitionException {
         tupleElement_return retval = new tupleElement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token EQUAL27=null;
+        Token EQUAL47=null;
         elementValue_return e = null;
 
-        attributeName_return attributeName26 = null;
+        attributeName_return attributeName46 = null;
 
 
-        Object EQUAL27_tree=null;
+        Object EQUAL47_tree=null;
         RewriteRuleTokenStream stream_EQUAL=new RewriteRuleTokenStream(adaptor,"token EQUAL");
         RewriteRuleSubtreeStream stream_attributeName=new RewriteRuleSubtreeStream(adaptor,"rule attributeName");
         RewriteRuleSubtreeStream stream_elementValue=new RewriteRuleSubtreeStream(adaptor,"rule elementValue");
         try {
-            // AmoebaQuery.g:219:2: ( ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? )
-            // AmoebaQuery.g:219:4: ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:2: ( ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:4: ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
             {
-            // AmoebaQuery.g:219:4: ( attributeName -> attributeName )
-            // AmoebaQuery.g:219:5: attributeName
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:4: ( attributeName -> attributeName )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:5: attributeName
             {
-            pushFollow(FOLLOW_attributeName_in_tupleElement765);
-            attributeName26=attributeName();
+            pushFollow(FOLLOW_attributeName_in_tupleElement1036);
+            attributeName46=attributeName();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_attributeName.add(attributeName26.getTree());
+            if ( backtracking==0 ) stream_attributeName.add(attributeName46.getTree());
 
             // AST REWRITE
             // elements: attributeName
@@ -1042,7 +1815,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 219:19: -> attributeName
+            // 261:19: -> attributeName
             {
                 adaptor.addChild(root_0, stream_attributeName.next());
 
@@ -1052,29 +1825,29 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // AmoebaQuery.g:219:37: ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:37: ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA9_0==EQUAL) ) {
-                alt9=1;
+            if ( (LA16_0==EQUAL) ) {
+                alt16=1;
             }
-            switch (alt9) {
+            switch (alt16) {
                 case 1 :
-                    // AmoebaQuery.g:219:38: EQUAL e= elementValue
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:38: EQUAL e= elementValue
                     {
-                    EQUAL27=(Token)input.LT(1);
-                    match(input,EQUAL,FOLLOW_EQUAL_in_tupleElement773); if (failed) return retval;
-                    if ( backtracking==0 ) stream_EQUAL.add(EQUAL27);
+                    EQUAL47=(Token)input.LT(1);
+                    match(input,EQUAL,FOLLOW_EQUAL_in_tupleElement1044); if (failed) return retval;
+                    if ( backtracking==0 ) stream_EQUAL.add(EQUAL47);
 
-                    pushFollow(FOLLOW_elementValue_in_tupleElement777);
+                    pushFollow(FOLLOW_elementValue_in_tupleElement1048);
                     e=elementValue();
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_elementValue.add(e.getTree());
 
                     // AST REWRITE
-                    // elements: tupleElement, elementValue
+                    // elements: elementValue, tupleElement
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1084,9 +1857,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 219:59: -> ^( NEW_VALUE $tupleElement elementValue )
+                    // 261:59: -> ^( NEW_VALUE $tupleElement elementValue )
                     {
-                        // AmoebaQuery.g:219:62: ^( NEW_VALUE $tupleElement elementValue )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:261:62: ^( NEW_VALUE $tupleElement elementValue )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(NEW_VALUE, "NEW_VALUE"), root_1);
@@ -1132,58 +1905,58 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start elementValue
-    // AmoebaQuery.g:222:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:264:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );
     public final elementValue_return elementValue() throws RecognitionException {
         elementValue_return retval = new elementValue_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal29=null;
-        Token Comma31=null;
-        Token char_literal33=null;
-        literal_return literal28 = null;
+        Token char_literal49=null;
+        Token Comma51=null;
+        Token char_literal53=null;
+        literal_return literal48 = null;
 
-        elementValue_return elementValue30 = null;
+        elementValue_return elementValue50 = null;
 
-        elementValue_return elementValue32 = null;
+        elementValue_return elementValue52 = null;
 
 
-        Object char_literal29_tree=null;
-        Object Comma31_tree=null;
-        Object char_literal33_tree=null;
+        Object char_literal49_tree=null;
+        Object Comma51_tree=null;
+        Object char_literal53_tree=null;
+        RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
-        RewriteRuleTokenStream stream_62=new RewriteRuleTokenStream(adaptor,"token 62");
-        RewriteRuleTokenStream stream_61=new RewriteRuleTokenStream(adaptor,"token 61");
+        RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
         RewriteRuleSubtreeStream stream_elementValue=new RewriteRuleSubtreeStream(adaptor,"rule elementValue");
         RewriteRuleSubtreeStream stream_literal=new RewriteRuleSubtreeStream(adaptor,"rule literal");
         try {
-            // AmoebaQuery.g:223:2: ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:265:2: ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) )
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA11_0==Dot||(LA11_0>=Comma && LA11_0<=RParen)||LA11_0==Digits||LA11_0==StringLiteral||LA11_0==62) ) {
-                alt11=1;
+            if ( (LA18_0==Dot||(LA18_0>=Comma && LA18_0<=RParen)||LA18_0==Digits||LA18_0==StringLiteral||LA18_0==72) ) {
+                alt18=1;
             }
-            else if ( (LA11_0==61) ) {
-                alt11=2;
+            else if ( (LA18_0==71) ) {
+                alt18=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("222:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );", 11, 0, input);
+                    new NoViableAltException("264:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );", 18, 0, input);
 
                 throw nvae;
             }
-            switch (alt11) {
+            switch (alt18) {
                 case 1 :
-                    // AmoebaQuery.g:223:4: literal
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:265:4: literal
                     {
-                    pushFollow(FOLLOW_literal_in_elementValue803);
-                    literal28=literal();
+                    pushFollow(FOLLOW_literal_in_elementValue1074);
+                    literal48=literal();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_literal.add(literal28.getTree());
+                    if ( backtracking==0 ) stream_literal.add(literal48.getTree());
 
                     // AST REWRITE
                     // elements: literal
@@ -1196,9 +1969,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 224:4: -> ^( VALUE literal )
+                    // 266:4: -> ^( VALUE literal )
                     {
-                        // AmoebaQuery.g:224:7: ^( VALUE literal )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:266:7: ^( VALUE literal )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE, "VALUE"), root_1);
@@ -1215,46 +1988,46 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:225:4: '{' elementValue ( Comma elementValue )? '}'
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:267:4: '{' elementValue ( Comma elementValue )? '}'
                     {
-                    char_literal29=(Token)input.LT(1);
-                    match(input,61,FOLLOW_61_in_elementValue819); if (failed) return retval;
-                    if ( backtracking==0 ) stream_61.add(char_literal29);
+                    char_literal49=(Token)input.LT(1);
+                    match(input,71,FOLLOW_71_in_elementValue1090); if (failed) return retval;
+                    if ( backtracking==0 ) stream_71.add(char_literal49);
 
-                    pushFollow(FOLLOW_elementValue_in_elementValue821);
-                    elementValue30=elementValue();
+                    pushFollow(FOLLOW_elementValue_in_elementValue1092);
+                    elementValue50=elementValue();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_elementValue.add(elementValue30.getTree());
-                    // AmoebaQuery.g:225:21: ( Comma elementValue )?
-                    int alt10=2;
-                    int LA10_0 = input.LA(1);
+                    if ( backtracking==0 ) stream_elementValue.add(elementValue50.getTree());
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:267:21: ( Comma elementValue )?
+                    int alt17=2;
+                    int LA17_0 = input.LA(1);
 
-                    if ( (LA10_0==Comma) ) {
-                        alt10=1;
+                    if ( (LA17_0==Comma) ) {
+                        alt17=1;
                     }
-                    switch (alt10) {
+                    switch (alt17) {
                         case 1 :
-                            // AmoebaQuery.g:225:22: Comma elementValue
+                            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:267:22: Comma elementValue
                             {
-                            Comma31=(Token)input.LT(1);
-                            match(input,Comma,FOLLOW_Comma_in_elementValue824); if (failed) return retval;
-                            if ( backtracking==0 ) stream_Comma.add(Comma31);
+                            Comma51=(Token)input.LT(1);
+                            match(input,Comma,FOLLOW_Comma_in_elementValue1095); if (failed) return retval;
+                            if ( backtracking==0 ) stream_Comma.add(Comma51);
 
-                            pushFollow(FOLLOW_elementValue_in_elementValue826);
-                            elementValue32=elementValue();
+                            pushFollow(FOLLOW_elementValue_in_elementValue1097);
+                            elementValue52=elementValue();
                             _fsp--;
                             if (failed) return retval;
-                            if ( backtracking==0 ) stream_elementValue.add(elementValue32.getTree());
+                            if ( backtracking==0 ) stream_elementValue.add(elementValue52.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal33=(Token)input.LT(1);
-                    match(input,62,FOLLOW_62_in_elementValue830); if (failed) return retval;
-                    if ( backtracking==0 ) stream_62.add(char_literal33);
+                    char_literal53=(Token)input.LT(1);
+                    match(input,72,FOLLOW_72_in_elementValue1101); if (failed) return retval;
+                    if ( backtracking==0 ) stream_72.add(char_literal53);
 
 
                     // AST REWRITE
@@ -1268,9 +2041,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 226:4: -> ^( VALUE_SET ( elementValue )+ )
+                    // 268:4: -> ^( VALUE_SET ( elementValue )+ )
                     {
-                        // AmoebaQuery.g:226:7: ^( VALUE_SET ( elementValue )+ )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:268:7: ^( VALUE_SET ( elementValue )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE_SET, "VALUE_SET"), root_1);
@@ -1318,61 +2091,61 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start exprSingle
-    // AmoebaQuery.g:230:1: exprSingle : ( selectExpr | subQuery );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:1: exprSingle : ( selectExpr | subQuery );
     public final exprSingle_return exprSingle() throws RecognitionException {
         exprSingle_return retval = new exprSingle_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        selectExpr_return selectExpr34 = null;
+        selectExpr_return selectExpr54 = null;
 
-        subQuery_return subQuery35 = null;
+        subQuery_return subQuery55 = null;
 
 
 
         try {
-            // AmoebaQuery.g:231:2: ( selectExpr | subQuery )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:2: ( selectExpr | subQuery )
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA12_0==Select) ) {
-                alt12=1;
+            if ( (LA19_0==Select) ) {
+                alt19=1;
             }
-            else if ( (LA12_0==LParen) ) {
-                alt12=2;
+            else if ( (LA19_0==LParen) ) {
+                alt19=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("230:1: exprSingle : ( selectExpr | subQuery );", 12, 0, input);
+                    new NoViableAltException("272:1: exprSingle : ( selectExpr | subQuery );", 19, 0, input);
 
                 throw nvae;
             }
-            switch (alt12) {
+            switch (alt19) {
                 case 1 :
-                    // AmoebaQuery.g:231:4: selectExpr
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:4: selectExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_selectExpr_in_exprSingle855);
-                    selectExpr34=selectExpr();
+                    pushFollow(FOLLOW_selectExpr_in_exprSingle1126);
+                    selectExpr54=selectExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, selectExpr34.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, selectExpr54.getTree());
 
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:232:4: subQuery
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:274:4: subQuery
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_subQuery_in_exprSingle860);
-                    subQuery35=subQuery();
+                    pushFollow(FOLLOW_subQuery_in_exprSingle1131);
+                    subQuery55=subQuery();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, subQuery35.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, subQuery55.getTree());
 
                     }
                     break;
@@ -1401,39 +2174,39 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start subQuery
-    // AmoebaQuery.g:235:1: subQuery : LParen selectExpr RParen -> selectExpr ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:277:1: subQuery : LParen selectExpr RParen -> selectExpr ;
     public final subQuery_return subQuery() throws RecognitionException {
         subQuery_return retval = new subQuery_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token LParen36=null;
-        Token RParen38=null;
-        selectExpr_return selectExpr37 = null;
+        Token LParen56=null;
+        Token RParen58=null;
+        selectExpr_return selectExpr57 = null;
 
 
-        Object LParen36_tree=null;
-        Object RParen38_tree=null;
+        Object LParen56_tree=null;
+        Object RParen58_tree=null;
         RewriteRuleTokenStream stream_RParen=new RewriteRuleTokenStream(adaptor,"token RParen");
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleSubtreeStream stream_selectExpr=new RewriteRuleSubtreeStream(adaptor,"rule selectExpr");
         try {
-            // AmoebaQuery.g:236:2: ( LParen selectExpr RParen -> selectExpr )
-            // AmoebaQuery.g:236:4: LParen selectExpr RParen
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:2: ( LParen selectExpr RParen -> selectExpr )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:4: LParen selectExpr RParen
             {
-            LParen36=(Token)input.LT(1);
-            match(input,LParen,FOLLOW_LParen_in_subQuery872); if (failed) return retval;
-            if ( backtracking==0 ) stream_LParen.add(LParen36);
+            LParen56=(Token)input.LT(1);
+            match(input,LParen,FOLLOW_LParen_in_subQuery1143); if (failed) return retval;
+            if ( backtracking==0 ) stream_LParen.add(LParen56);
 
-            pushFollow(FOLLOW_selectExpr_in_subQuery874);
-            selectExpr37=selectExpr();
+            pushFollow(FOLLOW_selectExpr_in_subQuery1145);
+            selectExpr57=selectExpr();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_selectExpr.add(selectExpr37.getTree());
-            RParen38=(Token)input.LT(1);
-            match(input,RParen,FOLLOW_RParen_in_subQuery876); if (failed) return retval;
-            if ( backtracking==0 ) stream_RParen.add(RParen38);
+            if ( backtracking==0 ) stream_selectExpr.add(selectExpr57.getTree());
+            RParen58=(Token)input.LT(1);
+            match(input,RParen,FOLLOW_RParen_in_subQuery1147); if (failed) return retval;
+            if ( backtracking==0 ) stream_RParen.add(RParen58);
 
 
             // AST REWRITE
@@ -1447,7 +2220,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 236:29: -> selectExpr
+            // 278:29: -> selectExpr
             {
                 adaptor.addChild(root_0, stream_selectExpr.next());
 
@@ -1480,77 +2253,77 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start selectExpr
-    // AmoebaQuery.g:240:1: selectExpr : Select selectTarget ( fromClause )? ( whereClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ) ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:282:1: selectExpr : Select selectTarget ( fromClause )? ( whereClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ) ;
     public final selectExpr_return selectExpr() throws RecognitionException {
         selectExpr_return retval = new selectExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token Select39=null;
-        selectTarget_return selectTarget40 = null;
+        Token Select59=null;
+        selectTarget_return selectTarget60 = null;
 
-        fromClause_return fromClause41 = null;
+        fromClause_return fromClause61 = null;
 
-        whereClause_return whereClause42 = null;
+        whereClause_return whereClause62 = null;
 
 
-        Object Select39_tree=null;
+        Object Select59_tree=null;
         RewriteRuleTokenStream stream_Select=new RewriteRuleTokenStream(adaptor,"token Select");
         RewriteRuleSubtreeStream stream_whereClause=new RewriteRuleSubtreeStream(adaptor,"rule whereClause");
         RewriteRuleSubtreeStream stream_selectTarget=new RewriteRuleSubtreeStream(adaptor,"rule selectTarget");
         RewriteRuleSubtreeStream stream_fromClause=new RewriteRuleSubtreeStream(adaptor,"rule fromClause");
         try {
-            // AmoebaQuery.g:241:2: ( Select selectTarget ( fromClause )? ( whereClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ) )
-            // AmoebaQuery.g:241:4: Select selectTarget ( fromClause )? ( whereClause )?
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:2: ( Select selectTarget ( fromClause )? ( whereClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:4: Select selectTarget ( fromClause )? ( whereClause )?
             {
-            Select39=(Token)input.LT(1);
-            match(input,Select,FOLLOW_Select_in_selectExpr897); if (failed) return retval;
-            if ( backtracking==0 ) stream_Select.add(Select39);
+            Select59=(Token)input.LT(1);
+            match(input,Select,FOLLOW_Select_in_selectExpr1168); if (failed) return retval;
+            if ( backtracking==0 ) stream_Select.add(Select59);
 
-            pushFollow(FOLLOW_selectTarget_in_selectExpr899);
-            selectTarget40=selectTarget();
+            pushFollow(FOLLOW_selectTarget_in_selectExpr1170);
+            selectTarget60=selectTarget();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_selectTarget.add(selectTarget40.getTree());
-            // AmoebaQuery.g:241:24: ( fromClause )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            if ( backtracking==0 ) stream_selectTarget.add(selectTarget60.getTree());
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:24: ( fromClause )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA13_0==From) ) {
-                alt13=1;
+            if ( (LA20_0==From) ) {
+                alt20=1;
             }
-            switch (alt13) {
+            switch (alt20) {
                 case 1 :
-                    // AmoebaQuery.g:241:24: fromClause
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:24: fromClause
                     {
-                    pushFollow(FOLLOW_fromClause_in_selectExpr901);
-                    fromClause41=fromClause();
+                    pushFollow(FOLLOW_fromClause_in_selectExpr1172);
+                    fromClause61=fromClause();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_fromClause.add(fromClause41.getTree());
+                    if ( backtracking==0 ) stream_fromClause.add(fromClause61.getTree());
 
                     }
                     break;
 
             }
 
-            // AmoebaQuery.g:241:36: ( whereClause )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:36: ( whereClause )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA14_0==Where) ) {
-                alt14=1;
+            if ( (LA21_0==Where) ) {
+                alt21=1;
             }
-            switch (alt14) {
+            switch (alt21) {
                 case 1 :
-                    // AmoebaQuery.g:241:36: whereClause
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:283:36: whereClause
                     {
-                    pushFollow(FOLLOW_whereClause_in_selectExpr904);
-                    whereClause42=whereClause();
+                    pushFollow(FOLLOW_whereClause_in_selectExpr1175);
+                    whereClause62=whereClause();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_whereClause.add(whereClause42.getTree());
+                    if ( backtracking==0 ) stream_whereClause.add(whereClause62.getTree());
 
                     }
                     break;
@@ -1559,7 +2332,7 @@ public class AmoebaQueryParser extends Parser {
 
 
             // AST REWRITE
-            // elements: selectTarget, whereClause, fromClause
+            // elements: selectTarget, fromClause, whereClause
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1569,17 +2342,17 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 242:3: -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? )
+            // 284:3: -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? )
             {
-                // AmoebaQuery.g:242:6: ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? )
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:284:6: ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(SELECTION, "SELECTION"), root_1);
 
                 adaptor.addChild(root_1, stream_selectTarget.next());
-                // AmoebaQuery.g:242:31: ( ^( INPUT fromClause ) )?
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:284:31: ( ^( INPUT fromClause ) )?
                 if ( stream_fromClause.hasNext() ) {
-                    // AmoebaQuery.g:242:31: ^( INPUT fromClause )
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:284:31: ^( INPUT fromClause )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(INPUT, "INPUT"), root_2);
@@ -1591,9 +2364,9 @@ public class AmoebaQueryParser extends Parser {
 
                 }
                 stream_fromClause.reset();
-                // AmoebaQuery.g:242:52: ( ^( CONDITION whereClause ) )?
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:284:52: ( ^( CONDITION whereClause ) )?
                 if ( stream_whereClause.hasNext() ) {
-                    // AmoebaQuery.g:242:52: ^( CONDITION whereClause )
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:284:52: ^( CONDITION whereClause )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -1638,82 +2411,82 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start selectTarget
-    // AmoebaQuery.g:246:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:288:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );
     public final selectTarget_return selectTarget() throws RecognitionException {
         selectTarget_return retval = new selectTarget_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token Comma44=null;
-        Token Wildcard46=null;
-        labelExpr_return labelExpr43 = null;
+        Token Comma64=null;
+        Token Wildcard66=null;
+        labelExpr_return labelExpr63 = null;
 
-        labelExpr_return labelExpr45 = null;
+        labelExpr_return labelExpr65 = null;
 
 
-        Object Comma44_tree=null;
-        Object Wildcard46_tree=null;
+        Object Comma64_tree=null;
+        Object Wildcard66_tree=null;
         RewriteRuleTokenStream stream_Wildcard=new RewriteRuleTokenStream(adaptor,"token Wildcard");
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // AmoebaQuery.g:247:2: ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:2: ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL )
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA16_0==EOF||LA16_0==Dot||(LA16_0>=Comma && LA16_0<=RParen)||(LA16_0>=From && LA16_0<=Where)||LA16_0==Digits||LA16_0==StringLiteral||LA16_0==QName) ) {
-                alt16=1;
+            if ( (LA23_0==EOF||LA23_0==Dot||(LA23_0>=Comma && LA23_0<=RParen)||(LA23_0>=Select && LA23_0<=Where)||LA23_0==Insert||(LA23_0>=Object && LA23_0<=Relationship)||LA23_0==Digits||LA23_0==StringLiteral||(LA23_0>=QName && LA23_0<=69)) ) {
+                alt23=1;
             }
-            else if ( (LA16_0==Wildcard) ) {
-                alt16=2;
+            else if ( (LA23_0==Wildcard) ) {
+                alt23=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("246:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );", 16, 0, input);
+                    new NoViableAltException("288:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt16) {
+            switch (alt23) {
                 case 1 :
-                    // AmoebaQuery.g:247:4: labelExpr ( Comma labelExpr )*
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:4: labelExpr ( Comma labelExpr )*
                     {
-                    pushFollow(FOLLOW_labelExpr_in_selectTarget941);
-                    labelExpr43=labelExpr();
+                    pushFollow(FOLLOW_labelExpr_in_selectTarget1212);
+                    labelExpr63=labelExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr43.getTree());
-                    // AmoebaQuery.g:247:14: ( Comma labelExpr )*
-                    loop15:
+                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr63.getTree());
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:14: ( Comma labelExpr )*
+                    loop22:
                     do {
-                        int alt15=2;
-                        int LA15_0 = input.LA(1);
+                        int alt22=2;
+                        int LA22_0 = input.LA(1);
 
-                        if ( (LA15_0==Comma) ) {
-                            alt15=1;
+                        if ( (LA22_0==Comma) ) {
+                            alt22=1;
                         }
 
 
-                        switch (alt15) {
+                        switch (alt22) {
                     	case 1 :
-                    	    // AmoebaQuery.g:247:15: Comma labelExpr
+                    	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:15: Comma labelExpr
                     	    {
-                    	    Comma44=(Token)input.LT(1);
-                    	    match(input,Comma,FOLLOW_Comma_in_selectTarget944); if (failed) return retval;
-                    	    if ( backtracking==0 ) stream_Comma.add(Comma44);
+                    	    Comma64=(Token)input.LT(1);
+                    	    match(input,Comma,FOLLOW_Comma_in_selectTarget1215); if (failed) return retval;
+                    	    if ( backtracking==0 ) stream_Comma.add(Comma64);
 
-                    	    pushFollow(FOLLOW_labelExpr_in_selectTarget946);
-                    	    labelExpr45=labelExpr();
+                    	    pushFollow(FOLLOW_labelExpr_in_selectTarget1217);
+                    	    labelExpr65=labelExpr();
                     	    _fsp--;
                     	    if (failed) return retval;
-                    	    if ( backtracking==0 ) stream_labelExpr.add(labelExpr45.getTree());
+                    	    if ( backtracking==0 ) stream_labelExpr.add(labelExpr65.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop15;
+                    	    break loop22;
                         }
                     } while (true);
 
@@ -1729,9 +2502,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 247:33: -> ^( PROJECTION ( labelExpr )+ )
+                    // 289:33: -> ^( PROJECTION ( labelExpr )+ )
                     {
-                        // AmoebaQuery.g:247:36: ^( PROJECTION ( labelExpr )+ )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:36: ^( PROJECTION ( labelExpr )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(PROJECTION, "PROJECTION"), root_1);
@@ -1755,11 +2528,11 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:248:4: Wildcard
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:290:4: Wildcard
                     {
-                    Wildcard46=(Token)input.LT(1);
-                    match(input,Wildcard,FOLLOW_Wildcard_in_selectTarget962); if (failed) return retval;
-                    if ( backtracking==0 ) stream_Wildcard.add(Wildcard46);
+                    Wildcard66=(Token)input.LT(1);
+                    match(input,Wildcard,FOLLOW_Wildcard_in_selectTarget1233); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Wildcard.add(Wildcard66);
 
 
                     // AST REWRITE
@@ -1773,7 +2546,7 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 248:13: -> PROJECT_ALL
+                    // 290:13: -> PROJECT_ALL
                     {
                         adaptor.addChild(root_0, adaptor.create(PROJECT_ALL, "PROJECT_ALL"));
 
@@ -1808,68 +2581,68 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start fromClause
-    // AmoebaQuery.g:251:1: fromClause : From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:293:1: fromClause : From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ ;
     public final fromClause_return fromClause() throws RecognitionException {
         fromClause_return retval = new fromClause_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token From47=null;
-        Token Comma49=null;
-        fromTarget_return fromTarget48 = null;
+        Token From67=null;
+        Token Comma69=null;
+        fromTarget_return fromTarget68 = null;
 
-        fromTarget_return fromTarget50 = null;
+        fromTarget_return fromTarget70 = null;
 
 
-        Object From47_tree=null;
-        Object Comma49_tree=null;
+        Object From67_tree=null;
+        Object Comma69_tree=null;
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleTokenStream stream_From=new RewriteRuleTokenStream(adaptor,"token From");
         RewriteRuleSubtreeStream stream_fromTarget=new RewriteRuleSubtreeStream(adaptor,"rule fromTarget");
         try {
-            // AmoebaQuery.g:252:2: ( From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ )
-            // AmoebaQuery.g:252:4: From fromTarget ( Comma fromTarget )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:2: ( From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:4: From fromTarget ( Comma fromTarget )*
             {
-            From47=(Token)input.LT(1);
-            match(input,From,FOLLOW_From_in_fromClause977); if (failed) return retval;
-            if ( backtracking==0 ) stream_From.add(From47);
+            From67=(Token)input.LT(1);
+            match(input,From,FOLLOW_From_in_fromClause1248); if (failed) return retval;
+            if ( backtracking==0 ) stream_From.add(From67);
 
-            pushFollow(FOLLOW_fromTarget_in_fromClause979);
-            fromTarget48=fromTarget();
+            pushFollow(FOLLOW_fromTarget_in_fromClause1250);
+            fromTarget68=fromTarget();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_fromTarget.add(fromTarget48.getTree());
-            // AmoebaQuery.g:252:20: ( Comma fromTarget )*
-            loop17:
+            if ( backtracking==0 ) stream_fromTarget.add(fromTarget68.getTree());
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:20: ( Comma fromTarget )*
+            loop24:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA17_0==Comma) ) {
-                    alt17=1;
+                if ( (LA24_0==Comma) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt24) {
             	case 1 :
-            	    // AmoebaQuery.g:252:21: Comma fromTarget
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:21: Comma fromTarget
             	    {
-            	    Comma49=(Token)input.LT(1);
-            	    match(input,Comma,FOLLOW_Comma_in_fromClause982); if (failed) return retval;
-            	    if ( backtracking==0 ) stream_Comma.add(Comma49);
+            	    Comma69=(Token)input.LT(1);
+            	    match(input,Comma,FOLLOW_Comma_in_fromClause1253); if (failed) return retval;
+            	    if ( backtracking==0 ) stream_Comma.add(Comma69);
 
-            	    pushFollow(FOLLOW_fromTarget_in_fromClause984);
-            	    fromTarget50=fromTarget();
+            	    pushFollow(FOLLOW_fromTarget_in_fromClause1255);
+            	    fromTarget70=fromTarget();
             	    _fsp--;
             	    if (failed) return retval;
-            	    if ( backtracking==0 ) stream_fromTarget.add(fromTarget50.getTree());
+            	    if ( backtracking==0 ) stream_fromTarget.add(fromTarget70.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop24;
                 }
             } while (true);
 
@@ -1885,7 +2658,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 252:40: -> ( fromTarget )+
+            // 294:40: -> ( fromTarget )+
             {
                 if ( !(stream_fromTarget.hasNext()) ) {
                     throw new RewriteEarlyExitException();
@@ -1925,35 +2698,35 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start fromTarget
-    // AmoebaQuery.g:255:1: fromTarget : ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:297:1: fromTarget : ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? ;
     public final fromTarget_return fromTarget() throws RecognitionException {
         fromTarget_return retval = new fromTarget_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token string_literal52=null;
-        Token QName53=null;
-        targetRelation_return targetRelation51 = null;
+        Token string_literal72=null;
+        Token QName73=null;
+        targetRelation_return targetRelation71 = null;
 
 
-        Object string_literal52_tree=null;
-        Object QName53_tree=null;
+        Object string_literal72_tree=null;
+        Object QName73_tree=null;
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
-        RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
+        RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
         RewriteRuleSubtreeStream stream_targetRelation=new RewriteRuleSubtreeStream(adaptor,"rule targetRelation");
         try {
-            // AmoebaQuery.g:256:2: ( ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? )
-            // AmoebaQuery.g:256:4: ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:2: ( ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:4: ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
             {
-            // AmoebaQuery.g:256:4: ( targetRelation -> targetRelation )
-            // AmoebaQuery.g:256:5: targetRelation
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:4: ( targetRelation -> targetRelation )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:5: targetRelation
             {
-            pushFollow(FOLLOW_targetRelation_in_fromTarget1003);
-            targetRelation51=targetRelation();
+            pushFollow(FOLLOW_targetRelation_in_fromTarget1274);
+            targetRelation71=targetRelation();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_targetRelation.add(targetRelation51.getTree());
+            if ( backtracking==0 ) stream_targetRelation.add(targetRelation71.getTree());
 
             // AST REWRITE
             // elements: targetRelation
@@ -1966,7 +2739,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 256:20: -> targetRelation
+            // 298:20: -> targetRelation
             {
                 adaptor.addChild(root_0, stream_targetRelation.next());
 
@@ -1976,24 +2749,24 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // AmoebaQuery.g:256:39: ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:39: ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA18_0==63) ) {
-                alt18=1;
+            if ( (LA25_0==73) ) {
+                alt25=1;
             }
-            switch (alt18) {
+            switch (alt25) {
                 case 1 :
-                    // AmoebaQuery.g:256:40: 'as' QName
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:40: 'as' QName
                     {
-                    string_literal52=(Token)input.LT(1);
-                    match(input,63,FOLLOW_63_in_fromTarget1011); if (failed) return retval;
-                    if ( backtracking==0 ) stream_63.add(string_literal52);
+                    string_literal72=(Token)input.LT(1);
+                    match(input,73,FOLLOW_73_in_fromTarget1282); if (failed) return retval;
+                    if ( backtracking==0 ) stream_73.add(string_literal72);
 
-                    QName53=(Token)input.LT(1);
-                    match(input,QName,FOLLOW_QName_in_fromTarget1013); if (failed) return retval;
-                    if ( backtracking==0 ) stream_QName.add(QName53);
+                    QName73=(Token)input.LT(1);
+                    match(input,QName,FOLLOW_QName_in_fromTarget1284); if (failed) return retval;
+                    if ( backtracking==0 ) stream_QName.add(QName73);
 
 
                     // AST REWRITE
@@ -2007,9 +2780,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 256:51: -> ^( ASSIGN_LABEL QName $fromTarget)
+                    // 298:51: -> ^( ASSIGN_LABEL QName $fromTarget)
                     {
-                        // AmoebaQuery.g:256:54: ^( ASSIGN_LABEL QName $fromTarget)
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:54: ^( ASSIGN_LABEL QName $fromTarget)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ASSIGN_LABEL, "ASSIGN_LABEL"), root_1);
@@ -2055,45 +2828,45 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start targetRelation
-    // AmoebaQuery.g:259:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:301:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );
     public final targetRelation_return targetRelation() throws RecognitionException {
         targetRelation_return retval = new targetRelation_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token QName54=null;
-        subQuery_return subQuery55 = null;
+        Token QName74=null;
+        subQuery_return subQuery75 = null;
 
 
-        Object QName54_tree=null;
+        Object QName74_tree=null;
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // AmoebaQuery.g:260:2: ( QName -> ^( RELATION QName ) | subQuery )
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:2: ( QName -> ^( RELATION QName ) | subQuery )
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA19_0==QName) ) {
-                alt19=1;
+            if ( (LA26_0==QName) ) {
+                alt26=1;
             }
-            else if ( (LA19_0==LParen) ) {
-                alt19=2;
+            else if ( (LA26_0==LParen) ) {
+                alt26=2;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("259:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );", 19, 0, input);
+                    new NoViableAltException("301:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );", 26, 0, input);
 
                 throw nvae;
             }
-            switch (alt19) {
+            switch (alt26) {
                 case 1 :
-                    // AmoebaQuery.g:260:4: QName
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:4: QName
                     {
-                    QName54=(Token)input.LT(1);
-                    match(input,QName,FOLLOW_QName_in_targetRelation1039); if (failed) return retval;
-                    if ( backtracking==0 ) stream_QName.add(QName54);
+                    QName74=(Token)input.LT(1);
+                    match(input,QName,FOLLOW_QName_in_targetRelation1310); if (failed) return retval;
+                    if ( backtracking==0 ) stream_QName.add(QName74);
 
 
                     // AST REWRITE
@@ -2107,9 +2880,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 260:10: -> ^( RELATION QName )
+                    // 302:10: -> ^( RELATION QName )
                     {
-                        // AmoebaQuery.g:260:13: ^( RELATION QName )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:13: ^( RELATION QName )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(RELATION, "RELATION"), root_1);
@@ -2126,15 +2899,15 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:261:4: subQuery
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:303:4: subQuery
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_subQuery_in_targetRelation1052);
-                    subQuery55=subQuery();
+                    pushFollow(FOLLOW_subQuery_in_targetRelation1323);
+                    subQuery75=subQuery();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, subQuery55.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, subQuery75.getTree());
 
                     }
                     break;
@@ -2163,32 +2936,32 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start whereClause
-    // AmoebaQuery.g:264:1: whereClause : Where orExpr ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:306:1: whereClause : Where orExpr ;
     public final whereClause_return whereClause() throws RecognitionException {
         whereClause_return retval = new whereClause_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token Where56=null;
-        orExpr_return orExpr57 = null;
+        Token Where76=null;
+        orExpr_return orExpr77 = null;
 
 
-        Object Where56_tree=null;
+        Object Where76_tree=null;
 
         try {
-            // AmoebaQuery.g:265:2: ( Where orExpr )
-            // AmoebaQuery.g:265:4: Where orExpr
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:307:2: ( Where orExpr )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:307:4: Where orExpr
             {
             root_0 = (Object)adaptor.nil();
 
-            Where56=(Token)input.LT(1);
-            match(input,Where,FOLLOW_Where_in_whereClause1063); if (failed) return retval;
-            pushFollow(FOLLOW_orExpr_in_whereClause1066);
-            orExpr57=orExpr();
+            Where76=(Token)input.LT(1);
+            match(input,Where,FOLLOW_Where_in_whereClause1334); if (failed) return retval;
+            pushFollow(FOLLOW_orExpr_in_whereClause1337);
+            orExpr77=orExpr();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) adaptor.addChild(root_0, orExpr57.getTree());
+            if ( backtracking==0 ) adaptor.addChild(root_0, orExpr77.getTree());
 
             }
 
@@ -2215,34 +2988,34 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start orExpr
-    // AmoebaQuery.g:268:1: orExpr : ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:310:1: orExpr : ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* ;
     public final orExpr_return orExpr() throws RecognitionException {
         orExpr_return retval = new orExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token string_literal59=null;
+        Token string_literal79=null;
         andExpr_return a = null;
 
-        andExpr_return andExpr58 = null;
+        andExpr_return andExpr78 = null;
 
 
-        Object string_literal59_tree=null;
-        RewriteRuleTokenStream stream_64=new RewriteRuleTokenStream(adaptor,"token 64");
+        Object string_literal79_tree=null;
+        RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
         RewriteRuleSubtreeStream stream_andExpr=new RewriteRuleSubtreeStream(adaptor,"rule andExpr");
         try {
-            // AmoebaQuery.g:269:2: ( ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* )
-            // AmoebaQuery.g:269:4: ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:2: ( ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:4: ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
             {
-            // AmoebaQuery.g:269:4: ( andExpr -> andExpr )
-            // AmoebaQuery.g:269:5: andExpr
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:4: ( andExpr -> andExpr )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:5: andExpr
             {
-            pushFollow(FOLLOW_andExpr_in_orExpr1080);
-            andExpr58=andExpr();
+            pushFollow(FOLLOW_andExpr_in_orExpr1351);
+            andExpr78=andExpr();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_andExpr.add(andExpr58.getTree());
+            if ( backtracking==0 ) stream_andExpr.add(andExpr78.getTree());
 
             // AST REWRITE
             // elements: andExpr
@@ -2255,7 +3028,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 269:13: -> andExpr
+            // 311:13: -> andExpr
             {
                 adaptor.addChild(root_0, stream_andExpr.next());
 
@@ -2265,26 +3038,26 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // AmoebaQuery.g:269:25: ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
-            loop20:
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:25: ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
+            loop27:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA20_0==64) ) {
-                    alt20=1;
+                if ( (LA27_0==74) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt27) {
             	case 1 :
-            	    // AmoebaQuery.g:269:26: 'or' a= andExpr
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:26: 'or' a= andExpr
             	    {
-            	    string_literal59=(Token)input.LT(1);
-            	    match(input,64,FOLLOW_64_in_orExpr1088); if (failed) return retval;
-            	    if ( backtracking==0 ) stream_64.add(string_literal59);
+            	    string_literal79=(Token)input.LT(1);
+            	    match(input,74,FOLLOW_74_in_orExpr1359); if (failed) return retval;
+            	    if ( backtracking==0 ) stream_74.add(string_literal79);
 
-            	    pushFollow(FOLLOW_andExpr_in_orExpr1092);
+            	    pushFollow(FOLLOW_andExpr_in_orExpr1363);
             	    a=andExpr();
             	    _fsp--;
             	    if (failed) return retval;
@@ -2302,9 +3075,9 @@ public class AmoebaQueryParser extends Parser {
             	    RewriteRuleSubtreeStream stream_a=new RewriteRuleSubtreeStream(adaptor,"token a",a!=null?a.tree:null);
 
             	    root_0 = (Object)adaptor.nil();
-            	    // 269:41: -> ^( OR $orExpr $a)
+            	    // 311:41: -> ^( OR $orExpr $a)
             	    {
-            	        // AmoebaQuery.g:269:44: ^( OR $orExpr $a)
+            	        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:44: ^( OR $orExpr $a)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(adaptor.create(OR, "OR"), root_1);
@@ -2323,7 +3096,7 @@ public class AmoebaQueryParser extends Parser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop27;
                 }
             } while (true);
 
@@ -2353,34 +3126,34 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start andExpr
-    // AmoebaQuery.g:272:1: andExpr : ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:314:1: andExpr : ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* ;
     public final andExpr_return andExpr() throws RecognitionException {
         andExpr_return retval = new andExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token string_literal61=null;
+        Token string_literal81=null;
         conditionExpr_return c = null;
 
-        conditionExpr_return conditionExpr60 = null;
+        conditionExpr_return conditionExpr80 = null;
 
 
-        Object string_literal61_tree=null;
-        RewriteRuleTokenStream stream_65=new RewriteRuleTokenStream(adaptor,"token 65");
+        Object string_literal81_tree=null;
+        RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
         RewriteRuleSubtreeStream stream_conditionExpr=new RewriteRuleSubtreeStream(adaptor,"rule conditionExpr");
         try {
-            // AmoebaQuery.g:273:2: ( ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* )
-            // AmoebaQuery.g:273:4: ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:2: ( ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:4: ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
             {
-            // AmoebaQuery.g:273:4: ( conditionExpr -> conditionExpr )
-            // AmoebaQuery.g:273:5: conditionExpr
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:4: ( conditionExpr -> conditionExpr )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:5: conditionExpr
             {
-            pushFollow(FOLLOW_conditionExpr_in_andExpr1120);
-            conditionExpr60=conditionExpr();
+            pushFollow(FOLLOW_conditionExpr_in_andExpr1391);
+            conditionExpr80=conditionExpr();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_conditionExpr.add(conditionExpr60.getTree());
+            if ( backtracking==0 ) stream_conditionExpr.add(conditionExpr80.getTree());
 
             // AST REWRITE
             // elements: conditionExpr
@@ -2393,7 +3166,7 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 273:19: -> conditionExpr
+            // 315:19: -> conditionExpr
             {
                 adaptor.addChild(root_0, stream_conditionExpr.next());
 
@@ -2403,26 +3176,26 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // AmoebaQuery.g:273:37: ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
-            loop21:
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:37: ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
+            loop28:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA21_0==65) ) {
-                    alt21=1;
+                if ( (LA28_0==75) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt28) {
             	case 1 :
-            	    // AmoebaQuery.g:273:38: 'and' c= conditionExpr
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:38: 'and' c= conditionExpr
             	    {
-            	    string_literal61=(Token)input.LT(1);
-            	    match(input,65,FOLLOW_65_in_andExpr1128); if (failed) return retval;
-            	    if ( backtracking==0 ) stream_65.add(string_literal61);
+            	    string_literal81=(Token)input.LT(1);
+            	    match(input,75,FOLLOW_75_in_andExpr1399); if (failed) return retval;
+            	    if ( backtracking==0 ) stream_75.add(string_literal81);
 
-            	    pushFollow(FOLLOW_conditionExpr_in_andExpr1132);
+            	    pushFollow(FOLLOW_conditionExpr_in_andExpr1403);
             	    c=conditionExpr();
             	    _fsp--;
             	    if (failed) return retval;
@@ -2440,9 +3213,9 @@ public class AmoebaQueryParser extends Parser {
             	    RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"token c",c!=null?c.tree:null);
 
             	    root_0 = (Object)adaptor.nil();
-            	    // 273:60: -> ^( AND $andExpr $c)
+            	    // 315:60: -> ^( AND $andExpr $c)
             	    {
-            	        // AmoebaQuery.g:273:63: ^( AND $andExpr $c)
+            	        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:63: ^( AND $andExpr $c)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(adaptor.create(AND, "AND"), root_1);
@@ -2461,7 +3234,7 @@ public class AmoebaQueryParser extends Parser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop28;
                 }
             } while (true);
 
@@ -2491,76 +3264,123 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start conditionExpr
-    // AmoebaQuery.g:277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );
     public final conditionExpr_return conditionExpr() throws RecognitionException {
         conditionExpr_return retval = new conditionExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token In65=null;
+        Token In85=null;
         comparisonOp_return c = null;
 
-        labelExpr_return labelExpr62 = null;
+        labelExpr_return labelExpr82 = null;
 
-        labelExpr_return labelExpr63 = null;
+        labelExpr_return labelExpr83 = null;
 
-        labelExpr_return labelExpr64 = null;
+        labelExpr_return labelExpr84 = null;
 
-        subQuery_return subQuery66 = null;
+        subQuery_return subQuery86 = null;
 
 
-        Object In65_tree=null;
+        Object In85_tree=null;
         RewriteRuleTokenStream stream_In=new RewriteRuleTokenStream(adaptor,"token In");
         RewriteRuleSubtreeStream stream_subQuery=new RewriteRuleSubtreeStream(adaptor,"rule subQuery");
         RewriteRuleSubtreeStream stream_comparisonOp=new RewriteRuleSubtreeStream(adaptor,"rule comparisonOp");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // AmoebaQuery.g:278:2: ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) )
-            int alt22=2;
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:320:2: ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) )
+            int alt29=2;
             switch ( input.LA(1) ) {
             case QName:
                 {
                 switch ( input.LA(2) ) {
+                case Dot:
+                    {
+                    int LA29_7 = input.LA(3);
+
+                    if ( (LA29_7==Wildcard) ) {
+                        int LA29_17 = input.LA(4);
+
+                        if ( (LA29_17==In) ) {
+                            alt29=2;
+                        }
+                        else if ( ((LA29_17>=EQUAL && LA29_17<=GEQ)||LA29_17==76) ) {
+                            alt29=1;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 17, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else if ( (LA29_7==QName) ) {
+                        int LA29_18 = input.LA(4);
+
+                        if ( ((LA29_18>=EQUAL && LA29_18<=GEQ)||LA29_18==76) ) {
+                            alt29=1;
+                        }
+                        else if ( (LA29_18==In) ) {
+                            alt29=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 18, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 7, input);
+
+                        throw nvae;
+                    }
+                    }
+                    break;
                 case LParen:
                     {
                     switch ( input.LA(3) ) {
                     case QName:
                         {
                         switch ( input.LA(4) ) {
-                        case Dot:
+                        case LParen:
                             {
-                            int LA22_27 = input.LA(5);
+                            int LA29_32 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 27, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 32, input);
 
                                 throw nvae;
                             }
                             }
                             break;
-                        case LParen:
+                        case Dot:
                             {
-                            int LA22_28 = input.LA(5);
+                            int LA29_33 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 28, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 33, input);
 
                                 throw nvae;
                             }
@@ -2568,18 +3388,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case Comma:
                             {
-                            int LA22_29 = input.LA(5);
+                            int LA29_34 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 29, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 34, input);
 
                                 throw nvae;
                             }
@@ -2587,18 +3407,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case RParen:
                             {
-                            int LA22_30 = input.LA(5);
+                            int LA29_35 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 30, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 35, input);
 
                                 throw nvae;
                             }
@@ -2607,7 +3427,7 @@ public class AmoebaQueryParser extends Parser {
                         default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 17, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 19, input);
 
                             throw nvae;
                         }
@@ -2619,18 +3439,18 @@ public class AmoebaQueryParser extends Parser {
                         switch ( input.LA(4) ) {
                         case QName:
                             {
-                            int LA22_31 = input.LA(5);
+                            int LA29_36 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 31, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 36, input);
 
                                 throw nvae;
                             }
@@ -2638,18 +3458,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case RParen:
                             {
-                            int LA22_32 = input.LA(5);
+                            int LA29_37 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 32, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 37, input);
 
                                 throw nvae;
                             }
@@ -2657,18 +3477,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case Comma:
                             {
-                            int LA22_33 = input.LA(5);
+                            int LA29_38 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 33, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 38, input);
 
                                 throw nvae;
                             }
@@ -2676,18 +3496,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case Digits:
                             {
-                            int LA22_34 = input.LA(5);
+                            int LA29_39 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 34, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 39, input);
 
                                 throw nvae;
                             }
@@ -2695,18 +3515,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case Dot:
                             {
-                            int LA22_35 = input.LA(5);
+                            int LA29_40 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 35, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 40, input);
 
                                 throw nvae;
                             }
@@ -2714,18 +3534,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case StringLiteral:
                             {
-                            int LA22_36 = input.LA(5);
+                            int LA29_41 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 36, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 41, input);
 
                                 throw nvae;
                             }
@@ -2734,7 +3554,7 @@ public class AmoebaQueryParser extends Parser {
                         default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 18, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 20, input);
 
                             throw nvae;
                         }
@@ -2743,18 +3563,18 @@ public class AmoebaQueryParser extends Parser {
                         break;
                     case RParen:
                         {
-                        int LA22_19 = input.LA(4);
+                        int LA29_21 = input.LA(4);
 
-                        if ( ((LA22_19>=EQUAL && LA22_19<=GEQ)||LA22_19==66) ) {
-                            alt22=1;
+                        if ( (LA29_21==In) ) {
+                            alt29=2;
                         }
-                        else if ( (LA22_19==In) ) {
-                            alt22=2;
+                        else if ( ((LA29_21>=EQUAL && LA29_21<=GEQ)||LA29_21==76) ) {
+                            alt29=1;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 19, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 21, input);
 
                             throw nvae;
                         }
@@ -2765,18 +3585,18 @@ public class AmoebaQueryParser extends Parser {
                         switch ( input.LA(4) ) {
                         case Dot:
                             {
-                            int LA22_39 = input.LA(5);
+                            int LA29_44 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 39, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 44, input);
 
                                 throw nvae;
                             }
@@ -2784,18 +3604,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case Comma:
                             {
-                            int LA22_40 = input.LA(5);
+                            int LA29_45 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 40, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 45, input);
 
                                 throw nvae;
                             }
@@ -2803,18 +3623,18 @@ public class AmoebaQueryParser extends Parser {
                             break;
                         case RParen:
                             {
-                            int LA22_41 = input.LA(5);
+                            int LA29_46 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 41, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 46, input);
 
                                 throw nvae;
                             }
@@ -2823,7 +3643,7 @@ public class AmoebaQueryParser extends Parser {
                         default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 20, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 22, input);
 
                             throw nvae;
                         }
@@ -2832,21 +3652,21 @@ public class AmoebaQueryParser extends Parser {
                         break;
                     case Dot:
                         {
-                        int LA22_21 = input.LA(4);
+                        int LA29_23 = input.LA(4);
 
-                        if ( (LA22_21==Digits) ) {
-                            int LA22_42 = input.LA(5);
+                        if ( (LA29_23==Digits) ) {
+                            int LA29_47 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 42, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 47, input);
 
                                 throw nvae;
                             }
@@ -2854,7 +3674,7 @@ public class AmoebaQueryParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 21, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 23, input);
 
                             throw nvae;
                         }
@@ -2862,38 +3682,38 @@ public class AmoebaQueryParser extends Parser {
                         break;
                     case StringLiteral:
                         {
-                        int LA22_22 = input.LA(4);
+                        int LA29_24 = input.LA(4);
 
-                        if ( (LA22_22==Comma) ) {
-                            int LA22_43 = input.LA(5);
+                        if ( (LA29_24==Comma) ) {
+                            int LA29_48 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 43, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 48, input);
 
                                 throw nvae;
                             }
                         }
-                        else if ( (LA22_22==RParen) ) {
-                            int LA22_44 = input.LA(5);
+                        else if ( (LA29_24==RParen) ) {
+                            int LA29_49 = input.LA(5);
 
                             if ( (synpred1()) ) {
-                                alt22=1;
+                                alt29=1;
                             }
                             else if ( (true) ) {
-                                alt22=2;
+                                alt29=2;
                             }
                             else {
                                 if (backtracking>0) {failed=true; return retval;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 44, input);
+                                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 49, input);
 
                                 throw nvae;
                             }
@@ -2901,7 +3721,7 @@ public class AmoebaQueryParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 22, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 24, input);
 
                             throw nvae;
                         }
@@ -2910,41 +3730,16 @@ public class AmoebaQueryParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 7, input);
+                            new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 8, input);
 
                         throw nvae;
                     }
 
                     }
                     break;
-                case Dot:
+                case In:
                     {
-                    int LA22_8 = input.LA(3);
-
-                    if ( (LA22_8==QName) ) {
-                        int LA22_23 = input.LA(4);
-
-                        if ( ((LA22_23>=EQUAL && LA22_23<=GEQ)||LA22_23==66) ) {
-                            alt22=1;
-                        }
-                        else if ( (LA22_23==In) ) {
-                            alt22=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 23, input);
-
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        if (backtracking>0) {failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 8, input);
-
-                        throw nvae;
-                    }
+                    alt29=2;
                     }
                     break;
                 case EQUAL:
@@ -2953,20 +3748,15 @@ public class AmoebaQueryParser extends Parser {
                 case LEQ:
                 case GREATER:
                 case GEQ:
-                case 66:
+                case 76:
                     {
-                    alt22=1;
-                    }
-                    break;
-                case In:
-                    {
-                    alt22=2;
+                    alt29=1;
                     }
                     break;
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 1, input);
+                        new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 1, input);
 
                     throw nvae;
                 }
@@ -2979,9 +3769,9 @@ public class AmoebaQueryParser extends Parser {
             case LEQ:
             case GREATER:
             case GEQ:
-            case 66:
+            case 76:
                 {
-                alt22=1;
+                alt29=1;
                 }
                 break;
             case Digits:
@@ -2989,21 +3779,21 @@ public class AmoebaQueryParser extends Parser {
                 switch ( input.LA(2) ) {
                 case Dot:
                     {
-                    int LA22_11 = input.LA(3);
+                    int LA29_11 = input.LA(3);
 
-                    if ( (LA22_11==Digits) ) {
-                        int LA22_24 = input.LA(4);
+                    if ( (LA29_11==Digits) ) {
+                        int LA29_25 = input.LA(4);
 
-                        if ( ((LA22_24>=EQUAL && LA22_24<=GEQ)||LA22_24==66) ) {
-                            alt22=1;
+                        if ( (LA29_25==In) ) {
+                            alt29=2;
                         }
-                        else if ( (LA22_24==In) ) {
-                            alt22=2;
+                        else if ( ((LA29_25>=EQUAL && LA29_25<=GEQ)||LA29_25==76) ) {
+                            alt29=1;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 24, input);
+                                new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 25, input);
 
                             throw nvae;
                         }
@@ -3011,10 +3801,15 @@ public class AmoebaQueryParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 11, input);
+                            new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 11, input);
 
                         throw nvae;
                     }
+                    }
+                    break;
+                case In:
+                    {
+                    alt29=2;
                     }
                     break;
                 case EQUAL:
@@ -3023,20 +3818,15 @@ public class AmoebaQueryParser extends Parser {
                 case LEQ:
                 case GREATER:
                 case GEQ:
-                case 66:
+                case 76:
                     {
-                    alt22=1;
-                    }
-                    break;
-                case In:
-                    {
-                    alt22=2;
+                    alt29=1;
                     }
                     break;
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 3, input);
+                        new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 3, input);
 
                     throw nvae;
                 }
@@ -3045,21 +3835,21 @@ public class AmoebaQueryParser extends Parser {
                 break;
             case Dot:
                 {
-                int LA22_4 = input.LA(2);
+                int LA29_4 = input.LA(2);
 
-                if ( (LA22_4==Digits) ) {
-                    int LA22_14 = input.LA(3);
+                if ( (LA29_4==Digits) ) {
+                    int LA29_14 = input.LA(3);
 
-                    if ( (LA22_14==In) ) {
-                        alt22=2;
+                    if ( ((LA29_14>=EQUAL && LA29_14<=GEQ)||LA29_14==76) ) {
+                        alt29=1;
                     }
-                    else if ( ((LA22_14>=EQUAL && LA22_14<=GEQ)||LA22_14==66) ) {
-                        alt22=1;
+                    else if ( (LA29_14==In) ) {
+                        alt29=2;
                     }
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 14, input);
+                            new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 14, input);
 
                         throw nvae;
                     }
@@ -3067,7 +3857,7 @@ public class AmoebaQueryParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 4, input);
+                        new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 4, input);
 
                     throw nvae;
                 }
@@ -3075,18 +3865,18 @@ public class AmoebaQueryParser extends Parser {
                 break;
             case StringLiteral:
                 {
-                int LA22_5 = input.LA(2);
+                int LA29_5 = input.LA(2);
 
-                if ( ((LA22_5>=EQUAL && LA22_5<=GEQ)||LA22_5==66) ) {
-                    alt22=1;
+                if ( ((LA29_5>=EQUAL && LA29_5<=GEQ)||LA29_5==76) ) {
+                    alt29=1;
                 }
-                else if ( (LA22_5==In) ) {
-                    alt22=2;
+                else if ( (LA29_5==In) ) {
+                    alt29=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 5, input);
+                        new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 5, input);
 
                     throw nvae;
                 }
@@ -3094,36 +3884,36 @@ public class AmoebaQueryParser extends Parser {
                 break;
             case In:
                 {
-                alt22=2;
+                alt29=2;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("277:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 22, 0, input);
+                    new NoViableAltException("319:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );", 29, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt22) {
+            switch (alt29) {
                 case 1 :
-                    // AmoebaQuery.g:278:4: labelExpr c= comparisonOp labelExpr
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:320:4: labelExpr c= comparisonOp labelExpr
                     {
-                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1168);
-                    labelExpr62=labelExpr();
+                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1439);
+                    labelExpr82=labelExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr62.getTree());
-                    pushFollow(FOLLOW_comparisonOp_in_conditionExpr1172);
+                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr82.getTree());
+                    pushFollow(FOLLOW_comparisonOp_in_conditionExpr1443);
                     c=comparisonOp();
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_comparisonOp.add(c.getTree());
-                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1174);
-                    labelExpr63=labelExpr();
+                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1445);
+                    labelExpr83=labelExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr63.getTree());
+                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr83.getTree());
 
                     // AST REWRITE
                     // elements: labelExpr, comparisonOp
@@ -3136,9 +3926,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 279:4: -> ^( COMPARE comparisonOp ( labelExpr )+ )
+                    // 321:4: -> ^( COMPARE comparisonOp ( labelExpr )+ )
                     {
-                        // AmoebaQuery.g:279:7: ^( COMPARE comparisonOp ( labelExpr )+ )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:321:7: ^( COMPARE comparisonOp ( labelExpr )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(COMPARE, "COMPARE"), root_1);
@@ -3163,22 +3953,22 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:280:4: labelExpr In subQuery
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:322:4: labelExpr In subQuery
                     {
-                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1194);
-                    labelExpr64=labelExpr();
+                    pushFollow(FOLLOW_labelExpr_in_conditionExpr1465);
+                    labelExpr84=labelExpr();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr64.getTree());
-                    In65=(Token)input.LT(1);
-                    match(input,In,FOLLOW_In_in_conditionExpr1196); if (failed) return retval;
-                    if ( backtracking==0 ) stream_In.add(In65);
+                    if ( backtracking==0 ) stream_labelExpr.add(labelExpr84.getTree());
+                    In85=(Token)input.LT(1);
+                    match(input,In,FOLLOW_In_in_conditionExpr1467); if (failed) return retval;
+                    if ( backtracking==0 ) stream_In.add(In85);
 
-                    pushFollow(FOLLOW_subQuery_in_conditionExpr1198);
-                    subQuery66=subQuery();
+                    pushFollow(FOLLOW_subQuery_in_conditionExpr1469);
+                    subQuery86=subQuery();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_subQuery.add(subQuery66.getTree());
+                    if ( backtracking==0 ) stream_subQuery.add(subQuery86.getTree());
 
                     // AST REWRITE
                     // elements: subQuery, labelExpr
@@ -3191,9 +3981,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 281:4: -> ^( CONTAINED_IN labelExpr subQuery )
+                    // 323:4: -> ^( CONTAINED_IN labelExpr subQuery )
                     {
-                        // AmoebaQuery.g:281:7: ^( CONTAINED_IN labelExpr subQuery )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:323:7: ^( CONTAINED_IN labelExpr subQuery )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(CONTAINED_IN, "CONTAINED_IN"), root_1);
@@ -3235,34 +4025,34 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start comparisonOp
-    // AmoebaQuery.g:284:1: comparisonOp : ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:326:1: comparisonOp : ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) ;
     public final comparisonOp_return comparisonOp() throws RecognitionException {
         comparisonOp_return retval = new comparisonOp_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set67=null;
+        Token set87=null;
 
-        Object set67_tree=null;
+        Object set87_tree=null;
 
         try {
-            // AmoebaQuery.g:284:13: ( ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) )
-            // AmoebaQuery.g:284:15: ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:326:13: ( ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:326:15: ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' )
             {
             root_0 = (Object)adaptor.nil();
 
-            set67=(Token)input.LT(1);
-            if ( (input.LA(1)>=EQUAL && input.LA(1)<=GEQ)||input.LA(1)==66 ) {
+            set87=(Token)input.LT(1);
+            if ( (input.LA(1)>=EQUAL && input.LA(1)<=GEQ)||input.LA(1)==76 ) {
                 input.consume();
-                if ( backtracking==0 ) adaptor.addChild(root_0, adaptor.create(set67));
+                if ( backtracking==0 ) adaptor.addChild(root_0, adaptor.create(set87));
                 errorRecovery=false;failed=false;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_comparisonOp1220);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_comparisonOp1491);    throw mse;
             }
 
 
@@ -3291,88 +4081,88 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start labelExpr
-    // AmoebaQuery.g:286:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:328:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );
     public final labelExpr_return labelExpr() throws RecognitionException {
         labelExpr_return retval = new labelExpr_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        function_return function68 = null;
+        function_return function88 = null;
 
-        attributeName_return attributeName69 = null;
+        attributeName_return attributeName89 = null;
 
-        value_return value70 = null;
+        value_return value90 = null;
 
 
         RewriteRuleSubtreeStream stream_value=new RewriteRuleSubtreeStream(adaptor,"rule value");
         try {
-            // AmoebaQuery.g:287:2: ( function | attributeName | value -> ^( VALUE value ) )
-            int alt23=3;
-            int LA23_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:329:2: ( function | attributeName | value -> ^( VALUE value ) )
+            int alt30=3;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA23_0==QName) ) {
-                int LA23_1 = input.LA(2);
+            if ( (LA30_0==QName) ) {
+                int LA30_1 = input.LA(2);
 
-                if ( (LA23_1==EOF||LA23_1==Dot||(LA23_1>=Comma && LA23_1<=RParen)||(LA23_1>=EQUAL && LA23_1<=GEQ)||(LA23_1>=From && LA23_1<=In)||(LA23_1>=64 && LA23_1<=66)) ) {
-                    alt23=2;
+                if ( (LA30_1==LParen) ) {
+                    alt30=1;
                 }
-                else if ( (LA23_1==LParen) ) {
-                    alt23=1;
+                else if ( (LA30_1==EOF||LA30_1==Dot||(LA30_1>=Comma && LA30_1<=RParen)||(LA30_1>=EQUAL && LA30_1<=GEQ)||(LA30_1>=Select && LA30_1<=Insert)||(LA30_1>=Object && LA30_1<=Relationship)||LA30_1==69||(LA30_1>=74 && LA30_1<=76)) ) {
+                    alt30=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("286:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );", 23, 1, input);
+                        new NoViableAltException("328:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );", 30, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA23_0==EOF||LA23_0==Dot||(LA23_0>=Comma && LA23_0<=RParen)||(LA23_0>=EQUAL && LA23_0<=GEQ)||(LA23_0>=From && LA23_0<=In)||LA23_0==Digits||LA23_0==StringLiteral||(LA23_0>=64 && LA23_0<=66)) ) {
-                alt23=3;
+            else if ( (LA30_0==EOF||LA30_0==Dot||(LA30_0>=Comma && LA30_0<=RParen)||(LA30_0>=EQUAL && LA30_0<=GEQ)||(LA30_0>=Select && LA30_0<=Insert)||(LA30_0>=Object && LA30_0<=Relationship)||LA30_0==Digits||LA30_0==StringLiteral||LA30_0==69||(LA30_0>=74 && LA30_0<=76)) ) {
+                alt30=3;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("286:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );", 23, 0, input);
+                    new NoViableAltException("328:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt23) {
+            switch (alt30) {
                 case 1 :
-                    // AmoebaQuery.g:287:4: function
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:329:4: function
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_function_in_labelExpr1256);
-                    function68=function();
+                    pushFollow(FOLLOW_function_in_labelExpr1527);
+                    function88=function();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, function68.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, function88.getTree());
 
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:288:4: attributeName
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:330:4: attributeName
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_attributeName_in_labelExpr1262);
-                    attributeName69=attributeName();
+                    pushFollow(FOLLOW_attributeName_in_labelExpr1533);
+                    attributeName89=attributeName();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) adaptor.addChild(root_0, attributeName69.getTree());
+                    if ( backtracking==0 ) adaptor.addChild(root_0, attributeName89.getTree());
 
                     }
                     break;
                 case 3 :
-                    // AmoebaQuery.g:289:4: value
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:331:4: value
                     {
-                    pushFollow(FOLLOW_value_in_labelExpr1268);
-                    value70=value();
+                    pushFollow(FOLLOW_value_in_labelExpr1539);
+                    value90=value();
                     _fsp--;
                     if (failed) return retval;
-                    if ( backtracking==0 ) stream_value.add(value70.getTree());
+                    if ( backtracking==0 ) stream_value.add(value90.getTree());
 
                     // AST REWRITE
                     // elements: value
@@ -3385,9 +4175,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 289:10: -> ^( VALUE value )
+                    // 331:10: -> ^( VALUE value )
                     {
-                        // AmoebaQuery.g:289:13: ^( VALUE value )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:331:13: ^( VALUE value )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE, "VALUE"), root_1);
@@ -3428,28 +4218,28 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start value
-    // AmoebaQuery.g:292:1: value : literal ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:1: value : literal ;
     public final value_return value() throws RecognitionException {
         value_return retval = new value_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        literal_return literal71 = null;
+        literal_return literal91 = null;
 
 
 
         try {
-            // AmoebaQuery.g:293:2: ( literal )
-            // AmoebaQuery.g:293:4: literal
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:335:2: ( literal )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:335:4: literal
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_literal_in_value1289);
-            literal71=literal();
+            pushFollow(FOLLOW_literal_in_value1560);
+            literal91=literal();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) adaptor.addChild(root_0, literal71.getTree());
+            if ( backtracking==0 ) adaptor.addChild(root_0, literal91.getTree());
 
             }
 
@@ -3476,7 +4266,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attributeName
-    // AmoebaQuery.g:296:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) );
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:338:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );
     public final attributeName_return attributeName() throws RecognitionException {
         attributeName_return retval = new attributeName_return();
         retval.start = input.LT(1);
@@ -3485,34 +4275,53 @@ public class AmoebaQueryParser extends Parser {
 
         Token relation=null;
         Token attribute=null;
-        Token QName72=null;
-        Token Dot73=null;
+        Token QName92=null;
+        Token Dot93=null;
+        Token Dot94=null;
+        Token Wildcard95=null;
 
         Object relation_tree=null;
         Object attribute_tree=null;
-        Object QName72_tree=null;
-        Object Dot73_tree=null;
+        Object QName92_tree=null;
+        Object Dot93_tree=null;
+        Object Dot94_tree=null;
+        Object Wildcard95_tree=null;
         RewriteRuleTokenStream stream_Dot=new RewriteRuleTokenStream(adaptor,"token Dot");
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
+        RewriteRuleTokenStream stream_Wildcard=new RewriteRuleTokenStream(adaptor,"token Wildcard");
 
         try {
-            // AmoebaQuery.g:297:2: ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:2: ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) )
+            int alt31=3;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA24_0==QName) ) {
-                int LA24_1 = input.LA(2);
+            if ( (LA31_0==QName) ) {
+                int LA31_1 = input.LA(2);
 
-                if ( (LA24_1==Dot) ) {
-                    alt24=2;
+                if ( (LA31_1==Dot) ) {
+                    int LA31_2 = input.LA(3);
+
+                    if ( (LA31_2==QName) ) {
+                        alt31=2;
+                    }
+                    else if ( (LA31_2==Wildcard) ) {
+                        alt31=3;
+                    }
+                    else {
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("338:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );", 31, 2, input);
+
+                        throw nvae;
+                    }
                 }
-                else if ( (LA24_1==EOF||(LA24_1>=Comma && LA24_1<=RParen)||(LA24_1>=EQUAL && LA24_1<=GEQ)||(LA24_1>=From && LA24_1<=In)||(LA24_1>=64 && LA24_1<=66)) ) {
-                    alt24=1;
+                else if ( (LA31_1==EOF||(LA31_1>=Comma && LA31_1<=RParen)||(LA31_1>=EQUAL && LA31_1<=GEQ)||(LA31_1>=Select && LA31_1<=Insert)||(LA31_1>=Object && LA31_1<=Relationship)||LA31_1==69||(LA31_1>=74 && LA31_1<=76)) ) {
+                    alt31=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("296:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) );", 24, 1, input);
+                        new NoViableAltException("338:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );", 31, 1, input);
 
                     throw nvae;
                 }
@@ -3520,17 +4329,17 @@ public class AmoebaQueryParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("296:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) );", 24, 0, input);
+                    new NoViableAltException("338:1: attributeName : ( QName -> ^( ATTRIBUTE QName ) | relation= QName Dot attribute= QName -> ^( REF $relation $attribute) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );", 31, 0, input);
 
                 throw nvae;
             }
-            switch (alt24) {
+            switch (alt31) {
                 case 1 :
-                    // AmoebaQuery.g:297:4: QName
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:4: QName
                     {
-                    QName72=(Token)input.LT(1);
-                    match(input,QName,FOLLOW_QName_in_attributeName1300); if (failed) return retval;
-                    if ( backtracking==0 ) stream_QName.add(QName72);
+                    QName92=(Token)input.LT(1);
+                    match(input,QName,FOLLOW_QName_in_attributeName1571); if (failed) return retval;
+                    if ( backtracking==0 ) stream_QName.add(QName92);
 
 
                     // AST REWRITE
@@ -3544,9 +4353,9 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 297:10: -> ^( ATTRIBUTE QName )
+                    // 339:10: -> ^( ATTRIBUTE QName )
                     {
-                        // AmoebaQuery.g:297:13: ^( ATTRIBUTE QName )
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:13: ^( ATTRIBUTE QName )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE, "ATTRIBUTE"), root_1);
@@ -3563,18 +4372,18 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // AmoebaQuery.g:298:4: relation= QName Dot attribute= QName
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:340:4: relation= QName Dot attribute= QName
                     {
                     relation=(Token)input.LT(1);
-                    match(input,QName,FOLLOW_QName_in_attributeName1315); if (failed) return retval;
+                    match(input,QName,FOLLOW_QName_in_attributeName1586); if (failed) return retval;
                     if ( backtracking==0 ) stream_QName.add(relation);
 
-                    Dot73=(Token)input.LT(1);
-                    match(input,Dot,FOLLOW_Dot_in_attributeName1317); if (failed) return retval;
-                    if ( backtracking==0 ) stream_Dot.add(Dot73);
+                    Dot93=(Token)input.LT(1);
+                    match(input,Dot,FOLLOW_Dot_in_attributeName1588); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Dot.add(Dot93);
 
                     attribute=(Token)input.LT(1);
-                    match(input,QName,FOLLOW_QName_in_attributeName1321); if (failed) return retval;
+                    match(input,QName,FOLLOW_QName_in_attributeName1592); if (failed) return retval;
                     if ( backtracking==0 ) stream_QName.add(attribute);
 
 
@@ -3591,15 +4400,61 @@ public class AmoebaQueryParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 298:39: -> ^( REF $relation $attribute)
+                    // 340:39: -> ^( REF $relation $attribute)
                     {
-                        // AmoebaQuery.g:298:42: ^( REF $relation $attribute)
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:340:42: ^( REF $relation $attribute)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(REF, "REF"), root_1);
 
                         adaptor.addChild(root_1, stream_relation.next());
                         adaptor.addChild(root_1, stream_attribute.next());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    }
+
+                    }
+                    break;
+                case 3 :
+                    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:341:4: relation= QName Dot Wildcard
+                    {
+                    relation=(Token)input.LT(1);
+                    match(input,QName,FOLLOW_QName_in_attributeName1611); if (failed) return retval;
+                    if ( backtracking==0 ) stream_QName.add(relation);
+
+                    Dot94=(Token)input.LT(1);
+                    match(input,Dot,FOLLOW_Dot_in_attributeName1613); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Dot.add(Dot94);
+
+                    Wildcard95=(Token)input.LT(1);
+                    match(input,Wildcard,FOLLOW_Wildcard_in_attributeName1615); if (failed) return retval;
+                    if ( backtracking==0 ) stream_Wildcard.add(Wildcard95);
+
+
+                    // AST REWRITE
+                    // elements: relation
+                    // token labels: relation
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    if ( backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleTokenStream stream_relation=new RewriteRuleTokenStream(adaptor,"token relation",relation);
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+                    root_0 = (Object)adaptor.nil();
+                    // 341:32: -> ^( REF_ALL $relation)
+                    {
+                        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:341:35: ^( REF_ALL $relation)
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(adaptor.create(REF_ALL, "REF_ALL"), root_1);
+
+                        adaptor.addChild(root_1, stream_relation.next());
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -3635,84 +4490,84 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start function
-    // AmoebaQuery.g:302:1: function : QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) ;
+    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:345:1: function : QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) ;
     public final function_return function() throws RecognitionException {
         function_return retval = new function_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token QName74=null;
-        Token LParen75=null;
-        Token Comma77=null;
-        Token RParen79=null;
-        labelExpr_return labelExpr76 = null;
+        Token QName96=null;
+        Token LParen97=null;
+        Token Comma99=null;
+        Token RParen101=null;
+        labelExpr_return labelExpr98 = null;
 
-        labelExpr_return labelExpr78 = null;
+        labelExpr_return labelExpr100 = null;
 
 
-        Object QName74_tree=null;
-        Object LParen75_tree=null;
-        Object Comma77_tree=null;
-        Object RParen79_tree=null;
+        Object QName96_tree=null;
+        Object LParen97_tree=null;
+        Object Comma99_tree=null;
+        Object RParen101_tree=null;
         RewriteRuleTokenStream stream_RParen=new RewriteRuleTokenStream(adaptor,"token RParen");
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // AmoebaQuery.g:303:2: ( QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) )
-            // AmoebaQuery.g:303:4: QName LParen labelExpr ( Comma labelExpr )* RParen
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:346:2: ( QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) )
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:346:4: QName LParen labelExpr ( Comma labelExpr )* RParen
             {
-            QName74=(Token)input.LT(1);
-            match(input,QName,FOLLOW_QName_in_function1347); if (failed) return retval;
-            if ( backtracking==0 ) stream_QName.add(QName74);
+            QName96=(Token)input.LT(1);
+            match(input,QName,FOLLOW_QName_in_function1638); if (failed) return retval;
+            if ( backtracking==0 ) stream_QName.add(QName96);
 
-            LParen75=(Token)input.LT(1);
-            match(input,LParen,FOLLOW_LParen_in_function1349); if (failed) return retval;
-            if ( backtracking==0 ) stream_LParen.add(LParen75);
+            LParen97=(Token)input.LT(1);
+            match(input,LParen,FOLLOW_LParen_in_function1640); if (failed) return retval;
+            if ( backtracking==0 ) stream_LParen.add(LParen97);
 
-            pushFollow(FOLLOW_labelExpr_in_function1351);
-            labelExpr76=labelExpr();
+            pushFollow(FOLLOW_labelExpr_in_function1642);
+            labelExpr98=labelExpr();
             _fsp--;
             if (failed) return retval;
-            if ( backtracking==0 ) stream_labelExpr.add(labelExpr76.getTree());
-            // AmoebaQuery.g:303:27: ( Comma labelExpr )*
-            loop25:
+            if ( backtracking==0 ) stream_labelExpr.add(labelExpr98.getTree());
+            // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:346:27: ( Comma labelExpr )*
+            loop32:
             do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA25_0==Comma) ) {
-                    alt25=1;
+                if ( (LA32_0==Comma) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt25) {
+                switch (alt32) {
             	case 1 :
-            	    // AmoebaQuery.g:303:28: Comma labelExpr
+            	    // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:346:28: Comma labelExpr
             	    {
-            	    Comma77=(Token)input.LT(1);
-            	    match(input,Comma,FOLLOW_Comma_in_function1354); if (failed) return retval;
-            	    if ( backtracking==0 ) stream_Comma.add(Comma77);
+            	    Comma99=(Token)input.LT(1);
+            	    match(input,Comma,FOLLOW_Comma_in_function1645); if (failed) return retval;
+            	    if ( backtracking==0 ) stream_Comma.add(Comma99);
 
-            	    pushFollow(FOLLOW_labelExpr_in_function1356);
-            	    labelExpr78=labelExpr();
+            	    pushFollow(FOLLOW_labelExpr_in_function1647);
+            	    labelExpr100=labelExpr();
             	    _fsp--;
             	    if (failed) return retval;
-            	    if ( backtracking==0 ) stream_labelExpr.add(labelExpr78.getTree());
+            	    if ( backtracking==0 ) stream_labelExpr.add(labelExpr100.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop32;
                 }
             } while (true);
 
-            RParen79=(Token)input.LT(1);
-            match(input,RParen,FOLLOW_RParen_in_function1360); if (failed) return retval;
-            if ( backtracking==0 ) stream_RParen.add(RParen79);
+            RParen101=(Token)input.LT(1);
+            match(input,RParen,FOLLOW_RParen_in_function1651); if (failed) return retval;
+            if ( backtracking==0 ) stream_RParen.add(RParen101);
 
 
             // AST REWRITE
@@ -3726,9 +4581,9 @@ public class AmoebaQueryParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 304:2: -> ^( FUNCTION QName ( labelExpr )+ )
+            // 347:2: -> ^( FUNCTION QName ( labelExpr )+ )
             {
-                // AmoebaQuery.g:304:5: ^( FUNCTION QName ( labelExpr )+ )
+                // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:347:5: ^( FUNCTION QName ( labelExpr )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(FUNCTION, "FUNCTION"), root_1);
@@ -3771,18 +4626,18 @@ public class AmoebaQueryParser extends Parser {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // AmoebaQuery.g:278:4: ( labelExpr comparisonOp labelExpr )
-        // AmoebaQuery.g:278:4: labelExpr comparisonOp labelExpr
+        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:320:4: ( labelExpr comparisonOp labelExpr )
+        // F:\\cygwin\\home\\leo\\work\\workspace\\XerialJ\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:320:4: labelExpr comparisonOp labelExpr
         {
-        pushFollow(FOLLOW_labelExpr_in_synpred11168);
+        pushFollow(FOLLOW_labelExpr_in_synpred11439);
         labelExpr();
         _fsp--;
         if (failed) return ;
-        pushFollow(FOLLOW_comparisonOp_in_synpred11172);
+        pushFollow(FOLLOW_comparisonOp_in_synpred11443);
         comparisonOp();
         _fsp--;
         if (failed) return ;
-        pushFollow(FOLLOW_labelExpr_in_synpred11174);
+        pushFollow(FOLLOW_labelExpr_in_synpred11445);
         labelExpr();
         _fsp--;
         if (failed) return ;
@@ -3809,93 +4664,119 @@ public class AmoebaQueryParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_Digits_in_integerLiteral558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Dot_in_decimalLiteral564 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_Digits_in_decimalLiteral566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Digits_in_decimalLiteral569 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_Dot_in_decimalLiteral571 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_Digits_in_decimalLiteral573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_numericLiteral_in_literal584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_StringLiteral_in_literal597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerLiteral_in_numericLiteral617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_decimalLiteral_in_numericLiteral623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selectExpr_in_amoebaQuery638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_updateExpr_in_amoebaQuery643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Insert_in_updateExpr655 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_newRelation_in_updateExpr657 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_Into_in_updateExpr660 = new BitSet(new long[]{0x0400000400000000L});
-    public static final BitSet FOLLOW_targetRelation_in_updateExpr662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_updateExpr692 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_updateExpr694 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_newRelation_in_updateExpr696 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_whereClause_in_updateExpr698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LParen_in_newRelation734 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_tupleElement_in_newRelation736 = new BitSet(new long[]{0x0000000300000000L});
-    public static final BitSet FOLLOW_Comma_in_newRelation739 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_tupleElement_in_newRelation741 = new BitSet(new long[]{0x0000000300000000L});
-    public static final BitSet FOLLOW_RParen_in_newRelation745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_attributeName_in_tupleElement765 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_EQUAL_in_tupleElement773 = new BitSet(new long[]{0x2120000040000002L});
-    public static final BitSet FOLLOW_elementValue_in_tupleElement777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_elementValue803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_elementValue819 = new BitSet(new long[]{0x6120000140000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValue821 = new BitSet(new long[]{0x4000000100000000L});
-    public static final BitSet FOLLOW_Comma_in_elementValue824 = new BitSet(new long[]{0x6120000040000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValue826 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_elementValue830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selectExpr_in_exprSingle855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_subQuery_in_exprSingle860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LParen_in_subQuery872 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_selectExpr_in_subQuery874 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_RParen_in_subQuery876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Select_in_selectExpr897 = new BitSet(new long[]{0x0520C04140000002L});
-    public static final BitSet FOLLOW_selectTarget_in_selectExpr899 = new BitSet(new long[]{0x0000C00000000002L});
-    public static final BitSet FOLLOW_fromClause_in_selectExpr901 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_whereClause_in_selectExpr904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_labelExpr_in_selectTarget941 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_Comma_in_selectTarget944 = new BitSet(new long[]{0x0520000140000002L});
-    public static final BitSet FOLLOW_labelExpr_in_selectTarget946 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_Wildcard_in_selectTarget962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_From_in_fromClause977 = new BitSet(new long[]{0x0400000400000000L});
-    public static final BitSet FOLLOW_fromTarget_in_fromClause979 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_Comma_in_fromClause982 = new BitSet(new long[]{0x0400000400000000L});
-    public static final BitSet FOLLOW_fromTarget_in_fromClause984 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_targetRelation_in_fromTarget1003 = new BitSet(new long[]{0x8000000000000002L});
-    public static final BitSet FOLLOW_63_in_fromTarget1011 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_QName_in_fromTarget1013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QName_in_targetRelation1039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_subQuery_in_targetRelation1052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Where_in_whereClause1063 = new BitSet(new long[]{0x05201F8040000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_orExpr_in_whereClause1066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr1080 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_orExpr1088 = new BitSet(new long[]{0x05201F8040000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr1092 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_conditionExpr_in_andExpr1120 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_andExpr1128 = new BitSet(new long[]{0x05201F8040000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_conditionExpr_in_andExpr1132 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1168 = new BitSet(new long[]{0x00001F8000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_comparisonOp_in_conditionExpr1172 = new BitSet(new long[]{0x0520000040000002L});
-    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1194 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_In_in_conditionExpr1196 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_subQuery_in_conditionExpr1198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_comparisonOp1220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_labelExpr1256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_attributeName_in_labelExpr1262 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_labelExpr1268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_value1289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QName_in_attributeName1300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QName_in_attributeName1315 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_Dot_in_attributeName1317 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_QName_in_attributeName1321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QName_in_function1347 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_LParen_in_function1349 = new BitSet(new long[]{0x0520000340000000L});
-    public static final BitSet FOLLOW_labelExpr_in_function1351 = new BitSet(new long[]{0x0000000300000000L});
-    public static final BitSet FOLLOW_Comma_in_function1354 = new BitSet(new long[]{0x0520000340000000L});
-    public static final BitSet FOLLOW_labelExpr_in_function1356 = new BitSet(new long[]{0x0000000300000000L});
-    public static final BitSet FOLLOW_RParen_in_function1360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_labelExpr_in_synpred11168 = new BitSet(new long[]{0x00001F8000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_comparisonOp_in_synpred11172 = new BitSet(new long[]{0x0520000040000002L});
-    public static final BitSet FOLLOW_labelExpr_in_synpred11174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Digits_in_integerLiteral640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Dot_in_decimalLiteral646 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_Digits_in_decimalLiteral648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Digits_in_decimalLiteral651 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_Dot_in_decimalLiteral653 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_Digits_in_decimalLiteral655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_numericLiteral_in_literal666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_StringLiteral_in_literal679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerLiteral_in_numericLiteral699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_decimalLiteral_in_numericLiteral705 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_lang720 = new BitSet(new long[]{0x0688000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_objectExpr_in_expr732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_amoebaQuery_in_expr737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationshipExpr_in_expr742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Relationship_in_relationshipExpr753 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_QName_in_relationshipExpr757 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_HasMany_in_relationshipExpr759 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_qnameList_in_relationshipExpr761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_qnameList787 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_Comma_in_qnameList790 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_QName_in_qnameList792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Object_in_objectExpr810 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_QName_in_objectExpr814 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_LParen_in_objectExpr816 = new BitSet(new long[]{0x0004004000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_attributeDefExpr_in_objectExpr818 = new BitSet(new long[]{0x0004004000000000L});
+    public static final BitSet FOLLOW_SPLIT_in_objectExpr822 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_qnameList_in_objectExpr826 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_RParen_in_objectExpr830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_attributeDef_in_attributeDefExpr866 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_Comma_in_attributeDefExpr869 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_attributeDef_in_attributeDefExpr871 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_QName_in_attributeDef885 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_DataType_in_attributeDef887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selectExpr_in_amoebaQuery909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_updateExpr_in_amoebaQuery914 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Insert_in_updateExpr926 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_newRelation_in_updateExpr928 = new BitSet(new long[]{0x0100000000000002L});
+    public static final BitSet FOLLOW_Into_in_updateExpr931 = new BitSet(new long[]{0x0000008000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_targetRelation_in_updateExpr933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_updateExpr963 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_updateExpr965 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_newRelation_in_updateExpr967 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_whereClause_in_updateExpr969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LParen_in_newRelation1005 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_tupleElement_in_newRelation1007 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_Comma_in_newRelation1010 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_tupleElement_in_newRelation1012 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_RParen_in_newRelation1016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_attributeName_in_tupleElement1036 = new BitSet(new long[]{0x0000100000000002L});
+    public static final BitSet FOLLOW_EQUAL_in_tupleElement1044 = new BitSet(new long[]{0x8000000800000002L,0x0000000000000084L});
+    public static final BitSet FOLLOW_elementValue_in_tupleElement1048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_elementValue1074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_elementValue1090 = new BitSet(new long[]{0x8000002800000000L,0x0000000000000184L});
+    public static final BitSet FOLLOW_elementValue_in_elementValue1092 = new BitSet(new long[]{0x0000002000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_Comma_in_elementValue1095 = new BitSet(new long[]{0x8000000800000000L,0x0000000000000184L});
+    public static final BitSet FOLLOW_elementValue_in_elementValue1097 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_elementValue1101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selectExpr_in_exprSingle1126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_subQuery_in_exprSingle1131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LParen_in_subQuery1143 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_selectExpr_in_subQuery1145 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_RParen_in_subQuery1147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Select_in_selectExpr1168 = new BitSet(new long[]{0x8030082800000002L,0x0000000000000014L});
+    public static final BitSet FOLLOW_selectTarget_in_selectExpr1170 = new BitSet(new long[]{0x0030000000000002L});
+    public static final BitSet FOLLOW_fromClause_in_selectExpr1172 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_whereClause_in_selectExpr1175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_labelExpr_in_selectTarget1212 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_Comma_in_selectTarget1215 = new BitSet(new long[]{0x8000002800000002L,0x0000000000000014L});
+    public static final BitSet FOLLOW_labelExpr_in_selectTarget1217 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_Wildcard_in_selectTarget1233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_From_in_fromClause1248 = new BitSet(new long[]{0x0000008000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_fromTarget_in_fromClause1250 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_Comma_in_fromClause1253 = new BitSet(new long[]{0x0000008000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_fromTarget_in_fromClause1255 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_targetRelation_in_fromTarget1274 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_fromTarget1282 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_QName_in_fromTarget1284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_targetRelation1310 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_subQuery_in_targetRelation1323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Where_in_whereClause1334 = new BitSet(new long[]{0x8003F00800000000L,0x0000000000001014L});
+    public static final BitSet FOLLOW_orExpr_in_whereClause1337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr1351 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_orExpr1359 = new BitSet(new long[]{0x8003F00800000000L,0x0000000000001014L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr1363 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_conditionExpr_in_andExpr1391 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_andExpr1399 = new BitSet(new long[]{0x8003F00800000000L,0x0000000000001014L});
+    public static final BitSet FOLLOW_conditionExpr_in_andExpr1403 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1439 = new BitSet(new long[]{0x0003F00000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_comparisonOp_in_conditionExpr1443 = new BitSet(new long[]{0x8000000800000002L,0x0000000000000014L});
+    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_labelExpr_in_conditionExpr1465 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_In_in_conditionExpr1467 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_subQuery_in_conditionExpr1469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_comparisonOp1491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_labelExpr1527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_attributeName_in_labelExpr1533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_labelExpr1539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_value1560 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_attributeName1571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_attributeName1586 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_Dot_in_attributeName1588 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_QName_in_attributeName1592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_attributeName1611 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_Dot_in_attributeName1613 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_Wildcard_in_attributeName1615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QName_in_function1638 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_LParen_in_function1640 = new BitSet(new long[]{0x8000006800000000L,0x0000000000000014L});
+    public static final BitSet FOLLOW_labelExpr_in_function1642 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_Comma_in_function1645 = new BitSet(new long[]{0x8000006800000000L,0x0000000000000014L});
+    public static final BitSet FOLLOW_labelExpr_in_function1647 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_RParen_in_function1651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_labelExpr_in_synpred11439 = new BitSet(new long[]{0x0003F00000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_comparisonOp_in_synpred11443 = new BitSet(new long[]{0x8000000800000002L,0x0000000000000014L});
+    public static final BitSet FOLLOW_labelExpr_in_synpred11445 = new BitSet(new long[]{0x0000000000000002L});
 
 }

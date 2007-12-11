@@ -12,15 +12,22 @@ package org.xerial.amoeba.query;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.antlr.runtime.ANTLRInputStream;
+import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.Tree;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.amoeba.query.AmoebaQueryParser.lang_return;
+import org.xerial.util.FileResource;
+import org.xerial.util.StringUtil;
 import org.xerial.util.log.Logger;
 
 public class AmoebaQueryParserTest {
@@ -38,11 +45,13 @@ public class AmoebaQueryParserTest {
 
 	private AmoebaQueryParser parser(String query)
 	{
-		AmoebaQueryLexer lexer = new AmoebaQueryLexer(new ANTLRStringStream(query));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		List tokenList = tokens.getTokens();
-		AmoebaQueryParser parser = new AmoebaQueryParser(tokens);
-		return parser;
+		return parser(new AmoebaQueryLexer(new ANTLRStringStream(query)));
+	}
+	private AmoebaQueryParser parser(AmoebaQueryLexer lexer){
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        List tokenList = tokens.getTokens();
+        AmoebaQueryParser parser = new AmoebaQueryParser(tokens);
+        return parser;
 	}
 	
 	private void parse(String query)
@@ -51,21 +60,77 @@ public class AmoebaQueryParserTest {
 			_logger.debug(query);
 			AmoebaQueryParser.amoebaQuery_return r = parser(query).amoebaQuery();
 			CommonTree t = (CommonTree) r.getTree();
-			_logger.debug(t.toStringTree());
+			_logger.debug(StringUtil.NEW_LINE + parseTreeToString(t));
 		} catch (RecognitionException e) {
-			int line = e.line;
-			int charPos = e.charPositionInLine;
-			StringBuilder cursor = new StringBuilder(); 
-			for(int i=0; i<charPos; i++)
-				cursor.append(' ');
-			cursor.append("^");
-			String errorMessage = e + " token=" + e.token + " line: " + e.line + "(" + e.charPositionInLine +")\n" + query + "\n" + cursor.toString();
-			_logger.error(errorMessage);
-			List stack = AmoebaQueryParser.getRuleInvocationStack(e, e.getClass().getName());
-			_logger.error(stack);
-			fail(errorMessage);
+		    reportError(query, e);
 		}
 	}
+	
+	private void reportError(String query, RecognitionException e)
+	{
+        int line = e.line;
+        int charPos = e.charPositionInLine;
+        StringBuilder cursor = new StringBuilder(); 
+        for(int i=0; i<charPos; i++)
+            cursor.append(' ');
+        cursor.append("^");
+        String errorMessage = e + " token=" + e.token + " line: " + e.line + "(" + e.charPositionInLine +")\n" + query + "\n" + cursor.toString();
+        _logger.error(errorMessage);
+        List stack = AmoebaQueryParser.getRuleInvocationStack(e, e.getClass().getName());
+        _logger.error(stack);
+        fail(errorMessage);
+	}
+	
+	private void parseResource(String resourceName) throws IOException
+	{
+        try
+        {
+            AmoebaQueryParser parser = parser(new AmoebaQueryLexer(new ANTLRInputStream(this.getClass().getResourceAsStream(resourceName))));
+            AmoebaQueryParser.lang_return r = parser.lang();
+            CommonTree t = (CommonTree) r.getTree();
+            _logger.debug(StringUtil.NEW_LINE + parseTreeToString(t));
+        }
+        catch (RecognitionException e)
+        {
+            reportError("", e);
+        }
+	}
+	
+	public static String parseTreeToString(Tree t)
+	{
+	    StringBuilder buf = new StringBuilder();
+	    parseTreeToStringInternal(t.getChild(0), buf, 0);
+	    return buf.toString();
+	}
+	
+	public static void parseTreeToStringInternal(Tree t, StringBuilder buf, int level)
+	{
+	    if(t == null)
+	        return;
+	    
+        int type = t.getType();
+        String tokenName = AmoebaQueryParser.tokenNames[type];
+        String text = t.getText();
+        
+        for(int i=0; i<level; i++)
+            buf.append("  ");
+        buf.append("[");
+        buf.append(tokenName);
+        buf.append("] ");
+        if(text != null)
+        {
+            buf.append(text);
+        }
+        buf.append(StringUtil.NEW_LINE);
+        
+        for(int i=0; i<t.getChildCount(); i++)
+        {
+            Tree child = (Tree) t.getChild(i);
+            parseTreeToStringInternal(child, buf, level+1);
+        }
+	    
+	}
+	
 	
 	@Test 
 	public void select()
@@ -151,6 +216,13 @@ public class AmoebaQueryParserTest {
 		parse("select book /* comment */, title");
 		parse("// single line comment\n select book");
 	}
+	
+	@Test
+	public void parseEGTRelFile() throws IOException
+	{
+	    parseResource("/relation/egt.rel");
+	}
+	
 	
 	
 	

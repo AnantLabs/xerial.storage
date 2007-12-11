@@ -1,0 +1,11 @@
+// object definition
+OBJECT gene (target string, start integer, end integer, name string | target, start)
+OBJECT exon (start integer, end integer | start)
+OBJECT graph (target string, start integer, end integer, nums string | target, start)
+
+// sets one-to-many relationships between gene-exons, gene-graphs
+RELATIONSHIP gene HASMANY exon, graph
+
+// expected query workloads 
+SELECT gene.* from gene, exon
+
