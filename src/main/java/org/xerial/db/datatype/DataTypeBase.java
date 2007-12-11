@@ -10,6 +10,10 @@
 //--------------------------------------
 package org.xerial.db.datatype;
 
+/**
+ * @author leo
+ *
+ */
 public abstract class DataTypeBase implements DataType
 {
 	private String name;

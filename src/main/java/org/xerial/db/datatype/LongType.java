@@ -31,7 +31,6 @@ package org.xerial.db.datatype;
  */
 public class LongType extends DataTypeBase
 {
-
     /**
      * @param name parameter name
      */
