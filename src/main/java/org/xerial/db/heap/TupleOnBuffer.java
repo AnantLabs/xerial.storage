@@ -45,7 +45,7 @@ public class TupleOnBuffer extends AbstractTuple
 
     /**
      * Constrctor
-     * @param relation the relaation strucgture of the tuple
+     * @param relation the relation structure of the tuple
      * @param buffer the buffer to which the tuple is stored
      * @param offset the tuple location offset from the beginning of the buffer
      */

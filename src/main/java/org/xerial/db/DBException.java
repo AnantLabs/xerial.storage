@@ -48,5 +48,9 @@ public class DBException extends XerialException {
 	}
 
 
+	public DBErrorCode getErrorCode()
+	{
+	    return errorCode;
+	}
 }
 

@@ -24,10 +24,6 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.UTFDataFormatException;
-
 import org.xerial.db.datatype.TypeInformation;
 
 /**
