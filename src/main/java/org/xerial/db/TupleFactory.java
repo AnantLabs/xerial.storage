@@ -26,7 +26,12 @@ package org.xerial.db;
 
 import org.xerial.db.cache.BufferReader;
 
+/**
+ * A factory that creates a tuple from a buffer
+ * @author leo
+ *
+ */
 public interface TupleFactory
 {
-    Tuple createTupleFromBuffer(BufferReader reader);
+    Tuple createTupleFromBuffer(BufferReader reader) throws DBException;
 }

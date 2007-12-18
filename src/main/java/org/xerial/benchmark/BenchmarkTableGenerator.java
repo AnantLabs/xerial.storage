@@ -39,7 +39,6 @@ import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
 
-import com.sun.xml.internal.bind.v2.runtime.output.XmlOutput;
 
 /**
  * Generates Benchmark Tables
