@@ -30,7 +30,7 @@ import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.sqlite.SQLite;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.CollectionUtil;
-import org.xerial.util.bean.InvalidBeanException;
+import org.xerial.util.bean.BeanException;
 import org.xerial.util.log.Logger;
 
 
@@ -97,7 +97,7 @@ public class SQLiteAccessTest {
 	
 	
 	@Test
-	public void update() throws DBException, InvalidBeanException 
+	public void update() throws DBException, BeanException
 	{
 		query.insert(new Person(3, "leopard"), "person");
 		query.deleteByKeyValue(new Person(3), "person");
@@ -116,7 +116,7 @@ public class SQLiteAccessTest {
 	
 	
 	@Test
-	public void memoryDatabase() throws DBException, InvalidBeanException
+	public void memoryDatabase() throws DBException, BeanException
 	{
 		ConnectionPool connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
 		

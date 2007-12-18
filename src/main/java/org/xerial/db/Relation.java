@@ -21,8 +21,9 @@ import org.xerial.db.datatype.LongType;
 import org.xerial.db.datatype.PasswordType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.datatype.TextType;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONArray;
+import org.xerial.json.JSONErrorCode;
+import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 
 
@@ -53,24 +54,24 @@ public class Relation
     private ArrayList<DataType> dataTypeList = new ArrayList<DataType>();
     
     public Relation() {}
-    public Relation(String jsonStr) throws InvalidJSONDataException 
+    public Relation(String jsonStr) throws JSONException 
     {
     	JSONObject json = new JSONObject(jsonStr);
     	parse(json);
     }
     
-    public Relation(JSONObject jsonObj) throws InvalidJSONDataException 
+    public Relation(JSONObject jsonObj) throws JSONException 
     {
     	parse(jsonObj);
     }
     
-    private void parse(JSONObject jsonObj) throws InvalidJSONDataException 
+    private void parse(JSONObject jsonObj) throws JSONException 
     {
     	if(jsonObj == null)
-    		throw new InvalidJSONDataException("null json object");
+    		throw new JSONException(JSONErrorCode.InvalidJSONData, "null json object");
 
     	if(!jsonObj.hasKey("relation"))
-    		throw new InvalidJSONDataException("no relation key found");
+    		throw new JSONException(JSONErrorCode.InvalidJSONData, "no relation key found");
     	JSONArray relationList = jsonObj.getJSONArray("relation");
     	if(relationList == null)
     		return;
@@ -78,7 +79,7 @@ public class Relation
     	{
     		JSONArray dataTypePair = relationList.getJSONArray(i);
     		if(dataTypePair == null || dataTypePair.size() != 2)
-    			throw new InvalidJSONDataException("data type must be json array with two elements: " + relationList.toString());
+    			throw new JSONException(JSONErrorCode.InvalidJSONData, "data type must be json array with two elements: " + relationList.toString());
     		
     		String parameterName = dataTypePair.getString(0);
     		String typeName = dataTypePair.getString(1);

@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 
 
 
@@ -65,7 +65,7 @@ public class SQLExpression
             
             Quote quoteType = withinWhatTypeOfQuote(assignedSQL, start, end);
             if(quoteType == Quote.INVALID)
-            	throw new DBException(ErrorCode.InvalidSQLExpression, "invalid quotation around $" + (i+1) + " in " + assignedSQL);
+            	throw new DBException(DBErrorCode.InvalidSQLExpression, "invalid quotation around $" + (i+1) + " in " + assignedSQL);
             
             String replacement = sanitize(arguments[i] != null ? arguments[i].toString() : "", quoteType);
             assignedSQL = assignedSQL.replaceAll(pattern, replacement);
@@ -151,7 +151,7 @@ public class SQLExpression
     	while(cursor < input.length())
     	{
     	    if(arrayDeque.isEmpty())
-    	        throw new DBException(ErrorCode.InvalidSQLExpression, "get out from the context of " + contextQuotation.name() + ": " + input);
+    	        throw new DBException(DBErrorCode.InvalidSQLExpression, "get out from the context of " + contextQuotation.name() + ": " + input);
     	        
     		if(input.charAt(cursor) == '\'')
     		{
@@ -199,7 +199,7 @@ public class SQLExpression
     		}
     		else
     		{
-        		throw new DBException(ErrorCode.InvalidSQLExpression, "paren does not match: " + input);
+        		throw new DBException(DBErrorCode.InvalidSQLExpression, "paren does not match: " + input);
     		}
     	}
     	

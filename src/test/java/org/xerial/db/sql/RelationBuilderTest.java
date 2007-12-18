@@ -14,8 +14,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.xerial.db.Relation;
-import org.xerial.json.InvalidJSONDataException;
-import org.xerial.util.bean.InvalidBeanException;
+import org.xerial.json.JSONException;
+import org.xerial.util.bean.BeanException;
 
 
 class Sample
@@ -56,7 +56,7 @@ class Sample
 public class RelationBuilderTest {
 	
 	@Test 
-	public void createRelation() throws InvalidBeanException, InvalidJSONDataException
+	public void createRelation() throws BeanException, JSONException 
 	{
 		Relation r1;
 		r1 = RelationBuilder.createRelation(Sample.class);

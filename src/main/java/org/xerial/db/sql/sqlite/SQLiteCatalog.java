@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.json.JSONObject;
 import org.xerial.util.StringUtil;
+import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
-import org.xerial.util.bean.InvalidBeanException;
 import org.xerial.util.log.Logger;
 
 /**
@@ -103,7 +103,7 @@ public class SQLiteCatalog {
 	 * @throws DBException
 	 * @throws InvalidBeanException
 	 */
-	public String createValueTupleFromBean(String tableName, Object bean) throws DBException, InvalidBeanException
+	public String createValueTupleFromBean(String tableName, Object bean) throws DBException, BeanException
 	{
 		Relation r = getRelation(tableName);
 
@@ -141,7 +141,7 @@ public class SQLiteCatalog {
 	{
 		Relation r = _relationTable.get(tableName);
 		if(r == null)
-			throw new DBException(ErrorCode.TableIsNotFound, tableName + " table doesn't exist in the database.");
+			throw new DBException(DBErrorCode.TableIsNotFound, tableName + " table doesn't exist in the database.");
 		return r;
 	}
 	

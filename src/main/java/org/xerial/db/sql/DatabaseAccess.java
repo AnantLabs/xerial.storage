@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.util.log.Logger;
 
 
@@ -83,7 +83,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(ErrorCode.QueryError, e);
+            throw new DBException(DBErrorCode.QueryError, e);
         }
         finally
         {
@@ -114,7 +114,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(ErrorCode.QueryError, e);
+            throw new DBException(DBErrorCode.QueryError, e);
         }
         finally
         {
@@ -151,7 +151,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(ErrorCode.QueryError, e);
+            throw new DBException(DBErrorCode.QueryError, e);
         }
         finally
         {
@@ -177,7 +177,7 @@ public class DatabaseAccess {
         }
         catch(SQLException e)
         {
-            throw new DBException(ErrorCode.UpdateError, e);
+            throw new DBException(DBErrorCode.UpdateError, e);
         }
         finally
         {
