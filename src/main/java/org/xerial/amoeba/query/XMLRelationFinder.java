@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Stack;
 
 import org.xerial.core.XerialException;
-import org.xerial.util.XMLParserException;
 import org.xerial.util.log.Logger;
 import org.xerial.util.xml.pullparser.PullParserUtil;
 import org.xmlpull.v1.XmlPullParser;

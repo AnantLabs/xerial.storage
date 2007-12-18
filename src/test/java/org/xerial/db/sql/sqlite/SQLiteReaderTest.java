@@ -18,7 +18,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.sql.SQLExpression;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 
@@ -43,7 +42,7 @@ public class SQLiteReaderTest {
 	
 
 	@Test
-	public void query() throws JSONException, InvalidJSONDataException, DBException, IOException
+	public void query() throws JSONException, DBException, IOException
 	{
 		JSONObject json = new JSONObject();
 		json.put("database", SQLite.getMemoryDatabaseAddress());

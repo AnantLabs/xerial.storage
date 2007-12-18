@@ -58,6 +58,12 @@ import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
 
+/**
+ * A program for converting SQLite database into XML
+ * 
+ * @author leo
+ *
+ */
 public class XMLOrganizer
 {
     public static Logger _logger = Logger.getLogger(XMLOrganizer.class);

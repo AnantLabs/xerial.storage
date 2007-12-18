@@ -17,7 +17,6 @@ import java.util.List;
 
 
 import org.xerial.db.DBException;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 import org.xerial.util.StringUtil;
@@ -72,13 +71,13 @@ public class SQLiteReader
 		
 	}
 	
-	public void query(String query, OutputStream out) throws InvalidJSONDataException, JSONException, DBException, IOException
+	public void query(String query, OutputStream out) throws JSONException, DBException, IOException
 	{
 		query(query, new OutputStreamWriter(out));
 	}
 	
 	
-	public void query(String query, Writer out) throws InvalidJSONDataException, JSONException, DBException, IOException {
+	public void query(String query, Writer out) throws JSONException, DBException, IOException {
 		JSONObject jsonQuery = new JSONObject(query);
 		String _dbFile = jsonQuery.getString("database");
 		String sql = jsonQuery.getString("sql");

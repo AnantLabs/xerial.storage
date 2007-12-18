@@ -150,7 +150,7 @@ public class VariableLengthInteger
             byteLength++;
             if(byteLength > upperBoundByByteSize.length)
             {
-                throw new DBException(ErrorCode.InvalidDataFormat, "cannot read the variable length integer whose bite size is larger than " + upperBoundByByteSize.length);
+                throw new DBException(DBErrorCode.InvalidDataFormat, "cannot read the variable length integer whose bite size is larger than " + upperBoundByByteSize.length);
             }
         }
         return byteLength;
@@ -180,7 +180,7 @@ public class VariableLengthInteger
         if(byteLength > TypeInformation.INT_SIZE)
         {
             if(!(byteLength == (TypeInformation.INT_SIZE + 1) && (buffer[offset] > 0x87)))  // 1000 0111
-                throw new DBException(ErrorCode.InvalidDataFormat, "value larger than 2^31-1 cannot be read");
+                throw new DBException(DBErrorCode.InvalidDataFormat, "value larger than 2^31-1 cannot be read");
         }
         
         for(int i=0; i<byteLength; i++)
@@ -219,7 +219,7 @@ public class VariableLengthInteger
             }
             index++;
         }
-        throw new DBException(ErrorCode.InvalidDataFormat, "invalid code");
+        throw new DBException(DBErrorCode.InvalidDataFormat, "invalid code");
     }
     
     

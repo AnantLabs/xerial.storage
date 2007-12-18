@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.StringType;
@@ -32,14 +32,13 @@ import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.ResultPullReader;
 import org.xerial.db.sql.ResultSetHandler;
 import org.xerial.db.sql.SQLExpression;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONObject;
 import org.xerial.json.JSONValue;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.Functor;
 import org.xerial.util.StringUtil;
+import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
-import org.xerial.util.bean.InvalidBeanException;
 import org.xerial.util.log.Logger;
 
 /**
@@ -113,7 +112,7 @@ public class SQLiteAccess
 		return r;
 	}
 
-	public void insert(Object bean, String tableName) throws DBException, InvalidBeanException {
+	public void insert(Object bean, String tableName) throws DBException, BeanException {
 		
 		String sql = SQLExpression.fillTemplate(
 				"insert into $1 values($2)", 
@@ -124,7 +123,7 @@ public class SQLiteAccess
 		_dbAccess.update(sql);
 	}
 
-	public void deleteByKeyValue(Object bean, String tableName) throws DBException, InvalidBeanException {
+	public void deleteByKeyValue(Object bean, String tableName) throws DBException, BeanException {
 
 		List<SQLiteDataTypeInfo> keyAttribute = getCatalog().getKeyAttributeName(tableName);
 		ArrayList<String> deleteTargetCondition = new ArrayList<String>();
@@ -133,7 +132,7 @@ public class SQLiteAccess
 			JSONObject json = BeanUtil.toJSONObject(bean);
 			JSONValue value = json.get(key.getName());
 			if(value == null)
-				throw new DBException(ErrorCode.InvalidDataFormat, "key value cannot be null: " + key.getName());
+				throw new DBException(DBErrorCode.InvalidDataFormat, "key value cannot be null: " + key.getName());
 			deleteTargetCondition.add(key.getName() + "=" + value.toJSONString());
 		}
 		
@@ -191,9 +190,17 @@ public class SQLiteAccess
 
 	}
 	
-	public <T> List<T> amoebaQuery(Class<T> beanClass, String tableName) throws DBException, InvalidBeanException
+	public <T> List<T> amoebaQuery(Class<T> beanClass, String tableName) throws DBException
 	{
-		List<String> parameterList = RelationBuilder.extractBeanParameterList(beanClass);
+		List<String> parameterList;
+        try
+        {
+            parameterList = RelationBuilder.extractBeanParameterList(beanClass);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
 		String sql = SQLExpression.fillTemplate(
 				"select $1 from $2",
 				StringUtil.join(parameterList, ", "),

@@ -23,36 +23,29 @@ public class DBException extends XerialException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final ErrorCode errorCode;
+	private final DBErrorCode errorCode;
 
-	public DBException(ErrorCode errorCode) {
+	public DBException(DBErrorCode errorCode) {
 		super();
 		this.errorCode = errorCode;
 	}
 
 
-	public DBException(ErrorCode errorCode, String message) {
+	public DBException(DBErrorCode errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
 	}
 
-	public DBException(ErrorCode errorCode, Throwable e) {
+	public DBException(DBErrorCode errorCode, Throwable e) {
 		super(e);
 		this.errorCode = errorCode;
 	}
 	
-	public DBException(ErrorCode errorCode, String message, Throwable e)
+	public DBException(DBErrorCode errorCode, String message, Throwable e)
 	{
 		super(message, e);
 		this.errorCode = errorCode;
 	}
-
-
-    @Override
-    public String getMessage()
-    {
-        return "<" + errorCode.name() + "> " + super.getMessage();
-    }
 
 
 }

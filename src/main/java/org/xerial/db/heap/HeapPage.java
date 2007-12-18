@@ -31,7 +31,7 @@ import java.util.Iterator;
 
 import org.xerial.db.CommonPageHeader;
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.PageType;
 import org.xerial.db.Tuple;
 import org.xerial.db.TupleComparator;
@@ -100,7 +100,7 @@ public class HeapPage implements Iterable<Tuple>
         int requiredByteSizeForTheTuple = (tupleSize + TypeInformation.INT_SIZE); // tuple size + pointer size
         if(freeSpaceSize < requiredByteSizeForTheTuple)
         {
-            throw new DBException(ErrorCode.PageIsFull, "no enough space");
+            throw new DBException(DBErrorCode.PageIsFull, "no enough space");
         }
         tupleList.add(tuple);
         numEntries++;
@@ -148,7 +148,7 @@ public class HeapPage implements Iterable<Tuple>
 
         // validation
         if(header.getPageType() != PageType.Heap)
-            throw new DBException(ErrorCode.InvalidPageHeader, "not the heap page type: " + header.getPageType());
+            throw new DBException(DBErrorCode.InvalidPageHeader, "not the heap page type: " + header.getPageType());
         
     }
     

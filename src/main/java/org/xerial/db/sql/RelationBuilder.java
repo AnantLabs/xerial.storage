@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.xerial.core.XerialErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
@@ -22,14 +23,15 @@ import org.xerial.db.datatype.DoubleType;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringListType;
 import org.xerial.db.datatype.StringType;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.json.JSONArray;
+import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 import org.xerial.util.bean.BeanBinder;
 import org.xerial.util.bean.BeanBinderSet;
+import org.xerial.util.bean.BeanErrorCode;
+import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
-import org.xerial.util.bean.InvalidBeanException;
 
 /**
  * RelationBuilder creates a Relation instance from a JSON string or a Bean class.
@@ -44,7 +46,7 @@ import org.xerial.util.bean.InvalidBeanException;
 public class RelationBuilder {
 
 	
-	public static List<String> extractBeanParameterList(Class beanClass) throws InvalidBeanException
+	public static List<String> extractBeanParameterList(Class beanClass) throws BeanException
 	{
 		ArrayList<String> parameterList = new ArrayList<String>();
 
@@ -75,7 +77,7 @@ public class RelationBuilder {
 	}
 	
 	
-	public static Relation createRelation(String jsonString) throws InvalidJSONDataException
+	public static Relation createRelation(String jsonString) throws JSONException
 	{
 		Relation r = new Relation();
 		JSONObject json = new JSONObject(jsonString);
@@ -83,13 +85,13 @@ public class RelationBuilder {
 		JSONArray dataTypeList;
 		dataTypeList = json.getJSONArray("relation");
 		if(dataTypeList == null)
-			throw new InvalidJSONDataException("no relation is found");
+			throw new JSONException(JSONErrorCode.InvalidJSONData, "no relation is found");
 		for(int i=0; i<dataTypeList.size(); i++)
 		{
 			try {
 				JSONArray dataType = dataTypeList.getJSONArray(i);
 				if(dataType.size() != 2)
-					throw new JSONException();
+					throw new JSONException(JSONErrorCode.InvalidJSONData);
 				
 				String parameterName = dataType.get(0).toString();
 				String typeName = dataType.get(1).toString();
@@ -98,7 +100,7 @@ public class RelationBuilder {
 				r.add(dt);
 			} 
 			catch (JSONException e) {
-				throw new InvalidJSONDataException(dataTypeList.toString() + " does not contain a pair of [param_name, data_type_str]");
+				throw new JSONException(JSONErrorCode.InvalidJSONData, dataTypeList.toString() + " does not contain a pair of [param_name, data_type_str]");
 			}
 								
 		}
@@ -107,7 +109,7 @@ public class RelationBuilder {
 	}
 	
 	
-	public static Relation createRelation(Class beanClass) throws InvalidBeanException
+	public static Relation createRelation(Class beanClass) throws BeanException
 	{
 		return new BeanToRelationProcess().createRelation(beanClass);
 	}
@@ -118,7 +120,7 @@ public class RelationBuilder {
 		public BeanToRelationProcess() {}
 		
 		@SuppressWarnings("unchecked")
-		public Relation createRelation(Class beanClass) throws InvalidBeanException
+		public Relation createRelation(Class beanClass) throws BeanException
 		{
 			if(beanClass == null)
 				return _relation;
@@ -136,7 +138,7 @@ public class RelationBuilder {
 					if(returnType.isAssignableFrom(String.class))
 						_relation.add(new StringListType(p));
 					else 
-						throw new InvalidBeanException("array type of " + returnType.toString() + " is not supported");
+						throw new BeanException(BeanErrorCode.UnsupportedDataType, "array type of " + returnType.toString() + " is not supported");
 				}
 				else {
 					if(returnType.isAssignableFrom(Integer.class) || returnType.isAssignableFrom(int.class))
@@ -148,7 +150,7 @@ public class RelationBuilder {
 					else if(returnType.isAssignableFrom(Boolean.class) || returnType.isAssignableFrom(boolean.class))
 						_relation.add(new BooleanType(p));
 					else
-						throw new InvalidBeanException(returnType.toString() + " is not supported");
+						throw new BeanException(BeanErrorCode.UnsupportedDataType, returnType.toString() + " is not supported");
 				}				
 				
 				

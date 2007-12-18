@@ -18,7 +18,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.DatabaseAccess;
@@ -68,7 +68,7 @@ public class SQLiteServer
 		try {
 			_serverSocket = new ServerSocket(_port);
 		} catch (IOException e) {
-			throw new DBException(ErrorCode.IOError, e);
+			throw new DBException(DBErrorCode.IOError, e);
 		}
 		
 		_continueListeningPort = true;
@@ -83,7 +83,7 @@ public class SQLiteServer
 				}
 			}
 			catch (InterruptedException e) {
-				throw new DBException(ErrorCode.ThreadInterruption, e);
+				throw new DBException(DBErrorCode.ThreadInterruption, e);
 			}
 			finally
 			{
@@ -93,7 +93,7 @@ public class SQLiteServer
 		}
 		catch(IOException e)
 		{
-			throw new DBException(ErrorCode.IOError, e); 
+			throw new DBException(DBErrorCode.IOError, e); 
 		}
 	}
 	

@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.util.log.Logger;
 
 /**
@@ -48,7 +48,7 @@ public class NaiveConnectionPool implements ConnectionPool {
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			throw new DBException(ErrorCode.UnknownJDBCDriver, e);
+			throw new DBException(DBErrorCode.UnknownJDBCDriver, e);
 		}
 		
 		try
@@ -59,7 +59,7 @@ public class NaiveConnectionPool implements ConnectionPool {
 		}
 		catch(SQLException e)
 		{
-			throw new DBException(ErrorCode.JDBCConnectionError, e);
+			throw new DBException(DBErrorCode.JDBCConnectionError, e);
 		}
 	}
 

@@ -17,17 +17,16 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.db.sql.sqlite.SQLiteDataTypeInfo;
-import org.xerial.json.InvalidJSONDataException;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.Functor;
 import org.xerial.util.Predicate;
-import org.xerial.util.bean.InvalidBeanException;
+import org.xerial.util.bean.BeanException;
 import org.xerial.util.graph.AdjacencyList;
 import org.xerial.util.graph.DFSVisitor;
 import org.xerial.util.graph.Edge;
@@ -177,36 +176,33 @@ public class DataModel
 			edgeList.add(new EdgeData(_graph.getEdgeID(edge), edge.getSourceNodeID(), edge.getDestNodeID(), _graph.getEdgeInfo(edge)));
 		}
 		
-		try {		
-			for(NodeData node : nodeList)
-				query.insert(node, "node");
-			for(EdgeData edge : edgeList)
-				query.insert(edge, "edge");
-		}
-		catch (InvalidBeanException e) {
-			throw new DBException(ErrorCode.InvalidBeanClass, e);
-		}
+        try
+        {
+            for(NodeData node : nodeList)
+                query.insert(node, "node");
+            for(EdgeData edge : edgeList)
+                query.insert(edge, "edge");
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
+
 	}
 
 	public void load(SQLiteAccess query) throws DBException {
 		
-		try {
-			TreeSet<NodeData> nodeList = CollectionUtil.sort(query.amoebaQuery(NodeData.class, "node"));
-			TreeSet<EdgeData> edgeList = CollectionUtil.sort(query.amoebaQuery(EdgeData.class, "edge"));
-			
-			for(NodeData node : nodeList)
-			{
-				_graph.setNode(node.getId(), node.getName());
-			}
-			for(EdgeData edge : edgeList)
-			{
-				_graph.setEdge(edge.getId(), edge.getSrc(), edge.getDest(), EdgeData.translate(edge.getRelationship()));
-			}
-			
-			
-		} catch (InvalidBeanException e) {
-			throw new DBException(ErrorCode.InvalidBeanClass, e);
-		}
+		TreeSet<NodeData> nodeList = CollectionUtil.sort(query.amoebaQuery(NodeData.class, "node"));
+        TreeSet<EdgeData> edgeList = CollectionUtil.sort(query.amoebaQuery(EdgeData.class, "edge"));
+        
+        for(NodeData node : nodeList)
+        {
+        	_graph.setNode(node.getId(), node.getName());
+        }
+        for(EdgeData edge : edgeList)
+        {
+        	_graph.setEdge(edge.getId(), edge.getSrc(), edge.getDest(), EdgeData.translate(edge.getRelationship()));
+        }
 		
 	}
 	
@@ -236,16 +232,10 @@ public class DataModel
 		//HashMap<String, HashMap<String, String>> 
 		for(String infoTable : infoTableList)
 		{
-			// retrieve datamodel info
-			try {
-				for(DataModelInfo info : query.amoebaQuery(DataModelInfo.class, infoTable))
-				{
-					
-				}
-			} 
-			catch (InvalidBeanException e) {
-				_logger.error(e);
-			}
+			for(DataModelInfo info : query.amoebaQuery(DataModelInfo.class, infoTable))
+            {
+            	
+            }
 		}
 		
 

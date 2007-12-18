@@ -24,17 +24,23 @@
 //--------------------------------------
 package org.xerial.db;
 
+import org.xerial.core.ErrorCode;
+
 /**
  * Error codes used to report {@link DBException} type
  * @author leo
  *
  */
-public enum ErrorCode
+public enum DBErrorCode implements ErrorCode
 {
     InvalidDataFormat,
     InvalidPageHeader,
     InvalidBeanClass,
     InvalidInput,
+    
+    // parser
+    InvalidToken,
+    
     
     
     TableIsNotFound,
@@ -56,6 +62,26 @@ public enum ErrorCode
     
     InvalidSQLExpression,
     
-    InvalidFile,
+    InvalidFile;
+
+    private final String description;
+    private DBErrorCode()
+    {
+        this.description = "";
+    }
+    private DBErrorCode(String description)
+    {
+        this.description = description;
+    }
+    
+    public String getCodeName()
+    {
+        return this.name();
+    }
+
+    public String getDescription()
+    {
+        return null;
+    }
     
 }

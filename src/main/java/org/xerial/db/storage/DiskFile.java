@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.xerial.db.DBException;
-import org.xerial.db.ErrorCode;
+import org.xerial.db.DBErrorCode;
 
 /**
  * The {@link DiskFile} wraps read/write accesses to files
@@ -57,7 +57,7 @@ public class DiskFile implements DBFile {
 		try {
 			file.readFully(buffer, offset, byteSize);
 		} catch (IOException e) {
-			throw new DBException(ErrorCode.IOError, e);
+			throw new DBException(DBErrorCode.IOError, e);
 		}
 	}
 
@@ -65,7 +65,7 @@ public class DiskFile implements DBFile {
 		try {
 			file.seek(filePos);
 		} catch (IOException e) {
-			throw new DBException(ErrorCode.IOError, e);
+			throw new DBException(DBErrorCode.IOError, e);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class DiskFile implements DBFile {
 		try {
 			file.write(buffer, offset, byteSize);
 		} catch (IOException e) {
-			throw new DBException(ErrorCode.IOError, e);
+			throw new DBException(DBErrorCode.IOError, e);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class DiskFile implements DBFile {
 		try {
 			file.close();
 		} catch (IOException e) {
-			throw new DBException(ErrorCode.IOError, e);
+			throw new DBException(DBErrorCode.IOError, e);
 		}
 	}
 

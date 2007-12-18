@@ -27,7 +27,8 @@ package org.xerial.amoeba.query;
 import java.util.ArrayList;
 
 import org.antlr.runtime.tree.Tree;
-import org.xerial.core.XerialException;
+import org.xerial.db.DBErrorCode;
+import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 
 /**
@@ -41,10 +42,10 @@ public class ObjectDefinition
     private ArrayList<String> sortTargetList = new ArrayList<String>();
     private Relation relation = new Relation();
     
-    public ObjectDefinition(Tree t) throws XerialException
+    public ObjectDefinition(Tree t) throws DBException
     {
         if(t.getType() != AmoebaQueryParser.OBJECT_DEF)
-            throw new XerialException("invalid token type: " + AmoebaQueryParser.tokenNames[t.getType()]);
+            throw new DBException(DBErrorCode.InvalidToken, "invalid token type: " + AmoebaQueryParser.tokenNames[t.getType()]);
         parse(t);
     }
     
