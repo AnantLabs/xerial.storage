@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.xerial.core.XerialErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
