@@ -255,6 +255,11 @@ public class SQLiteAccess
 	{
 		_dbAccess.update(sql);
 	}
+	
+	public void update(String sql, boolean autoCommit) throws DBException
+	{
+	    _dbAccess.update(sql, autoCommit);
+	}
 
 	public boolean hasTable(String tableName) throws DBException {
 		return getCatalog().getTableNameSet().contains(tableName);
