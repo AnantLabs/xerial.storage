@@ -164,11 +164,16 @@ public class DatabaseAccess {
 
     public int update(String sql) throws DBException
     {
-    	Connection connection = null;
+        return update(sql, true);
+    }
+    
+    public int update(String sql, boolean autoCommit) throws DBException
+    {
+        Connection connection = null;
         try
         {
-        	connection = _connectionPool.getConnection();
-        	connection.setAutoCommit(true);
+            connection = _connectionPool.getConnection();
+            connection.setAutoCommit(autoCommit);
             Statement statement = createStatement(connection);
             
             _logger.debug(sql);
@@ -181,16 +186,22 @@ public class DatabaseAccess {
         }
         finally
         {
-        	if(connection != null)
-        	{
-        		_connectionPool.returnConnection(connection);
-        	}
+            if(connection != null)
+            {
+                _connectionPool.returnConnection(connection);
+            }
         }
+    
+        
     }
+
 
 	public ConnectionPool getConnectionPool() {
 		return _connectionPool;
 	}
+
+
+
 
 
 }
