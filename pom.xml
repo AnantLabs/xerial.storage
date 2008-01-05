@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xerial</groupId>
 	<artifactId>xerial-storage</artifactId>
-	<version>0.4</version>
+	<version>0.4.1-SNAPSHOT</version>
 	<name>Xerial Storage</name>
 	<description>
 		Xerial Storage: B-Trees, Column-Compressed Storage
@@ -122,7 +122,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>xerial-core</artifactId>
-			<version>0.6.0</version>
+			<version>0.6.1-SNAPSHOT</version>
 		</dependency>  
  
 		<dependency>
