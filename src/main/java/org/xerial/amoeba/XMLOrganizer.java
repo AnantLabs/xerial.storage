@@ -62,7 +62,7 @@ import org.xerial.util.xml.XMLGenerator;
  * A program for converting SQLite database into XML
  * 
  * @author leo
- *
+ * 
  */
 public class XMLOrganizer
 {
@@ -116,19 +116,19 @@ public class XMLOrganizer
             }
 
             String dbFileName = option.getArgument(0);
-            
-            if(option.isSet(Opt.OUTPUT_FILE))
+
+            if (option.isSet(Opt.OUTPUT_FILE))
             {
                 String outputFileName = option.getValue(Opt.OUTPUT_FILE);
                 File outputFile = new File(outputFileName);
                 File parentDirOfOutputFile = outputFile.getParentFile();
-                if(parentDirOfOutputFile != null)
+                if (parentDirOfOutputFile != null)
                 {
                     parentDirOfOutputFile.mkdirs();
                 }
                 organizer.output = new BufferedWriter(new FileWriter(outputFile));
             }
-            
+
             organizer.load(dbFileName);
         }
         catch (XerialException e)
@@ -173,8 +173,8 @@ public class XMLOrganizer
     {
         for (String table : sqliteDB.getTableList())
         {
-            List<Integer> count = sqliteDB.query(SQLExpression.fillTemplate("select count(*) as count from $1", table),
-                    "count", Integer.class);
+            List<Integer> count = sqliteDB.singleColumnQuery(SQLExpression.fillTemplate(
+                    "select count(*) as count from $1", table), "count", Integer.class);
             if (count.size() <= 0)
                 continue;
             int rowCount = count.get(0);
@@ -231,7 +231,7 @@ public class XMLOrganizer
 
         public int groupCountQuery(String tableName, String column, List<String> conditionList) throws DBException
         {
-            List<Integer> count = sqliteDB.query(SQLExpression.fillTemplate(
+            List<Integer> count = sqliteDB.singleColumnQuery(SQLExpression.fillTemplate(
                     "select count(*) as count from (select * from $1 $2 group by $3)", tableName,
                     generateWhereClause(conditionList), column), "count", Integer.class);
             if (count.size() <= 0)
@@ -241,8 +241,9 @@ public class XMLOrganizer
 
         public int countQuery(String tableName, List<String> conditionList) throws DBException
         {
-            List<Integer> count = sqliteDB.query(SQLExpression.fillTemplate("select count(*) as count from $1 $2",
-                    tableName, generateWhereClause(conditionList)), "count", Integer.class);
+            List<Integer> count = sqliteDB.singleColumnQuery(SQLExpression.fillTemplate(
+                    "select count(*) as count from $1 $2", tableName, generateWhereClause(conditionList)), "count",
+                    Integer.class);
             return (count.size() <= 0) ? 0 : count.get(0);
         }
 
@@ -328,7 +329,6 @@ public class XMLOrganizer
                 String selectColumn = StringUtil.join(selectColumnList, ", ");
                 String condition = generateWhereClause(conditionList);
 
-                
                 final int limit = 100;
                 int readRowCount = 0;
                 while (readRowCount < rowCount)
@@ -365,7 +365,7 @@ public class XMLOrganizer
                 // further aggregation is possible
                 DataType targetColumnOfAggregation = minCount.dataType;
 
-                List distinctValueList = sqliteDB.query(SQLExpression.fillTemplate(
+                List distinctValueList = sqliteDB.singleColumnQuery(SQLExpression.fillTemplate(
                         "select distinct $1 from $2 $3 order by $1", targetColumnOfAggregation.getName(), tableName,
                         generateWhereClause(conditionList)), targetColumnOfAggregation.getName(), String.class);
 
