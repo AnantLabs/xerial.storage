@@ -38,7 +38,7 @@ import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
-import org.xerial.db.sql.DatabaseAccess;
+import org.xerial.db.sql.DatabaseAccessBase;
 import org.xerial.db.sql.sqlite.SQLite;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.log.Logger;
@@ -46,7 +46,7 @@ import org.xerial.util.log.Logger;
 
 public class DataModelTest {
 
-	private static DatabaseAccess _dbAccess;
+	private static DatabaseAccessBase _dbAccess;
 	private static SQLiteAccess _query;
 	
 	private static Logger _logger = Logger.getLogger(DataModelTest.class); 
@@ -56,7 +56,7 @@ public class DataModelTest {
 	public static void openDatabase() throws DBException
 	{
 		ConnectionPool connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
-		_dbAccess = new DatabaseAccess(connectionPool);
+		_dbAccess = new DatabaseAccessBase(connectionPool);
 		_query = new SQLiteAccess(_dbAccess);
 	}
 	

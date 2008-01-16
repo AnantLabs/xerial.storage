@@ -30,7 +30,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbutils.BeanProcessor;
 
-public class BeanReader<Bean> implements ResultSetHandler<Bean> 
+public class BeanReader<Bean> extends ResultSetHandler<Bean> 
 {
 	BeanProcessor beanProcessor = new BeanProcessor();
 	Class beanClass;

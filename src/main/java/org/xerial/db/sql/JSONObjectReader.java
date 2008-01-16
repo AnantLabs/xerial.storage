@@ -31,7 +31,7 @@ import java.sql.SQLException;
 import org.xerial.json.JSONObject;
 import org.xerial.json.JSONString;
 
-public class JSONObjectReader implements ResultSetHandler<JSONObject> {
+public class JSONObjectReader extends ResultSetHandler<JSONObject> {
 
 	boolean _isInitialized = false;
 

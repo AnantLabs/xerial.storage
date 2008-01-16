@@ -33,9 +33,18 @@ import java.sql.SQLException;
  * @author leo
  *
  */
-public interface ResultSetHandler<T>
+public abstract class ResultSetHandler<T>
 {
-	public T handle(ResultSet rs) throws SQLException;
+	public void init()
+	{
+		// do nothing in default 
+	}
+	public abstract T handle(ResultSet rs) throws SQLException;
+	
+	public void finish()
+	{
+		// do nothing in default
+	}
 }
 
 
