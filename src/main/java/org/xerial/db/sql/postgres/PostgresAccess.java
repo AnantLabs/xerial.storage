@@ -31,7 +31,7 @@ import org.xerial.db.sql.DatabaseAccessBase;
 
 public class PostgresAccess extends DatabaseAccessBase
 {
-    public static final String DRIVER_NAME = "org.postgresql.driver";
+    public static final String DRIVER_NAME = "org.postgresql.Driver";
     public static final String ADDRESS_PREFIX = "jdbc:postgresql://";
 
     public PostgresAccess(ConnectionPool connectionPool) throws DBException
@@ -39,15 +39,15 @@ public class PostgresAccess extends DatabaseAccessBase
         super(connectionPool);
     }
 
-    public PostgresAccess(String databaseName, int port, String user, String path) throws DBException
+    public PostgresAccess(String host, String databaseName, int port, String user, String path) throws DBException
     {
-        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + databaseName + ":" + port + "/", user, path));
+        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + host + ":" + port + "/" + databaseName, user, path));
     }
 
-    public PostgresAccess(String databaseName, int port, String user, String path, int numConnections)
+    public PostgresAccess(String host, String databaseName, int port, String user, String path, int numConnections)
             throws DBException
     {
-        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + databaseName + ":" + port + "/", user, path,
+        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + host + ":" + port + "/" + databaseName, user, path,
                 numConnections));
     }
 
