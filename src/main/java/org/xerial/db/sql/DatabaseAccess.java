@@ -14,131 +14,47 @@
  *  limitations under the License.
  *--------------------------------------------------------------------------*/
 //--------------------------------------
-// ModernSCMD Project
+// XerialJ
 //
-// SQLUtil.java
-// Since: 2007/02/25
+// RDBAccess.java
+// Since: Jan 15, 2008 7:13:07 PM
 //
-// $URL$ 
+// $URL$
 // $Author$
 //--------------------------------------
 package org.xerial.db.sql;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.xerial.db.DBException;
-import org.xerial.db.DBErrorCode;
-import org.xerial.util.log.Logger;
 
-
-public class DatabaseAccess {
-
-	private ConnectionPool _connectionPool;
-	private static Logger _logger = Logger.getLogger(DatabaseAccess.class);
-	
-	private int queryTimeout = 60; 
-	
-	
-	public DatabaseAccess(ConnectionPool connectionPool) throws DBException
-	{
-		_connectionPool = connectionPool;
-        
-        // validate connection
-		Connection con = _connectionPool.getConnection();
-		_connectionPool.returnConnection(con);
-	}
-	
-	
-
-	public void dispose() throws DBException
-	{	
-		_connectionPool.closeAll();
-	}
-
-	protected Statement createStatement(Connection connection) throws SQLException
-	{
-	    Statement statement = connection.createStatement();
-	    statement.setQueryTimeout(queryTimeout);
-	    return statement;
-	}
+/**
+ * An interface to access relational databases
+ * 
+ * @author leo
+ *
+ */
+public interface DatabaseAccess {
 	
     /**
-     * perforam a given SQL query, then output its results 
-     * @param <T> row type	: Bean class type
-     * @param sql sql statement
-     * @param resultRowType it must be equal to the T
-     * @param result
+     * perform the given SQL query, then output its results 
+     * @param sql An SQL statement
+     * @param <T> row type	: Bean class type to which the result will be transformed
+     * @param resultRowType Bean class type to which the result will be transformed
+     * @param result the list of the result beans
      * @throws DBException
      */
-    @SuppressWarnings("unchecked")
-	public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException
-    {
-    	return query(sql, new BeanReader(resultRowType));
-    }
-
-    public <T> void pullQueryResult(String sql, ResultSetHandler<T> pullHandler) throws DBException
-    {
-    	Connection connection = null;
-        try
-        {
-        	connection = _connectionPool.getConnection();
-            Statement statement = createStatement(connection);
-            _logger.debug(sql);
-            
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next())
-            {
-            	pullHandler.handle(rs);
-            }
-        }
-        catch(SQLException e)
-        {
-            throw new DBException(DBErrorCode.QueryError, e);
-        }
-        finally
-        {
-        	if(connection != null)
-        		_connectionPool.returnConnection(connection);
-        }
-    }
-    
-    public <T> List<T> query(String sql, ResultSetHandler<T> handler) throws DBException
-    {
-    	Connection connection = null;
-    	ArrayList<T> result = new ArrayList<T>();
-        try
-        {
-        	connection = _connectionPool.getConnection();
-            Statement statement = createStatement(connection);
-            _logger.debug(sql);
-            
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next())
-            {
-            	T row = handler.handle(rs);
-            	if(row != null)
-            		result.add(row);
-            	else
-            		_logger.warn("null handler result is returned");
-            }
-        }
-        catch(SQLException e)
-        {
-            throw new DBException(DBErrorCode.QueryError, e);
-        }
-        finally
-        {
-        	if(connection != null)
-        		_connectionPool.returnConnection(connection);
-        }
-        return result;
-    }
-
+	public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException;
+	
+	/**
+	 * Performs an SQL query, while consuming the results with the given handler
+	 * @param <T> 
+	 * @param sql the SQL query expression
+	 * @param resultSetHandler the result set handler that consumes the result set of the query.
+	 * @throws DBException
+	 */
+	public <T> void query(String sql, ResultSetHandler<T> resultSetHandler) throws DBException;
+	
     /**
      * Accumulate the query result within the ResultSetHandler, then return the result from the handler
      * @param <T>
@@ -147,77 +63,38 @@ public class DatabaseAccess {
      * @return
      * @throws DBException
      */
-    public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException 
-    {
-        Connection connection = null;
-        T result = null;
-        try
-        {
-            connection = _connectionPool.getConnection();
-            Statement statement = createStatement(connection);
-            _logger.debug(sql);
-            
-            ResultSet rs = statement.executeQuery(sql);
-            
-            while(rs.next())
-            {
-                result = handler.handle(rs);
-            }
-        }
-        catch(SQLException e)
-        {
-            throw new DBException(DBErrorCode.QueryError, e);
-        }
-        finally
-        {
-            if(connection != null)
-                _connectionPool.returnConnection(connection);
-        }
-        return result;
-    }
+    public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException; 
+
+    /**
+     * Performs the update query
+     * @param sql the update SQL query
+     * @return the number of rows updated
+     * @throws DBException 
+     */
+    public int update(String sql) throws DBException;
+    /**
+     * Performs the update query
+     * @param sql the update SQL query
+     * @param autoCommit   true when enable auto commit arounc this update query, false otherwise 
+     * @return the number of rows updated
+     * @throws DBException
+     */
+    public int update(String sql, boolean autoCommit) throws DBException;
     
-
-    public int update(String sql) throws DBException
-    {
-        return update(sql, true);
-    }
+    /**
+     * Sets the time of the query until it will be terminated in seconds 
+     * @param sec timeout (sec.)
+     */
+    public void setQueryTimeout(int sec);
     
-    public int update(String sql, boolean autoCommit) throws DBException
-    {
-        Connection connection = null;
-        try
-        {
-            connection = _connectionPool.getConnection();
-            connection.setAutoCommit(autoCommit);
-            Statement statement = createStatement(connection);
-            
-            _logger.debug(sql);
-            int ret = statement.executeUpdate(sql);
-            return ret;
-        }
-        catch(SQLException e)
-        {
-            throw new DBException(DBErrorCode.UpdateError, e);
-        }
-        finally
-        {
-            if(connection != null)
-            {
-                _connectionPool.returnConnection(connection);
-            }
-        }
+    /**
+     * Enable auto commit mode for all subsequent queries.
+     */
+    public void enableAutoCommit();
     
-        
-    }
-
-
-	public ConnectionPool getConnectionPool() {
-		return _connectionPool;
-	}
-
-
-
-
-
+    /**
+     * Disable auto commit mode for all subsequent queries. 
+     */
+    public void disableAutoCommit();
+	
 }
-

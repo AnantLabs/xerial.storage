@@ -39,7 +39,7 @@ import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.ColumnReader;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
-import org.xerial.db.sql.DatabaseAccess;
+import org.xerial.db.sql.DatabaseAccessBase;
 import org.xerial.db.sql.JSONObjectReader;
 import org.xerial.db.sql.JSONValueReader;
 import org.xerial.db.sql.NaiveConnectionPool;
@@ -68,17 +68,17 @@ public class SQLiteAccess
         SQLite.initialize();
     }
     
-	private DatabaseAccess _dbAccess;
+	private DatabaseAccessBase _dbAccess;
 	private SQLiteCatalog _catalog = null;
 	private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
 	
 	public SQLiteAccess(String filePath) throws DBException
 	{
-		this._dbAccess = new DatabaseAccess(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
+		this._dbAccess = new DatabaseAccessBase(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
 	}
 	
 	
-	public SQLiteAccess(DatabaseAccess dbAccess) throws DBException
+	public SQLiteAccess(DatabaseAccessBase dbAccess) throws DBException
 	{
 		this._dbAccess = dbAccess;
 	}
@@ -232,12 +232,12 @@ public class SQLiteAccess
 	
 	public <T> List<T> query(String sql, String targetColumn, Class<T> resultRowType) throws DBException
 	{
-		return _dbAccess.query(sql, new ColumnReader<T>(targetColumn));
+		return _dbAccess.queryWithHandler(sql, new ColumnReader<T>(targetColumn));
 	}
 	
 	public <T> List<T> query(String sql, ResultSetHandler<T> handler) throws DBException
 	{
-	    return _dbAccess.query(sql, handler);
+	    return _dbAccess.queryWithHandler(sql, handler);
 	}
 	
 	public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException 
@@ -247,12 +247,12 @@ public class SQLiteAccess
 	
 	public void pullQuery(String sql, Writer out) throws DBException
 	{
-		_dbAccess.pullQueryResult(sql, new ResultPullReader(out));
+		_dbAccess.query(sql, new ResultPullReader(out));
 	}
 	
 	public List<JSONValue> selectColumnData(String sql, String targetColumn) throws DBException
 	{
-		return _dbAccess.query(sql, new JSONValueReader(targetColumn));
+		return _dbAccess.queryWithHandler(sql, new JSONValueReader(targetColumn));
 	}
 	
 	
@@ -263,7 +263,7 @@ public class SQLiteAccess
 	 */
 	public List<JSONObject> jsonQuery(String sql) throws DBException
 	{
-		return _dbAccess.query(sql, new JSONObjectReader());
+		return _dbAccess.queryWithHandler(sql, new JSONObjectReader());
 	}
 	
 	public void update(String sql) throws DBException

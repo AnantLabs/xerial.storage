@@ -31,7 +31,7 @@ import java.sql.SQLException;
 
 import org.xerial.json.JSONObject;
 
-public class ResultPullReader implements ResultSetHandler<Object>
+public class ResultPullReader extends ResultSetHandler<Object>
 {
 	private Writer _out;
 	JSONObjectReader _jsonReader = new JSONObjectReader();

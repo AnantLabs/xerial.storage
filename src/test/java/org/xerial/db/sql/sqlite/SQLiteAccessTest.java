@@ -40,7 +40,7 @@ import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
-import org.xerial.db.sql.DatabaseAccess;
+import org.xerial.db.sql.DatabaseAccessBase;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.sqlite.SQLite;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
@@ -52,7 +52,7 @@ import org.xerial.util.log.Logger;
 
 public class SQLiteAccessTest {
 
-	static private DatabaseAccess _dbAccess; 
+	static private DatabaseAccessBase _dbAccess; 
 	static private ConnectionPool _connectionPool;
 	
 	static Logger _logger  = Logger.getLogger(SQLiteAccessTest.class);
@@ -75,7 +75,7 @@ public class SQLiteAccessTest {
 	public void setUp() throws Exception {
 	    
         _connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
-        _dbAccess = new DatabaseAccess(_connectionPool);
+        _dbAccess = new DatabaseAccessBase(_connectionPool);
 
 		query = new SQLiteAccess(_dbAccess);
 		query.createTable("person", RelationBuilder.createRelation(Person.class));
@@ -135,7 +135,7 @@ public class SQLiteAccessTest {
 	{
 		ConnectionPool connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
 		
-		DatabaseAccess dbAccess = new DatabaseAccess(connectionPool);
+		DatabaseAccessBase dbAccess = new DatabaseAccessBase(connectionPool);
 		SQLiteAccess query = new SQLiteAccess(dbAccess);
 		
 		query.createTable("person", RelationBuilder.createRelation(Person.class));

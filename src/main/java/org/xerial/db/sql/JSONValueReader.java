@@ -31,7 +31,7 @@ import org.xerial.json.JSONException;
 import org.xerial.json.JSONUtil;
 import org.xerial.json.JSONValue;
 
-public class JSONValueReader implements ResultSetHandler<JSONValue> {
+public class JSONValueReader extends ResultSetHandler<JSONValue> {
 
 	String targetColumn;
 	

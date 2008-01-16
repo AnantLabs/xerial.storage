@@ -36,7 +36,7 @@ import org.xerial.db.DBException;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
-import org.xerial.db.sql.DatabaseAccess;
+import org.xerial.db.sql.DatabaseAccessBase;
 import org.xerial.util.cui.OptionParser;
 import org.xerial.util.cui.OptionParserException;
 import org.xerial.util.log.LogLevel;
@@ -69,7 +69,7 @@ public class SQLiteServer
 	public SQLiteServer(String databasePath) throws DBException
 	{
 		_connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(databasePath));
-		_query = new SQLiteAccess(new DatabaseAccess(_connectionPool));
+		_query = new SQLiteAccess(new DatabaseAccessBase(_connectionPool));
 	}
 	
 	public void dispose() throws DBException

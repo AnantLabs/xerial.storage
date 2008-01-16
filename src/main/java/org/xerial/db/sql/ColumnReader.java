@@ -32,7 +32,7 @@ import java.sql.SQLException;
  * @author leo
  *
  */
-public class ColumnReader<T> implements ResultSetHandler<T> 
+public class ColumnReader<T> extends ResultSetHandler<T> 
 {
 	private String columnName;
 

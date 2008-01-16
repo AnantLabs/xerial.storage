@@ -263,7 +263,7 @@ public class XMLOrganizer
 
         }
 
-        class DistinctCountList implements ResultSetHandler<ArrayList<Integer>>
+        class DistinctCountList extends ResultSetHandler<ArrayList<Integer>>
         {
             ArrayList<Integer> countList = new ArrayList<Integer>();
 
