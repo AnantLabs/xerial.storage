@@ -314,9 +314,10 @@ public class DatabaseAccessBase implements DatabaseAccess
         {
             connection = getConnection(true);
             DatabaseMetaData metadata = connection.getMetaData();
-            for (ResultSet resultSet = metadata.getTables(null, null, "%", null); resultSet.next();)
+            for (ResultSet resultSet = metadata.getTables(null, null, "%", new String[] { "TABLE", "VIEW" }); resultSet
+                    .next();)
             {
-                tableNameList.add(resultSet.getString("TABLE_NAME"));
+                tableNameList.add(resultSet.getString("TABLE_NAME").toLowerCase());
             }
         }
         catch (SQLException e)

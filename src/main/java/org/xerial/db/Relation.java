@@ -41,132 +41,127 @@ import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 
-
 /**
- * A Relation holds one or more DataTypes and denotes their relationships.
- * For example, in relational databases, a table has a structure, e.g. 
- * (pid:integer, name:string, address:string)
+ * A Relation holds one or more DataTypes and denotes their relationships. For
+ * example, in relational databases, a table has a structure, e.g. (pid:integer,
+ * name:string, address:string)
  * 
- * You can construct this structure as follows:
- * <code>
+ * You can construct this structure as follows: <code>
  * Relation r = new Relation();
  * r.add("pid", new IntegerType());
  * r.add("name", new StringType());
  * r.add("address", new StringType());
  * </code>
  * 
- * JSON format example. 
- * <code>
+ * JSON format example. <code>
  * {"relation":[["id", "integer"], ["name", "string"], ...]}
  * </code>
  * 
  * 
  * @author leo
- *
+ * 
  */
-public class Relation 
+public class Relation
 {
     private ArrayList<DataType> dataTypeList = new ArrayList<DataType>();
-    
-    public Relation() {}
-    public Relation(String jsonStr) throws JSONException 
-    {
-    	JSONObject json = new JSONObject(jsonStr);
-    	parse(json);
-    }
-    
-    public Relation(JSONObject jsonObj) throws JSONException 
-    {
-    	parse(jsonObj);
-    }
-    
-    private void parse(JSONObject jsonObj) throws JSONException 
-    {
-    	if(jsonObj == null)
-    		throw new JSONException(JSONErrorCode.InvalidJSONData, "null json object");
 
-    	if(!jsonObj.hasKey("relation"))
-    		throw new JSONException(JSONErrorCode.InvalidJSONData, "no relation key found");
-    	JSONArray relationList = jsonObj.getJSONArray("relation");
-    	if(relationList == null)
-    		return;
-    	for(int i=0; i<relationList.size(); i++)
-    	{
-    		JSONArray dataTypePair = relationList.getJSONArray(i);
-    		if(dataTypePair == null || dataTypePair.size() != 2)
-    			throw new JSONException(JSONErrorCode.InvalidJSONData, "data type must be json array with two elements: " + relationList.toString());
-    		
-    		String parameterName = dataTypePair.getString(0);
-    		String typeName = dataTypePair.getString(1);
+    public Relation()
+    {}
 
-    		add(getDataType(parameterName, typeName));
-    	}
-    }
-    
-    public static DataType getDataType(String parameterName, String typeName) 
+    public Relation(String jsonStr) throws JSONException
     {
-		if(typeName.equals("boolean"))
-			return new BooleanType(parameterName);
-        else if(typeName.equals("integer"))
+        JSONObject json = new JSONObject(jsonStr);
+        parse(json);
+    }
+
+    public Relation(JSONObject jsonObj) throws JSONException
+    {
+        parse(jsonObj);
+    }
+
+    private void parse(JSONObject jsonObj) throws JSONException
+    {
+        if (jsonObj == null)
+            throw new JSONException(JSONErrorCode.InvalidJSONData, "null json object");
+
+        if (!jsonObj.hasKey("relation"))
+            throw new JSONException(JSONErrorCode.InvalidJSONData, "no relation key found");
+        JSONArray relationList = jsonObj.getJSONArray("relation");
+        if (relationList == null)
+            return;
+        for (int i = 0; i < relationList.size(); i++)
+        {
+            JSONArray dataTypePair = relationList.getJSONArray(i);
+            if (dataTypePair == null || dataTypePair.size() != 2)
+                throw new JSONException(JSONErrorCode.InvalidJSONData,
+                        "data type must be json array with two elements: " + relationList.toString());
+
+            String parameterName = dataTypePair.getString(0);
+            String typeName = dataTypePair.getString(1);
+
+            add(getDataType(parameterName, typeName));
+        }
+    }
+
+    public static DataType getDataType(String parameterName, String typeName)
+    {
+        if (typeName.equals("boolean"))
+            return new BooleanType(parameterName);
+        else if (typeName.startsWith("int") || typeName.equals("serial"))
             return new IntegerType(parameterName);
-		else if(typeName.equals("double"))
-			return new DoubleType(parameterName);
-        else if(typeName.equals("string"))
+        else if (typeName.equals("double"))
+            return new DoubleType(parameterName);
+        else if (typeName.equals("string"))
             return new StringType(parameterName);
-        else if(typeName.equals("long"))
+        else if (typeName.equals("long"))
             return new LongType(parameterName);
-		else if(typeName.equals("password"))
-			return new PasswordType(parameterName);
-		else if(typeName.equals("text"))
-			return new TextType(parameterName);
-		else
-			return new StringType("string");
+        else if (typeName.equals("password"))
+            return new PasswordType(parameterName);
+        else if (typeName.equals("text"))
+            return new TextType(parameterName);
+        else
+            return new StringType(parameterName);
     }
-    
-    
+
     public void add(DataType dataType)
     {
         dataTypeList.add(dataType);
     }
-    
+
     public DataType getDataType(int index)
     {
-    	return dataTypeList.get(index);
+        return dataTypeList.get(index);
     }
-    
+
     public int getDataTypeIndex(String parameterName)
     {
         int index = 0;
-        for(DataType dt : dataTypeList)
+        for (DataType dt : dataTypeList)
         {
-            if(dt.getName().equals(parameterName))
+            if (dt.getName().equals(parameterName))
                 return index;
             index++;
         }
         throw new IllegalArgumentException("unknown parameter: " + parameterName);
     }
-    
+
     public List<DataType> getDataTypeList()
     {
-    	return dataTypeList;
+        return dataTypeList;
     }
-    
+
     public String toString()
     {
-    	StringBuffer s = new StringBuffer();
-    	s.append("(");
-    	for(Iterator it = dataTypeList.iterator(); it.hasNext(); )
-    	{
-    		DataType dt = (DataType) it.next();
-    		s.append(dt.toString());
-    		s.append(" ");
-    	}
-    	s.append(")");
-    	return s.toString();
+        StringBuffer s = new StringBuffer();
+        s.append("(");
+        for (Iterator it = dataTypeList.iterator(); it.hasNext();)
+        {
+            DataType dt = (DataType) it.next();
+            s.append(dt.toString());
+            s.append(" ");
+        }
+        s.append(")");
+        return s.toString();
     }
-    
+
 }
-
-
-
-
