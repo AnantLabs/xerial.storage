@@ -24,35 +24,6 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static java.sql.Types.ARRAY;
-import static java.sql.Types.BIGINT;
-import static java.sql.Types.BINARY;
-import static java.sql.Types.BIT;
-import static java.sql.Types.BLOB;
-import static java.sql.Types.CHAR;
-import static java.sql.Types.CLOB;
-import static java.sql.Types.DATE;
-import static java.sql.Types.DECIMAL;
-import static java.sql.Types.DISTINCT;
-import static java.sql.Types.DOUBLE;
-import static java.sql.Types.FLOAT;
-import static java.sql.Types.INTEGER;
-import static java.sql.Types.JAVA_OBJECT;
-import static java.sql.Types.LONGVARBINARY;
-import static java.sql.Types.LONGVARCHAR;
-import static java.sql.Types.NULL;
-import static java.sql.Types.NUMERIC;
-import static java.sql.Types.OTHER;
-import static java.sql.Types.REAL;
-import static java.sql.Types.REF;
-import static java.sql.Types.SMALLINT;
-import static java.sql.Types.STRUCT;
-import static java.sql.Types.TIME;
-import static java.sql.Types.TIMESTAMP;
-import static java.sql.Types.TINYINT;
-import static java.sql.Types.VARBINARY;
-import static java.sql.Types.VARCHAR;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -65,10 +36,6 @@ import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.DoubleType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.LongType;
-import org.xerial.db.datatype.StringType;
 import org.xerial.util.log.Logger;
 
 /**
@@ -294,54 +261,30 @@ public class DatabaseAccessBase implements DatabaseAccess
             for (ResultSet resultSet = metadata.getColumns(null, null, tableName, null); resultSet.next();)
             {
                 String columnName = resultSet.getString("COLUMN_NAME");
-                int dataType = resultSet.getInt("DATA_TYPE");
-
-                DataType dt = null;
-                switch (dataType)
-                {
-                case CHAR:
-                case VARCHAR:
-                case VARBINARY:
-                case LONGVARBINARY:
-                case LONGVARCHAR:
-                case DATE:
-                case TIME:
-                case TIMESTAMP:
-                case OTHER:
-                    dt = new StringType(columnName);
-                    break;
-
-                case NUMERIC:
-                case DOUBLE:
-                case FLOAT:
-                    dt = new DoubleType(columnName);
-                    break;
-
-                case DECIMAL:
-                case TINYINT:
-                case SMALLINT:
-                case INTEGER:
-                    dt = new IntegerType(columnName);
-                    break;
-
-                case BIGINT:
-                    dt = new LongType(columnName);
-                    break;
-
-                case DISTINCT:
-                case JAVA_OBJECT:
-                case NULL:
-                case REAL:
-                case REF:
-                case STRUCT:
-                case ARRAY:
-                case BINARY:
-                case BIT:
-                case BLOB:
-                case CLOB:
-                default:
-                    _logger.warn("skipped. unsupported SQL data type: " + resultSet.getString("TYPE_NAME"));
-                }
+                String typeName = resultSet.getString("TYPE_NAME");
+                DataType dt = Relation.getDataType(columnName, typeName);
+                /*
+                 * <pre> int dataType = resultSet.getInt("DATA_TYPE");
+                 * 
+                 * DataType dt = null; switch (dataType) { case CHAR: case
+                 * VARCHAR: case VARBINARY: case LONGVARBINARY: case
+                 * LONGVARCHAR: case DATE: case TIME: case TIMESTAMP: case
+                 * OTHER: dt = new StringType(columnName); break;
+                 * 
+                 * case NUMERIC: case DOUBLE: case FLOAT: dt = new
+                 * DoubleType(columnName); break;
+                 * 
+                 * case DECIMAL: case TINYINT: case SMALLINT: case INTEGER: dt =
+                 * new IntegerType(columnName); break;
+                 * 
+                 * case BIGINT: dt = new LongType(columnName); break;
+                 * 
+                 * case DISTINCT: case JAVA_OBJECT: case NULL: case REAL: case
+                 * REF: case STRUCT: case ARRAY: case BINARY: case BIT: case
+                 * BLOB: case CLOB: default: _logger.warn("skipped. unsupported
+                 * SQL data type: " + resultSet.getString("TYPE_NAME")); }
+                 * </pre>
+                 */
 
                 if (dt != null)
                 {
@@ -359,7 +302,7 @@ public class DatabaseAccessBase implements DatabaseAccess
             if (connection != null)
                 _connectionPool.returnConnection(connection);
         }
-        return null;
+        return relation;
     }
 
     public List<String> getTableNameList() throws DBException

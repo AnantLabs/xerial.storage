@@ -24,7 +24,10 @@
 //--------------------------------------
 package org.xerial.db.sql.sqlite;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -35,6 +38,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
+import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.ConnectionPool;
@@ -130,6 +134,25 @@ public class SQLiteAccessTest
         query.insert(new Person(2, "yui"), "person");
 
         query.dispose();
+    }
+
+    @Test
+    public void relation() throws DBException
+    {
+        Relation r = query.getRelation("person");
+        assertNotNull(r);
+        assertEquals(2, r.getDataTypeList().size());
+
+        for (DataType dt : r.getDataTypeList())
+        {
+            if (dt.getName().equals("id"))
+                assertEquals("integer", dt.getTypeName());
+            else if (dt.getName().equals("name"))
+                assertEquals("string", dt.getTypeName());
+            else
+                fail("invalid data type" + dt.toString());
+        }
+
     }
 
 }
