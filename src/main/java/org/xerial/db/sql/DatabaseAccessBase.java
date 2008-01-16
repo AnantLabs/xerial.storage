@@ -263,7 +263,7 @@ public class DatabaseAccessBase implements DatabaseAccess
     {
         Connection conn = _connectionPool.getConnection();
         conn.setAutoCommit(autoCommit);
-        conn.setReadOnly(readOnly);
+        // conn.setReadOnly(readOnly);
         return conn;
     }
 

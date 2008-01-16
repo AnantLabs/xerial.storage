@@ -59,10 +59,9 @@ public class SQLiteAccess extends DatabaseAccessBase
 {
     static
     {
-        SQLite.initialize();
+        SQLiteJDBCLoader.initialize();
     }
 
-    private DatabaseAccessBase _dbAccess;
     private SQLiteCatalog _catalog = null;
     private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
 
@@ -92,8 +91,7 @@ public class SQLiteAccess extends DatabaseAccessBase
     public List<SQLiteDataTypeInfo> getSQLiteDataTypeInfo(String tableName) throws DBException
     {
         String sql = SQLExpression.fillTemplate("pragma table_info($1)", tableName);
-
-        return _dbAccess.query(sql, SQLiteDataTypeInfo.class);
+        return query(sql, SQLiteDataTypeInfo.class);
     }
 
     public Relation getRelationSchema(String tableName) throws DBException
@@ -122,7 +120,7 @@ public class SQLiteAccess extends DatabaseAccessBase
         String sql = SQLExpression.fillTemplate("insert into $1 values($2)", tableName, getCatalog()
                 .createValueTupleFromBean(tableName, bean));
 
-        _dbAccess.update(sql);
+        update(sql);
     }
 
     public void deleteByKeyValue(Object bean, String tableName) throws DBException, BeanException
@@ -142,7 +140,7 @@ public class SQLiteAccess extends DatabaseAccessBase
         String sql = SQLExpression.fillTemplate("delete from $1 $2", tableName,
                 (deleteTargetCondition.size() > 0) ? "where " + StringUtil.join(deleteTargetCondition, " and ") : "");
 
-        _dbAccess.update(sql);
+        update(sql);
 
     }
 
@@ -167,7 +165,7 @@ public class SQLiteAccess extends DatabaseAccessBase
 
         String sql = SQLExpression.fillTemplate("create table $1 ($2)", tableName, tableSchema);
 
-        _dbAccess.update(sql);
+        update(sql);
 
         getCatalog().reflesh();
 
@@ -176,7 +174,7 @@ public class SQLiteAccess extends DatabaseAccessBase
     public void dropTable(String tableName) throws DBException
     {
         String sql = SQLExpression.fillTemplate("drop table $1", tableName);
-        _dbAccess.update(sql);
+        update(sql);
 
         getCatalog().reflesh();
 
@@ -194,12 +192,12 @@ public class SQLiteAccess extends DatabaseAccessBase
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
         String sql = SQLExpression.fillTemplate("select $1 from $2", StringUtil.join(parameterList, ", "), tableName);
-        return _dbAccess.query(sql, beanClass);
+        return query(sql, beanClass);
     }
 
     public List<JSONValue> selectColumnData(String sql, String targetColumn) throws DBException
     {
-        return _dbAccess.queryWithHandler(sql, new JSONValueReader(targetColumn));
+        return queryWithHandler(sql, new JSONValueReader(targetColumn));
     }
 
     /**
@@ -209,7 +207,7 @@ public class SQLiteAccess extends DatabaseAccessBase
      */
     public List<JSONObject> jsonQuery(String sql) throws DBException
     {
-        return _dbAccess.queryWithHandler(sql, new JSONObjectReader());
+        return queryWithHandler(sql, new JSONObjectReader());
     }
 
     public boolean hasTable(String tableName) throws DBException
