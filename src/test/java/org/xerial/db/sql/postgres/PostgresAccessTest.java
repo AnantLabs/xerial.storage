@@ -24,6 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql.postgres;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
@@ -35,6 +36,7 @@ public class PostgresAccessTest
 {
     private static Logger _logger = Logger.getLogger(PostgresAccessTest.class);
 
+    @Ignore
     @Test
     public void testConnection() throws DBException
     {

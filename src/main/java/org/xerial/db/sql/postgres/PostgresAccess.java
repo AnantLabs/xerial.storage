@@ -39,6 +39,16 @@ public class PostgresAccess extends DatabaseAccessBase
         super(connectionPool);
     }
 
+    public PostgresAccess(String address, String user, String path) throws DBException
+    {
+        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + address, user, path));
+    }
+
+    public PostgresAccess(String address, String user, String path, int numConnections) throws DBException
+    {
+        super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + address, user, path, numConnections));
+    }
+
     public PostgresAccess(String host, String databaseName, int port, String user, String path) throws DBException
     {
         super(new ConnectionPoolImpl(DRIVER_NAME, ADDRESS_PREFIX + host + ":" + port + "/" + databaseName, user, path));
