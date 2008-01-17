@@ -29,6 +29,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.After;
@@ -41,6 +44,7 @@ import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
+import org.xerial.db.sql.BeanResultHandler;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.RelationBuilder;
@@ -124,7 +128,7 @@ public class SQLiteAccessTest
     }
 
     @Test
-    public void memoryDatabase() throws DBException, BeanException
+    public void memoryDatabase() throws DBException, BeanException, IOException
     {
         ConnectionPool connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
         SQLiteAccess query = new SQLiteAccess(connectionPool);
@@ -133,8 +137,23 @@ public class SQLiteAccessTest
         query.insert("person", new Person(1, "leo"));
         query.insert("person", new Person(2, "yui"));
         
+        query.query("select * from person", new BeanResultHandler<Person>(Person.class){
+			@Override
+			public void handle(Person p) throws SQLException {
+				if(p.getId() == 1)
+				{
+					assertEquals("leo", p.getName());
+				}
+				else if(p.getId() == 2)
+				{
+					assertEquals("yui", p.getName());
+				}
+			}});
         
-
+        StringWriter writer = new StringWriter();
+        query.toJSON("select * from person", Person.class, writer);
+        _logger.debug(writer.toString());
+        
         query.dispose();
     }
 
