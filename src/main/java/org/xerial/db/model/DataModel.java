@@ -32,7 +32,6 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 import org.xerial.db.DBException;
-import org.xerial.db.DBErrorCode;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.StringType;
@@ -41,7 +40,6 @@ import org.xerial.db.sql.sqlite.SQLiteDataTypeInfo;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.Functor;
 import org.xerial.util.Predicate;
-import org.xerial.util.bean.BeanException;
 import org.xerial.util.graph.AdjacencyList;
 import org.xerial.util.graph.DFSVisitor;
 import org.xerial.util.graph.Edge;
@@ -191,18 +189,11 @@ public class DataModel
 			edgeList.add(new EdgeData(_graph.getEdgeID(edge), edge.getSourceNodeID(), edge.getDestNodeID(), _graph.getEdgeInfo(edge)));
 		}
 		
-        try
-        {
-            for(NodeData node : nodeList)
-                query.insert(node, "node");
-            for(EdgeData edge : edgeList)
-                query.insert(edge, "edge");
-        }
-        catch (BeanException e)
-        {
-            throw new DBException(DBErrorCode.InvalidBeanClass, e);
-        }
-
+		for(NodeData node : nodeList)
+			query.insert("node", node);
+		for(EdgeData edge : edgeList)
+			query.insert("edge", edge);
+	
 	}
 
 	public void load(SQLiteAccess query) throws DBException {

@@ -114,15 +114,6 @@ public class SQLiteAccess extends DatabaseAccessBase
         return r;
     }
 
-    public void insert(Object bean, String tableName) throws DBException, BeanException
-    {
-
-        String sql = SQLExpression.fillTemplate("insert into $1 values($2)", tableName, getCatalog()
-                .createValueTupleFromBean(tableName, bean));
-
-        update(sql);
-    }
-
     public void deleteByKeyValue(Object bean, String tableName) throws DBException, BeanException
     {
 

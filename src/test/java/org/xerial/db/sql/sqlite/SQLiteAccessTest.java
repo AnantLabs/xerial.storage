@@ -108,7 +108,7 @@ public class SQLiteAccessTest
     @Test
     public void update() throws DBException, BeanException
     {
-        query.insert(new Person(3, "leopard"), "person");
+        query.insert("person", new Person(3, "leopard"));
         query.deleteByKeyValue(new Person(3), "person");
     }
 
@@ -130,8 +130,10 @@ public class SQLiteAccessTest
         SQLiteAccess query = new SQLiteAccess(connectionPool);
 
         query.createTable("person", RelationBuilder.createRelation(Person.class));
-        query.insert(new Person(1, "leo"), "person");
-        query.insert(new Person(2, "yui"), "person");
+        query.insert("person", new Person(1, "leo"));
+        query.insert("person", new Person(2, "yui"));
+        
+        
 
         query.dispose();
     }
