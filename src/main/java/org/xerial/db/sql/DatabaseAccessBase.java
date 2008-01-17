@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -376,6 +378,43 @@ public class DatabaseAccessBase implements DatabaseAccess {
 		}
 
 		return StringUtil.join(tupleValue, ",");
+	}
+
+	public <T> void toJSON(String sql, Class<T> beanClass, Writer writer)
+			throws DBException, IOException {
+
+		BeanProcessor beanProcessor = new BeanProcessor();
+		
+		writer.append("{");
+		writer.append(StringUtil.quote(beanClass.getSimpleName().toLowerCase(), StringUtil.DOUBLE_QUOTE));
+		writer.append(":[");
+		Connection connection = null;
+		try {
+			connection = getConnection(true);
+			Statement statement = createStatement(connection);
+			_logger.debug(sql);
+
+			int rowCount = 0;
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				Object bean = beanProcessor.toBean(rs, beanClass);
+				if(rowCount > 0)
+					writer.append(",");
+				try {
+					writer.append(BeanUtil.toJSON(bean));
+				} catch (BeanException e) {
+					e.printStackTrace();
+				}
+				rowCount++;
+			}
+		} catch (SQLException e) {
+			throw new DBException(DBErrorCode.QueryError, e);
+		} finally {
+			if (connection != null)
+				_connectionPool.returnConnection(connection);
+			writer.append("]}");
+		}
+		
 	}
 
 }

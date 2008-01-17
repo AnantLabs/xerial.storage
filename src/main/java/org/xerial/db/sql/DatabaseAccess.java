@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 import org.xerial.db.DBException;
@@ -86,7 +88,25 @@ public interface DatabaseAccess
     public <T> void query(String sql, ResultSetHandler<T> resultSetHandler) throws DBException;
 
     
+    /**
+     * Performs an SQL query, while consuming the results with the given handler
+     * 
+     * @param <T>
+     * @param sql
+     * @param beanResultHandler
+     * @throws DBException
+     */
     public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
+    
+    
+    /**
+     * @param <T>
+     * @param sql
+     * @param beanClass
+     * @param writer
+     * @throws DBException
+     */
+    public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException;
     
     /**
      * Retrieves only the single column from the SQL query result
