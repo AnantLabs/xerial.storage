@@ -33,19 +33,17 @@ import org.apache.commons.dbutils.BeanProcessor;
 public class BeanReader<Bean> extends ResultSetHandler<Bean> 
 {
 	BeanProcessor beanProcessor = new BeanProcessor();
-	Class beanClass;
+	Class<Bean> beanClass;
 	
-	public BeanReader(Bean beanClass)
+	public BeanReader(Class<Bean> beanClass)
 	{
-		this.beanClass = (Class) beanClass;
+		this.beanClass = beanClass;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Bean handle(ResultSet rs) throws SQLException {
-		return (Bean) beanProcessor.toBean(rs, beanClass);
+		return beanClass.cast(beanProcessor.toBean(rs, beanClass));
 	}
 
-	
 }
 
 

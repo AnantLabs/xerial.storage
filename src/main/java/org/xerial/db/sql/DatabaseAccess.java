@@ -85,6 +85,9 @@ public interface DatabaseAccess
      */
     public <T> void query(String sql, ResultSetHandler<T> resultSetHandler) throws DBException;
 
+    
+    public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
+    
     /**
      * Retrieves only the single column from the SQL query result
      * 
@@ -134,6 +137,17 @@ public interface DatabaseAccess
      */
     public int update(String sql, boolean autoCommit) throws DBException;
 
+    
+    /**
+     * Inserts a bean into a table
+     * @param <T>
+     * @param tableName 
+     * @param bean
+     * @return the number of rows updated (1 if succeeded)
+     * @throws DBException
+     */
+    public <T> int insert(String tableName, T bean) throws DBException;
+    
     /**
      * Sets the time of the query until it will be terminated in seconds
      * 
