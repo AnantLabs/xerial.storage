@@ -29,6 +29,12 @@ import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.DatabaseAccessBase;
 
+/**
+ * Database Access to PostgreSQL  
+ * 
+ * @author leo
+ *
+ */
 public class PostgresAccess extends DatabaseAccessBase
 {
     public static final String DRIVER_NAME = "org.postgresql.Driver";
