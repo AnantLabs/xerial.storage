@@ -87,7 +87,6 @@ public interface DatabaseAccess
      */
     public <T> void query(String sql, ResultSetHandler<T> resultSetHandler) throws DBException;
 
-    
     /**
      * Performs an SQL query, while consuming the results with the given handler
      * 
@@ -97,8 +96,7 @@ public interface DatabaseAccess
      * @throws DBException
      */
     public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
-    
-    
+
     /**
      * @param <T>
      * @param sql
@@ -107,7 +105,7 @@ public interface DatabaseAccess
      * @throws DBException
      */
     public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException;
-    
+
     /**
      * Retrieves only the single column from the SQL query result
      * 
@@ -157,17 +155,17 @@ public interface DatabaseAccess
      */
     public int update(String sql, boolean autoCommit) throws DBException;
 
-    
     /**
      * Inserts a bean into a table
+     * 
      * @param <T>
-     * @param tableName 
+     * @param tableName
      * @param bean
      * @return the number of rows updated (1 if succeeded)
      * @throws DBException
      */
     public <T> int insert(String tableName, T bean) throws DBException;
-    
+
     /**
      * Sets the time of the query until it will be terminated in seconds
      * 
@@ -177,14 +175,9 @@ public interface DatabaseAccess
     public void setQueryTimeout(int sec);
 
     /**
-     * Enable auto commit mode for all subsequent queries.
+     * Enable/disable auto commit mode for all subsequent queries.
      */
-    public void enableAutoCommit();
-
-    /**
-     * Disable auto commit mode for all subsequent queries.
-     */
-    public void disableAutoCommit();
+    public void setAutoCommit(boolean enableAutoCommit);
 
     /**
      * Close all connections managed by this database access
