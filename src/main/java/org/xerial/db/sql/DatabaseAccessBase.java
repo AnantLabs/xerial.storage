@@ -432,12 +432,10 @@ public class DatabaseAccessBase implements DatabaseAccess
 
     public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException
     {
-
         BeanProcessor beanProcessor = new BeanProcessor();
-
         writer.append("{");
         writer.append(StringUtil.quote(beanClass.getSimpleName().toLowerCase(), StringUtil.DOUBLE_QUOTE));
-        writer.append(":[");
+        writer.append(":[\n");
         Connection connection = null;
         try
         {

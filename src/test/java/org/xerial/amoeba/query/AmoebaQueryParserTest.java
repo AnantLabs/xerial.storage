@@ -31,17 +31,13 @@ import java.io.IOException;
 import java.util.List;
 
 import org.antlr.runtime.ANTLRInputStream;
-import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.Tree;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.xerial.amoeba.query.AmoebaQueryParser.lang_return;
-import org.xerial.util.FileResource;
 import org.xerial.util.StringUtil;
 import org.xerial.util.log.Logger;
 
