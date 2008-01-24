@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.dbutils.BeanProcessor;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
@@ -432,7 +431,6 @@ public class DatabaseAccessBase implements DatabaseAccess
 
     public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException
     {
-        BeanProcessor beanProcessor = new BeanProcessor();
         writer.append("{");
         writer.append(StringUtil.quote(beanClass.getSimpleName().toLowerCase(), StringUtil.DOUBLE_QUOTE));
         writer.append(":[\n");
@@ -447,17 +445,11 @@ public class DatabaseAccessBase implements DatabaseAccess
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next())
             {
-                Object bean = beanProcessor.toBean(rs, beanClass);
                 if (rowCount > 0)
                     writer.append(",");
-                try
-                {
-                    writer.append(BeanUtil.toJSON(bean));
-                }
-                catch (BeanException e)
-                {
-                    e.printStackTrace();
-                }
+
+                writer.append(BeanUtil.toJSONFromResultSet(rs));
+
                 rowCount++;
             }
         }
