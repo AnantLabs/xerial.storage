@@ -446,7 +446,7 @@ public class DatabaseAccessBase implements DatabaseAccess
             while (rs.next())
             {
                 if (rowCount > 0)
-                    writer.append(",");
+                    writer.append(",\n");
 
                 writer.append(BeanUtil.toJSONFromResultSet(rs));
 
