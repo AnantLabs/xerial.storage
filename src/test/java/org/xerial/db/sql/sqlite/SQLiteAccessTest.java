@@ -136,24 +136,26 @@ public class SQLiteAccessTest
         query.createTable("person", RelationBuilder.createRelation(Person.class));
         query.insert("person", new Person(1, "leo"));
         query.insert("person", new Person(2, "yui"));
-        
-        query.query("select * from person", new BeanResultHandler<Person>(Person.class){
-			@Override
-			public void handle(Person p) throws SQLException {
-				if(p.getId() == 1)
-				{
-					assertEquals("leo", p.getName());
-				}
-				else if(p.getId() == 2)
-				{
-					assertEquals("yui", p.getName());
-				}
-			}});
-        
+
+        query.query("select * from person", new BeanResultHandler<Person>(Person.class) {
+            @Override
+            public void handle(Person p) throws SQLException
+            {
+                if (p.getId() == 1)
+                {
+                    assertEquals("leo", p.getName());
+                }
+                else if (p.getId() == 2)
+                {
+                    assertEquals("yui", p.getName());
+                }
+            }
+        });
+
         StringWriter writer = new StringWriter();
         query.toJSON("select * from person", Person.class, writer);
         _logger.debug(writer.toString());
-        
+
         query.dispose();
     }
 

@@ -26,6 +26,7 @@ package org.xerial.db.sql;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import org.xerial.db.DBException;
@@ -154,6 +155,22 @@ public interface DatabaseAccess
      * @throws DBException
      */
     public int update(String sql, boolean autoCommit) throws DBException;
+
+    /**
+     * Performs the update using prepared statement. You can set the tuple
+     * values in the {@link PreparedStatementHandler} via
+     * {@link PreparedStatement#setBytes}, etc.
+     * 
+     * @param sqlForPreparedStatement
+     *            the update SQL statement that may contain '?' mark that will
+     *            be filled in the {@link PreparedStatementHandler}
+     * @param handler
+     *            the handler for filling '?' marks in the sql statement
+     * @return
+     * @throws DBException
+     */
+    public int updateWithPreparedStatement(String sqlForPreparedStatement, PreparedStatementHandler handler)
+            throws DBException;
 
     /**
      * Inserts a bean into a table

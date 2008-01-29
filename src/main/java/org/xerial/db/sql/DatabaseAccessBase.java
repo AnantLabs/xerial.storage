@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -197,6 +198,40 @@ public class DatabaseAccessBase implements DatabaseAccess
                 _connectionPool.returnConnection(connection);
         }
         return result;
+    }
+
+    private PreparedStatement getPreparedStatement(Connection connection, String sql) throws SQLException
+    {
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setQueryTimeout(queryTimeout);
+        return preparedStatement;
+    }
+
+    public int updateWithPreparedStatement(String sqlForPreparedStatement, PreparedStatementHandler handler)
+            throws DBException
+    {
+        Connection connection = null;
+        try
+        {
+            connection = getConnection(false);
+            _logger.debug(sqlForPreparedStatement);
+            PreparedStatement preparedStatement = getPreparedStatement(connection, sqlForPreparedStatement);
+            handler.setup(preparedStatement);
+            int ret = preparedStatement.executeUpdate();
+            return ret;
+        }
+        catch (SQLException e)
+        {
+            throw new DBException(DBErrorCode.UpdateError, e);
+        }
+        finally
+        {
+            if (connection != null)
+            {
+                _connectionPool.returnConnection(connection);
+            }
+        }
+
     }
 
     public int update(String sql) throws DBException
