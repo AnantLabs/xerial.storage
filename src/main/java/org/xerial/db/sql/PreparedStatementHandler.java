@@ -25,6 +25,7 @@
 package org.xerial.db.sql;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * A handler interface for set up PreparedStaement
@@ -34,6 +35,6 @@ import java.sql.PreparedStatement;
  */
 public interface PreparedStatementHandler
 {
-    public void setup(PreparedStatement preparedStatement);
+    public void setup(PreparedStatement preparedStatement) throws SQLException;
 
 }

@@ -65,6 +65,16 @@ public class SQLiteAccess extends DatabaseAccessBase
     private SQLiteCatalog _catalog = null;
     private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
 
+    /**
+     * Create an memory database access
+     * @throws DBException
+     */
+    public SQLiteAccess() throws DBException
+    {
+    	super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress(), 1));
+    }
+    
+    
     public SQLiteAccess(String filePath) throws DBException
     {
         super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));

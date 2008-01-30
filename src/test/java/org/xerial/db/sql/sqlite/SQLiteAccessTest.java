@@ -31,6 +31,7 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -47,6 +48,7 @@ import org.xerial.db.datatype.StringType;
 import org.xerial.db.sql.BeanResultHandler;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
+import org.xerial.db.sql.PreparedStatementHandler;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.bean.BeanException;
@@ -177,5 +179,23 @@ public class SQLiteAccessTest
         }
 
     }
+    
+    @Test
+    public void preapredStatement() throws DBException
+    {
+        SQLiteAccess query = new SQLiteAccess();	// prepare a memory database
+    	final String blobData = "hello world!"; 
+        
+        query.update("create table blobdata (id integer primary key autoincrement not null, data blob)");
+        query.updateWithPreparedStatement("insert into blobdata(data) values(?)", new PreparedStatementHandler(){
+			public void setup(PreparedStatement preparedStatement) throws SQLException {
+				preparedStatement.setBytes(1, blobData.getBytes());
+			}});
+        
+        List<BlobData> result = query.query("select * from blobdata", BlobData.class);
+        assertEquals(1, result.size());
+        assertEquals(blobData, result.get(0).getData());
+    }
+    
 
 }
