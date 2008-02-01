@@ -112,6 +112,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
+            pullHandler.init();
+
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next())
             {
@@ -124,8 +126,11 @@ public class DatabaseAccessBase implements DatabaseAccess
         }
         finally
         {
+
             if (connection != null)
                 _connectionPool.returnConnection(connection);
+
+            pullHandler.finish();
         }
     }
 
@@ -138,6 +143,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
+
+            handler.init();
 
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next())
@@ -157,6 +164,8 @@ public class DatabaseAccessBase implements DatabaseAccess
         {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
+
+            handler.finish();
         }
         return result;
     }
@@ -181,6 +190,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
+            handler.init();
+
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next())
@@ -196,6 +207,8 @@ public class DatabaseAccessBase implements DatabaseAccess
         {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
+
+            handler.finish();
         }
         return result;
     }
@@ -393,6 +406,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
+            beanResultHandler.init();
+
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next())
             {
@@ -408,6 +423,7 @@ public class DatabaseAccessBase implements DatabaseAccess
         {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
+            beanResultHandler.finish();
         }
 
     }
