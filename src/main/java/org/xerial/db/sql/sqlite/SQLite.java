@@ -26,11 +26,6 @@
 package org.xerial.db.sql.sqlite;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
@@ -51,16 +46,6 @@ public class SQLite
 {
     private static Logger _logger = Logger.getLogger(SQLite.class);
 
-    static
-    {
-        initialize(); 
-    }
-    
-    public static void initialize()
-    {
-        SQLiteJDBCLoader.initialize();
-    }
-    
     private SQLite()
     {}
 
