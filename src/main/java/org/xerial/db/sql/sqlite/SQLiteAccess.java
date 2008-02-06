@@ -57,11 +57,6 @@ import org.xerial.util.log.Logger;
  */
 public class SQLiteAccess extends DatabaseAccessBase
 {
-    static
-    {
-        SQLiteJDBCLoader.initialize();
-    }
-
     private SQLiteCatalog _catalog = null;
     private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
 
