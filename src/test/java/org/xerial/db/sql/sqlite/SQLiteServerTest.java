@@ -19,7 +19,6 @@
 // SQLiteServerTest.java
 // Since: 2007/05/11
 //
-// $Date$
 // $URL$ 
 // $Author$
 //--------------------------------------
