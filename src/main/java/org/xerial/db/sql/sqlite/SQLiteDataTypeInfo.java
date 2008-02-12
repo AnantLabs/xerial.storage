@@ -19,7 +19,6 @@
 // SQLiteDataTypeInfo.java
 // Since: 2007/05/08
 //
-// $Date$
 // $URL$ 
 // $Author$
 //--------------------------------------

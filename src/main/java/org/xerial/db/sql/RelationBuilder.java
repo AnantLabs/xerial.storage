@@ -19,7 +19,6 @@
 // RelationBuilder.java
 // Since: Apr 18, 2007
 //
-// $Date$
 // $URL$ 
 // $Author$
 //--------------------------------------

@@ -19,7 +19,6 @@
 // AttributeLabel.java
 // Since: Apr 24, 2007
 //
-// $Date$
 // $URL$ 
 // $Author$
 //--------------------------------------
