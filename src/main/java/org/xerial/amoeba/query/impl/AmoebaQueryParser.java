@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g 2008-04-15 14:48:18
+// $ANTLR 3.0.1 F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g 2008-04-21 11:13:05
 
 /*--------------------------------------------------------------------------
  *  Copyright 2007 Taro L. Saito
@@ -22,7 +22,7 @@
 // Since  2005/10/27 23:17:42
 // 
 //--------------------------------------------------
-package org.xerial.amoeba.query;
+package org.xerial.amoeba.query.impl;
 
 
 
@@ -129,7 +129,7 @@ public class AmoebaQueryParser extends Parser {
     }
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g"; }
+    public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g"; }
 
 
     public static class integerLiteral_return extends ParserRuleReturnScope {
@@ -138,7 +138,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start integerLiteral
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:211:1: integerLiteral : Digits ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:211:1: integerLiteral : Digits ;
     public final integerLiteral_return integerLiteral() throws RecognitionException {
         integerLiteral_return retval = new integerLiteral_return();
         retval.start = input.LT(1);
@@ -150,8 +150,8 @@ public class AmoebaQueryParser extends Parser {
         Object Digits1_tree=null;
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:211:15: ( Digits )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:211:17: Digits
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:211:15: ( Digits )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:211:17: Digits
             {
             root_0 = (Object)adaptor.nil();
 
@@ -187,7 +187,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start decimalLiteral
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:212:1: decimalLiteral : ( Dot Digits | Digits Dot Digits );
     public final decimalLiteral_return decimalLiteral() throws RecognitionException {
         decimalLiteral_return retval = new decimalLiteral_return();
         retval.start = input.LT(1);
@@ -207,7 +207,7 @@ public class AmoebaQueryParser extends Parser {
         Object Digits6_tree=null;
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:15: ( Dot Digits | Digits Dot Digits )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:212:15: ( Dot Digits | Digits Dot Digits )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -226,7 +226,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:17: Dot Digits
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:212:17: Dot Digits
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -246,7 +246,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:212:29: Digits Dot Digits
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:212:29: Digits Dot Digits
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -296,7 +296,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start literal
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:214:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:214:1: literal : ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) );
     public final literal_return literal() throws RecognitionException {
         literal_return retval = new literal_return();
         retval.start = input.LT(1);
@@ -311,7 +311,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_StringLiteral=new RewriteRuleTokenStream(adaptor,"token StringLiteral");
         RewriteRuleSubtreeStream stream_numericLiteral=new RewriteRuleSubtreeStream(adaptor,"rule numericLiteral");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:214:8: ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:214:8: ( | numericLiteral -> ^( NUMBER numericLiteral ) | StringLiteral -> ^( STRING StringLiteral ) )
             int alt2=3;
             switch ( input.LA(1) ) {
             case EOF:
@@ -362,14 +362,14 @@ public class AmoebaQueryParser extends Parser {
 
             switch (alt2) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:215:2: 
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:215:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:215:4: numericLiteral
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:215:4: numericLiteral
                     {
                     pushFollow(FOLLOW_numericLiteral_in_literal742);
                     numericLiteral7=numericLiteral();
@@ -390,7 +390,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 215:19: -> ^( NUMBER numericLiteral )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:215:22: ^( NUMBER numericLiteral )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:215:22: ^( NUMBER numericLiteral )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(NUMBER, "NUMBER"), root_1);
@@ -407,7 +407,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:216:4: StringLiteral
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:216:4: StringLiteral
                     {
                     StringLiteral8=(Token)input.LT(1);
                     match(input,StringLiteral,FOLLOW_StringLiteral_in_literal755); if (failed) return retval;
@@ -427,7 +427,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 216:18: -> ^( STRING StringLiteral )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:216:21: ^( STRING StringLiteral )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:216:21: ^( STRING StringLiteral )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(STRING, "STRING"), root_1);
@@ -468,7 +468,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start numericLiteral
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:219:1: numericLiteral : ( integerLiteral | decimalLiteral );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:219:1: numericLiteral : ( integerLiteral | decimalLiteral );
     public final numericLiteral_return numericLiteral() throws RecognitionException {
         numericLiteral_return retval = new numericLiteral_return();
         retval.start = input.LT(1);
@@ -482,7 +482,7 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:220:2: ( integerLiteral | decimalLiteral )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:220:2: ( integerLiteral | decimalLiteral )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -515,7 +515,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:220:4: integerLiteral
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:220:4: integerLiteral
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -528,7 +528,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:221:4: decimalLiteral
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:221:4: decimalLiteral
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -565,7 +565,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start lang
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:226:1: lang : ( | ( expr )+ -> ^( LANG ( expr )+ ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:226:1: lang : ( | ( expr )+ -> ^( LANG ( expr )+ ) );
     public final lang_return lang() throws RecognitionException {
         lang_return retval = new lang_return();
         retval.start = input.LT(1);
@@ -577,7 +577,7 @@ public class AmoebaQueryParser extends Parser {
 
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:226:5: ( | ( expr )+ -> ^( LANG ( expr )+ ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:226:5: ( | ( expr )+ -> ^( LANG ( expr )+ ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -596,16 +596,16 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:2: 
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:227:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:4: ( expr )+
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:227:4: ( expr )+
                     {
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:4: ( expr )+
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:227:4: ( expr )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -619,7 +619,7 @@ public class AmoebaQueryParser extends Parser {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:4: expr
+                    	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:227:4: expr
                     	    {
                     	    pushFollow(FOLLOW_expr_in_lang796);
                     	    expr11=expr();
@@ -654,7 +654,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 227:10: -> ^( LANG ( expr )+ )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:227:13: ^( LANG ( expr )+ )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:227:13: ^( LANG ( expr )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(LANG, "LANG"), root_1);
@@ -702,7 +702,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start expr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:230:1: expr : ( objectDefExpr | amoebaQuery | relationshipExpr | divideExpr );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:230:1: expr : ( objectDefExpr | amoebaQuery | relationshipExpr | divideExpr );
     public final expr_return expr() throws RecognitionException {
         expr_return retval = new expr_return();
         retval.start = input.LT(1);
@@ -720,7 +720,7 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:2: ( objectDefExpr | amoebaQuery | relationshipExpr | divideExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:231:2: ( objectDefExpr | amoebaQuery | relationshipExpr | divideExpr )
             int alt6=4;
             switch ( input.LA(1) ) {
             case Object:
@@ -755,7 +755,7 @@ public class AmoebaQueryParser extends Parser {
 
             switch (alt6) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:231:4: objectDefExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:231:4: objectDefExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -768,7 +768,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:232:4: amoebaQuery
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:232:4: amoebaQuery
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -781,7 +781,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:233:4: relationshipExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:233:4: relationshipExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -794,7 +794,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:234:4: divideExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:234:4: divideExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -831,7 +831,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start divideExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:238:1: divideExpr : DIVIDE QName 'by' divideElem ( Comma divideElem )* -> ^( DIVIDE[$QName] ( divideElem )+ ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:238:1: divideExpr : DIVIDE QName 'by' divideElem ( Comma divideElem )* -> ^( DIVIDE[$QName] ( divideElem )+ ) ;
     public final divideExpr_return divideExpr() throws RecognitionException {
         divideExpr_return retval = new divideExpr_return();
         retval.start = input.LT(1);
@@ -857,8 +857,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
         RewriteRuleSubtreeStream stream_divideElem=new RewriteRuleSubtreeStream(adaptor,"rule divideElem");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:239:2: ( DIVIDE QName 'by' divideElem ( Comma divideElem )* -> ^( DIVIDE[$QName] ( divideElem )+ ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:239:4: DIVIDE QName 'by' divideElem ( Comma divideElem )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:239:2: ( DIVIDE QName 'by' divideElem ( Comma divideElem )* -> ^( DIVIDE[$QName] ( divideElem )+ ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:239:4: DIVIDE QName 'by' divideElem ( Comma divideElem )*
             {
             DIVIDE16=(Token)input.LT(1);
             match(input,DIVIDE,FOLLOW_DIVIDE_in_divideExpr845); if (failed) return retval;
@@ -877,7 +877,7 @@ public class AmoebaQueryParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_divideElem.add(divideElem19.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:239:33: ( Comma divideElem )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:239:33: ( Comma divideElem )*
             loop7:
             do {
                 int alt7=2;
@@ -890,7 +890,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt7) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:239:34: Comma divideElem
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:239:34: Comma divideElem
             	    {
             	    Comma20=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_divideExpr854); if (failed) return retval;
@@ -924,7 +924,7 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 240:4: -> ^( DIVIDE[$QName] ( divideElem )+ )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:240:7: ^( DIVIDE[$QName] ( divideElem )+ )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:240:7: ^( DIVIDE[$QName] ( divideElem )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(DIVIDE,QName17), root_1);
@@ -970,7 +970,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start divideElem
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:243:1: divideElem : ( DISTINCT QName -> ^( DISTINCT[$QName] ) | RANGE QName ( rangeType )? -> ^( RANGE[$QName] ( rangeType )? ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:243:1: divideElem : ( DISTINCT QName -> ^( DISTINCT[$QName] ) | RANGE QName ( rangeType )? -> ^( RANGE[$QName] ( rangeType )? ) );
     public final divideElem_return divideElem() throws RecognitionException {
         divideElem_return retval = new divideElem_return();
         retval.start = input.LT(1);
@@ -993,7 +993,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
         RewriteRuleSubtreeStream stream_rangeType=new RewriteRuleSubtreeStream(adaptor,"rule rangeType");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:244:2: ( DISTINCT QName -> ^( DISTINCT[$QName] ) | RANGE QName ( rangeType )? -> ^( RANGE[$QName] ( rangeType )? ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:244:2: ( DISTINCT QName -> ^( DISTINCT[$QName] ) | RANGE QName ( rangeType )? -> ^( RANGE[$QName] ( rangeType )? ) )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1012,7 +1012,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:244:4: DISTINCT QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:244:4: DISTINCT QName
                     {
                     DISTINCT22=(Token)input.LT(1);
                     match(input,DISTINCT,FOLLOW_DISTINCT_in_divideElem883); if (failed) return retval;
@@ -1036,7 +1036,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 244:19: -> ^( DISTINCT[$QName] )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:244:22: ^( DISTINCT[$QName] )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:244:22: ^( DISTINCT[$QName] )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(DISTINCT,QName23), root_1);
@@ -1051,7 +1051,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:4: RANGE QName ( rangeType )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:245:4: RANGE QName ( rangeType )?
                     {
                     RANGE24=(Token)input.LT(1);
                     match(input,RANGE,FOLLOW_RANGE_in_divideElem897); if (failed) return retval;
@@ -1061,7 +1061,7 @@ public class AmoebaQueryParser extends Parser {
                     match(input,QName,FOLLOW_QName_in_divideElem899); if (failed) return retval;
                     if ( backtracking==0 ) stream_QName.add(QName25);
 
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:16: ( rangeType )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:245:16: ( rangeType )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1070,7 +1070,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     switch (alt8) {
                         case 1 :
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:16: rangeType
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:245:16: rangeType
                             {
                             pushFollow(FOLLOW_rangeType_in_divideElem901);
                             rangeType26=rangeType();
@@ -1085,7 +1085,7 @@ public class AmoebaQueryParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: RANGE, rangeType
+                    // elements: rangeType, RANGE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1097,12 +1097,12 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 245:27: -> ^( RANGE[$QName] ( rangeType )? )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:30: ^( RANGE[$QName] ( rangeType )? )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:245:30: ^( RANGE[$QName] ( rangeType )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(RANGE,QName25), root_1);
 
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:245:46: ( rangeType )?
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:245:46: ( rangeType )?
                         if ( stream_rangeType.hasNext() ) {
                             adaptor.addChild(root_1, stream_rangeType.next());
 
@@ -1143,7 +1143,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start rangeType
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:248:1: rangeType : ( 'auto' | 'AUTO' );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:248:1: rangeType : ( 'auto' | 'AUTO' );
     public final rangeType_return rangeType() throws RecognitionException {
         rangeType_return retval = new rangeType_return();
         retval.start = input.LT(1);
@@ -1155,8 +1155,8 @@ public class AmoebaQueryParser extends Parser {
         Object set27_tree=null;
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:249:2: ( 'auto' | 'AUTO' )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:249:2: ( 'auto' | 'AUTO' )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1199,7 +1199,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start relationshipExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:252:1: relationshipExpr : ( Relationship obj= QName HasMany objectList -> ^( ONE_TO_MANY[$obj] objectList ) | Relationship obj2= QName HasOne objectList -> ^( ONE_TO_ONE[$obj2] objectList ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:252:1: relationshipExpr : ( Relationship obj= QName HasMany objectList -> ^( ONE_TO_MANY[$obj] objectList ) | Relationship obj2= QName HasOne objectList -> ^( ONE_TO_ONE[$obj2] objectList ) );
     public final relationshipExpr_return relationshipExpr() throws RecognitionException {
         relationshipExpr_return retval = new relationshipExpr_return();
         retval.start = input.LT(1);
@@ -1229,7 +1229,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
         RewriteRuleSubtreeStream stream_objectList=new RewriteRuleSubtreeStream(adaptor,"rule objectList");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:253:2: ( Relationship obj= QName HasMany objectList -> ^( ONE_TO_MANY[$obj] objectList ) | Relationship obj2= QName HasOne objectList -> ^( ONE_TO_ONE[$obj2] objectList ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:253:2: ( Relationship obj= QName HasMany objectList -> ^( ONE_TO_MANY[$obj] objectList ) | Relationship obj2= QName HasOne objectList -> ^( ONE_TO_ONE[$obj2] objectList ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1270,7 +1270,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:253:4: Relationship obj= QName HasMany objectList
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:253:4: Relationship obj= QName HasMany objectList
                     {
                     Relationship28=(Token)input.LT(1);
                     match(input,Relationship,FOLLOW_Relationship_in_relationshipExpr938); if (failed) return retval;
@@ -1303,7 +1303,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 254:3: -> ^( ONE_TO_MANY[$obj] objectList )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:254:6: ^( ONE_TO_MANY[$obj] objectList )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:254:6: ^( ONE_TO_MANY[$obj] objectList )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ONE_TO_MANY, obj), root_1);
@@ -1320,7 +1320,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:255:4: Relationship obj2= QName HasOne objectList
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:255:4: Relationship obj2= QName HasOne objectList
                     {
                     Relationship31=(Token)input.LT(1);
                     match(input,Relationship,FOLLOW_Relationship_in_relationshipExpr962); if (failed) return retval;
@@ -1353,7 +1353,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 256:3: -> ^( ONE_TO_ONE[$obj2] objectList )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:256:6: ^( ONE_TO_ONE[$obj2] objectList )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:256:6: ^( ONE_TO_ONE[$obj2] objectList )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ONE_TO_ONE, obj2), root_1);
@@ -1394,7 +1394,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start qnameList
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:259:1: qnameList : QName ( Comma QName )? -> ( QName )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:259:1: qnameList : QName ( Comma QName )? -> ( QName )+ ;
     public final qnameList_return qnameList() throws RecognitionException {
         qnameList_return retval = new qnameList_return();
         retval.start = input.LT(1);
@@ -1412,14 +1412,14 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:260:2: ( QName ( Comma QName )? -> ( QName )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:260:4: QName ( Comma QName )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:260:2: ( QName ( Comma QName )? -> ( QName )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:260:4: QName ( Comma QName )?
             {
             QName34=(Token)input.LT(1);
             match(input,QName,FOLLOW_QName_in_qnameList992); if (failed) return retval;
             if ( backtracking==0 ) stream_QName.add(QName34);
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:260:10: ( Comma QName )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:260:10: ( Comma QName )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1428,7 +1428,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:260:11: Comma QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:260:11: Comma QName
                     {
                     Comma35=(Token)input.LT(1);
                     match(input,Comma,FOLLOW_Comma_in_qnameList995); if (failed) return retval;
@@ -1496,7 +1496,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start objectList
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:263:1: objectList : object ( Comma object )? -> ( object )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:263:1: objectList : object ( Comma object )? -> ( object )+ ;
     public final objectList_return objectList() throws RecognitionException {
         objectList_return retval = new objectList_return();
         retval.start = input.LT(1);
@@ -1513,15 +1513,15 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_object=new RewriteRuleSubtreeStream(adaptor,"rule object");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:264:2: ( object ( Comma object )? -> ( object )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:264:4: object ( Comma object )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:264:2: ( object ( Comma object )? -> ( object )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:264:4: object ( Comma object )?
             {
             pushFollow(FOLLOW_object_in_objectList1016);
             object37=object();
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_object.add(object37.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:264:11: ( Comma object )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:264:11: ( Comma object )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1530,7 +1530,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:264:12: Comma object
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:264:12: Comma object
                     {
                     Comma38=(Token)input.LT(1);
                     match(input,Comma,FOLLOW_Comma_in_objectList1019); if (failed) return retval;
@@ -1599,7 +1599,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start object
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:267:1: object : QName -> ^( OBJECT[$QName] ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:267:1: object : QName -> ^( OBJECT[$QName] ) ;
     public final object_return object() throws RecognitionException {
         object_return retval = new object_return();
         retval.start = input.LT(1);
@@ -1612,8 +1612,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:268:2: ( QName -> ^( OBJECT[$QName] ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:268:4: QName
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:268:2: ( QName -> ^( OBJECT[$QName] ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:268:4: QName
             {
             QName40=(Token)input.LT(1);
             match(input,QName,FOLLOW_QName_in_object1039); if (failed) return retval;
@@ -1633,7 +1633,7 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 268:10: -> ^( OBJECT[$QName] )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:268:13: ^( OBJECT[$QName] )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:268:13: ^( OBJECT[$QName] )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(OBJECT, QName40), root_1);
@@ -1670,7 +1670,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start objectDefExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:271:1: objectDefExpr : Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen -> ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:271:1: objectDefExpr : Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen -> ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? ) ;
     public final objectDefExpr_return objectDefExpr() throws RecognitionException {
         objectDefExpr_return retval = new objectDefExpr_return();
         retval.start = input.LT(1);
@@ -1700,8 +1700,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_attributeDefExpr=new RewriteRuleSubtreeStream(adaptor,"rule attributeDefExpr");
         RewriteRuleSubtreeStream stream_attributeList=new RewriteRuleSubtreeStream(adaptor,"rule attributeList");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:2: ( Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen -> ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:4: Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:2: ( Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen -> ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:4: Object objName= QName LParen ( attributeDefExpr )? ( SPLIT sortOrder= attributeList )? RParen
             {
             Object41=(Token)input.LT(1);
             match(input,Object,FOLLOW_Object_in_objectDefExpr1057); if (failed) return retval;
@@ -1715,7 +1715,7 @@ public class AmoebaQueryParser extends Parser {
             match(input,LParen,FOLLOW_LParen_in_objectDefExpr1063); if (failed) return retval;
             if ( backtracking==0 ) stream_LParen.add(LParen42);
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:32: ( attributeDefExpr )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:32: ( attributeDefExpr )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1724,7 +1724,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:32: attributeDefExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:32: attributeDefExpr
                     {
                     pushFollow(FOLLOW_attributeDefExpr_in_objectDefExpr1065);
                     attributeDefExpr43=attributeDefExpr();
@@ -1737,7 +1737,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:50: ( SPLIT sortOrder= attributeList )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:50: ( SPLIT sortOrder= attributeList )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1746,7 +1746,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:272:51: SPLIT sortOrder= attributeList
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:272:51: SPLIT sortOrder= attributeList
                     {
                     SPLIT44=(Token)input.LT(1);
                     match(input,SPLIT,FOLLOW_SPLIT_in_objectDefExpr1069); if (failed) return retval;
@@ -1782,20 +1782,20 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 273:3: -> ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:6: ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:273:6: ^( OBJECT_DEF[$objName] ( attributeDefExpr )? ( ^( SORT_TARGET $sortOrder) )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(OBJECT_DEF, objName), root_1);
 
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:29: ( attributeDefExpr )?
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:273:29: ( attributeDefExpr )?
                 if ( stream_attributeDefExpr.hasNext() ) {
                     adaptor.addChild(root_1, stream_attributeDefExpr.next());
 
                 }
                 stream_attributeDefExpr.reset();
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:47: ( ^( SORT_TARGET $sortOrder) )?
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:273:47: ( ^( SORT_TARGET $sortOrder) )?
                 if ( stream_sortOrder.hasNext() ) {
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:273:47: ^( SORT_TARGET $sortOrder)
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:273:47: ^( SORT_TARGET $sortOrder)
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(SORT_TARGET, "SORT_TARGET"), root_2);
@@ -1840,7 +1840,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attributeDefExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:277:1: attributeDefExpr : attributeDef ( Comma attributeDef )* -> ( attributeDef )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:277:1: attributeDefExpr : attributeDef ( Comma attributeDef )* -> ( attributeDef )+ ;
     public final attributeDefExpr_return attributeDefExpr() throws RecognitionException {
         attributeDefExpr_return retval = new attributeDefExpr_return();
         retval.start = input.LT(1);
@@ -1857,15 +1857,15 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_attributeDef=new RewriteRuleSubtreeStream(adaptor,"rule attributeDef");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:2: ( attributeDef ( Comma attributeDef )* -> ( attributeDef )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:4: attributeDef ( Comma attributeDef )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:278:2: ( attributeDef ( Comma attributeDef )* -> ( attributeDef )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:278:4: attributeDef ( Comma attributeDef )*
             {
             pushFollow(FOLLOW_attributeDef_in_attributeDefExpr1111);
             attributeDef46=attributeDef();
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_attributeDef.add(attributeDef46.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:17: ( Comma attributeDef )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:278:17: ( Comma attributeDef )*
             loop15:
             do {
                 int alt15=2;
@@ -1878,7 +1878,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt15) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:278:18: Comma attributeDef
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:278:18: Comma attributeDef
             	    {
             	    Comma47=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_attributeDefExpr1114); if (failed) return retval;
@@ -1950,7 +1950,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attributeDef
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:281:1: attributeDef : QName DataType -> ^( ATTRIBUTE_DEF[$QName] DataType ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:281:1: attributeDef : QName DataType -> ^( ATTRIBUTE_DEF[$QName] DataType ) ;
     public final attributeDef_return attributeDef() throws RecognitionException {
         attributeDef_return retval = new attributeDef_return();
         retval.start = input.LT(1);
@@ -1966,8 +1966,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:282:2: ( QName DataType -> ^( ATTRIBUTE_DEF[$QName] DataType ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:282:4: QName DataType
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:282:2: ( QName DataType -> ^( ATTRIBUTE_DEF[$QName] DataType ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:282:4: QName DataType
             {
             QName49=(Token)input.LT(1);
             match(input,QName,FOLLOW_QName_in_attributeDef1134); if (failed) return retval;
@@ -1991,7 +1991,7 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 282:19: -> ^( ATTRIBUTE_DEF[$QName] DataType )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:282:22: ^( ATTRIBUTE_DEF[$QName] DataType )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:282:22: ^( ATTRIBUTE_DEF[$QName] DataType )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE_DEF, QName49), root_1);
@@ -2030,7 +2030,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attributeList
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:285:1: attributeList : attribute ( Comma attributeName )* -> ( attribute )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:285:1: attributeList : attribute ( Comma attributeName )* -> ( attribute )+ ;
     public final attributeList_return attributeList() throws RecognitionException {
         attributeList_return retval = new attributeList_return();
         retval.start = input.LT(1);
@@ -2048,15 +2048,15 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_attributeName=new RewriteRuleSubtreeStream(adaptor,"rule attributeName");
         RewriteRuleSubtreeStream stream_attribute=new RewriteRuleSubtreeStream(adaptor,"rule attribute");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:286:2: ( attribute ( Comma attributeName )* -> ( attribute )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:286:4: attribute ( Comma attributeName )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:286:2: ( attribute ( Comma attributeName )* -> ( attribute )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:286:4: attribute ( Comma attributeName )*
             {
             pushFollow(FOLLOW_attribute_in_attributeList1158);
             attribute51=attribute();
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_attribute.add(attribute51.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:286:14: ( Comma attributeName )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:286:14: ( Comma attributeName )*
             loop16:
             do {
                 int alt16=2;
@@ -2069,7 +2069,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt16) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:286:15: Comma attributeName
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:286:15: Comma attributeName
             	    {
             	    Comma52=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_attributeList1161); if (failed) return retval;
@@ -2141,7 +2141,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attribute
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:289:1: attribute : QName -> ^( ATTRIBUTE[$QName] ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:289:1: attribute : QName -> ^( ATTRIBUTE[$QName] ) ;
     public final attribute_return attribute() throws RecognitionException {
         attribute_return retval = new attribute_return();
         retval.start = input.LT(1);
@@ -2154,8 +2154,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:290:2: ( QName -> ^( ATTRIBUTE[$QName] ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:290:4: QName
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:290:2: ( QName -> ^( ATTRIBUTE[$QName] ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:290:4: QName
             {
             QName54=(Token)input.LT(1);
             match(input,QName,FOLLOW_QName_in_attribute1181); if (failed) return retval;
@@ -2175,7 +2175,7 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 290:10: -> ^( ATTRIBUTE[$QName] )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:290:13: ^( ATTRIBUTE[$QName] )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:290:13: ^( ATTRIBUTE[$QName] )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE, QName54), root_1);
@@ -2212,7 +2212,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start amoebaQuery
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:293:1: amoebaQuery : ( selectExpr | updateExpr );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:293:1: amoebaQuery : ( selectExpr | updateExpr );
     public final amoebaQuery_return amoebaQuery() throws RecognitionException {
         amoebaQuery_return retval = new amoebaQuery_return();
         retval.start = input.LT(1);
@@ -2226,7 +2226,7 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:2: ( selectExpr | updateExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:294:2: ( selectExpr | updateExpr )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2245,7 +2245,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:294:4: selectExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:294:4: selectExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2258,7 +2258,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:295:4: updateExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:295:4: updateExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2295,7 +2295,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start updateExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:298:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:298:1: updateExpr : ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) );
     public final updateExpr_return updateExpr() throws RecognitionException {
         updateExpr_return retval = new updateExpr_return();
         retval.start = input.LT(1);
@@ -2327,7 +2327,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_targetRelation=new RewriteRuleSubtreeStream(adaptor,"rule targetRelation");
         RewriteRuleSubtreeStream stream_newRelation=new RewriteRuleSubtreeStream(adaptor,"rule newRelation");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:299:2: ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:299:2: ( Insert newRelation ( Into targetRelation )? -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? ) | 'update' 'set' newRelation ( whereClause )? -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? ) )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -2346,7 +2346,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt20) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:299:4: Insert newRelation ( Into targetRelation )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:299:4: Insert newRelation ( Into targetRelation )?
                     {
                     Insert57=(Token)input.LT(1);
                     match(input,Insert,FOLLOW_Insert_in_updateExpr1216); if (failed) return retval;
@@ -2357,7 +2357,7 @@ public class AmoebaQueryParser extends Parser {
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_newRelation.add(newRelation58.getTree());
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:299:23: ( Into targetRelation )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:299:23: ( Into targetRelation )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -2366,7 +2366,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:299:24: Into targetRelation
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:299:24: Into targetRelation
                             {
                             Into59=(Token)input.LT(1);
                             match(input,Into,FOLLOW_Into_in_updateExpr1221); if (failed) return retval;
@@ -2397,12 +2397,12 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 300:4: -> ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:300:7: ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:300:7: ^( INSERT ^( NEW_RELATION newRelation ) ( ^( TARGET targetRelation ) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(INSERT, "INSERT"), root_1);
 
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:300:16: ^( NEW_RELATION newRelation )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:300:16: ^( NEW_RELATION newRelation )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(adaptor.create(NEW_RELATION, "NEW_RELATION"), root_2);
@@ -2411,9 +2411,9 @@ public class AmoebaQueryParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:300:44: ( ^( TARGET targetRelation ) )?
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:300:44: ( ^( TARGET targetRelation ) )?
                         if ( stream_targetRelation.hasNext() ) {
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:300:44: ^( TARGET targetRelation )
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:300:44: ^( TARGET targetRelation )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(adaptor.create(TARGET, "TARGET"), root_2);
@@ -2436,7 +2436,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:301:4: 'update' 'set' newRelation ( whereClause )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:301:4: 'update' 'set' newRelation ( whereClause )?
                     {
                     string_literal61=(Token)input.LT(1);
                     match(input,80,FOLLOW_80_in_updateExpr1253); if (failed) return retval;
@@ -2451,7 +2451,7 @@ public class AmoebaQueryParser extends Parser {
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_newRelation.add(newRelation63.getTree());
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:301:31: ( whereClause )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:301:31: ( whereClause )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -2460,7 +2460,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:301:31: whereClause
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:301:31: whereClause
                             {
                             pushFollow(FOLLOW_whereClause_in_updateExpr1259);
                             whereClause64=whereClause();
@@ -2487,12 +2487,12 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 302:4: -> ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:7: ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:302:7: ^( UPDATE ^( NEW_RELATION newRelation ) ( ^( CONDITION whereClause ) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(UPDATE, "UPDATE"), root_1);
 
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:16: ^( NEW_RELATION newRelation )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:302:16: ^( NEW_RELATION newRelation )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(adaptor.create(NEW_RELATION, "NEW_RELATION"), root_2);
@@ -2501,9 +2501,9 @@ public class AmoebaQueryParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:44: ( ^( CONDITION whereClause ) )?
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:302:44: ( ^( CONDITION whereClause ) )?
                         if ( stream_whereClause.hasNext() ) {
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:302:44: ^( CONDITION whereClause )
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:302:44: ^( CONDITION whereClause )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -2550,7 +2550,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start newRelation
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:305:1: newRelation : LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:305:1: newRelation : LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ ;
     public final newRelation_return newRelation() throws RecognitionException {
         newRelation_return retval = new newRelation_return();
         retval.start = input.LT(1);
@@ -2573,8 +2573,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleSubtreeStream stream_tupleElement=new RewriteRuleSubtreeStream(adaptor,"rule tupleElement");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:306:2: ( LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:306:4: LParen tupleElement ( Comma tupleElement )* RParen
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:306:2: ( LParen tupleElement ( Comma tupleElement )* RParen -> ( tupleElement )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:306:4: LParen tupleElement ( Comma tupleElement )* RParen
             {
             LParen65=(Token)input.LT(1);
             match(input,LParen,FOLLOW_LParen_in_newRelation1295); if (failed) return retval;
@@ -2585,7 +2585,7 @@ public class AmoebaQueryParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_tupleElement.add(tupleElement66.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:306:24: ( Comma tupleElement )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:306:24: ( Comma tupleElement )*
             loop21:
             do {
                 int alt21=2;
@@ -2598,7 +2598,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt21) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:306:25: Comma tupleElement
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:306:25: Comma tupleElement
             	    {
             	    Comma67=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_newRelation1300); if (failed) return retval;
@@ -2674,7 +2674,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start tupleElement
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:310:1: tupleElement : ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:310:1: tupleElement : ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? ;
     public final tupleElement_return tupleElement() throws RecognitionException {
         tupleElement_return retval = new tupleElement_return();
         retval.start = input.LT(1);
@@ -2692,11 +2692,11 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_attributeName=new RewriteRuleSubtreeStream(adaptor,"rule attributeName");
         RewriteRuleSubtreeStream stream_elementValue=new RewriteRuleSubtreeStream(adaptor,"rule elementValue");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:2: ( ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:4: ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:2: ( ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )? )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:4: ( attributeName -> attributeName ) ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
             {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:4: ( attributeName -> attributeName )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:5: attributeName
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:4: ( attributeName -> attributeName )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:5: attributeName
             {
             pushFollow(FOLLOW_attributeName_in_tupleElement1326);
             attributeName70=attributeName();
@@ -2725,7 +2725,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:37: ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:37: ( EQUAL e= elementValue -> ^( NEW_VALUE $tupleElement elementValue ) )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -2734,7 +2734,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt22) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:38: EQUAL e= elementValue
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:38: EQUAL e= elementValue
                     {
                     EQUAL71=(Token)input.LT(1);
                     match(input,EQUAL,FOLLOW_EQUAL_in_tupleElement1334); if (failed) return retval;
@@ -2759,7 +2759,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 311:59: -> ^( NEW_VALUE $tupleElement elementValue )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:311:62: ^( NEW_VALUE $tupleElement elementValue )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:311:62: ^( NEW_VALUE $tupleElement elementValue )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(NEW_VALUE, "NEW_VALUE"), root_1);
@@ -2805,7 +2805,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start elementValue
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:314:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:314:1: elementValue : ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) );
     public final elementValue_return elementValue() throws RecognitionException {
         elementValue_return retval = new elementValue_return();
         retval.start = input.LT(1);
@@ -2831,7 +2831,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_literal=new RewriteRuleSubtreeStream(adaptor,"rule literal");
         RewriteRuleSubtreeStream stream_elementValue=new RewriteRuleSubtreeStream(adaptor,"rule elementValue");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:2: ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:315:2: ( literal -> ^( VALUE literal ) | '{' elementValue ( Comma elementValue )? '}' -> ^( VALUE_SET ( elementValue )+ ) )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -2850,7 +2850,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:315:4: literal
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:315:4: literal
                     {
                     pushFollow(FOLLOW_literal_in_elementValue1364);
                     literal72=literal();
@@ -2871,7 +2871,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 316:4: -> ^( VALUE literal )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:316:7: ^( VALUE literal )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:316:7: ^( VALUE literal )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE, "VALUE"), root_1);
@@ -2888,7 +2888,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:317:4: '{' elementValue ( Comma elementValue )? '}'
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:317:4: '{' elementValue ( Comma elementValue )? '}'
                     {
                     char_literal73=(Token)input.LT(1);
                     match(input,82,FOLLOW_82_in_elementValue1380); if (failed) return retval;
@@ -2899,7 +2899,7 @@ public class AmoebaQueryParser extends Parser {
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_elementValue.add(elementValue74.getTree());
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:317:21: ( Comma elementValue )?
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:317:21: ( Comma elementValue )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -2908,7 +2908,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     switch (alt23) {
                         case 1 :
-                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:317:22: Comma elementValue
+                            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:317:22: Comma elementValue
                             {
                             Comma75=(Token)input.LT(1);
                             match(input,Comma,FOLLOW_Comma_in_elementValue1385); if (failed) return retval;
@@ -2943,7 +2943,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 318:4: -> ^( VALUE_SET ( elementValue )+ )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:318:7: ^( VALUE_SET ( elementValue )+ )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:318:7: ^( VALUE_SET ( elementValue )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE_SET, "VALUE_SET"), root_1);
@@ -2991,7 +2991,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start exprSingle
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:322:1: exprSingle : ( selectExpr | subQuery );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:322:1: exprSingle : ( selectExpr | subQuery );
     public final exprSingle_return exprSingle() throws RecognitionException {
         exprSingle_return retval = new exprSingle_return();
         retval.start = input.LT(1);
@@ -3005,7 +3005,7 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:323:2: ( selectExpr | subQuery )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:323:2: ( selectExpr | subQuery )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3024,7 +3024,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:323:4: selectExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:323:4: selectExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3037,7 +3037,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:324:4: subQuery
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:324:4: subQuery
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3074,7 +3074,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start subQuery
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:327:1: subQuery : LParen selectExpr RParen -> selectExpr ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:327:1: subQuery : LParen selectExpr RParen -> selectExpr ;
     public final subQuery_return subQuery() throws RecognitionException {
         subQuery_return retval = new subQuery_return();
         retval.start = input.LT(1);
@@ -3092,8 +3092,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleSubtreeStream stream_selectExpr=new RewriteRuleSubtreeStream(adaptor,"rule selectExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:328:2: ( LParen selectExpr RParen -> selectExpr )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:328:4: LParen selectExpr RParen
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:328:2: ( LParen selectExpr RParen -> selectExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:328:4: LParen selectExpr RParen
             {
             LParen80=(Token)input.LT(1);
             match(input,LParen,FOLLOW_LParen_in_subQuery1433); if (failed) return retval;
@@ -3153,7 +3153,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start selectExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:332:1: selectExpr : Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:332:1: selectExpr : Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? ) ;
     public final selectExpr_return selectExpr() throws RecognitionException {
         selectExpr_return retval = new selectExpr_return();
         retval.start = input.LT(1);
@@ -3177,8 +3177,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_selectTarget=new RewriteRuleSubtreeStream(adaptor,"rule selectTarget");
         RewriteRuleSubtreeStream stream_orderByClause=new RewriteRuleSubtreeStream(adaptor,"rule orderByClause");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:2: ( Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:4: Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:2: ( Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )? -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:4: Select selectTarget ( fromClause )? ( whereClause )? ( orderByClause )?
             {
             Select83=(Token)input.LT(1);
             match(input,Select,FOLLOW_Select_in_selectExpr1458); if (failed) return retval;
@@ -3189,7 +3189,7 @@ public class AmoebaQueryParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_selectTarget.add(selectTarget84.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:24: ( fromClause )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:24: ( fromClause )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3198,7 +3198,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt26) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:24: fromClause
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:24: fromClause
                     {
                     pushFollow(FOLLOW_fromClause_in_selectExpr1462);
                     fromClause85=fromClause();
@@ -3211,7 +3211,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:36: ( whereClause )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:36: ( whereClause )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3220,7 +3220,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt27) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:36: whereClause
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:36: whereClause
                     {
                     pushFollow(FOLLOW_whereClause_in_selectExpr1465);
                     whereClause86=whereClause();
@@ -3233,7 +3233,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:49: ( orderByClause )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:49: ( orderByClause )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3242,7 +3242,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt28) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:333:49: orderByClause
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:333:49: orderByClause
                     {
                     pushFollow(FOLLOW_orderByClause_in_selectExpr1468);
                     orderByClause87=orderByClause();
@@ -3257,7 +3257,7 @@ public class AmoebaQueryParser extends Parser {
 
 
             // AST REWRITE
-            // elements: selectTarget, whereClause, orderByClause, fromClause
+            // elements: selectTarget, fromClause, orderByClause, whereClause
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3269,15 +3269,15 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 334:3: -> ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:6: ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:6: ^( SELECTION selectTarget ( ^( INPUT fromClause ) )? ( ^( CONDITION whereClause ) )? ( ^( ORDER_BY orderByClause ) )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(SELECTION, "SELECTION"), root_1);
 
                 adaptor.addChild(root_1, stream_selectTarget.next());
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:31: ( ^( INPUT fromClause ) )?
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:31: ( ^( INPUT fromClause ) )?
                 if ( stream_fromClause.hasNext() ) {
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:31: ^( INPUT fromClause )
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:31: ^( INPUT fromClause )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(INPUT, "INPUT"), root_2);
@@ -3289,9 +3289,9 @@ public class AmoebaQueryParser extends Parser {
 
                 }
                 stream_fromClause.reset();
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:52: ( ^( CONDITION whereClause ) )?
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:52: ( ^( CONDITION whereClause ) )?
                 if ( stream_whereClause.hasNext() ) {
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:52: ^( CONDITION whereClause )
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:52: ^( CONDITION whereClause )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -3303,9 +3303,9 @@ public class AmoebaQueryParser extends Parser {
 
                 }
                 stream_whereClause.reset();
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:78: ( ^( ORDER_BY orderByClause ) )?
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:78: ( ^( ORDER_BY orderByClause ) )?
                 if ( stream_orderByClause.hasNext() ) {
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:334:78: ^( ORDER_BY orderByClause )
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:334:78: ^( ORDER_BY orderByClause )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot(adaptor.create(ORDER_BY, "ORDER_BY"), root_2);
@@ -3350,7 +3350,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start selectTarget
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:338:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:338:1: selectTarget : ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL );
     public final selectTarget_return selectTarget() throws RecognitionException {
         selectTarget_return retval = new selectTarget_return();
         retval.start = input.LT(1);
@@ -3370,7 +3370,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_Wildcard=new RewriteRuleTokenStream(adaptor,"token Wildcard");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:2: ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:339:2: ( labelExpr ( Comma labelExpr )* -> ^( PROJECTION ( labelExpr )+ ) | Wildcard -> PROJECT_ALL )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -3389,14 +3389,14 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt30) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:4: labelExpr ( Comma labelExpr )*
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:339:4: labelExpr ( Comma labelExpr )*
                     {
                     pushFollow(FOLLOW_labelExpr_in_selectTarget1512);
                     labelExpr88=labelExpr();
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) stream_labelExpr.add(labelExpr88.getTree());
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:14: ( Comma labelExpr )*
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:339:14: ( Comma labelExpr )*
                     loop29:
                     do {
                         int alt29=2;
@@ -3409,7 +3409,7 @@ public class AmoebaQueryParser extends Parser {
 
                         switch (alt29) {
                     	case 1 :
-                    	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:15: Comma labelExpr
+                    	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:339:15: Comma labelExpr
                     	    {
                     	    Comma89=(Token)input.LT(1);
                     	    match(input,Comma,FOLLOW_Comma_in_selectTarget1515); if (failed) return retval;
@@ -3443,7 +3443,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 339:33: -> ^( PROJECTION ( labelExpr )+ )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:339:36: ^( PROJECTION ( labelExpr )+ )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:339:36: ^( PROJECTION ( labelExpr )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(PROJECTION, "PROJECTION"), root_1);
@@ -3467,7 +3467,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:340:4: Wildcard
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:340:4: Wildcard
                     {
                     Wildcard91=(Token)input.LT(1);
                     match(input,Wildcard,FOLLOW_Wildcard_in_selectTarget1533); if (failed) return retval;
@@ -3520,7 +3520,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start fromClause
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:343:1: fromClause : From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:343:1: fromClause : From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ ;
     public final fromClause_return fromClause() throws RecognitionException {
         fromClause_return retval = new fromClause_return();
         retval.start = input.LT(1);
@@ -3540,8 +3540,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
         RewriteRuleSubtreeStream stream_fromTarget=new RewriteRuleSubtreeStream(adaptor,"rule fromTarget");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:344:2: ( From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:344:4: From fromTarget ( Comma fromTarget )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:344:2: ( From fromTarget ( Comma fromTarget )* -> ( fromTarget )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:344:4: From fromTarget ( Comma fromTarget )*
             {
             From92=(Token)input.LT(1);
             match(input,From,FOLLOW_From_in_fromClause1548); if (failed) return retval;
@@ -3552,7 +3552,7 @@ public class AmoebaQueryParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_fromTarget.add(fromTarget93.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:344:20: ( Comma fromTarget )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:344:20: ( Comma fromTarget )*
             loop31:
             do {
                 int alt31=2;
@@ -3565,7 +3565,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt31) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:344:21: Comma fromTarget
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:344:21: Comma fromTarget
             	    {
             	    Comma94=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_fromClause1553); if (failed) return retval;
@@ -3637,7 +3637,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start fromTarget
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:347:1: fromTarget : ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:347:1: fromTarget : ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? ;
     public final fromTarget_return fromTarget() throws RecognitionException {
         fromTarget_return retval = new fromTarget_return();
         retval.start = input.LT(1);
@@ -3655,11 +3655,11 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
         RewriteRuleSubtreeStream stream_targetRelation=new RewriteRuleSubtreeStream(adaptor,"rule targetRelation");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:2: ( ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:4: ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:2: ( ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )? )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:4: ( targetRelation -> targetRelation ) ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
             {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:4: ( targetRelation -> targetRelation )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:5: targetRelation
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:4: ( targetRelation -> targetRelation )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:5: targetRelation
             {
             pushFollow(FOLLOW_targetRelation_in_fromTarget1574);
             targetRelation96=targetRelation();
@@ -3688,7 +3688,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:39: ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:39: ( 'as' QName -> ^( ASSIGN_LABEL QName $fromTarget) )?
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -3697,7 +3697,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt32) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:40: 'as' QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:40: 'as' QName
                     {
                     string_literal97=(Token)input.LT(1);
                     match(input,84,FOLLOW_84_in_fromTarget1582); if (failed) return retval;
@@ -3721,7 +3721,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 348:51: -> ^( ASSIGN_LABEL QName $fromTarget)
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:348:54: ^( ASSIGN_LABEL QName $fromTarget)
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:348:54: ^( ASSIGN_LABEL QName $fromTarget)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ASSIGN_LABEL, "ASSIGN_LABEL"), root_1);
@@ -3767,7 +3767,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start targetRelation
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:351:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:351:1: targetRelation : ( QName -> ^( RELATION QName ) | subQuery );
     public final targetRelation_return targetRelation() throws RecognitionException {
         targetRelation_return retval = new targetRelation_return();
         retval.start = input.LT(1);
@@ -3782,7 +3782,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_QName=new RewriteRuleTokenStream(adaptor,"token QName");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:352:2: ( QName -> ^( RELATION QName ) | subQuery )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:352:2: ( QName -> ^( RELATION QName ) | subQuery )
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -3801,7 +3801,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt33) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:352:4: QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:352:4: QName
                     {
                     QName99=(Token)input.LT(1);
                     match(input,QName,FOLLOW_QName_in_targetRelation1610); if (failed) return retval;
@@ -3821,7 +3821,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 352:10: -> ^( RELATION QName )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:352:13: ^( RELATION QName )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:352:13: ^( RELATION QName )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(RELATION, "RELATION"), root_1);
@@ -3838,7 +3838,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:353:4: subQuery
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:353:4: subQuery
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3875,7 +3875,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start whereClause
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:356:1: whereClause : Where orExpr ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:356:1: whereClause : Where orExpr ;
     public final whereClause_return whereClause() throws RecognitionException {
         whereClause_return retval = new whereClause_return();
         retval.start = input.LT(1);
@@ -3889,8 +3889,8 @@ public class AmoebaQueryParser extends Parser {
         Object Where101_tree=null;
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:357:2: ( Where orExpr )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:357:4: Where orExpr
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:357:2: ( Where orExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:357:4: Where orExpr
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3927,7 +3927,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start orderByClause
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:360:1: orderByClause : 'order' 'by' ( attributeName ( Comma attributeName )* ) -> ( attributeName )+ ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:360:1: orderByClause : 'order' 'by' ( attributeName ( Comma attributeName )* ) -> ( attributeName )+ ;
     public final orderByClause_return orderByClause() throws RecognitionException {
         orderByClause_return retval = new orderByClause_return();
         retval.start = input.LT(1);
@@ -3950,8 +3950,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
         RewriteRuleSubtreeStream stream_attributeName=new RewriteRuleSubtreeStream(adaptor,"rule attributeName");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:2: ( 'order' 'by' ( attributeName ( Comma attributeName )* ) -> ( attributeName )+ )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:4: 'order' 'by' ( attributeName ( Comma attributeName )* )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:2: ( 'order' 'by' ( attributeName ( Comma attributeName )* ) -> ( attributeName )+ )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:4: 'order' 'by' ( attributeName ( Comma attributeName )* )
             {
             string_literal103=(Token)input.LT(1);
             match(input,85,FOLLOW_85_in_orderByClause1649); if (failed) return retval;
@@ -3961,15 +3961,15 @@ public class AmoebaQueryParser extends Parser {
             match(input,77,FOLLOW_77_in_orderByClause1651); if (failed) return retval;
             if ( backtracking==0 ) stream_77.add(string_literal104);
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:17: ( attributeName ( Comma attributeName )* )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:18: attributeName ( Comma attributeName )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:17: ( attributeName ( Comma attributeName )* )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:18: attributeName ( Comma attributeName )*
             {
             pushFollow(FOLLOW_attributeName_in_orderByClause1654);
             attributeName105=attributeName();
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_attributeName.add(attributeName105.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:32: ( Comma attributeName )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:32: ( Comma attributeName )*
             loop34:
             do {
                 int alt34=2;
@@ -3982,7 +3982,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt34) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:361:33: Comma attributeName
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:361:33: Comma attributeName
             	    {
             	    Comma106=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_orderByClause1657); if (failed) return retval;
@@ -4057,7 +4057,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start orExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:365:1: orExpr : ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:365:1: orExpr : ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* ;
     public final orExpr_return orExpr() throws RecognitionException {
         orExpr_return retval = new orExpr_return();
         retval.start = input.LT(1);
@@ -4074,11 +4074,11 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
         RewriteRuleSubtreeStream stream_andExpr=new RewriteRuleSubtreeStream(adaptor,"rule andExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:2: ( ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:4: ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:2: ( ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )* )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:4: ( andExpr -> andExpr ) ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
             {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:4: ( andExpr -> andExpr )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:5: andExpr
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:4: ( andExpr -> andExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:5: andExpr
             {
             pushFollow(FOLLOW_andExpr_in_orExpr1682);
             andExpr108=andExpr();
@@ -4107,7 +4107,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:25: ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:25: ( 'or' a= andExpr -> ^( OR $orExpr $a) )*
             loop35:
             do {
                 int alt35=2;
@@ -4120,7 +4120,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt35) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:26: 'or' a= andExpr
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:26: 'or' a= andExpr
             	    {
             	    string_literal109=(Token)input.LT(1);
             	    match(input,86,FOLLOW_86_in_orExpr1690); if (failed) return retval;
@@ -4133,7 +4133,7 @@ public class AmoebaQueryParser extends Parser {
             	    if ( backtracking==0 ) stream_andExpr.add(a.getTree());
 
             	    // AST REWRITE
-            	    // elements: orExpr, a
+            	    // elements: a, orExpr
             	    // token labels: 
             	    // rule labels: a, retval
             	    // token list labels: 
@@ -4146,7 +4146,7 @@ public class AmoebaQueryParser extends Parser {
             	    root_0 = (Object)adaptor.nil();
             	    // 366:41: -> ^( OR $orExpr $a)
             	    {
-            	        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:366:44: ^( OR $orExpr $a)
+            	        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:366:44: ^( OR $orExpr $a)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(adaptor.create(OR, "OR"), root_1);
@@ -4195,7 +4195,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start andExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:369:1: andExpr : ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:369:1: andExpr : ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* ;
     public final andExpr_return andExpr() throws RecognitionException {
         andExpr_return retval = new andExpr_return();
         retval.start = input.LT(1);
@@ -4212,11 +4212,11 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
         RewriteRuleSubtreeStream stream_conditionExpr=new RewriteRuleSubtreeStream(adaptor,"rule conditionExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:2: ( ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:4: ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:2: ( ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )* )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:4: ( conditionExpr -> conditionExpr ) ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
             {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:4: ( conditionExpr -> conditionExpr )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:5: conditionExpr
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:4: ( conditionExpr -> conditionExpr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:5: conditionExpr
             {
             pushFollow(FOLLOW_conditionExpr_in_andExpr1722);
             conditionExpr110=conditionExpr();
@@ -4245,7 +4245,7 @@ public class AmoebaQueryParser extends Parser {
 
             }
 
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:37: ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:37: ( 'and' c= conditionExpr -> ^( AND $andExpr $c) )*
             loop36:
             do {
                 int alt36=2;
@@ -4258,7 +4258,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt36) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:38: 'and' c= conditionExpr
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:38: 'and' c= conditionExpr
             	    {
             	    string_literal111=(Token)input.LT(1);
             	    match(input,87,FOLLOW_87_in_andExpr1730); if (failed) return retval;
@@ -4271,7 +4271,7 @@ public class AmoebaQueryParser extends Parser {
             	    if ( backtracking==0 ) stream_conditionExpr.add(c.getTree());
 
             	    // AST REWRITE
-            	    // elements: c, andExpr
+            	    // elements: andExpr, c
             	    // token labels: 
             	    // rule labels: c, retval
             	    // token list labels: 
@@ -4284,7 +4284,7 @@ public class AmoebaQueryParser extends Parser {
             	    root_0 = (Object)adaptor.nil();
             	    // 370:60: -> ^( AND $andExpr $c)
             	    {
-            	        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:370:63: ^( AND $andExpr $c)
+            	        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:370:63: ^( AND $andExpr $c)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(adaptor.create(AND, "AND"), root_1);
@@ -4333,7 +4333,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start conditionExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:374:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:374:1: conditionExpr options {backtrack=true; } : ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) );
     public final conditionExpr_return conditionExpr() throws RecognitionException {
         conditionExpr_return retval = new conditionExpr_return();
         retval.start = input.LT(1);
@@ -4358,7 +4358,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleSubtreeStream stream_subQuery=new RewriteRuleSubtreeStream(adaptor,"rule subQuery");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:375:2: ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:375:2: ( labelExpr c= comparisonOp labelExpr -> ^( COMPARE comparisonOp ( labelExpr )+ ) | labelExpr In subQuery -> ^( CONTAINED_IN labelExpr subQuery ) )
             int alt37=2;
             switch ( input.LA(1) ) {
             case QName:
@@ -4966,7 +4966,7 @@ public class AmoebaQueryParser extends Parser {
 
             switch (alt37) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:375:4: labelExpr c= comparisonOp labelExpr
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:375:4: labelExpr c= comparisonOp labelExpr
                     {
                     pushFollow(FOLLOW_labelExpr_in_conditionExpr1770);
                     labelExpr112=labelExpr();
@@ -4985,7 +4985,7 @@ public class AmoebaQueryParser extends Parser {
                     if ( backtracking==0 ) stream_labelExpr.add(labelExpr113.getTree());
 
                     // AST REWRITE
-                    // elements: comparisonOp, labelExpr
+                    // elements: labelExpr, comparisonOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4997,7 +4997,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 376:4: -> ^( COMPARE comparisonOp ( labelExpr )+ )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:376:7: ^( COMPARE comparisonOp ( labelExpr )+ )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:376:7: ^( COMPARE comparisonOp ( labelExpr )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(COMPARE, "COMPARE"), root_1);
@@ -5022,7 +5022,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:377:4: labelExpr In subQuery
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:377:4: labelExpr In subQuery
                     {
                     pushFollow(FOLLOW_labelExpr_in_conditionExpr1796);
                     labelExpr114=labelExpr();
@@ -5052,7 +5052,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 378:4: -> ^( CONTAINED_IN labelExpr subQuery )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:378:7: ^( CONTAINED_IN labelExpr subQuery )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:378:7: ^( CONTAINED_IN labelExpr subQuery )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(CONTAINED_IN, "CONTAINED_IN"), root_1);
@@ -5094,7 +5094,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start comparisonOp
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:381:1: comparisonOp : ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:381:1: comparisonOp : ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) ;
     public final comparisonOp_return comparisonOp() throws RecognitionException {
         comparisonOp_return retval = new comparisonOp_return();
         retval.start = input.LT(1);
@@ -5106,8 +5106,8 @@ public class AmoebaQueryParser extends Parser {
         Object set117_tree=null;
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:381:13: ( ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:381:15: ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:381:13: ( ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:381:15: ( EQUAL | LEQ | GEQ | LESS | GREATER | NOT_EQUAL | 'like' )
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5150,7 +5150,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start labelExpr
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:383:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:383:1: labelExpr : ( function | attributeName | value -> ^( VALUE value ) );
     public final labelExpr_return labelExpr() throws RecognitionException {
         labelExpr_return retval = new labelExpr_return();
         retval.start = input.LT(1);
@@ -5166,7 +5166,7 @@ public class AmoebaQueryParser extends Parser {
 
         RewriteRuleSubtreeStream stream_value=new RewriteRuleSubtreeStream(adaptor,"rule value");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:384:2: ( function | attributeName | value -> ^( VALUE value ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:384:2: ( function | attributeName | value -> ^( VALUE value ) )
             int alt38=3;
             int LA38_0 = input.LA(1);
 
@@ -5199,7 +5199,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt38) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:384:4: function
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:384:4: function
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5212,7 +5212,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:385:4: attributeName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:385:4: attributeName
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5225,7 +5225,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:386:4: value
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:386:4: value
                     {
                     pushFollow(FOLLOW_value_in_labelExpr1870);
                     value120=value();
@@ -5246,7 +5246,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 386:10: -> ^( VALUE value )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:386:13: ^( VALUE value )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:386:13: ^( VALUE value )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(VALUE, "VALUE"), root_1);
@@ -5287,7 +5287,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start value
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:389:1: value : literal ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:389:1: value : literal ;
     public final value_return value() throws RecognitionException {
         value_return retval = new value_return();
         retval.start = input.LT(1);
@@ -5299,8 +5299,8 @@ public class AmoebaQueryParser extends Parser {
 
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:390:2: ( literal )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:390:4: literal
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:390:2: ( literal )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:390:4: literal
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5335,7 +5335,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start attributeName
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:393:1: attributeName : (qn= QName -> ^( ATTRIBUTE[$qn] ) | relation= QName Dot at= QName -> ^( REF $relation $at) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:393:1: attributeName : (qn= QName -> ^( ATTRIBUTE[$qn] ) | relation= QName Dot at= QName -> ^( REF $relation $at) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) );
     public final attributeName_return attributeName() throws RecognitionException {
         attributeName_return retval = new attributeName_return();
         retval.start = input.LT(1);
@@ -5360,7 +5360,7 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_Wildcard=new RewriteRuleTokenStream(adaptor,"token Wildcard");
 
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:394:2: (qn= QName -> ^( ATTRIBUTE[$qn] ) | relation= QName Dot at= QName -> ^( REF $relation $at) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:394:2: (qn= QName -> ^( ATTRIBUTE[$qn] ) | relation= QName Dot at= QName -> ^( REF $relation $at) | relation= QName Dot Wildcard -> ^( REF_ALL $relation) )
             int alt39=3;
             int LA39_0 = input.LA(1);
 
@@ -5404,7 +5404,7 @@ public class AmoebaQueryParser extends Parser {
             }
             switch (alt39) {
                 case 1 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:394:4: qn= QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:394:4: qn= QName
                     {
                     qn=(Token)input.LT(1);
                     match(input,QName,FOLLOW_QName_in_attributeName1904); if (failed) return retval;
@@ -5424,7 +5424,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 394:13: -> ^( ATTRIBUTE[$qn] )
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:394:16: ^( ATTRIBUTE[$qn] )
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:394:16: ^( ATTRIBUTE[$qn] )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(ATTRIBUTE, qn), root_1);
@@ -5439,7 +5439,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:395:4: relation= QName Dot at= QName
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:395:4: relation= QName Dot at= QName
                     {
                     relation=(Token)input.LT(1);
                     match(input,QName,FOLLOW_QName_in_attributeName1918); if (failed) return retval;
@@ -5469,7 +5469,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 395:32: -> ^( REF $relation $at)
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:395:35: ^( REF $relation $at)
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:395:35: ^( REF $relation $at)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(REF, "REF"), root_1);
@@ -5487,7 +5487,7 @@ public class AmoebaQueryParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:396:4: relation= QName Dot Wildcard
+                    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:396:4: relation= QName Dot Wildcard
                     {
                     relation=(Token)input.LT(1);
                     match(input,QName,FOLLOW_QName_in_attributeName1943); if (failed) return retval;
@@ -5516,7 +5516,7 @@ public class AmoebaQueryParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 396:32: -> ^( REF_ALL $relation)
                     {
-                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:396:35: ^( REF_ALL $relation)
+                        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:396:35: ^( REF_ALL $relation)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(adaptor.create(REF_ALL, "REF_ALL"), root_1);
@@ -5557,7 +5557,7 @@ public class AmoebaQueryParser extends Parser {
     };
 
     // $ANTLR start function
-    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:400:1: function : QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:400:1: function : QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) ;
     public final function_return function() throws RecognitionException {
         function_return retval = new function_return();
         retval.start = input.LT(1);
@@ -5583,8 +5583,8 @@ public class AmoebaQueryParser extends Parser {
         RewriteRuleTokenStream stream_LParen=new RewriteRuleTokenStream(adaptor,"token LParen");
         RewriteRuleSubtreeStream stream_labelExpr=new RewriteRuleSubtreeStream(adaptor,"rule labelExpr");
         try {
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:401:2: ( QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) )
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:401:4: QName LParen labelExpr ( Comma labelExpr )* RParen
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:401:2: ( QName LParen labelExpr ( Comma labelExpr )* RParen -> ^( FUNCTION QName ( labelExpr )+ ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:401:4: QName LParen labelExpr ( Comma labelExpr )* RParen
             {
             QName125=(Token)input.LT(1);
             match(input,QName,FOLLOW_QName_in_function1970); if (failed) return retval;
@@ -5599,7 +5599,7 @@ public class AmoebaQueryParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) stream_labelExpr.add(labelExpr127.getTree());
-            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:401:27: ( Comma labelExpr )*
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:401:27: ( Comma labelExpr )*
             loop40:
             do {
                 int alt40=2;
@@ -5612,7 +5612,7 @@ public class AmoebaQueryParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:401:28: Comma labelExpr
+            	    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:401:28: Comma labelExpr
             	    {
             	    Comma128=(Token)input.LT(1);
             	    match(input,Comma,FOLLOW_Comma_in_function1977); if (failed) return retval;
@@ -5650,7 +5650,7 @@ public class AmoebaQueryParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 402:2: -> ^( FUNCTION QName ( labelExpr )+ )
             {
-                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:402:5: ^( FUNCTION QName ( labelExpr )+ )
+                // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:402:5: ^( FUNCTION QName ( labelExpr )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(adaptor.create(FUNCTION, "FUNCTION"), root_1);
@@ -5693,8 +5693,8 @@ public class AmoebaQueryParser extends Parser {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:375:4: ( labelExpr comparisonOp labelExpr )
-        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\AmoebaQuery.g:375:4: labelExpr comparisonOp labelExpr
+        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:375:4: ( labelExpr comparisonOp labelExpr )
+        // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQuery.g:375:4: labelExpr comparisonOp labelExpr
         {
         pushFollow(FOLLOW_labelExpr_in_synpred11770);
         labelExpr();

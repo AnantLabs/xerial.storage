@@ -99,7 +99,7 @@ LANG;
 // 
 //--------------------------------------------------
 
-package org.xerial.amoeba.query;
+package org.xerial.amoeba.query.impl;
 }
 
 
@@ -127,7 +127,7 @@ package org.xerial.amoeba.query;
 // Since  2005/10/27 23:17:42
 // 
 //--------------------------------------------------
-package org.xerial.amoeba.query;
+package org.xerial.amoeba.query.impl;
 
 }
 
