@@ -28,6 +28,8 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.Tree;
+import org.xerial.amoeba.query.impl.AmoebaQueryLexer;
+import org.xerial.amoeba.query.impl.AmoebaQueryParser;
 
 /**
  * Given an amoeba query expression, e.g., "select species, target, track from graph"

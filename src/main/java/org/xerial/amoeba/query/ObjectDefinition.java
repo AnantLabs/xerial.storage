@@ -27,6 +27,7 @@ package org.xerial.amoeba.query;
 import java.util.ArrayList;
 
 import org.antlr.runtime.tree.Tree;
+import org.xerial.amoeba.query.impl.AmoebaQueryParser;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;

@@ -26,6 +26,8 @@ package org.xerial.amoeba.query;
 
 import java.util.HashMap;
 
+import org.xerial.amoeba.query.impl.AmoebaQueryParser;
+
 public class AmoebaQueryToken
 {
     private static HashMap<String, Integer> tokenTable = new HashMap<String, Integer>();

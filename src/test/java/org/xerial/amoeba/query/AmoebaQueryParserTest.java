@@ -38,6 +38,8 @@ import org.antlr.runtime.tree.CommonTree;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.amoeba.query.impl.AmoebaQueryLexer;
+import org.xerial.amoeba.query.impl.AmoebaQueryParser;
 import org.xerial.util.StringUtil;
 import org.xerial.util.log.Logger;
 

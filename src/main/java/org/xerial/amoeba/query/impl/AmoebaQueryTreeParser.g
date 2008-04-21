@@ -14,7 +14,7 @@ options {
 
 @header
 {
-package org.xerial.amoeba.query;
+package org.xerial.amoeba.query.impl;
 }
 
 
