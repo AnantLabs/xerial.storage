@@ -105,19 +105,19 @@ public class Relation
 
     public static DataType getDataType(String parameterName, String typeName)
     {
-        if (typeName.equals("boolean"))
+        if (typeName.equalsIgnoreCase("boolean"))
             return new BooleanType(parameterName);
-        else if (typeName.startsWith("int") || typeName.equals("serial"))
+        else if (typeName.startsWith("int") ||typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
             return new IntegerType(parameterName);
-        else if (typeName.equals("double"))
+        else if (typeName.equalsIgnoreCase("double"))
             return new DoubleType(parameterName);
-        else if (typeName.equals("string"))
+        else if (typeName.equalsIgnoreCase("string"))
             return new StringType(parameterName);
-        else if (typeName.equals("long"))
+        else if (typeName.equalsIgnoreCase("long"))
             return new LongType(parameterName);
-        else if (typeName.equals("password"))
+        else if (typeName.equalsIgnoreCase("password"))
             return new PasswordType(parameterName);
-        else if (typeName.equals("text"))
+        else if (typeName.equalsIgnoreCase("text"))
             return new TextType(parameterName);
         else
             return new StringType(parameterName);

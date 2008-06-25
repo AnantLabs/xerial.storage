@@ -319,6 +319,8 @@ public class DatabaseAccessBase implements DatabaseAccess
                 String columnName = resultSet.getString("COLUMN_NAME");
                 String typeName = resultSet.getString("TYPE_NAME");
                 DataType dt = Relation.getDataType(columnName, typeName);
+                
+                
                 /*
                  * <pre> int dataType = resultSet.getInt("DATA_TYPE");
                  * 
@@ -342,11 +344,9 @@ public class DatabaseAccessBase implements DatabaseAccess
                  * </pre>
                  */
 
-                if (dt != null)
-                {
-                    dt.setNotNull(!resultSet.getString("IS_NULLABLE").equals("YES"));
-                    relation.add(dt);
-                }
+                assert(dt != null);
+                dt.setNotNull(!resultSet.getString("IS_NULLABLE").equals("YES"));
+                relation.add(dt);
             }
         }
         catch (SQLException e)

@@ -92,6 +92,19 @@ public class SQLiteAccess extends DatabaseAccessBase
     {
         return getCatalog().getTableNameSet();
     }
+    
+    @Override
+    public List<String> getTableNameList() throws DBException
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        for(String s : super.getTableNameList())
+        {
+            if(s.equals("sqlite_sequence"))
+                continue;
+            list.add(s);
+        }
+        return list;
+    }
 
     public List<SQLiteDataTypeInfo> getSQLiteDataTypeInfo(String tableName) throws DBException
     {
