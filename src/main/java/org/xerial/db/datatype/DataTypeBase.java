@@ -96,7 +96,7 @@ public abstract class DataTypeBase implements DataType
 
     public String toString()
     {
-        return name;
+        return String.format("%s (%s)", getName(), getTypeName());
     }
 
 }

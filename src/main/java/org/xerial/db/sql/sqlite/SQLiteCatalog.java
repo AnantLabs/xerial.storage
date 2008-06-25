@@ -100,7 +100,11 @@ public class SQLiteCatalog
         String q = SQLExpression.fillTemplate("select name from sqlite_master where type = '$1'", "table");
         List<String> tableList = _query.singleColumnQuery(q, "name", String.class);
         for (String tableName : tableList)
+        {
+            if(tableName.equals("sqlite_master") || tableName.equals("sqlite_sequence"))
+                continue;
             _relationTable.put(tableName, _query.getRelationSchema(tableName));
+        }
     }
 
     /**
