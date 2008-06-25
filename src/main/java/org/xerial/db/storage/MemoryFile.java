@@ -29,148 +29,160 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.xerial.db.DBException;
 import org.xerial.db.DBErrorCode;
+import org.xerial.db.DBException;
 
 /**
- * {@link MemoryFile} is a class to handle main memory as if it were a file  
+ * {@link MemoryFile} is a class to handle main memory as if it is a file
  * 
  * @author leo
- *
+ * 
  */
-public class MemoryFile implements DBFile {
+public class MemoryFile implements DBFile
+{
 
-	private final int chunkSize = 1024;
-	private ArrayList<MemoryChunk> chunkList = new ArrayList<MemoryChunk>();
-	private long fileCursor = 0;
+    private final int chunkSize = 1024;
+    private ArrayList<MemoryChunk> chunkList = new ArrayList<MemoryChunk>();
+    private long fileCursor = 0;
 
-	class MemoryChunk
-	{
-		byte[] buffer = new byte[chunkSize];	// buffer is automatically initialized with the default value
-		
-		public MemoryChunk()
-		{
+    class MemoryChunk
+    {
+        byte[] buffer = new byte[chunkSize]; // buffer is automatically initialized with the default value
 
-		}
-		
-		/**
-		 * Reads the chunk data, then writes to the given output buffer from the specified offset 
-		 * @param outputBuffer
-		 * @param offsetInOutputBuffer
-		 * @param offsetInChunk
-		 * @param readBytes
-		 * @return the number of bytes read from this chunk. When the retuned value equals to the readBytes, the data is fully read from the chunk. If 
-		 * the returned value is less than the readBytes, it indicates the succeeding chunks should be read to fully retrieve the data 
-		 */
-		public int read(byte[] outputBuffer, int offsetInOutputBuffer, int offsetInChunk, int readBytes)
-		{
-			int availableBytesInThisChunk = chunkSize - offsetInChunk;
-			int readBytesFromThisChunk = (availableBytesInThisChunk > readBytes) ? readBytes : availableBytesInThisChunk;
-			for(int i=0; i<readBytesFromThisChunk; i++)
-			{
-				outputBuffer[offsetInOutputBuffer + i] = buffer[offsetInChunk + i];
-			}
-			return readBytesFromThisChunk;	 
-		}
-		
-		public int write(byte[] inputBuffer, int offsetInInputBuffer, int offsetInChunk, int writeBytes)
-		{
-			int availableBytesInThisChunk = chunkSize - offsetInChunk;
-			int writeBytesToThisChunk = (availableBytesInThisChunk > writeBytes) ? writeBytes : availableBytesInThisChunk;
-			for(int i=0; i<writeBytesToThisChunk; i++)
-			{
-				buffer[offsetInChunk + i] = inputBuffer[offsetInInputBuffer + i];
-			}
-			return writeBytesToThisChunk;
-		}
-	}
+        public MemoryChunk()
+        {
 
-	public MemoryFile()
-	{
-	}
-	
-	public void loadFromFile(String fileName) throws IOException, DBException
-	{
-		BufferedReader reader = new BufferedReader(new FileReader(fileName));
-		int data;
-		byte[] buf = new byte[1];
-		while((data = reader.read()) != -1)
-		{
-			buf[0] = (byte) data;
-			write(buf, 0, 1);
-		}
-	}
-	
-	private int chunkIndex(long cursor)
-	{
-		return (int) (cursor / chunkSize); 
-	}
-	
-	private int chunkOffset(long cursor)
-	{
-		return (int) (cursor % chunkSize);  
-	}
-	
-	private MemoryChunk getChunk(int chunkIndex)
-	{
-		extendChunkListUpTo(chunkIndex);
-		return chunkList.get(chunkIndex);
-	}
-	
-	private void extendChunkListUpTo(int chunkIndex)
-	{
-		while(chunkIndex >= chunkList.size())
-		{
-			chunkList.add(new MemoryChunk());
-		}
-	}
-	
-	public void read(byte[] buffer, int offset, int byteSize) throws DBException 
-	{
-		if((buffer.length - offset) < byteSize)
-			throw new DBException(DBErrorCode.InvalidInput, "insufficient read buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
-		
-		int remainingBytesToRead = byteSize;
-		while(remainingBytesToRead > 0)
-		{
-			int currentChunkIndex = chunkIndex(fileCursor);
-			int offsetInChunk = chunkOffset(fileCursor);
-			MemoryChunk chunk = getChunk(currentChunkIndex);
-			int readBytes = chunk.read(buffer, offset, offsetInChunk, remainingBytesToRead);
+        }
 
-			fileCursor += readBytes;
-			offset += readBytes;
-			remainingBytesToRead -= readBytes;
-		}
-	}
+        /**
+         * Reads the chunk data, then writes to the given output buffer from the
+         * specified offset
+         * 
+         * @param outputBuffer
+         * @param offsetInOutputBuffer
+         * @param offsetInChunk
+         * @param readBytes
+         * @return the number of bytes read from this chunk. When the retuned
+         *         value equals to the readBytes, the data is fully read from
+         *         the chunk. If the returned value is less than the readBytes,
+         *         it indicates the succeeding chunks should be read to fully
+         *         retrieve the data
+         */
+        public int read(byte[] outputBuffer, int offsetInOutputBuffer, int offsetInChunk, int readBytes)
+        {
+            int availableBytesInThisChunk = chunkSize - offsetInChunk;
+            int readBytesFromThisChunk = (availableBytesInThisChunk > readBytes) ? readBytes
+                    : availableBytesInThisChunk;
+            for (int i = 0; i < readBytesFromThisChunk; i++)
+            {
+                outputBuffer[offsetInOutputBuffer + i] = buffer[offsetInChunk + i];
+            }
+            return readBytesFromThisChunk;
+        }
 
-	public void seek(long fileBytePos) throws DBException {
-		if(fileBytePos < 0)
-			throw new DBException(DBErrorCode.InvalidInput, "the cursor cannot be less than 0: " + fileBytePos);
-		
-		fileCursor = fileBytePos;
-	}
+        public int write(byte[] inputBuffer, int offsetInInputBuffer, int offsetInChunk, int writeBytes)
+        {
+            int availableBytesInThisChunk = chunkSize - offsetInChunk;
+            int writeBytesToThisChunk = (availableBytesInThisChunk > writeBytes) ? writeBytes
+                    : availableBytesInThisChunk;
+            for (int i = 0; i < writeBytesToThisChunk; i++)
+            {
+                buffer[offsetInChunk + i] = inputBuffer[offsetInInputBuffer + i];
+            }
+            return writeBytesToThisChunk;
+        }
+    }
 
-	public void write(byte[] buffer, int offset, int byteSize)	throws DBException {
-		if((buffer.length - offset) < byteSize)
-			throw new DBException(DBErrorCode.InvalidInput, "insufficient data buffer size:" + buffer.length + "(offset: " + offset + "), byteSize = " + byteSize);
-		
-		int remainingBytesToWrite = byteSize;
-		while(remainingBytesToWrite > 0)
-		{
-			int currentChunkIndex = chunkIndex(fileCursor);
-			int offsetInChunk = chunkOffset(fileCursor);
-			MemoryChunk chunk = getChunk(currentChunkIndex);
-			int wroteBytes = chunk.write(buffer, offset, offsetInChunk, remainingBytesToWrite);
-			
-			fileCursor += wroteBytes;
-			offset += wroteBytes;
-			remainingBytesToWrite -= wroteBytes;
-		}
-	}
+    public MemoryFile()
+    {}
 
-	public void close() throws DBException {
-		// do nothing
-	}
+    public void loadFromFile(String fileName) throws IOException, DBException
+    {
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        int data;
+        byte[] buf = new byte[1];
+        while ((data = reader.read()) != -1)
+        {
+            buf[0] = (byte) data;
+            write(buf, 0, 1);
+        }
+    }
+
+    private int chunkIndex(long cursor)
+    {
+        return (int) (cursor / chunkSize);
+    }
+
+    private int chunkOffset(long cursor)
+    {
+        return (int) (cursor % chunkSize);
+    }
+
+    private MemoryChunk getChunk(int chunkIndex)
+    {
+        extendChunkListUpTo(chunkIndex);
+        return chunkList.get(chunkIndex);
+    }
+
+    private void extendChunkListUpTo(int chunkIndex)
+    {
+        while (chunkIndex >= chunkList.size())
+        {
+            chunkList.add(new MemoryChunk());
+        }
+    }
+
+    public void read(byte[] buffer, int offset, int byteSize) throws DBException
+    {
+        if ((buffer.length - offset) < byteSize)
+            throw new DBException(DBErrorCode.InvalidInput, "insufficient read buffer size:" + buffer.length
+                    + "(offset: " + offset + "), byteSize = " + byteSize);
+
+        int remainingBytesToRead = byteSize;
+        while (remainingBytesToRead > 0)
+        {
+            int currentChunkIndex = chunkIndex(fileCursor);
+            int offsetInChunk = chunkOffset(fileCursor);
+            MemoryChunk chunk = getChunk(currentChunkIndex);
+            int readBytes = chunk.read(buffer, offset, offsetInChunk, remainingBytesToRead);
+
+            fileCursor += readBytes;
+            offset += readBytes;
+            remainingBytesToRead -= readBytes;
+        }
+    }
+
+    public void seek(long fileBytePos) throws DBException
+    {
+        if (fileBytePos < 0)
+            throw new DBException(DBErrorCode.InvalidInput, "the cursor cannot be less than 0: " + fileBytePos);
+
+        fileCursor = fileBytePos;
+    }
+
+    public void write(byte[] buffer, int offset, int byteSize) throws DBException
+    {
+        if ((buffer.length - offset) < byteSize)
+            throw new DBException(DBErrorCode.InvalidInput, "insufficient data buffer size:" + buffer.length
+                    + "(offset: " + offset + "), byteSize = " + byteSize);
+
+        int remainingBytesToWrite = byteSize;
+        while (remainingBytesToWrite > 0)
+        {
+            int currentChunkIndex = chunkIndex(fileCursor);
+            int offsetInChunk = chunkOffset(fileCursor);
+            MemoryChunk chunk = getChunk(currentChunkIndex);
+            int wroteBytes = chunk.write(buffer, offset, offsetInChunk, remainingBytesToWrite);
+
+            fileCursor += wroteBytes;
+            offset += wroteBytes;
+            remainingBytesToWrite -= wroteBytes;
+        }
+    }
+
+    public void close() throws DBException
+    {
+    // do nothing
+    }
 
 }

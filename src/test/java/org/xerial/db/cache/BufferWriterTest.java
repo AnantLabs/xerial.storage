@@ -24,7 +24,7 @@
 //--------------------------------------
 package org.xerial.db.cache;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
@@ -36,7 +36,7 @@ public class BufferWriterTest
     Buffer buffer;
     BufferReader reader;
     BufferWriter writer;
-    
+
     @Before
     public void setUp() throws Exception
     {
@@ -49,8 +49,6 @@ public class BufferWriterTest
     public void tearDown() throws Exception
     {}
 
-
-
     @Test
     public void testWrite()
     {
@@ -62,13 +60,13 @@ public class BufferWriterTest
         writer.writeByte((byte) 4);
         writer.writeInt(443);
         writer.writeBoolean(false);
-        
+
         assertEquals(434, reader.readInt());
         assertEquals(1324, reader.readInt());
         assertEquals(431431L, reader.readLong());
         assertEquals(10000341431L, reader.readLong());
         assertEquals(true, reader.readBoolean());
-        assertEquals((byte)4, reader.readByte());
+        assertEquals((byte) 4, reader.readByte());
         assertEquals(443, reader.readInt());
         assertEquals(false, reader.readBoolean());
     }
