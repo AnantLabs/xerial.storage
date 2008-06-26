@@ -24,7 +24,8 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -40,9 +41,9 @@ import org.xerial.util.log.Logger;
 public class DatabaseAccessTest
 {
     private static Logger _logger = Logger.getLogger(DatabaseAccessTest.class);
-    
+
     private DatabaseAccess dbAccess;
-    
+
     @Before
     public void setUp() throws Exception
     {
@@ -56,43 +57,49 @@ public class DatabaseAccessTest
     @Test
     public void testGetTableNameList() throws DBException
     {
-        dbAccess.update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
+        dbAccess
+                .update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
         List<String> tableNameList = dbAccess.getTableNameList();
         _logger.debug(tableNameList);
         assertEquals(1, tableNameList.size());
-        
-        assert(tableNameList.contains("student"));
-        
-        dbAccess.update("create table report (id integer primary key autoincrement not null, student_id integer not null, data blob)");
+
+        assert (tableNameList.contains("student"));
+
+        dbAccess
+                .update("create table report (id integer primary key autoincrement not null, student_id integer not null, data blob)");
         tableNameList = dbAccess.getTableNameList();
         assertEquals(2, tableNameList.size());
-        
-        assert(tableNameList.contains("student"));
-        assert(tableNameList.contains("report"));
+
+        assert (tableNameList.contains("student"));
+        assert (tableNameList.contains("report"));
 
     }
 
     @Test
     public void testGetRelation() throws DBException
     {
-        dbAccess.update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
+        dbAccess
+                .update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
         Relation r = dbAccess.getRelation("student");
-    
+
         List<DataType> dt = r.getDataTypeList();
         _logger.debug(dt);
         assertEquals(3, dt.size());
-        assertEquals("id", dt.get(0).getName());        
+
+        assertEquals("id", dt.get(0).getName());
         assertEquals("integer", dt.get(0).getTypeName());
         assertEquals(true, dt.get(0).isPrimaryKey());
-        assertEquals(true, dt.get(0).isNotNull());
-        
-        assertEquals("name", dt.get(1).getName());        
-        assertEquals("string", dt.get(1).getTypeName());
-        assertEquals(false, dt.get(1).isNotNull());
+        assertEquals(false, dt.get(0).isNullable());
 
-        assertEquals("createdAt", dt.get(2).getName());        
+        assertEquals("name", dt.get(1).getName());
+        assertEquals("string", dt.get(1).getTypeName());
+        assertEquals(false, dt.get(1).isPrimaryKey());
+        assertEquals(true, dt.get(1).isNullable());
+
+        assertEquals("createdAt", dt.get(2).getName());
         assertEquals("datetime", dt.get(2).getTypeName());
-        assertEquals(false, dt.get(2).isNotNull());
+        assertEquals(false, dt.get(2).isPrimaryKey());
+        assertEquals(true, dt.get(2).isNullable());
 
     }
 
@@ -151,9 +158,11 @@ public class DatabaseAccessTest
     }
 
     @Test
-    public void testInsert()
+    public void testInsert() throws DBException
     {
-        fail("Not yet implemented");
+        dbAccess
+                .update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
+
     }
 
     @Test

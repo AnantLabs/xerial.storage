@@ -164,7 +164,7 @@ public class SQLiteAccess extends DatabaseAccessBase
                         String attributeDefinition = dt.getName() + " " + SQLite.getDataTypeName(dt);
                         if (dt.isPrimaryKey())
                             attributeDefinition += " primary key";
-                        if (dt.isNotNull())
+                        if (dt.isNullable())
                             attributeDefinition += " not null";
                         return attributeDefinition;
                     }

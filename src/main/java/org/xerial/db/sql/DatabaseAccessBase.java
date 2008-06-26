@@ -30,11 +30,14 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
@@ -302,6 +305,41 @@ public class DatabaseAccessBase implements DatabaseAccess
         this.queryTimeout = sec;
     }
 
+    public Set<String> getPrimaryKeyColumns(String tableName) throws DBException
+    {
+
+        Connection connection = null;
+
+        try
+        {
+            connection = getConnection(true);
+            DatabaseMetaData metadata = connection.getMetaData();
+            return getPrimaryKeyColumns(metadata, tableName);
+        }
+        catch (SQLException e)
+        {
+            throw new DBException(DBErrorCode.QueryError, e);
+        }
+        finally
+        {
+            if (connection != null)
+                _connectionPool.returnConnection(connection);
+        }
+
+    }
+
+    public Set<String> getPrimaryKeyColumns(DatabaseMetaData metadata, String tableName) throws SQLException
+    {
+        HashSet<String> primaryKeyColumnSet = new HashSet<String>();
+        // retrieve primary key information
+        for (ResultSet primaryKeyResult = metadata.getPrimaryKeys(null, null, tableName); primaryKeyResult.next();)
+        {
+            String columnName = primaryKeyResult.getString("COLUMN_NAME");
+            primaryKeyColumnSet.add(columnName);
+        }
+        return primaryKeyColumnSet;
+    }
+
     public Relation getRelation(String tableName) throws DBException
     {
         if (tableRelationCatalog.containsKey(tableName))
@@ -314,45 +352,32 @@ public class DatabaseAccessBase implements DatabaseAccess
         {
             connection = getConnection(true);
             DatabaseMetaData metadata = connection.getMetaData();
+
+            Set<String> primaryKeyColumnSet = getPrimaryKeyColumns(metadata, tableName);
+
+            int column = 1;
             for (ResultSet resultSet = metadata.getColumns(null, null, tableName, null); resultSet.next();)
             {
                 String columnName = resultSet.getString("COLUMN_NAME");
                 String typeName = resultSet.getString("TYPE_NAME");
                 DataType dt = Relation.getDataType(columnName, typeName);
-                
-                
-                /*
-                 * <pre> int dataType = resultSet.getInt("DATA_TYPE");
-                 * 
-                 * DataType dt = null; switch (dataType) { case CHAR: case
-                 * VARCHAR: case VARBINARY: case LONGVARBINARY: case
-                 * LONGVARCHAR: case DATE: case TIME: case TIMESTAMP: case
-                 * OTHER: dt = new StringType(columnName); break;
-                 * 
-                 * case NUMERIC: case DOUBLE: case FLOAT: dt = new
-                 * DoubleType(columnName); break;
-                 * 
-                 * case DECIMAL: case TINYINT: case SMALLINT: case INTEGER: dt =
-                 * new IntegerType(columnName); break;
-                 * 
-                 * case BIGINT: dt = new LongType(columnName); break;
-                 * 
-                 * case DISTINCT: case JAVA_OBJECT: case NULL: case REAL: case
-                 * REF: case STRUCT: case ARRAY: case BINARY: case BIT: case
-                 * BLOB: case CLOB: default: _logger.warn("skipped. unsupported
-                 * SQL data type: " + resultSet.getString("TYPE_NAME")); }
-                 * </pre>
-                 */
 
-                assert(dt != null);
-                dt.setNotNull(!resultSet.getString("IS_NULLABLE").equals("YES"));
+                ResultSetMetaData rmeta = resultSet.getMetaData();
+
+                assert (dt != null);
+                dt.setNullable(resultSet.getInt("NULLABLE") == ResultSetMetaData.columnNullable);
+                dt.setPrimaryKey(primaryKeyColumnSet.contains(columnName));
+
                 relation.add(dt);
+
+                column++;
             }
         }
         catch (SQLException e)
         {
             throw new DBException(DBErrorCode.QueryError, e);
         }
+
         finally
         {
             if (connection != null)

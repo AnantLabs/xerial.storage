@@ -32,7 +32,7 @@ public abstract class DataTypeBase implements DataType
 {
     private String name;
     private boolean isPrimaryKey = false;
-    private boolean isNotNull = false;
+    private boolean isNullable = false;
 
     public DataTypeBase(String name)
     {
@@ -49,11 +49,11 @@ public abstract class DataTypeBase implements DataType
     private DataTypeBase()
     {}
 
-    public DataTypeBase(String name, boolean isPrimaryKey, boolean isNotNull)
+    public DataTypeBase(String name, boolean isPrimaryKey, boolean isNullable)
     {
         this.name = name;
         this.isPrimaryKey = isPrimaryKey;
-        this.isNotNull = isNotNull;
+        this.isNullable = isNullable;
     }
 
     public int compareTo(DataType o)
@@ -84,19 +84,19 @@ public abstract class DataTypeBase implements DataType
         return isPrimaryKey;
     }
 
-    public void setNotNull(boolean isNotNull)
+    public void setNullable(boolean isNotNull)
     {
-        this.isNotNull = isNotNull;
+        this.isNullable = isNotNull;
     }
 
-    public boolean isNotNull()
+    public boolean isNullable()
     {
-        return isNotNull;
+        return isNullable;
     }
 
     public String toString()
     {
-        return String.format("%s (%s)", getName(), getTypeName());
+        return String.format("%s (%s)", getName(), getTypeName() + (isPrimaryKey ? " pkey" : ""));
     }
 
 }

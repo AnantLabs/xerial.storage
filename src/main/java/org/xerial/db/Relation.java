@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
+import org.xerial.db.datatype.DateTimeType;
 import org.xerial.db.datatype.DoubleType;
 import org.xerial.db.datatype.IntegerType;
 import org.xerial.db.datatype.LongType;
@@ -107,7 +108,7 @@ public class Relation
     {
         if (typeName.equalsIgnoreCase("boolean"))
             return new BooleanType(parameterName);
-        else if (typeName.startsWith("int") ||typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
+        else if (typeName.startsWith("int") || typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
             return new IntegerType(parameterName);
         else if (typeName.equalsIgnoreCase("double"))
             return new DoubleType(parameterName);
@@ -119,6 +120,8 @@ public class Relation
             return new PasswordType(parameterName);
         else if (typeName.equalsIgnoreCase("text"))
             return new TextType(parameterName);
+        else if (typeName.equalsIgnoreCase("datetime"))
+            return new DateTimeType(parameterName);
         else
             return new StringType(parameterName);
     }
