@@ -24,10 +24,13 @@
 //--------------------------------------
 package org.xerial.db;
 
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.xerial.db.datatype.BlobType;
 import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.DateTimeType;
@@ -122,6 +125,28 @@ public class Relation
             return new TextType(parameterName);
         else if (typeName.equalsIgnoreCase("datetime"))
             return new DateTimeType(parameterName);
+        else if (typeName.equalsIgnoreCase("blob"))
+            return new BlobType(parameterName);
+        else
+            return new StringType(parameterName);
+    }
+
+    public static <T> DataType getDataType(String parameterName, Class<T> valueType)
+    {
+        if (valueType.isAssignableFrom(Integer.class) || valueType.isAssignableFrom(int.class))
+            return new IntegerType(parameterName);
+        else if (valueType.isAssignableFrom(Double.class) || valueType.isAssignableFrom(double.class))
+            return new DoubleType(parameterName);
+        else if (valueType.isAssignableFrom(String.class))
+            return new StringType(parameterName);
+        else if (valueType.isAssignableFrom(Boolean.class) || valueType.isAssignableFrom(boolean.class))
+            return new BooleanType(parameterName);
+        else if (valueType.isAssignableFrom(Long.class) || valueType.isAssignableFrom(long.class))
+            return new LongType(parameterName);
+        else if (valueType.isAssignableFrom(Date.class))
+            return new DateTimeType(parameterName);
+        else if (valueType.isAssignableFrom(Blob.class))
+            return new BlobType(parameterName);
         else
             return new StringType(parameterName);
     }

@@ -202,4 +202,12 @@ public interface DatabaseAccess
      * @throws DBException
      */
     public void dispose() throws DBException;
+
+    /**
+     * Test the existence of the specified table
+     * 
+     * @param tableName
+     * @return
+     */
+    public boolean hasTable(String tableName) throws DBException;
 }

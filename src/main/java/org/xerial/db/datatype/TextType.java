@@ -24,21 +24,17 @@
 //--------------------------------------
 package org.xerial.db.datatype;
 
+public class TextType extends DataTypeBase
+{
 
-public class TextType extends DataTypeBase {
+    public TextType(String name)
+    {
+        super(name);
+    }
 
-	
-	public TextType(String name) {
-		super(name);
-	}
-
-
-	public String getTypeName() {
-		return "text";
-	}
+    public String getTypeName()
+    {
+        return "text";
+    }
 
 }
-
-
-
-

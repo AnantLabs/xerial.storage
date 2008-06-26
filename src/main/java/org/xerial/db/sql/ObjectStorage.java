@@ -69,6 +69,22 @@ public interface ObjectStorage
     public <T> void regist(String tableName, Class<T> classType) throws DBException;
 
     /**
+     * Register a class type that can be used as save/load unit to the table.
+     * That is each row in the table corresponds to an instance of the given
+     * classType.
+     * 
+     * The table name is classType.getName().toLowerCase();
+     * 
+     * If no such table exists in the database, this method creates a new table
+     * for the given class type.
+     * 
+     * @param <T>
+     * @param classType
+     * @throws DBException
+     */
+    public <T> void regist(Class<T> classType) throws DBException;
+
+    /**
      * Associate type T to type U with one-to-one relationship
      * 
      * @param <T>
