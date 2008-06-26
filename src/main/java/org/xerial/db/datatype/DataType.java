@@ -62,9 +62,10 @@ public interface DataType extends Comparable<DataType>
      * 
      * @return true if this data type value cannot be null, otherwise false.
      */
-    public boolean isNotNull();
+    public boolean isNullable();
 
     public void setPrimaryKey(boolean isPrimatyKey);
 
-    public void setNotNull(boolean isNotNull);
+    public void setNullable(boolean isNullable);
+
 }
