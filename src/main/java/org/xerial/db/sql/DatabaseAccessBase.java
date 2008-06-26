@@ -542,4 +542,9 @@ public class DatabaseAccessBase implements DatabaseAccess
 
     }
 
+    public boolean hasTable(String tableName) throws DBException
+    {
+        return getTableNameList().contains(tableName);
+    }
+
 }
