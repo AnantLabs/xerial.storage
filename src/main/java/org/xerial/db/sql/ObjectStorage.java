@@ -65,7 +65,7 @@ public interface ObjectStorage
      *            class type corresponding to each row of the table
      * @throws DBException
      */
-    public <T> void regist(String tableName, Class<T> classType) throws DBException;
+    public <T> void register(String tableName, Class<T> classType) throws DBException;
 
     /**
      * Register a class type that can be used as save/load unit to the table.
@@ -81,7 +81,7 @@ public interface ObjectStorage
      * @param classType
      * @throws DBException
      */
-    public <T> void regist(Class<T> classType) throws DBException;
+    public <T> void register(Class<T> classType) throws DBException;
 
     /**
      * Associate type T to type U with one-to-one relationship

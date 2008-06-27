@@ -77,15 +77,8 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         Class< ? > beanType = bean.getClass();
 
-        String tableName = tableNameOfEachClass.get(beanType);
-        Relation r = relationOfEachClass.get(beanType);
-
-        // If no collesponding class was found, create a new table for the bean class
-        if (tableName == null || r == null)
-        {
-            regist(beanType);
-            return create(bean);
-        }
+        String tableName = getTableName(beanType);
+        Relation r = getRelation(beanType);
 
         String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
                 writableAttributeList(r), ", "), createSQLValuesStatement(r, bean));
@@ -118,6 +111,21 @@ public class ObjectStorageImpl implements ObjectStorage
         }
     }
 
+    public static <T> int getBeanID(T bean) throws BeanException
+    {
+        return Integer.class.cast(getValue(bean, "id"));
+    }
+
+    /**
+     * Retrieves the bean value using the getter corresponding to the given
+     * parameter name
+     * 
+     * @param <T>
+     * @param bean
+     * @param parameterName
+     * @return thre result of getSomething() method
+     * @throws BeanException
+     */
     public static <T> Object getValue(T bean, String parameterName) throws BeanException
     {
         BeanBinderSet ruleSet = BeanUtil.getBeanOutputRule(bean.getClass());
@@ -133,7 +141,7 @@ public class ObjectStorageImpl implements ObjectStorage
         }
     }
 
-    public static <T> String createSQLValuesStatement(Relation relation, T bean)
+    public static <T> ArrayList<String> createSQLValueList(Relation relation, T bean)
     {
         ArrayList<String> valueList = new ArrayList<String>();
         for (DataType dt : relation.getDataTypeList())
@@ -169,8 +177,13 @@ public class ObjectStorageImpl implements ObjectStorage
                 break;
             }
         }
-        return StringUtil.join(valueList, ", ");
+        return valueList;
 
+    }
+
+    public static <T> String createSQLValuesStatement(Relation relation, T bean)
+    {
+        return StringUtil.join(createSQLValueList(relation, bean), ", ");
     }
 
     public static List<String> writableAttributeList(Relation relation)
@@ -281,7 +294,7 @@ public class ObjectStorageImpl implements ObjectStorage
 
     }
 
-    public <T> void regist(String tableName, Class<T> classType) throws DBException
+    public <T> void register(String tableName, Class<T> classType) throws DBException
     {
         if (registeredTableSet.contains(tableName))
             return; // already registered
@@ -294,7 +307,8 @@ public class ObjectStorageImpl implements ObjectStorage
                 // No corresponding table is found, so create a new table
                 String schema = createTableSchema(relation);
                 String sql = SQLExpression.fillTemplate("create table $1 ($2)", tableName, schema);
-                _logger.debug(sql);
+
+                _logger.info(String.format("create a new table %s", tableName));
                 dbAccess.update(sql);
             }
 
@@ -338,17 +352,64 @@ public class ObjectStorageImpl implements ObjectStorage
         return createTableSchema(r);
     }
 
-    public <T> void regist(Class<T> classType) throws DBException
+    public <T> void register(Class<T> classType) throws DBException
     {
         String tableName = classType.getSimpleName().toLowerCase();
-        regist(tableName, classType);
+        register(tableName, classType);
     }
 
-    public <T> void save(T object) throws DBException
+    private String getTableName(Class< ? > beanType) throws DBException
     {
-        throw new UnsupportedOperationException();
-        // TODO Auto-generated method stub
+        String tableName = tableNameOfEachClass.get(beanType);
+        if (tableName == null)
+        {
+            // if no corresponding table name for the given beanType was found, register the class
+            register(beanType);
+            return getTableName(beanType);
+        }
+        else
+            return tableName;
+    }
 
+    private Relation getRelation(Class< ? > beanClass)
+    {
+        return relationOfEachClass.get(beanClass);
+    }
+
+    public <T> void save(T bean) throws DBException
+    {
+        Class< ? > beanType = bean.getClass();
+        String tableName = getTableName(beanType);
+        Relation r = getRelation(beanType);
+
+        try
+        {
+            int id = getBeanID(bean);
+
+            String setValueList = createUpdateStatement(r, bean);
+            String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
+
+            dbAccess.update(sql);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
+    }
+
+    public static <T> String createUpdateStatement(Relation relation, T bean)
+    {
+        List<String> valueList = createSQLValueList(relation, bean);
+        ArrayList<String> setStatementList = new ArrayList<String>();
+        int i = 0;
+        for (DataType dt : relation.getDataTypeList())
+        {
+            if (dt.getName().equals("id"))
+                continue; // skip the id attribute
+            setStatementList.add(String.format("%s = %s", dt.getName(), valueList.get(i)));
+            i++;
+        }
+        return StringUtil.join(setStatementList, ", ");
     }
 
     public <T> void saveAll(Class<T> classType, Collection<T> object) throws DBException
