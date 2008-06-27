@@ -25,6 +25,7 @@
 package org.xerial.db.sql.impl;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -75,6 +76,21 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess;
     }
 
+    public static Date getNowDate()
+    {
+        Date preciseNow = new Date();
+        DateFormat instance = DateFormat.getDateTimeInstance();
+        try
+        {
+            return instance.parse(instance.format(preciseNow));
+        }
+        catch (ParseException e)
+        {
+            _logger.error(e);
+            throw new IllegalStateException(e);
+        }
+    }
+
     public <T> T create(T bean) throws DBException
     {
         Class< ? > beanType = bean.getClass();
@@ -83,7 +99,7 @@ public class ObjectStorageImpl implements ObjectStorage
         Relation r = getRelation(beanType);
         try
         {
-            Date now = new Date();
+            Date now = getNowDate();
             setCreatedAtTimeStamp(bean, now);
             setModifiedAtTimeStamp(bean, now);
 
@@ -476,7 +492,7 @@ public class ObjectStorageImpl implements ObjectStorage
         {
             int id = getBeanID(bean);
 
-            Date now = new Date();
+            Date now = getNowDate();
             setModifiedAtTimeStamp(bean, now);
 
             String setValueList = createUpdateStatement(r, bean);
@@ -512,7 +528,7 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableName = getTableName(classType);
         Relation r = getRelation(classType);
 
-        Date now = new Date();
+        Date now = getNowDate();
         try
         {
             dbAccess.update("begin transaction");

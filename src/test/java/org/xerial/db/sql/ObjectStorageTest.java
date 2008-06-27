@@ -30,6 +30,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -111,8 +112,29 @@ public class ObjectStorageTest
         assertEquals(r.getPersonId(), r2.getPersonId());
 
         // date time values are round to hh:mm:ss  
-        assertEquals(r.getCreatedAt().toString(), r2.getCreatedAt().toString());
-        assertEquals(r.getModifiedAt().toString(), r2.getModifiedAt().toString());
+        assertEquals(r.getCreatedAt(), r2.getCreatedAt());
+        assertEquals(r.getModifiedAt(), r2.getModifiedAt());
+
+        Date rCreatedAt = (Date) r.getCreatedAt().clone();
+        Date rModifiedAt = (Date) r.getModifiedAt().clone();
+
+        try
+        {
+            Thread.sleep(1000 * 1);
+        }
+        catch (InterruptedException e)
+        {
+            fail(e.getMessage());
+        }
+        storage.save(r);
+        Report r3 = storage.get(Report.class, r.getId());
+        _logger.debug(r3);
+
+        assertEquals(rCreatedAt, r3.getCreatedAt());
+        _logger.debug(rCreatedAt.getTime());
+        _logger.debug(r3.getModifiedAt().getTime());
+        assertTrue(rCreatedAt.compareTo(r3.getModifiedAt()) <= 0);
+
     }
 
     @Test
