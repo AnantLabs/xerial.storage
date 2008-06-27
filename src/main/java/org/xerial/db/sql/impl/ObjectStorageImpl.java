@@ -423,10 +423,29 @@ public class ObjectStorageImpl implements ObjectStorage
         return StringUtil.join(setStatementList, ", ");
     }
 
-    public <T> void saveAll(Class<T> classType, Collection<T> object) throws DBException
+    public <T> void saveAll(Class<T> classType, Collection<T> objectList) throws DBException
     {
-        throw new UnsupportedOperationException();
-        // TODO Auto-generated method stub
+        ArrayList<String> updateStatementList = new ArrayList<String>();
+
+        String tableName = getTableName(classType);
+        Relation r = getRelation(classType);
+
+        // TODO wrap with a transaction
+        for (T bean : objectList)
+        {
+            try
+            {
+                int id = getBeanID(bean);
+                String setValueList = createUpdateStatement(r, bean);
+                String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
+                dbAccess.update(sql);
+            }
+            catch (BeanException e)
+            {
+                _logger.error(e);
+                continue;
+            }
+        }
 
     }
 }

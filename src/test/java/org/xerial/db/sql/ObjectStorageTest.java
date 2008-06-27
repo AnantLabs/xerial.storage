@@ -25,9 +25,11 @@
 package org.xerial.db.sql;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -182,9 +184,41 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testSaveAll()
+    public void testSaveAll() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo"));
+        Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
+        assertTrue(p.getId() >= 0);
+        assertEquals("leo", p.getName());
+
+        int id = p.getId();
+        int id2 = p2.getId();
+
+        ArrayList<Person> list = new ArrayList<Person>();
+        list.add(p);
+        list.add(p2);
+
+        p.setName("Taro L. Saito");
+        p2.setName("Yui Yui");
+        p2.setAddress("yyy-yyyy");
+        storage.saveAll(Person.class, list);
+
+        Person newP = storage.get(Person.class, id);
+        Person newP2 = storage.get(Person.class, id2);
+        assertNotNull(newP);
+        assertNotNull(newP2);
+
+        _logger.debug(newP);
+        _logger.debug(newP2);
+
+        assertEquals(id, newP.getId());
+        assertEquals("Taro L. Saito", newP.getName());
+        assertEquals("", newP.getAddress());
+
+        assertEquals(id2, newP2.getId());
+        assertEquals("Yui Yui", newP2.getName());
+        assertEquals("yyy-yyyy", newP2.getAddress());
+
     }
 
     @Test
