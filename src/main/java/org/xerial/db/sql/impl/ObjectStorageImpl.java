@@ -212,8 +212,11 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T> T get(Class<T> classType, String sql) throws DBException
     {
-        throw new UnsupportedOperationException();
-
+        List<T> result = dbAccess.query(sql, classType);
+        if (result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException
@@ -241,12 +244,14 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T> List<T> getAll(Class<T> classType) throws DBException
     {
-        throw new UnsupportedOperationException();
+        String tableName = getTableName(classType);
+        String sql = SQLExpression.fillTemplate("select * from $1", tableName);
+        return dbAccess.query(sql, classType);
     }
 
     public <T> List<T> getAll(Class<T> classType, String sql) throws DBException
     {
-        throw new UnsupportedOperationException();
+        return dbAccess.query(sql, classType);
     }
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException

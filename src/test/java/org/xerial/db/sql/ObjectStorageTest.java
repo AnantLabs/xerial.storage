@@ -29,6 +29,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.After;
 import org.junit.Before;
@@ -200,21 +201,60 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetClassOfTString()
+    public void testGetClassOfTString() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo", "xxx-xxx"));
+        int id = p.getId();
+
+        Person p2 = storage.get(Person.class, "select * from person where id = " + id);
+
+        assertEquals(id, p2.getId());
+        assertEquals(p.getName(), p2.getName());
+        assertEquals(p.getAddress(), p2.getAddress());
     }
 
     @Test
-    public void testGetAllClassOfT()
+    public void testGetAllClassOfT() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo", "xxx-xxxx"));
+        Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
+
+        TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class));
+        assertEquals(2, personList.size());
+        assertTrue(personList.contains(p));
+        assertTrue(personList.contains(p2));
+
+        Person pf = personList.first();
+        assertEquals(p.getId(), pf.getId());
+        assertEquals(p.getName(), pf.getName());
+        assertEquals(p.getAddress(), pf.getAddress());
+        pf = personList.last();
+        assertEquals(p2.getId(), pf.getId());
+        assertEquals(p2.getName(), pf.getName());
+        assertEquals(p2.getAddress(), pf.getAddress());
+
     }
 
     @Test
-    public void testGetAllClassOfTString()
+    public void testGetAllClassOfTString() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo", "xxx-xxxx"));
+        Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
+
+        TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class, "select * from person"));
+        assertEquals(2, personList.size());
+        assertTrue(personList.contains(p));
+        assertTrue(personList.contains(p2));
+
+        Person pf = personList.first();
+        assertEquals(p.getId(), pf.getId());
+        assertEquals(p.getName(), pf.getName());
+        assertEquals(p.getAddress(), pf.getAddress());
+        pf = personList.last();
+        assertEquals(p2.getId(), pf.getId());
+        assertEquals(p2.getName(), pf.getName());
+        assertEquals(p2.getAddress(), pf.getAddress());
+
     }
 
 }
