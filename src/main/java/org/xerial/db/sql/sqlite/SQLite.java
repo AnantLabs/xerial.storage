@@ -26,13 +26,9 @@ package org.xerial.db.sql.sqlite;
 
 import java.io.File;
 
-import org.xerial.db.datatype.BooleanType;
+
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.DoubleType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.PasswordType;
-import org.xerial.db.datatype.StringType;
-import org.xerial.db.datatype.TextType;
+
 import org.xerial.util.log.Logger;
 
 /**
@@ -77,16 +73,7 @@ public class SQLite
 
     public static String getDataTypeName(DataType dataType)
     {
-        if (dataType instanceof IntegerType)
-            return "integer";
-        else if (dataType instanceof StringType || dataType instanceof TextType || dataType instanceof PasswordType)
-            return "string";
-        else if (dataType instanceof DoubleType)
-            return "double";
-        else if (dataType instanceof BooleanType)
-            return "boolean";
-        else
-            return "string";
+        return dataType.getTypeName();
     }
 
 }

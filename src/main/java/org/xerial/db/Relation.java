@@ -30,16 +30,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.xerial.db.datatype.BlobType;
-import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.DateTimeType;
-import org.xerial.db.datatype.DoubleType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.LongType;
-import org.xerial.db.datatype.PasswordType;
-import org.xerial.db.datatype.StringType;
-import org.xerial.db.datatype.TextType;
+import org.xerial.db.datatype.DataTypeBase;
+import org.xerial.db.datatype.TypeName;
 import org.xerial.json.JSONArray;
 import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
@@ -110,45 +103,45 @@ public class Relation
     public static DataType getDataType(String parameterName, String typeName)
     {
         if (typeName.equalsIgnoreCase("boolean"))
-            return new BooleanType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.BOOLEAN);
         else if (typeName.startsWith("int") || typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
-            return new IntegerType(parameterName);
-        else if (typeName.equalsIgnoreCase("double"))
-            return new DoubleType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.INTEGER);
         else if (typeName.equalsIgnoreCase("string"))
-            return new StringType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.STRING);
+        else if (typeName.equalsIgnoreCase("double"))
+            return new DataTypeBase(parameterName, TypeName.DOUBLE);
         else if (typeName.equalsIgnoreCase("long"))
-            return new LongType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.LONG);
         else if (typeName.equalsIgnoreCase("password"))
-            return new PasswordType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.PASSWORD);
         else if (typeName.equalsIgnoreCase("text"))
-            return new TextType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.TEXT);
         else if (typeName.equalsIgnoreCase("datetime"))
-            return new DateTimeType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.DATETIME);
         else if (typeName.equalsIgnoreCase("blob"))
-            return new BlobType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.BLOB);
         else
-            return new StringType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.STRING);
     }
 
     public static <T> DataType getDataType(String parameterName, Class<T> valueType)
     {
         if (valueType.isAssignableFrom(Integer.class) || valueType.isAssignableFrom(int.class))
-            return new IntegerType(parameterName);
-        else if (valueType.isAssignableFrom(Double.class) || valueType.isAssignableFrom(double.class))
-            return new DoubleType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.INTEGER);
         else if (valueType.isAssignableFrom(String.class))
-            return new StringType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.STRING);
+        else if (valueType.isAssignableFrom(Double.class) || valueType.isAssignableFrom(double.class))
+            return new DataTypeBase(parameterName, TypeName.DOUBLE);
         else if (valueType.isAssignableFrom(Boolean.class) || valueType.isAssignableFrom(boolean.class))
-            return new BooleanType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.BOOLEAN);
         else if (valueType.isAssignableFrom(Long.class) || valueType.isAssignableFrom(long.class))
-            return new LongType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.LONG);
         else if (valueType.isAssignableFrom(Date.class))
-            return new DateTimeType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.DATETIME);
         else if (valueType.isAssignableFrom(Blob.class))
-            return new BlobType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.BLOB);
         else
-            return new StringType(parameterName);
+            return new DataTypeBase(parameterName, TypeName.STRING);
     }
 
     public void add(DataType dataType)

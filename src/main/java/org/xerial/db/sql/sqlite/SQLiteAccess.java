@@ -32,7 +32,8 @@ import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.StringType;
+import org.xerial.db.datatype.DataTypeBase;
+import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.DatabaseAccessBase;
@@ -125,7 +126,7 @@ public class SQLiteAccess extends DatabaseAccessBase
 
             DataType dt;
             dt = Relation.getDataType(name, type);
-            dt = new StringType(name);
+            dt = new DataTypeBase(name, TypeName.STRING);
             r.add(dt);
         }
 

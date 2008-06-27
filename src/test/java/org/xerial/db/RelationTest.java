@@ -25,25 +25,17 @@
 package org.xerial.db;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.sql.Blob;
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.xerial.db.datatype.BlobType;
-import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.DateTimeType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.LongType;
-import org.xerial.db.datatype.PasswordType;
-import org.xerial.db.datatype.StringType;
-import org.xerial.db.datatype.TextType;
+import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.sqlite.Person;
 
-import sun.util.calendar.BaseCalendar.Date;
 
 public class RelationTest
 {
@@ -62,55 +54,66 @@ public class RelationTest
         String paramName = "param";
         DataType dt = Relation.getDataType(paramName, "integer");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
 
         dt = Relation.getDataType(paramName, "int");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
+
 
         // must not be case-sensitive 
         dt = Relation.getDataType(paramName, "Integer");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
+
 
         // serial type must be an integer
         dt = Relation.getDataType(paramName, "serial");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
+
 
         dt = Relation.getDataType(paramName, "boolean");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof BooleanType);
+        assertEquals(dt.getType(), TypeName.BOOLEAN);
+
 
         dt = Relation.getDataType(paramName, "string");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof StringType);
+        assertEquals(dt.getType(), TypeName.STRING);
+
 
         dt = Relation.getDataType(paramName, "long");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof LongType);
+        assertEquals(dt.getType(), TypeName.LONG);
+
 
         dt = Relation.getDataType(paramName, "password");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof PasswordType);
+        assertEquals(dt.getType(), TypeName.PASSWORD);
+
 
         dt = Relation.getDataType(paramName, "text");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof TextType);
+        assertEquals(dt.getType(), TypeName.TEXT);
+
 
         dt = Relation.getDataType(paramName, "datetime");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof DateTimeType);
+        assertEquals(dt.getType(), TypeName.DATETIME);
+
 
         // unknown type must be bound to StringType
         dt = Relation.getDataType(paramName, "other");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof StringType);
+        assertEquals(dt.getType(), TypeName.STRING);
+
 
         // blob type
         dt = Relation.getDataType(paramName, "blob");
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof BlobType);
+        assertEquals(dt.getType(), TypeName.BLOB);
+
 
     }
 
@@ -122,45 +125,54 @@ public class RelationTest
 
         dt = Relation.getDataType(paramName, Integer.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
+
 
         dt = Relation.getDataType(paramName, int.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof IntegerType);
+        assertEquals(dt.getType(), TypeName.INTEGER);
+
 
         dt = Relation.getDataType(paramName, Boolean.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof BooleanType);
+        assertEquals(dt.getType(), TypeName.BOOLEAN);
+
 
         dt = Relation.getDataType(paramName, boolean.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof BooleanType);
+        assertEquals(dt.getType(), TypeName.BOOLEAN);
+
 
         dt = Relation.getDataType(paramName, String.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof StringType);
+        assertEquals(dt.getType(), TypeName.STRING);
+
 
         dt = Relation.getDataType(paramName, Long.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof LongType);
+        assertEquals(dt.getType(), TypeName.LONG);
+
 
         dt = Relation.getDataType(paramName, long.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof LongType);
+        assertEquals(dt.getType(), TypeName.LONG);
+
 
         dt = Relation.getDataType(paramName, Date.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof DateTimeType);
+        assertEquals(dt.getType(), TypeName.DATETIME);
 
         // unknown type must be bound to StringType
         dt = Relation.getDataType(paramName, Person.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof StringType);
+        assertEquals(dt.getType(), TypeName.STRING);
+
 
         // {@link Blob} type
         dt = Relation.getDataType(paramName, Blob.class);
         assertEquals(dt.getName(), paramName);
-        assertTrue(dt instanceof BlobType);
+        assertEquals(dt.getType(), TypeName.BLOB);
+
 
     }
 

@@ -24,15 +24,24 @@
 //--------------------------------------
 package org.xerial.db.sql.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
+import org.xerial.db.Relation;
+import org.xerial.db.datatype.DataType;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
+import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
+import org.xerial.util.StringUtil;
+import org.xerial.util.bean.BeanException;
+import org.xerial.util.log.Logger;
 
 /**
  * An implementation of the {@link ObjectStorage}
@@ -42,6 +51,8 @@ import org.xerial.db.sql.SQLExpression;
  */
 public class ObjectStorageImpl implements ObjectStorage
 {
+    private static Logger _logger = Logger.getLogger(ObjectStorageImpl.class);
+    
     private DatabaseAccess dbAccess;
 
     private HashSet<String> registeredTableSet = new HashSet<String>();
@@ -57,9 +68,17 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess;
     }
 
-    public <T> T create(T object) throws DBException
+    public <T> T create(T bean) throws DBException
     {
-        throw new UnsupportedOperationException();
+        Class<?> beanType = bean.getClass();
+        String tableName = tableNameOfEachClass.get(beanType);
+        
+        
+        String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName);
+        
+        dbAccess.update(sql);
+        
+        return bean;
     }
 
     public <T> T get(Class<T> classType, int id) throws DBException
@@ -166,8 +185,17 @@ public class ObjectStorageImpl implements ObjectStorage
         if (!dbAccess.hasTable(tableName))
         {
             // No corresponding table is found, so create a new table
-            String schema = createTableSchema(classType);
+            String schema;
+            try
+            {
+                schema = createTableSchema(classType);
+            }
+            catch (BeanException e)
+            {
+                throw new DBException(DBErrorCode.InvalidBeanClass, e);
+            }
             String sql = SQLExpression.fillTemplate("create table $1 ($2)", tableName, schema);
+            _logger.debug(sql);
             dbAccess.update(sql);
         }
 
@@ -177,15 +205,32 @@ public class ObjectStorageImpl implements ObjectStorage
         return;
     }
 
-    public static <T> String createTableSchema(Class<T> classType)
+    public static <T> String createTableSchema(Class<T> classType) throws BeanException
     {
-
-        return null;
+        Relation r = RelationBuilder.createRelation(classType);
+        
+        LinkedList<String> columnDefList = new LinkedList<String>();
+        for(DataType dt : r.getDataTypeList())
+        {
+            StringBuilder columnDef = new StringBuilder();
+            columnDef.append(String.format("%s %s", dt.getName(), dt.getTypeName()));
+            
+            if(dt.getName().equals("id"))
+            {
+                columnDef.append(" primary key autoincrement not null");
+                // id attribute must be the first column
+                columnDefList.addFirst(columnDef.toString());
+            }
+            else
+                columnDefList.add(columnDef.toString());
+        }
+        
+        return StringUtil.join(columnDefList, ", ");
     }
 
     public <T> void regist(Class<T> classType) throws DBException
     {
-        String tableName = classType.getName().toLowerCase();
+        String tableName = classType.getSimpleName().toLowerCase();
         regist(tableName, classType);
     }
 

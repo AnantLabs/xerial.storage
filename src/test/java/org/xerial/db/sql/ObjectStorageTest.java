@@ -24,6 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -150,9 +151,14 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testCreate()
+    public void testCreate() throws DBException
     {
-        fail("Not yet implemented");
+        storage.regist(Person.class);
+        Person p = storage.create(new Person("leo"));
+        assertTrue(p.getId() >= 0);
+        assertEquals("leo", p.getName());
+        
+        
     }
 
     @Test
