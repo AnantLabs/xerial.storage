@@ -200,8 +200,14 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T> T get(Class<T> classType, int id) throws DBException
     {
-        throw new UnsupportedOperationException();
+        String tableName = getTableName(classType);
+        String sql = SQLExpression.fillTemplate("select * from $1 where id = $2", tableName, id);
 
+        List<T> result = dbAccess.query(sql, classType);
+        if (result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
     public <T> T get(Class<T> classType, String sql) throws DBException

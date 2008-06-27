@@ -35,7 +35,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.sql.impl.ObjectStorageImpl;
-import org.xerial.db.sql.sqlite.Person;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.log.Logger;
 
@@ -188,9 +187,16 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetClassOfTInt()
+    public void testGetClassOfTInt() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo", "xxx-xxx"));
+        int id = p.getId();
+
+        Person p2 = storage.get(Person.class, 1);
+
+        assertEquals(id, p2.getId());
+        assertEquals(p.getName(), p2.getName());
+        assertEquals(p.getAddress(), p2.getAddress());
     }
 
     @Test
