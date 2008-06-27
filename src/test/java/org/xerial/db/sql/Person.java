@@ -24,7 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-public class Person
+public class Person implements Comparable<Person>
 {
     int id = -1;
     String name;
@@ -94,6 +94,11 @@ public class Person
     public String toString()
     {
         return String.format("id=%s, name=%s, address=%s", id, name, address);
+    }
+
+    public int compareTo(Person o)
+    {
+        return this.id - o.id;
     }
 
 }
