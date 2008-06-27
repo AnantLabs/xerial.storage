@@ -57,9 +57,9 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testRegist() throws DBException
+    public void testRegister() throws DBException
     {
-        storage.regist(Person.class);
+        storage.register(Person.class);
         List<String> tableNameList = storage.getDatabaseAccess().getTableNameList();
 
         assertTrue(tableNameList.contains("person"));
@@ -69,7 +69,7 @@ public class ObjectStorageTest
     @Test
     public void testRegistWithTableName() throws DBException
     {
-        storage.regist("person_table", Person.class);
+        storage.register("person_table", Person.class);
     }
 
     @Test
@@ -153,7 +153,6 @@ public class ObjectStorageTest
     @Test
     public void testCreate() throws DBException
     {
-        storage.regist(Person.class);
         Person p = storage.create(new Person("leo"));
         _logger.debug(p.toString());
         assertTrue(p.getId() >= 0);
@@ -167,9 +166,19 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testSave()
+    public void testSave() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo"));
+        assertTrue(p.getId() >= 0);
+        assertEquals("leo", p.getName());
+
+        int id = p.getId();
+
+        p.setName("Taro L. Saito");
+        storage.save(p);
+        assertEquals(id, p.getId());
+        assertEquals("Taro L. Saito", p.getName());
+
     }
 
     @Test
