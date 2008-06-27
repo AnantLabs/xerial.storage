@@ -184,6 +184,16 @@ public interface DatabaseAccess
     public <T> int insert(String tableName, T bean) throws DBException;
 
     /**
+     * insert and retrieves a generated key
+     * 
+     * @param <T>
+     * @param sql
+     * @return last generated key, or -1 when key retrieval failed
+     * @throws DBException
+     */
+    public <T> int insertAndRetrieveKeys(String sql) throws DBException;
+
+    /**
      * Sets the time of the query until it will be terminated in seconds
      * 
      * @param sec

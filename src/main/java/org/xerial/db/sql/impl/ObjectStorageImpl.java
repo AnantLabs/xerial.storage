@@ -40,7 +40,11 @@ import org.xerial.db.sql.ObjectStorage;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.util.StringUtil;
+import org.xerial.util.bean.BeanBinder;
+import org.xerial.util.bean.BeanBinderSet;
+import org.xerial.util.bean.BeanErrorCode;
 import org.xerial.util.bean.BeanException;
+import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.log.Logger;
 
 /**
@@ -52,10 +56,11 @@ import org.xerial.util.log.Logger;
 public class ObjectStorageImpl implements ObjectStorage
 {
     private static Logger _logger = Logger.getLogger(ObjectStorageImpl.class);
-    
+
     private DatabaseAccess dbAccess;
 
     private HashSet<String> registeredTableSet = new HashSet<String>();
+    private HashMap<Class< ? >, Relation> relationOfEachClass = new HashMap<Class< ? >, Relation>();
     private HashMap<Class< ? >, String> tableNameOfEachClass = new HashMap<Class< ? >, String>();
 
     public ObjectStorageImpl(DatabaseAccess dbAccess)
@@ -70,15 +75,114 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T> T create(T bean) throws DBException
     {
-        Class<?> beanType = bean.getClass();
+        Class< ? > beanType = bean.getClass();
+
         String tableName = tableNameOfEachClass.get(beanType);
-        
-        
-        String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName);
-        
-        dbAccess.update(sql);
-        
+        Relation r = relationOfEachClass.get(beanType);
+
+        // If no collesponding class was found, create a new table for the bean class
+        if (tableName == null || r == null)
+        {
+            regist(beanType);
+            return create(bean);
+        }
+
+        String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
+                writableAttributeList(r), ", "), createSQLValuesStatement(r, bean));
+
+        int lastGeneratedID = dbAccess.insertAndRetrieveKeys(sql);
+        try
+        {
+            setBeanID(bean, lastGeneratedID);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.UpdateError, e);
+        }
+
         return bean;
+    }
+
+    public static <T> void setBeanID(T bean, int id) throws BeanException
+    {
+        Class< ? > beanClass = bean.getClass();
+        BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(beanClass);
+        BeanBinder binder = ruleSet.findRule("id");
+        try
+        {
+            binder.getMethod().invoke(bean, new Object[] { id });
+        }
+        catch (Exception e)
+        {
+            throw new BeanException(BeanErrorCode.BindFailure, e);
+        }
+    }
+
+    public static <T> Object getValue(T bean, String parameterName) throws BeanException
+    {
+        BeanBinderSet ruleSet = BeanUtil.getBeanOutputRule(bean.getClass());
+        BeanBinder binder = ruleSet.findRule(parameterName);
+        try
+        {
+            return binder.getMethod().invoke(bean, new Object[] {});
+        }
+        catch (Exception e)
+        {
+            _logger.error(e);
+            throw new BeanException(BeanErrorCode.InvocationTargetException, e);
+        }
+    }
+
+    public static <T> String createSQLValuesStatement(Relation relation, T bean)
+    {
+        ArrayList<String> valueList = new ArrayList<String>();
+        for (DataType dt : relation.getDataTypeList())
+        {
+            if (dt.getName().equals("id"))
+                continue; // skip ID attribute
+            Object value = null;
+            try
+            {
+                value = getValue(bean, dt.getName());
+            }
+            catch (BeanException e)
+            {
+                _logger.error(e);
+            }
+
+            switch (dt.getType())
+            {
+            case INTEGER:
+            case LONG:
+            case DOUBLE:
+                // no quotation
+                valueList.add(value == null ? "" : value.toString());
+                break;
+            case BOOLEAN:
+            case DATETIME:
+            case PASSWORD:
+            case STRING:
+            case TEXT:
+            default:
+                // with quotation
+                valueList.add(String.format("'%s'", value == null ? "" : value.toString()));
+                break;
+            }
+        }
+        return StringUtil.join(valueList, ", ");
+
+    }
+
+    public static List<String> writableAttributeList(Relation relation)
+    {
+        ArrayList<String> writableAttributeList = new ArrayList<String>();
+        for (DataType dt : relation.getDataTypeList())
+        {
+            if (dt.getName().equals("id"))
+                continue; // skip ID attribute
+            writableAttributeList.add(dt.getName());
+        }
+        return writableAttributeList;
     }
 
     public <T> T get(Class<T> classType, int id) throws DBException
@@ -182,40 +286,40 @@ public class ObjectStorageImpl implements ObjectStorage
         if (registeredTableSet.contains(tableName))
             return; // already registered
 
-        if (!dbAccess.hasTable(tableName))
+        try
         {
-            // No corresponding table is found, so create a new table
-            String schema;
-            try
+            Relation relation = RelationBuilder.createRelation(classType);
+            if (!dbAccess.hasTable(tableName))
             {
-                schema = createTableSchema(classType);
+                // No corresponding table is found, so create a new table
+                String schema = createTableSchema(relation);
+                String sql = SQLExpression.fillTemplate("create table $1 ($2)", tableName, schema);
+                _logger.debug(sql);
+                dbAccess.update(sql);
             }
-            catch (BeanException e)
-            {
-                throw new DBException(DBErrorCode.InvalidBeanClass, e);
-            }
-            String sql = SQLExpression.fillTemplate("create table $1 ($2)", tableName, schema);
-            _logger.debug(sql);
-            dbAccess.update(sql);
+
+            // TODO It it needed to test duplicate entries?
+            tableNameOfEachClass.put(classType, tableName);
+            relationOfEachClass.put(classType, relation);
+            registeredTableSet.add(tableName);
+
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
 
-        // TODO It it needed to test duplicate entries?
-        tableNameOfEachClass.put(classType, tableName);
-        registeredTableSet.add(tableName);
-        return;
     }
 
-    public static <T> String createTableSchema(Class<T> classType) throws BeanException
+    public static <T> String createTableSchema(Relation r) throws BeanException
     {
-        Relation r = RelationBuilder.createRelation(classType);
-        
         LinkedList<String> columnDefList = new LinkedList<String>();
-        for(DataType dt : r.getDataTypeList())
+        for (DataType dt : r.getDataTypeList())
         {
             StringBuilder columnDef = new StringBuilder();
             columnDef.append(String.format("%s %s", dt.getName(), dt.getTypeName()));
-            
-            if(dt.getName().equals("id"))
+
+            if (dt.getName().equals("id"))
             {
                 columnDef.append(" primary key autoincrement not null");
                 // id attribute must be the first column
@@ -224,8 +328,14 @@ public class ObjectStorageImpl implements ObjectStorage
             else
                 columnDefList.add(columnDef.toString());
         }
-        
+
         return StringUtil.join(columnDefList, ", ");
+    }
+
+    public static <T> String createTableSchema(Class<T> classType) throws BeanException
+    {
+        Relation r = RelationBuilder.createRelation(classType);
+        return createTableSchema(r);
     }
 
     public <T> void regist(Class<T> classType) throws DBException

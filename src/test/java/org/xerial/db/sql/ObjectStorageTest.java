@@ -24,7 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -155,10 +155,15 @@ public class ObjectStorageTest
     {
         storage.regist(Person.class);
         Person p = storage.create(new Person("leo"));
+        _logger.debug(p.toString());
         assertTrue(p.getId() >= 0);
         assertEquals("leo", p.getName());
-        
-        
+
+        Person p2 = storage.create(new Person("yui"));
+        _logger.debug(p2.toString());
+        assertTrue(p2.getId() >= p.getId());
+        assertEquals("yui", p2.getName());
+
     }
 
     @Test

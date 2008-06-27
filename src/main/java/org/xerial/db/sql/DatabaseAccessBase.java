@@ -122,6 +122,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             {
                 pullHandler.handle(rs);
             }
+            rs.close();
+            statement.close();
         }
         catch (SQLException e)
         {
@@ -158,6 +160,9 @@ public class DatabaseAccessBase implements DatabaseAccess
                 else
                     _logger.warn("null handler result is returned");
             }
+
+            rs.close();
+            statement.close();
         }
         catch (SQLException e)
         {
@@ -201,6 +206,10 @@ public class DatabaseAccessBase implements DatabaseAccess
             {
                 result = handler.handle(rs);
             }
+
+            rs.close();
+            statement.close();
+
         }
         catch (SQLException e)
         {
@@ -234,6 +243,9 @@ public class DatabaseAccessBase implements DatabaseAccess
             PreparedStatement preparedStatement = getPreparedStatement(connection, sqlForPreparedStatement);
             handler.setup(preparedStatement);
             int ret = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
             return ret;
         }
         catch (SQLException e)
@@ -266,6 +278,7 @@ public class DatabaseAccessBase implements DatabaseAccess
 
             _logger.debug(sql);
             int ret = statement.executeUpdate(sql);
+            statement.close();
             return ret;
         }
         catch (SQLException e)
@@ -280,6 +293,37 @@ public class DatabaseAccessBase implements DatabaseAccess
             }
         }
 
+    }
+
+    public <T> int insertAndRetrieveKeys(String sql) throws DBException
+    {
+        Connection connection = null;
+        try
+        {
+            connection = getConnection(false);
+            connection.setAutoCommit(autoCommit);
+            Statement statement = createStatement(connection);
+
+            _logger.debug(sql);
+            int ret = statement.executeUpdate(sql);
+
+            ResultSet rs = statement.getGeneratedKeys();
+            int id = (rs == null) ? -1 : rs.getInt(1);
+            rs.close();
+            statement.close();
+            return id;
+        }
+        catch (SQLException e)
+        {
+            throw new DBException(DBErrorCode.UpdateError, e);
+        }
+        finally
+        {
+            if (connection != null)
+            {
+                _connectionPool.returnConnection(connection);
+            }
+        }
     }
 
     public ConnectionPool getConnectionPool()
@@ -332,11 +376,14 @@ public class DatabaseAccessBase implements DatabaseAccess
     {
         HashSet<String> primaryKeyColumnSet = new HashSet<String>();
         // retrieve primary key information
-        for (ResultSet primaryKeyResult = metadata.getPrimaryKeys(null, null, tableName); primaryKeyResult.next();)
+        ResultSet primaryKeyResult = metadata.getPrimaryKeys(null, null, tableName);
+        for (; primaryKeyResult.next();)
         {
             String columnName = primaryKeyResult.getString("COLUMN_NAME");
             primaryKeyColumnSet.add(columnName);
         }
+        primaryKeyResult.close();
+
         return primaryKeyColumnSet;
     }
 
@@ -356,7 +403,8 @@ public class DatabaseAccessBase implements DatabaseAccess
             Set<String> primaryKeyColumnSet = getPrimaryKeyColumns(metadata, tableName);
 
             int column = 1;
-            for (ResultSet resultSet = metadata.getColumns(null, null, tableName, null); resultSet.next();)
+            ResultSet resultSet = metadata.getColumns(null, null, tableName, null);
+            for (; resultSet.next();)
             {
                 String columnName = resultSet.getString("COLUMN_NAME");
                 String typeName = resultSet.getString("TYPE_NAME");
@@ -372,6 +420,7 @@ public class DatabaseAccessBase implements DatabaseAccess
 
                 column++;
             }
+            resultSet.close();
         }
         catch (SQLException e)
         {
@@ -439,6 +488,7 @@ public class DatabaseAccessBase implements DatabaseAccess
                 T bean = beanResultHandler.toBean(rs);
                 beanResultHandler.handle(bean);
             }
+            rs.close();
         }
         catch (SQLException e)
         {
@@ -528,6 +578,8 @@ public class DatabaseAccessBase implements DatabaseAccess
 
                 rowCount++;
             }
+            rs.close();
+            statement.close();
         }
         catch (SQLException e)
         {
