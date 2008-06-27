@@ -24,8 +24,10 @@
 //--------------------------------------
 package org.xerial.db.sql.impl;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -79,13 +81,16 @@ public class ObjectStorageImpl implements ObjectStorage
 
         String tableName = getTableName(beanType);
         Relation r = getRelation(beanType);
-
-        String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
-                writableAttributeList(r), ", "), createSQLValuesStatement(r, bean));
-
-        int lastGeneratedID = dbAccess.insertAndRetrieveKeys(sql);
         try
         {
+            Date now = new Date();
+            setCreatedAtTimeStamp(bean, now);
+            setModifiedAtTimeStamp(bean, now);
+
+            String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
+                    writableAttributeList(r), ", "), createSQLValuesStatement(r, bean));
+
+            int lastGeneratedID = dbAccess.insertAndRetrieveKeys(sql);
             setBeanID(bean, lastGeneratedID);
         }
         catch (BeanException e)
@@ -96,14 +101,83 @@ public class ObjectStorageImpl implements ObjectStorage
         return bean;
     }
 
+    /**
+     * Set a time stamp to the object
+     * 
+     * @param <T>
+     * @param bean
+     * @param timeStampParameterName
+     *            (createdAt or modifiedAt)
+     * @throws BeanException
+     */
+    private static <T> void setTimeStamp(T bean, String timeStampParameterName, Date timeStamp) throws BeanException
+    {
+        BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(bean.getClass());
+        BeanBinder binder = ruleSet.findRule(timeStampParameterName);
+
+        // no corresponding time stamp setter (CreatedAt(Date date), etc.) method found
+        if (binder == null)
+            return;
+
+        try
+        {
+            binder.getMethod().invoke(bean, new Object[] { timeStamp });
+        }
+        catch (Exception e)
+        {
+            throw new BeanException(BeanErrorCode.InvocationTargetException, e);
+        }
+
+    }
+
+    public static <T> void setCreatedAtTimeStamp(T bean, Date timeStamp) throws BeanException
+    {
+        setTimeStamp(bean, "createdAt", timeStamp);
+    }
+
+    public static <T> void setModifiedAtTimeStamp(T bean, Date timeStamp) throws BeanException
+    {
+        setTimeStamp(bean, "modifiedAt", timeStamp);
+    }
+
+    public <T, U> U create(T parentObject, U associatedObject) throws DBException
+    {
+        try
+        {
+            setParentBeanID(parentObject, associatedObject);
+
+            return create(associatedObject);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
+    }
+
     public static <T> void setBeanID(T bean, int id) throws BeanException
+    {
+        setValue(bean, "id", id);
+    }
+
+    public static <T, U> void setParentBeanID(T parentObject, U associatedObject) throws BeanException
+    {
+        int parentID = getBeanID(parentObject);
+        String parentIDParamName = parentObject.getClass().getSimpleName() + "Id";
+        setValue(associatedObject, parentIDParamName, parentID);
+    }
+
+    public static <T> void setValue(T bean, String parameterName, Object value) throws BeanException
     {
         Class< ? > beanClass = bean.getClass();
         BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(beanClass);
-        BeanBinder binder = ruleSet.findRule("id");
+        BeanBinder binder = ruleSet.findRule(parameterName);
+        if (binder == null)
+        {
+            throw new BeanException(BeanErrorCode.InvocationTargetException, "no getter for " + parameterName);
+        }
         try
         {
-            binder.getMethod().invoke(bean, new Object[] { id });
+            binder.getMethod().invoke(bean, new Object[] { value });
         }
         catch (Exception e)
         {
@@ -166,8 +240,13 @@ public class ObjectStorageImpl implements ObjectStorage
                 // no quotation
                 valueList.add(value == null ? "" : value.toString());
                 break;
-            case BOOLEAN:
             case DATETIME:
+            {
+                Date date = Date.class.cast(value);
+                valueList.add(String.format("'%s'", DateFormat.getDateTimeInstance().format(date)));
+                break;
+            }
+            case BOOLEAN:
             case PASSWORD:
             case STRING:
             case TEXT:
@@ -397,6 +476,9 @@ public class ObjectStorageImpl implements ObjectStorage
         {
             int id = getBeanID(bean);
 
+            Date now = new Date();
+            setModifiedAtTimeStamp(bean, now);
+
             String setValueList = createUpdateStatement(r, bean);
             String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
 
@@ -430,21 +512,26 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableName = getTableName(classType);
         Relation r = getRelation(classType);
 
-        // TODO wrap with a transaction
-        for (T bean : objectList)
+        Date now = new Date();
+        try
         {
-            try
+            dbAccess.update("begin transaction");
+            for (T bean : objectList)
             {
                 int id = getBeanID(bean);
+
+                setModifiedAtTimeStamp(bean, now);
+
                 String setValueList = createUpdateStatement(r, bean);
                 String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
                 dbAccess.update(sql);
             }
-            catch (BeanException e)
-            {
-                _logger.error(e);
-                continue;
-            }
+            dbAccess.update("commit");
+        }
+        catch (Exception e)
+        {
+            dbAccess.update("rollback");
+            throw new DBException(DBErrorCode.UpdateError, e);
         }
 
     }

@@ -75,6 +75,47 @@ public class ObjectStorageTest
     }
 
     @Test
+    public void createAssocatedObject() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        _logger.debug(p);
+        Report r = storage.create(p, new Report());
+        _logger.debug(r);
+
+        assertTrue(p.getId() >= 1);
+        assertEquals(p.getId(), r.getPersonId());
+        assertTrue(r.getId() >= 1);
+    }
+
+    @Test
+    public void timeStampTest() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        _logger.debug(p);
+        Report r = storage.create(p, new Report());
+        _logger.debug(r);
+
+        assertTrue(p.getId() >= 1);
+        assertEquals(p.getId(), r.getPersonId());
+        assertTrue(r.getId() >= 1);
+
+        assertNotNull(r.getCreatedAt());
+        assertNotNull(r.getModifiedAt());
+
+        assertEquals(r.getCreatedAt(), r.getModifiedAt());
+
+        Report r2 = storage.get(Report.class, r.getId());
+        _logger.debug(r2);
+
+        assertEquals(r.getId(), r2.getId());
+        assertEquals(r.getPersonId(), r2.getPersonId());
+
+        // date time values are round to hh:mm:ss  
+        assertEquals(r.getCreatedAt().toString(), r2.getCreatedAt().toString());
+        assertEquals(r.getModifiedAt().toString(), r2.getModifiedAt().toString());
+    }
+
+    @Test
     public void testOneToOne()
     {
         fail("Not yet implemented");
@@ -218,6 +259,50 @@ public class ObjectStorageTest
         assertEquals(id2, newP2.getId());
         assertEquals("Yui Yui", newP2.getName());
         assertEquals("yyy-yyyy", newP2.getAddress());
+
+    }
+
+    @Test
+    public void testAbortInSaveAll() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
+        assertTrue(p.getId() >= 0);
+        assertEquals("leo", p.getName());
+
+        int id = p.getId();
+        int id2 = p2.getId();
+
+        ArrayList<Person> list = new ArrayList<Person>();
+        list.add(p);
+        list.add(null);
+
+        p.setName("Taro L. Saito");
+        try
+        {
+            storage.saveAll(Person.class, list);
+            fail("cannot reach here");
+        }
+        catch (DBException e)
+        {
+            _logger.debug("intended abort: " + e.getMessage());
+        }
+
+        Person newP = storage.get(Person.class, id);
+        Person newP2 = storage.get(Person.class, id2);
+        assertNotNull(newP);
+        assertNotNull(newP2);
+
+        _logger.debug(newP);
+        _logger.debug(newP2);
+
+        assertEquals(id, newP.getId());
+        assertEquals("leo", newP.getName());
+        assertEquals("", newP.getAddress());
+
+        assertEquals(id2, newP2.getId());
+        assertEquals("yui", newP2.getName());
+        assertEquals("xxx-xxxx", newP2.getAddress());
 
     }
 

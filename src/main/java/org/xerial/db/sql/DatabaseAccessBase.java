@@ -599,4 +599,8 @@ public class DatabaseAccessBase implements DatabaseAccess
         return getTableNameList().contains(tableName);
     }
 
+    public boolean isAutoCommit()
+    {
+        return autoCommit;
+    }
 }
