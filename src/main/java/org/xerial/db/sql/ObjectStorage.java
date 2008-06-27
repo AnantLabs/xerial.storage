@@ -146,6 +146,16 @@ public interface ObjectStorage
     public <S, T, U> List<S> join(Class<T> left, Class<U> right, Class<S> targetType) throws DBException;
 
     /**
+     * Create a new object of the type U associated with the given parent object
+     * 
+     * @param <T>
+     * @param <U>
+     * @param parentBean
+     * @param associatedObject
+     */
+    public <T, U> U create(T parentObject, U associatedObject) throws DBException;
+
+    /**
      * Create a new row in the database. The returned object is the same
      * instance with the given one but its ID attribute is set (using setId()
      * method) to the ID of the newly created object.

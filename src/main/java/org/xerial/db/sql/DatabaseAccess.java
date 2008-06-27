@@ -207,6 +207,13 @@ public interface DatabaseAccess
     public void setAutoCommit(boolean enableAutoCommit);
 
     /**
+     * Is auto-commit mode?
+     * 
+     * @return
+     */
+    public boolean isAutoCommit();
+
+    /**
      * Close all connections managed by this database access
      * 
      * @throws DBException

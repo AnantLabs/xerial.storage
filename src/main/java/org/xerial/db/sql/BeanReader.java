@@ -24,28 +24,22 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.commons.dbutils.BeanProcessor;
-
-public class BeanReader<Bean> extends ResultSetHandler<Bean> 
+public class BeanReader<Bean> extends ResultSetHandler<Bean>
 {
-	BeanProcessor beanProcessor = new BeanProcessor();
-	Class<Bean> beanClass;
-	
-	public BeanReader(Class<Bean> beanClass)
-	{
-		this.beanClass = beanClass;
-	}
+    BeanProcessor beanProcessor = new BeanProcessor();
+    Class<Bean> beanClass;
 
-	public Bean handle(ResultSet rs) throws SQLException {
-		return beanClass.cast(beanProcessor.toBean(rs, beanClass));
-	}
+    public BeanReader(Class<Bean> beanClass)
+    {
+        this.beanClass = beanClass;
+    }
+
+    public Bean handle(ResultSet rs) throws SQLException
+    {
+        return beanClass.cast(beanProcessor.toBean(rs, beanClass));
+    }
 
 }
-
-
-
-
