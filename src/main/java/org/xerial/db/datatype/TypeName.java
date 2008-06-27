@@ -14,31 +14,38 @@
  *  limitations under the License.
  *--------------------------------------------------------------------------*/
 //--------------------------------------
-// XerialJ Project
+// XerialJ
 //
-// PasswordType.java
-// Since: 2007/04/13
+// TypeName.java
+// Since: 2008/06/26 17:10:21
 //
-// $URL$ 
+// $URL$
 // $Author$
 //--------------------------------------
 package org.xerial.db.datatype;
 
+/**
+ * List of data type name
+ * 
+ * @author leo
+ *
+ */
+public enum TypeName {
 
-public class PasswordType extends DataTypeBase
-{
-
-	public PasswordType(String name) {
-		super(name);
-	}
-
-
-	public String getTypeName() {
-		return "password";
-	}
-
+    INTEGER,
+    LONG,
+    BOOLEAN,
+    STRING,
+    DATETIME,
+    TEXT,
+    PASSWORD,
+    DOUBLE,
+    BLOB;
+    
+    public String getTypeName()
+    {
+        return name().toLowerCase();
+    }
+    
+    
 }
-
-
-
-

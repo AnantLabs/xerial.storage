@@ -28,7 +28,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.xerial.db.DBException;
-import org.xerial.db.datatype.DateTimeType;
 
 /**
  * Ruby on Rails-Style Relational Database Access Interface

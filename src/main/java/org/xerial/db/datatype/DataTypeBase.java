@@ -28,30 +28,28 @@ package org.xerial.db.datatype;
  * @author leo
  * 
  */
-public abstract class DataTypeBase implements DataType
+public class DataTypeBase implements DataType
 {
-    private String name;
+    private final String name;
+    private final TypeName typeName;
     private boolean isPrimaryKey = false;
     private boolean isNullable = false;
 
-    public DataTypeBase(String name)
+
+    public DataTypeBase(String name, TypeName typeName)
     {
-        this.name = name;
+        this(name, typeName, false, false);
     }
 
-    public DataTypeBase(String name, boolean isPrimaryKey)
+    public DataTypeBase(String name, TypeName typeName, boolean isPrimaryKey)
     {
-        this.name = name;
-        this.isPrimaryKey = isPrimaryKey;
+        this(name, typeName, isPrimaryKey, false);
     }
 
-    // hide the default constructor
-    private DataTypeBase()
-    {}
-
-    public DataTypeBase(String name, boolean isPrimaryKey, boolean isNullable)
+    public DataTypeBase(String name, TypeName typeName, boolean isPrimaryKey, boolean isNullable)
     {
         this.name = name;
+        this.typeName = typeName;
         this.isPrimaryKey = isPrimaryKey;
         this.isNullable = isNullable;
     }
@@ -72,6 +70,16 @@ public abstract class DataTypeBase implements DataType
     public String getName()
     {
         return name;
+    }
+    
+    public TypeName getType()
+    {
+        return typeName;
+    }
+    
+    public String getTypeName()
+    {
+        return typeName.getTypeName();
     }
 
     public void setPrimaryKey(boolean isPrimaryKey)

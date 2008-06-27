@@ -43,8 +43,8 @@ import org.junit.Test;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.StringType;
+import org.xerial.db.datatype.DataTypeBase;
+import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.BeanResultHandler;
 import org.xerial.db.sql.ConnectionPool;
 import org.xerial.db.sql.ConnectionPoolImpl;
@@ -122,8 +122,8 @@ public class SQLiteAccessTest
     public void createTable() throws DBException
     {
         Relation r = new Relation();
-        r.add(new IntegerType("id", true, true));
-        r.add(new StringType("name"));
+        r.add(new DataTypeBase("id", TypeName.INTEGER, true, true));
+        r.add(new DataTypeBase("name", TypeName.STRING));
 
         query.createTable("tmp", r);
         query.dropTable("tmp");

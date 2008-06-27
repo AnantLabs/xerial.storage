@@ -44,6 +44,13 @@ public interface DataType extends Comparable<DataType>
     public String getName();
 
     /**
+     * Gets the type name of this data type
+     * 
+     * @return the type name
+     */
+    public TypeName getType();
+    
+    /**
      * Gets the type name of this data type, e.g., integer, boolean, etc.
      * 
      * @return the type name

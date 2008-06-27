@@ -31,7 +31,6 @@ import java.util.List;
 
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.StringListType;
 import org.xerial.json.JSONArray;
 import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
@@ -119,10 +118,11 @@ public class RelationBuilder
         return r;
     }
 
-    public static Relation createRelation(Class beanClass) throws BeanException
+    public static Relation createRelation(Class<?> beanClass) throws BeanException
     {
         return new BeanToRelationProcess().createRelation(beanClass);
     }
+    
 
     private static class BeanToRelationProcess
     {
@@ -131,8 +131,9 @@ public class RelationBuilder
         public BeanToRelationProcess()
         {}
 
-        @SuppressWarnings("unchecked")
-        public Relation createRelation(Class beanClass) throws BeanException
+
+
+        public Relation createRelation(Class<?> beanClass) throws BeanException
         {
             if (beanClass == null)
                 return _relation;
@@ -143,15 +144,15 @@ public class RelationBuilder
                 Method getter = rule.getMethod();
                 String p = rule.getParameterName();
 
-                Class returnType = getter.getReturnType();
+                Class<?> returnType = getter.getReturnType();
                 if (returnType.isArray())
                 {
-                    returnType = returnType.getComponentType();
-                    if (returnType.isAssignableFrom(String.class))
-                        _relation.add(new StringListType(p));
-                    else
-                        throw new BeanException(BeanErrorCode.UnsupportedDataType, "array type of "
-                                + returnType.toString() + " is not supported");
+//                    returnType = returnType.getComponentType();
+//                    if (returnType.isAssignableFrom(String.class))
+//                        _relation.add(new StringListType(p));
+//                    else
+                    throw new BeanException(BeanErrorCode.UnsupportedDataType, "array type of "
+                            + returnType.toString() + " is not supported");
                 }
                 else
                 {

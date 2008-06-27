@@ -33,8 +33,9 @@ import java.util.Vector;
 
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.StringType;
+import org.xerial.db.datatype.DataTypeBase;
+
+import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.db.sql.sqlite.SQLiteDataTypeInfo;
 import org.xerial.util.CollectionUtil;
@@ -166,15 +167,15 @@ public class DataModel
 			query.dropTable("edge");
 		
 		Relation nodeRelation = new Relation(); 
-		nodeRelation.add(new IntegerType("id", true, true));
-		nodeRelation.add(new StringType("name"));
+		nodeRelation.add(new DataTypeBase("id", TypeName.INTEGER, true, true));
+		nodeRelation.add(new DataTypeBase("name", TypeName.STRING));
 		query.createTable("node", nodeRelation);
 		
 		Relation edgeRelation = new Relation();
-		edgeRelation.add(new IntegerType("id", true, true));
-		edgeRelation.add(new IntegerType("src"));
-		edgeRelation.add(new IntegerType("dest"));
-		edgeRelation.add(new IntegerType("relationship"));
+		edgeRelation.add(new DataTypeBase("id", TypeName.INTEGER, true, true));
+		edgeRelation.add(new DataTypeBase("src", TypeName.INTEGER));
+		edgeRelation.add(new DataTypeBase("dest", TypeName.INTEGER));
+		edgeRelation.add(new DataTypeBase("relationship", TypeName.INTEGER));
 		query.createTable("edge", edgeRelation);
 
 		Vector<NodeData> nodeList = new Vector<NodeData>(); 

@@ -26,11 +26,9 @@ package org.xerial.db;
 
 import org.xerial.db.cache.BufferReader;
 import org.xerial.db.cache.BufferWriter;
-import org.xerial.db.datatype.BooleanType;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.IntegerType;
-import org.xerial.db.datatype.StringType;
 import org.xerial.db.datatype.TypeInformation;
+
 
 
 
@@ -69,22 +67,22 @@ public class TupleImpl extends AbstractTuple
         int relationIndex = 0;
         for(DataType dt : relation.getDataTypeList())
         {
-            if(dt instanceof IntegerType)
+            switch(dt.getType())
             {
+            case INTEGER:
                 byteSize += TypeInformation.INT_SIZE;
-            }
-            else if(dt instanceof StringType)
-            {
+                break;
+            case STRING:
                 int strLen = value[relationIndex].length();
                 byteSize += VariableLengthInteger.byteSize(strLen);
                 byteSize += strLen;
-            }
-            else if(dt instanceof BooleanType)
-            {
+                break;
+            case BOOLEAN:
                 byteSize += TypeInformation.BOOLEAN_SIZE;
-            }
-            else
+                break;
+            default:
                 throw new UnsupportedOperationException("unsupported data type: " + dt.getName());
+            }
             
             relationIndex++;
         }
@@ -98,21 +96,21 @@ public class TupleImpl extends AbstractTuple
         Relation relation = getRelation();
         for(DataType dt : relation.getDataTypeList())
         {
-            if(dt instanceof IntegerType)
+            switch(dt.getType())
+            {
+            case INTEGER:
             {
                 int value = reader.readInt();
+                break;
             }
-            else if(dt instanceof StringType)
+            case BOOLEAN:
             {
                 int strLen = value[relationIndex].length();
-
+                break;
             }
-            else if(dt instanceof BooleanType)
-            {
-
-            }
-            else
+            default:
                 throw new UnsupportedOperationException("unsupported data type: " + dt.getName());
+            }
             
             relationIndex++;
         }

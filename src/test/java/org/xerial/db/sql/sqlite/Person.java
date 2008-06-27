@@ -26,7 +26,7 @@ package org.xerial.db.sql.sqlite;
 
 public class Person
 {
-	int id;
+	int id = -1;
 	String name;
 	
 	public Person() {}
@@ -44,6 +44,12 @@ public class Person
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Person(String name)
+	{
+	    this.name = name;
+	}
+	
 	public int getId() {
 		return id;
 	}
