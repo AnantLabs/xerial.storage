@@ -62,7 +62,7 @@ public enum DBErrorCode implements ErrorCode
     
     InvalidSQLExpression,
     
-    InvalidFile;
+    InvalidFile, AssociatedObjectAlreadyExist;
 
     private final String description;
     private DBErrorCode()

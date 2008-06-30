@@ -65,6 +65,8 @@ public class ObjectStorageImpl implements ObjectStorage
     private HashSet<String> registeredTableSet = new HashSet<String>();
     private HashMap<Class< ? >, Relation> relationOfEachClass = new HashMap<Class< ? >, Relation>();
     private HashMap<Class< ? >, String> tableNameOfEachClass = new HashMap<Class< ? >, String>();
+    
+    private HashMap<Class<?>, Class<?>> associatedClassOfOneToOneRelationship = new HashMap<Class<?>, Class<?>>();
 
     public ObjectStorageImpl(DatabaseAccess dbAccess)
     {
@@ -156,11 +158,23 @@ public class ObjectStorageImpl implements ObjectStorage
         setTimeStamp(bean, "modifiedAt", timeStamp);
     }
 
+    private <T, U> boolean isOneToOne(Class<T> parent, Class<U> child)
+    {
+        return associatedClassOfOneToOneRelationship.containsKey(parent) && associatedClassOfOneToOneRelationship.get(parent).equals(child);
+    }
+    
     public <T, U> U create(T parentObject, U associatedObject) throws DBException
     {
         try
         {
             setParentBeanID(parentObject, associatedObject);
+
+            if(isOneToOne(parentObject.getClass(), associatedObject.getClass())){
+                if(getOne(parentObject, associatedObject.getClass()) != null)
+                {
+                    throw new DBException(DBErrorCode.AssociatedObjectAlreadyExist);
+                }
+            }
 
             return create(associatedObject);
         }
@@ -204,6 +218,12 @@ public class ObjectStorageImpl implements ObjectStorage
     public static <T> int getBeanID(T bean) throws BeanException
     {
         return Integer.class.cast(getValue(bean, "id"));
+    }
+    
+    public static <T, U> int getAssociatedBeanID(T bean, Class<U> associatedClass) throws BeanException
+    {
+        String associatedBeanIDName = associatedClass.getSimpleName().toLowerCase() + "Id";
+        return Integer.class.cast(getValue(bean, associatedBeanIDName));
     }
 
     /**
@@ -351,7 +371,26 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException
     {
-        throw new UnsupportedOperationException();
+        String tableNameOfT = getTableName(startPoint.getClass());
+        String tableNameOfU = getTableName(associatedType);
+        
+        int parentID;
+        try
+        {
+            parentID = getBeanID(startPoint);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
+        
+        String sql = SQLExpression.fillTemplate("select u.* from $1 t, $2 u where t.id = $3", tableNameOfT, tableNameOfU, parentID);
+        List<U> result = dbAccess.query(sql, associatedType);
+        if(result.size() > 0)
+            return result.get(0);
+        else
+            return null;
+        
     }
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType, int idOfU) throws DBException
@@ -369,9 +408,25 @@ public class ObjectStorageImpl implements ObjectStorage
         throw new UnsupportedOperationException();
     }
 
-    public <T, U> T getParent(U child) throws DBException
+    public <T, U> T getParent(U child, Class<T> parentType) throws DBException
     {
-        throw new UnsupportedOperationException();
+        try
+        {
+            int parentID = getAssociatedBeanID(child, parentType);
+            String parentTableName = getTableName(parentType);
+            String sql = SQLExpression.fillTemplate("select * from $1 where id = $2", parentTableName, parentID);
+            List<T> result = dbAccess.query(sql, parentType);
+            if(result == null || result.size() <= 0)
+                return null;
+            else
+                return result.get(0);
+        }
+        catch (BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
+        
+        
     }
 
     public <T, U> T getParent(Class<U> childClass, int idOfU) throws DBException
@@ -395,9 +450,7 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T, U> void oneToOne(Class<T> from, Class<U> to) throws DBException
     {
-        throw new UnsupportedOperationException();
-        // TODO Auto-generated method stub
-
+        associatedClassOfOneToOneRelationship.put(from, to);
     }
 
     public <T> void register(String tableName, Class<T> classType) throws DBException
@@ -551,4 +604,5 @@ public class ObjectStorageImpl implements ObjectStorage
         }
 
     }
+
 }

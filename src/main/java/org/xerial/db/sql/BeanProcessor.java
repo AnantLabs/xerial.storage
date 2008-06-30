@@ -581,7 +581,7 @@ public class BeanProcessor
             }
             catch (ParseException e)
             {
-                throw new SQLException(e);
+                throw new SQLException(e.getMessage());
             }
         }
         else

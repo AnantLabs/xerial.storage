@@ -37,6 +37,7 @@ import java.util.TreeSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.sql.impl.ObjectStorageImpl;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
@@ -116,7 +117,6 @@ public class ObjectStorageTest
         assertEquals(r.getModifiedAt(), r2.getModifiedAt());
 
         Date rCreatedAt = (Date) r.getCreatedAt().clone();
-        Date rModifiedAt = (Date) r.getModifiedAt().clone();
 
         try
         {
@@ -138,21 +138,46 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testOneToOne()
+    public void testOneToOne() throws DBException
     {
-        fail("Not yet implemented");
+        storage.oneToOne(Person.class, Report.class);
+        
+        Person p = storage.create(new Person("leo"));
+        Report r = storage.create(p, new Report());
+
+        Report r2 = storage.getOne(p, Report.class);
+        
+        assertNotNull(r2);
+        assertEquals(r.getId(), r2.getId());
+        assertEquals(r.getPersonId(), r2.getPersonId());
+        assertEquals(r.getCreatedAt(), r2.getCreatedAt());
+        assertEquals(r.getModifiedAt(), r2.getModifiedAt());
+        
+        try
+        {
+            Report r3 = storage.create(p, new Report());
+            fail("cannot not create two or more duplicate objects associated as one to one");
+        }
+        catch(DBException e)
+        {
+            assertEquals(DBErrorCode.AssociatedObjectAlreadyExist, e.getErrorCode());
+        }
+        
+        Person p2 = storage.getParent(r, Person.class);
+        assertNotNull(p2);
+        assertEquals(p.getId(), p2.getId());
+        assertEquals(p.getName(), p2.getName());
+
     }
 
     @Test
-    public void testOneToMany()
+    public void testOneToMany() throws DBException
     {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetOneTClassOfU()
-    {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo"));
+        Report r = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
+        
+        fail("not yet implemented");
     }
 
     @Test
@@ -197,11 +222,6 @@ public class ObjectStorageTest
         fail("Not yet implemented");
     }
 
-    @Test
-    public void testGetParentU()
-    {
-        fail("Not yet implemented");
-    }
 
     @Test
     public void testGetParentClassOfUInt()

@@ -139,7 +139,7 @@ public interface ObjectStorage
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType,
             String additionalWhereCondition) throws DBException;
 
-    public <T, U> T getParent(U child) throws DBException;
+    public <T, U> T getParent(U child, Class<T> parentType) throws DBException;
 
     public <T, U> T getParent(Class<U> childClass, int idOfU) throws DBException;
 
