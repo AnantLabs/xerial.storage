@@ -42,6 +42,7 @@ import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.sql.impl.ObjectStorageImpl;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
+import org.xerial.util.Predicate;
 import org.xerial.util.log.Logger;
 
 public class ObjectStorageTest
@@ -261,13 +262,12 @@ public class ObjectStorageTest
         Person rp = storage.getParent(Person.class, Report.class, r1.getId());
         assertEquals(p.getId(), rp.getId());
         assertEquals(p.getName(), rp.getName());
+
+        Person rp2 = storage.getParent(Person.class, Report.class, r2.getId());
+        assertEquals(p.getId(), rp2.getId());
+        assertEquals(p.getName(), rp2.getName());
     }
 
-    @Test
-    public void testJoin()
-    {
-        fail("Not yet implemented");
-    }
 
     @Test
     public void testCreate() throws DBException
@@ -450,6 +450,26 @@ public class ObjectStorageTest
         assertEquals(p2.getName(), pf.getName());
         assertEquals(p2.getAddress(), pf.getAddress());
 
+    }
+    
+    @Test
+    public void testGetAllWithPredicate() throws DBException
+    {
+        Person p = storage.create(new Person("leo", "xxx-xxxx"));
+        Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
+
+        TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class, new Predicate<Person>(){
+            public boolean apply(Person input)
+            {
+                return input.getName().contains("yui");
+            }}));
+        
+        assertEquals(1, personList.size());
+        Person pf = personList.first();
+        assertEquals(p2.getId(), pf.getId());
+        assertEquals(p2.getName(), pf.getName());
+        assertEquals(p2.getAddress(), pf.getAddress());
+        
     }
 
 }

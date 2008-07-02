@@ -42,6 +42,7 @@ import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
+import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
 import org.xerial.util.bean.BeanBinder;
 import org.xerial.util.bean.BeanBinderSet;
@@ -387,6 +388,13 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess.query(sql, classType);
     }
 
+    public <T> List<T> getAll(Class<T> classType, Predicate<T> filterPredicate) throws DBException
+    {
+        String tableName = getTableName(classType);
+        String sql = SQLExpression.fillTemplate("select * from $1", tableName);
+        return dbAccess.query(sql, classType, filterPredicate);
+    }
+    
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException
     {
         int parentID;
@@ -427,7 +435,16 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T, U> U getOne(Class<T> startPointClass, int idOfT, Class<U> associatedType, int idOfU) throws DBException
     {
-        throw new UnsupportedOperationException();
+        String tableNameOfU = getTableName(associatedType);
+        String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
+
+        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3 and id = $4", tableNameOfU, parentIDColumnName,
+                idOfT, idOfU);
+        List<U> result = dbAccess.query(sql, associatedType);
+        if (result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
     public <T, U> T getParent(U child, Class<T> parentType) throws DBException
@@ -456,22 +473,6 @@ public class ObjectStorageImpl implements ObjectStorage
 
     }
 
-    public <S, T, U> List<S> join(Class<T> left, Class<U> right, Class<S> targetType) throws DBException
-    {
-        String parentTableName = getTableName(left);
-        String childTableName = getTableName(right);
-        String parentIDColumnName = getAssociatedIDColumnName(left);
-        String sql = SQLExpression.fillTemplate("select * from $1 t, $2 u where t.id = u.$3");
-        throw new UnsupportedOperationException();
-
-    }
-
-    public <T, U> void oneToMany(Class<T> from, Class<U> to) throws DBException
-    {
-        throw new UnsupportedOperationException();
-        // TODO Auto-generated method stub
-
-    }
 
     public <T, U> void oneToOne(Class<T> from, Class<U> to) throws DBException
     {
