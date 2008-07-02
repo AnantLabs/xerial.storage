@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.sql.impl;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -34,12 +36,14 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.xerial.amoeba.query.impl.AmoebaQueryParser.updateExpr_return;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
+import org.xerial.db.sql.PreparedStatementHandler;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.util.Predicate;
@@ -584,6 +588,24 @@ public class ObjectStorageImpl implements ObjectStorage
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
     }
+    
+    
+    
+    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName,final byte[] blobData) throws DBException 
+    {
+        String tableName = getTableName(objectClass);
+        String sql = SQLExpression.fillTemplate("update $1 set $2 = ? where id = $3", tableName, parameterName, id);
+        dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
+            public void setup(PreparedStatement preparedStatement) throws SQLException
+            {
+                preparedStatement.setBytes(1, blobData);
+            }});
+    }
+    
+    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException 
+    {
+        saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
+    }
 
     public static <T> String createUpdateStatement(Relation relation, T bean)
     {
@@ -629,6 +651,19 @@ public class ObjectStorageImpl implements ObjectStorage
             throw new DBException(DBErrorCode.UpdateError, e);
         }
 
+    }
+
+    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException
+    {
+        String tableName = getTableName(objectClass);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", parameterName, tableName, id);
+        
+        return null;
+    }
+
+    public <T> byte[] getBlob(T object, String parameterName) throws DBException
+    {
+        return getBlob(object.getClass(), getBeanID(object), parameterName);
     }
 
 }

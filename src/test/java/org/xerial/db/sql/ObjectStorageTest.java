@@ -471,5 +471,11 @@ public class ObjectStorageTest
         assertEquals(p2.getAddress(), pf.getAddress());
         
     }
+    
+    @Test
+    public void testBlob() throws DBException
+    {
+        fail("not implemented");
+    }
 
 }

@@ -178,6 +178,51 @@ public interface ObjectStorage
     public <T> void save(T object) throws DBException;
 
     /**
+     * Save the blob data 
+     * @param <T>
+     * @param <V>
+     * @param object
+     * @param parameterName
+     * @param blobData
+     * @throws DBException
+     */
+    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException;
+
+    /**
+     * Save the blob data
+     * @param <T>
+     * @param <V>
+     * @param objectClass
+     * @param id
+     * @param parameterName
+     * @param value
+     * @throws DBException
+     */
+    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobDat) throws DBException;
+
+    
+    /**
+     * Retrieves the blob data of the object class that matches the id value
+     * @param <T>
+     * @param objectClass
+     * @param id
+     * @param parameterName
+     * @return
+     * @throws DBException
+     */
+    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException;
+    
+    /**
+     * Retrieves the blob data of the object
+     * @param <T>
+     * @param object
+     * @param parameterName
+     * @return
+     * @throws DBException
+     */
+    public <T> byte[] getBlob(T object, String parameterName) throws DBException;
+
+    /**
      * Save the all objects in the given collection
      * 
      * @param <T>
