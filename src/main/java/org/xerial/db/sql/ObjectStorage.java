@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.xerial.db.DBException;
-
+import org.xerial.util.Predicate;
 /**
  * Ruby on Rails-Style Relational Database Access Interface
  * 
@@ -47,6 +47,7 @@ import org.xerial.db.DBException;
  * @author leo
  * 
  */
+
 public interface ObjectStorage
 {
     /**
@@ -118,7 +119,7 @@ public interface ObjectStorage
      * @param many
      * @throws DBException
      */
-    public <T, U> void oneToMany(Class<T> from, Class<U> to) throws DBException;
+    //public <T, U> void oneToMany(Class<T> from, Class<U> to) throws DBException;
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException;
 
@@ -129,6 +130,7 @@ public interface ObjectStorage
     public <T, U> U getOne(Class<T> startPointClass, int idOfT, Class<U> associatedType, int idOfU) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException;
+    
     public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
@@ -143,7 +145,6 @@ public interface ObjectStorage
 
     public <T, U> T getParent(Class<T> parentClass, Class<U> childClass, int idOfU) throws DBException;
 
-    public <S, T, U> List<S> join(Class<T> left, Class<U> right, Class<S> targetType) throws DBException;
 
     /**
      * Create a new object of the type U associated with the given parent object
@@ -213,7 +214,7 @@ public interface ObjectStorage
     public <T> T get(Class<T> classType, String sql) throws DBException;
 
     /**
-     * Retrives all object instances in the corresponding table
+     * Retrieves all object instances in the corresponding table
      * 
      * @param <T>
      * @param classType
@@ -224,7 +225,7 @@ public interface ObjectStorage
     public <T> List<T> getAll(Class<T> classType) throws DBException;
 
     /**
-     * Retrives object instances using an SQL statment.
+     * Retrieves object instances using an SQL statement.
      * 
      * @param <T>
      * @param classType
@@ -235,5 +236,16 @@ public interface ObjectStorage
      * @throws DBException
      */
     public <T> List<T> getAll(Class<T> classType, String sql) throws DBException;
+    
+    /**
+     * Retrieves object instances that satisfy the predicate
+     *      
+     * @param <T>
+     * @param classType
+     * @param filterPredicate
+     * @return
+     * @throws DBException
+     */
+    public <T> List<T> getAll(Class<T> classType, Predicate<T> filterPredicate) throws DBException;
 
 }

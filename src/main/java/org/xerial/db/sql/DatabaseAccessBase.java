@@ -45,6 +45,7 @@ import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.json.JSONObject;
 import org.xerial.json.JSONValue;
+import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
 import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
@@ -106,6 +107,7 @@ public class DatabaseAccessBase implements DatabaseAccess
         return queryWithHandler(sql, new BeanReader(resultRowType));
     }
 
+    
     public <T> void query(String sql, ResultSetHandler<T> pullHandler) throws DBException
     {
         Connection connection = null;
@@ -139,6 +141,40 @@ public class DatabaseAccessBase implements DatabaseAccess
         }
     }
 
+    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException
+    {
+        Connection connection = null;
+        BeanReader<T> beanReader = new BeanReader<T>(resultRowType);
+        ArrayList<T> result = new ArrayList<T>();
+        try
+        {
+            connection = getConnection(true);
+            Statement statement = createStatement(connection);
+            _logger.debug(sql);
+
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next())
+            {
+                T row = beanReader.handle(rs);
+                if (row != null && filter.apply(row))
+                    result.add(row);
+            }
+
+            rs.close();
+            statement.close();
+        }
+        catch (SQLException e)
+        {
+            throw new DBException(DBErrorCode.QueryError, e);
+        }
+        finally
+        {
+            if (connection != null)
+                _connectionPool.returnConnection(connection);
+        }
+        return result;
+    }
+    
     public <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException
     {
         Connection connection = null;

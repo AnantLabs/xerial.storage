@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
+import org.xerial.util.Predicate;
 
 /**
  * An interface to access relational databases
@@ -98,6 +99,17 @@ public interface DatabaseAccess
      */
     public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
 
+    /**
+     * Performs an SQL query, and retrieves the results that satisfy the filter predicate
+     * @param <T>
+     * @param sql
+     * @param resultRowType
+     * @param filter
+     * @return
+     * @throws DBException
+     */
+    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException;
+    
     /**
      * @param <T>
      * @param sql
