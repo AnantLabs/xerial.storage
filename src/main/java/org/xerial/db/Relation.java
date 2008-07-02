@@ -104,7 +104,7 @@ public class Relation
     {
         if (typeName.equalsIgnoreCase("boolean"))
             return new DataTypeBase(parameterName, TypeName.BOOLEAN);
-        else if (typeName.startsWith("int") || typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
+        else if (typeName.equalsIgnoreCase("int") || typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
             return new DataTypeBase(parameterName, TypeName.INTEGER);
         else if (typeName.equalsIgnoreCase("string"))
             return new DataTypeBase(parameterName, TypeName.STRING);

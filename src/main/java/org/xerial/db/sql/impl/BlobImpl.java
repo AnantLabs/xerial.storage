@@ -63,15 +63,26 @@ public class BlobImpl implements Blob
 
     public byte[] getBytes(long pos, int length) throws SQLException
     {
-        throw new UnsupportedOperationException();
-
+        if(pos > Integer.MAX_VALUE)
+            throw new SQLException("cannot read position more than " + Integer.MAX_VALUE);
+        
+        byte[] result = new byte[length];
+        int offset = (int) pos;
+        int max = offset + length;
+        if(max > rawData.length)
+        {
+            max = rawData.length;
+        }
+        for(int i= offset; i<max; i++)
+        {
+            result[i-offset] = rawData[i];
+        }
+        return result;
     }
 
     public long length() throws SQLException
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException();
-
+        return rawData.length;
     }
 
     public long position(byte[] pattern, long start) throws SQLException
@@ -111,7 +122,6 @@ public class BlobImpl implements Blob
 
     public void truncate(long len) throws SQLException
     {
-
         throw new UnsupportedOperationException();
 
     }
