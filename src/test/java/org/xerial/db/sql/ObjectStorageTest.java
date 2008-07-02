@@ -168,7 +168,18 @@ public class ObjectStorageTest
         assertNotNull(p2);
         assertEquals(p.getId(), p2.getId());
         assertEquals(p.getName(), p2.getName());
-
+        
+        Report r3 = storage.getOne(Person.class, p.getId(), Report.class);
+        assertEquals(r.getId(), r3.getId());
+        assertEquals(r.getPersonId(), r3.getPersonId());
+        assertEquals(r.getCreatedAt(), r3.getCreatedAt());
+        assertEquals(r.getModifiedAt(), r3.getModifiedAt());
+        
+        Report r4 = storage.getOne(p, Report.class, r3.getId());
+        assertEquals(r3.getId(), r4.getId());
+        assertEquals(r3.getPersonId(), r4.getPersonId());
+        assertEquals(r3.getCreatedAt(), r4.getCreatedAt());
+        assertEquals(r3.getModifiedAt(), r4.getModifiedAt());
     }
 
     @Test
@@ -211,42 +222,45 @@ public class ObjectStorageTest
         assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
     }
 
+
+
     @Test
-    public void testGetOneTClassOfUInt()
+    public void testGetAllTClassOfUString() throws DBException
     {
-        fail("Not yet implemented");
+        storage.create(new Person("yui"));
+        storage.create(new Person("sam"));
+        Person leo = storage.create(new Person("leo"));
+        
+        List<Person> personList = storage.getAll(Person.class, "select * from person where name = 'leo'");
+        assertEquals(1, personList.size());
+        
+        Person r = personList.get(0);
+        assertEquals(leo.getId(), r.getId());
+        assertEquals(leo.getName(), r.getName());
     }
 
     @Test
-    public void testGetOneClassOfTIntClassOfU()
+    public void testGetAllClassOfTIntClassOfUString() throws DBException
     {
-        fail("Not yet implemented");
-    }
+        Person p = storage.create(new Person("leo"));
+        Report r1 = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
 
-    @Test
-    public void testGetOneClassOfTIntClassOfUInt()
-    {
-        fail("Not yet implemented");
-    }
-
-
-    @Test
-    public void testGetAllTClassOfUString()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetAllClassOfTIntClassOfUString()
-    {
-        fail("Not yet implemented");
+        List<Report> reportList = storage.getAll(Person.class, 1, Report.class);
+        assertEquals(2, reportList.size());
     }
 
 
     @Test
-    public void testGetParentClassOfUInt()
+    public void testGetParentClassOfUInt() throws DBException
     {
-        fail("Not yet implemented");
+        Person p = storage.create(new Person("leo"));
+        Report r1 = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
+
+        Person rp = storage.getParent(Person.class, Report.class, r1.getId());
+        assertEquals(p.getId(), rp.getId());
+        assertEquals(p.getName(), rp.getName());
     }
 
     @Test

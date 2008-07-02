@@ -141,7 +141,7 @@ public interface ObjectStorage
 
     public <T, U> T getParent(U child, Class<T> parentType) throws DBException;
 
-    public <T, U> T getParent(Class<U> childClass, int idOfU) throws DBException;
+    public <T, U> T getParent(Class<T> parentClass, Class<U> childClass, int idOfU) throws DBException;
 
     public <S, T, U> List<S> join(Class<T> left, Class<U> right, Class<S> targetType) throws DBException;
 
