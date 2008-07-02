@@ -26,7 +26,7 @@ package org.xerial.db.sql;
 
 import java.util.Date;
 
-public class Report
+public class Report implements Comparable<Report>
 {
     int id = -1;
     int personId = -1;
@@ -82,6 +82,11 @@ public class Report
     public String toString()
     {
         return String.format("id=%d, person_id=%d, createdAt=%s, modifiedAt=%s", id, personId, createdAt, modifiedAt);
+    }
+
+    public int compareTo(Report other)
+    {
+        return this.getId() - other.getId();
     }
 
 }

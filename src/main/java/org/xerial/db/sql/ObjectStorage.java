@@ -49,7 +49,6 @@ import org.xerial.db.DBException;
  */
 public interface ObjectStorage
 {
-
     /**
      * Register a class type that can be used as save/load unit to the table.
      * That is each row in the table corresponds to an instance of the given
@@ -130,6 +129,7 @@ public interface ObjectStorage
     public <T, U> U getOne(Class<T> startPointClass, int idOfT, Class<U> associatedType, int idOfU) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException;
+    public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
             throws DBException;
