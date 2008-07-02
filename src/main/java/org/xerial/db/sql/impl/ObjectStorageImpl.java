@@ -165,65 +165,70 @@ public class ObjectStorageImpl implements ObjectStorage
     
     public <T, U> U create(T parentObject, U associatedObject) throws DBException
     {
-        try
-        {
-            setParentBeanID(parentObject, associatedObject);
+        setParentBeanID(parentObject, associatedObject);
 
-            if(isOneToOne(parentObject.getClass(), associatedObject.getClass())){
-                if(getOne(parentObject, associatedObject.getClass()) != null)
-                {
-                    throw new DBException(DBErrorCode.AssociatedObjectAlreadyExist);
-                }
+        if(isOneToOne(parentObject.getClass(), associatedObject.getClass())){
+            if(getOne(parentObject, associatedObject.getClass()) != null)
+            {
+                throw new DBException(DBErrorCode.AssociatedObjectAlreadyExist);
             }
+        }
 
-            return create(associatedObject);
-        }
-        catch (BeanException e)
-        {
-            throw new DBException(DBErrorCode.InvalidBeanClass, e);
-        }
+        return create(associatedObject);
     }
 
-    public static <T> void setBeanID(T bean, int id) throws BeanException
+    public static <T> void setBeanID(T bean, int id) throws DBException
     {
         setValue(bean, "id", id);
     }
 
-    public static <T, U> void setParentBeanID(T parentObject, U associatedObject) throws BeanException
+    public static <T, U> void setParentBeanID(T parentObject, U associatedObject) throws DBException 
     {
         int parentID = getBeanID(parentObject);
         String parentIDParamName = parentObject.getClass().getSimpleName() + "Id";
         setValue(associatedObject, parentIDParamName, parentID);
     }
 
-    public static <T> void setValue(T bean, String parameterName, Object value) throws BeanException
+    public static <T> void setValue(T bean, String parameterName, Object value) throws DBException
     {
-        Class< ? > beanClass = bean.getClass();
-        BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(beanClass);
-        BeanBinder binder = ruleSet.findRule(parameterName);
-        if (binder == null)
-        {
-            throw new BeanException(BeanErrorCode.InvocationTargetException, "no getter for " + parameterName);
-        }
         try
         {
+            Class< ? > beanClass = bean.getClass();
+            BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(beanClass);
+            BeanBinder binder = ruleSet.findRule(parameterName);
+            if (binder == null)
+            {
+                throw new DBException(DBErrorCode.InvalidBeanClass, "no getter for " + parameterName);
+            }
             binder.getMethod().invoke(bean, new Object[] { value });
         }
         catch (Exception e)
         {
-            throw new BeanException(BeanErrorCode.BindFailure, e);
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
     }
 
-    public static <T> int getBeanID(T bean) throws BeanException
+    public static <T> int getBeanID(T bean) throws DBException
     {
-        return Integer.class.cast(getValue(bean, "id"));
+        try
+        {
+            return Integer.class.cast(getValue(bean, "id"));
+        }
+        catch(BeanException e)
+        {
+            throw new DBException(DBErrorCode.InvalidBeanClass, e);
+        }
     }
     
     public static <T, U> int getAssociatedBeanID(T bean, Class<U> associatedClass) throws BeanException
     {
-        String associatedBeanIDName = associatedClass.getSimpleName().toLowerCase() + "Id";
+        String associatedBeanIDName = getAssociatedIDColumnName(associatedClass);
         return Integer.class.cast(getValue(bean, associatedBeanIDName));
+    }
+    
+    public static <T> String getAssociatedIDColumnName(Class<T> parentClass)
+    {
+        return parentClass.getSimpleName().toLowerCase() + "Id";
     }
 
     /**
@@ -336,7 +341,20 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException
     {
-        throw new UnsupportedOperationException();
+        int startPointID = getBeanID(startPoint);
+        String tableName = getTableName(associatedType);
+        String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
+        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3", tableName, parentIDColumnName, startPointID);
+        return dbAccess.query(sql, associatedType);
+    }
+     
+    public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException 
+    {
+        int startPointID = getBeanID(startPoint);
+        String tableName = getTableName(associatedType);
+        String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
+        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3 order by u.id", tableName, parentIDColumnName, startPointID);
+        return dbAccess.query(sql, associatedType);
     }
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
@@ -347,8 +365,10 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType) throws DBException
     {
-        throw new UnsupportedOperationException();
-
+        String tableName = getTableName(associtedType);
+        String parentIDColumnNString = getAssociatedIDColumnName(startPointClass);
+        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3", tableName, parentIDColumnNString, idOfT);
+        return dbAccess.query(sql, associtedType);
     }
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType,
@@ -375,14 +395,7 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableNameOfU = getTableName(associatedType);
         
         int parentID;
-        try
-        {
-            parentID = getBeanID(startPoint);
-        }
-        catch (BeanException e)
-        {
-            throw new DBException(DBErrorCode.InvalidBeanClass, e);
-        }
+        parentID = getBeanID(startPoint);
         
         String sql = SQLExpression.fillTemplate("select u.* from $1 t, $2 u where t.id = $3", tableNameOfT, tableNameOfU, parentID);
         List<U> result = dbAccess.query(sql, associatedType);

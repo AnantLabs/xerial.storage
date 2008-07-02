@@ -30,6 +30,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
@@ -174,10 +175,40 @@ public class ObjectStorageTest
     public void testOneToMany() throws DBException
     {
         Person p = storage.create(new Person("leo"));
-        Report r = storage.create(p, new Report());
+        Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
         
-        fail("not yet implemented");
+        List<Report> reportList = storage.getAllWithSorting(p, Report.class);
+        assertEquals(2, reportList.size());
+        Report a1 = reportList.get(0);
+        Report a2 = reportList.get(1);
+        
+        assertEquals(r1.getId(), a1.getId());
+        assertEquals(r1.getPersonId(), a1.getPersonId());
+        assertEquals(r1.getCreatedAt(), a1.getCreatedAt());
+        assertEquals(r1.getModifiedAt(), a1.getModifiedAt());
+
+        assertEquals(r2.getId(), a2.getId());
+        assertEquals(r2.getPersonId(), a2.getPersonId());
+        assertEquals(r2.getCreatedAt(), a2.getCreatedAt());
+        assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
+
+        // retrieve report list using the ID value of the parent
+        List<Report> reportList2 = storage.getAll(Person.class, p.getId(), Report.class);
+        Collections.sort(reportList2);
+        assertEquals(2, reportList2.size());
+        a1 = reportList2.get(0);
+        a2 = reportList2.get(1);
+
+        assertEquals(r1.getId(), a1.getId());
+        assertEquals(r1.getPersonId(), a1.getPersonId());
+        assertEquals(r1.getCreatedAt(), a1.getCreatedAt());
+        assertEquals(r1.getModifiedAt(), a1.getModifiedAt());
+
+        assertEquals(r2.getId(), a2.getId());
+        assertEquals(r2.getPersonId(), a2.getPersonId());
+        assertEquals(r2.getCreatedAt(), a2.getCreatedAt());
+        assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
     }
 
     @Test
@@ -198,20 +229,9 @@ public class ObjectStorageTest
         fail("Not yet implemented");
     }
 
-    @Test
-    public void testGetAllTClassOfU()
-    {
-        fail("Not yet implemented");
-    }
 
     @Test
     public void testGetAllTClassOfUString()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetAllClassOfTIntClassOfU()
     {
         fail("Not yet implemented");
     }
