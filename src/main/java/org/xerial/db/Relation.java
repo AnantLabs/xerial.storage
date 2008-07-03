@@ -33,6 +33,7 @@ import java.util.List;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.DataTypeBase;
 import org.xerial.db.datatype.TypeName;
+import org.xerial.db.sql.ByteArray;
 import org.xerial.json.JSONArray;
 import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
@@ -138,7 +139,7 @@ public class Relation
             return new DataTypeBase(parameterName, TypeName.LONG);
         else if (valueType.isAssignableFrom(Date.class))
             return new DataTypeBase(parameterName, TypeName.DATETIME);
-        else if (valueType.isAssignableFrom(Blob.class))
+        else if (valueType.isAssignableFrom(ByteArray.class))
             return new DataTypeBase(parameterName, TypeName.BLOB);
         else
             return new DataTypeBase(parameterName, TypeName.STRING);

@@ -26,7 +26,6 @@ package org.xerial.db;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Blob;
 import java.util.Date;
 
 import org.junit.After;
@@ -34,6 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.TypeName;
+import org.xerial.db.sql.ByteArray;
 import org.xerial.db.sql.sqlite.Person;
 
 
@@ -169,7 +169,7 @@ public class RelationTest
 
 
         // {@link Blob} type
-        dt = Relation.getDataType(paramName, Blob.class);
+        dt = Relation.getDataType(paramName, ByteArray.class);
         assertEquals(dt.getName(), paramName);
         assertEquals(dt.getType(), TypeName.BLOB);
 

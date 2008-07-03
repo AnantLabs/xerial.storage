@@ -479,7 +479,7 @@ public class ObjectStorageTest
         f.setTitle("hello.txt");
         String blobMessage = "hello world";
         f.setSize(blobMessage.length());
-        f.setFileData(new BlobImpl(blobMessage.getBytes()));
+        f.setFileData(new ByteArray(blobMessage.getBytes()));
 
         storage.save(f);
 
@@ -488,8 +488,8 @@ public class ObjectStorageTest
         assertEquals(f.getTitle(), f2.getTitle());
         assertEquals(f.getSize(), f2.getSize());
 
-        Blob b = f2.getFileData();
-        String blobMessage2 = new String(b.getBytes(0, (int) b.length()));
+        ByteArray b = f2.getFileData();
+        String blobMessage2 = new String(b.getBytes());
 
         assertEquals(blobMessage, blobMessage2);
 

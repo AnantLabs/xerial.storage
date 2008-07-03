@@ -46,7 +46,6 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -61,7 +60,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.dbutils.BasicRowProcessor;
-import org.xerial.db.sql.impl.BlobImpl;
 
 /**
  * <p>
@@ -390,7 +388,7 @@ public class BeanProcessor
             return true;
 
         }
-        else if (type.equals(Blob.class))
+        else if (type.equals(ByteArray.class))
         {
             return true;
         }
@@ -574,9 +572,9 @@ public class BeanProcessor
         {
             return new Byte(rs.getByte(index));
         }
-        else if (propType.equals(Blob.class))
+        else if (propType.equals(ByteArray.class))
         {
-            return new BlobImpl(rs.getBytes(index));
+            return new ByteArray(rs.getBytes(index));
         }
         else if (propType.equals(Timestamp.class))
         {
