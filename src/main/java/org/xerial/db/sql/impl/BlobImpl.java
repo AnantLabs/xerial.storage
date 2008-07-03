@@ -63,26 +63,35 @@ public class BlobImpl implements Blob
 
     public byte[] getBytes(long pos, int length) throws SQLException
     {
-        if(pos > Integer.MAX_VALUE)
+        if (pos > Integer.MAX_VALUE)
             throw new SQLException("cannot read position more than " + Integer.MAX_VALUE);
-        
+
+        if (rawData == null)
+            return new byte[0];
+
+        if (pos == 0 && length == rawData.length)
+            return rawData;
+
         byte[] result = new byte[length];
         int offset = (int) pos;
         int max = offset + length;
-        if(max > rawData.length)
+        if (max > rawData.length)
         {
             max = rawData.length;
         }
-        for(int i= offset; i<max; i++)
+        for (int i = offset; i < max; i++)
         {
-            result[i-offset] = rawData[i];
+            result[i - offset] = rawData[i];
         }
         return result;
     }
 
     public long length() throws SQLException
     {
-        return rawData.length;
+        if (rawData == null)
+            return 0;
+        else
+            return rawData.length;
     }
 
     public long position(byte[] pattern, long start) throws SQLException

@@ -62,13 +62,14 @@
     <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
-      <version>3.5.9</version>
+      <version>3.5.9-universal</version>
     </dependency>
 
     <dependency>
       <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>8.3-603.jdbc3</version>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>

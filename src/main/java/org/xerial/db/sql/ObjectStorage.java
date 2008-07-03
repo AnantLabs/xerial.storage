@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.xerial.db.DBException;
 import org.xerial.util.Predicate;
+
 /**
  * Ruby on Rails-Style Relational Database Access Interface
  * 
@@ -120,7 +121,6 @@ public interface ObjectStorage
      * @throws DBException
      */
     //public <T, U> void oneToMany(Class<T> from, Class<U> to) throws DBException;
-
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException;
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType, int idOfU) throws DBException;
@@ -130,7 +130,7 @@ public interface ObjectStorage
     public <T, U> U getOne(Class<T> startPointClass, int idOfT, Class<U> associatedType, int idOfU) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException;
-    
+
     public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException;
 
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
@@ -144,7 +144,6 @@ public interface ObjectStorage
     public <T, U> T getParent(U child, Class<T> parentType) throws DBException;
 
     public <T, U> T getParent(Class<T> parentClass, Class<U> childClass, int idOfU) throws DBException;
-
 
     /**
      * Create a new object of the type U associated with the given parent object
@@ -177,50 +176,50 @@ public interface ObjectStorage
      */
     public <T> void save(T object) throws DBException;
 
-    /**
-     * Save the blob data 
-     * @param <T>
-     * @param <V>
-     * @param object
-     * @param parameterName
-     * @param blobData
-     * @throws DBException
-     */
-    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException;
-
-    /**
-     * Save the blob data
-     * @param <T>
-     * @param <V>
-     * @param objectClass
-     * @param id
-     * @param parameterName
-     * @param value
-     * @throws DBException
-     */
-    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobDat) throws DBException;
-
-    
-    /**
-     * Retrieves the blob data of the object class that matches the id value
-     * @param <T>
-     * @param objectClass
-     * @param id
-     * @param parameterName
-     * @return
-     * @throws DBException
-     */
-    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException;
-    
-    /**
-     * Retrieves the blob data of the object
-     * @param <T>
-     * @param object
-     * @param parameterName
-     * @return
-     * @throws DBException
-     */
-    public <T> byte[] getBlob(T object, String parameterName) throws DBException;
+    //    /**
+    //     * Save the blob data 
+    //     * @param <T>
+    //     * @param <V>
+    //     * @param object
+    //     * @param parameterName
+    //     * @param blobData
+    //     * @throws DBException
+    //     */
+    //    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException;
+    //
+    //    /**
+    //     * Save the blob data
+    //     * @param <T>
+    //     * @param <V>
+    //     * @param objectClass
+    //     * @param id
+    //     * @param parameterName
+    //     * @param value
+    //     * @throws DBException
+    //     */
+    //    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobDat) throws DBException;
+    //
+    //    
+    //    /**
+    //     * Retrieves the blob data of the object class that matches the id value
+    //     * @param <T>
+    //     * @param objectClass
+    //     * @param id
+    //     * @param parameterName
+    //     * @return
+    //     * @throws DBException
+    //     */
+    //    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException;
+    //    
+    //    /**
+    //     * Retrieves the blob data of the object
+    //     * @param <T>
+    //     * @param object
+    //     * @param parameterName
+    //     * @return
+    //     * @throws DBException
+    //     */
+    //    public <T> byte[] getBlob(T object, String parameterName) throws DBException;
 
     /**
      * Save the all objects in the given collection
@@ -281,10 +280,10 @@ public interface ObjectStorage
      * @throws DBException
      */
     public <T> List<T> getAll(Class<T> classType, String sql) throws DBException;
-    
+
     /**
      * Retrieves object instances that satisfy the predicate
-     *      
+     * 
      * @param <T>
      * @param classType
      * @param filterPredicate

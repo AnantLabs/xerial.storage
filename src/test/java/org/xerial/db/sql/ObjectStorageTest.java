@@ -29,6 +29,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -40,6 +42,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
+import org.xerial.db.sql.impl.BlobImpl;
 import org.xerial.db.sql.impl.ObjectStorageImpl;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.Predicate;
@@ -143,39 +146,39 @@ public class ObjectStorageTest
     public void testOneToOne() throws DBException
     {
         storage.oneToOne(Person.class, Report.class);
-        
+
         Person p = storage.create(new Person("leo"));
         Report r = storage.create(p, new Report());
 
         Report r2 = storage.getOne(p, Report.class);
-        
+
         assertNotNull(r2);
         assertEquals(r.getId(), r2.getId());
         assertEquals(r.getPersonId(), r2.getPersonId());
         assertEquals(r.getCreatedAt(), r2.getCreatedAt());
         assertEquals(r.getModifiedAt(), r2.getModifiedAt());
-        
+
         try
         {
             Report r3 = storage.create(p, new Report());
             fail("cannot not create two or more duplicate objects associated as one to one");
         }
-        catch(DBException e)
+        catch (DBException e)
         {
             assertEquals(DBErrorCode.AssociatedObjectAlreadyExist, e.getErrorCode());
         }
-        
+
         Person p2 = storage.getParent(r, Person.class);
         assertNotNull(p2);
         assertEquals(p.getId(), p2.getId());
         assertEquals(p.getName(), p2.getName());
-        
+
         Report r3 = storage.getOne(Person.class, p.getId(), Report.class);
         assertEquals(r.getId(), r3.getId());
         assertEquals(r.getPersonId(), r3.getPersonId());
         assertEquals(r.getCreatedAt(), r3.getCreatedAt());
         assertEquals(r.getModifiedAt(), r3.getModifiedAt());
-        
+
         Report r4 = storage.getOne(p, Report.class, r3.getId());
         assertEquals(r3.getId(), r4.getId());
         assertEquals(r3.getPersonId(), r4.getPersonId());
@@ -189,12 +192,12 @@ public class ObjectStorageTest
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
-        
+
         List<Report> reportList = storage.getAllWithSorting(p, Report.class);
         assertEquals(2, reportList.size());
         Report a1 = reportList.get(0);
         Report a2 = reportList.get(1);
-        
+
         assertEquals(r1.getId(), a1.getId());
         assertEquals(r1.getPersonId(), a1.getPersonId());
         assertEquals(r1.getCreatedAt(), a1.getCreatedAt());
@@ -223,18 +226,16 @@ public class ObjectStorageTest
         assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
     }
 
-
-
     @Test
     public void testGetAllTClassOfUString() throws DBException
     {
         storage.create(new Person("yui"));
         storage.create(new Person("sam"));
         Person leo = storage.create(new Person("leo"));
-        
+
         List<Person> personList = storage.getAll(Person.class, "select * from person where name = 'leo'");
         assertEquals(1, personList.size());
-        
+
         Person r = personList.get(0);
         assertEquals(leo.getId(), r.getId());
         assertEquals(leo.getName(), r.getName());
@@ -251,7 +252,6 @@ public class ObjectStorageTest
         assertEquals(2, reportList.size());
     }
 
-
     @Test
     public void testGetParentClassOfUInt() throws DBException
     {
@@ -267,7 +267,6 @@ public class ObjectStorageTest
         assertEquals(p.getId(), rp2.getId());
         assertEquals(p.getName(), rp2.getName());
     }
-
 
     @Test
     public void testCreate() throws DBException
@@ -451,31 +450,49 @@ public class ObjectStorageTest
         assertEquals(p2.getAddress(), pf.getAddress());
 
     }
-    
+
     @Test
     public void testGetAllWithPredicate() throws DBException
     {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
 
-        TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class, new Predicate<Person>(){
+        TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class, new Predicate<Person>() {
             public boolean apply(Person input)
             {
                 return input.getName().contains("yui");
-            }}));
-        
+            }
+        }));
+
         assertEquals(1, personList.size());
         Person pf = personList.first();
         assertEquals(p2.getId(), pf.getId());
         assertEquals(p2.getName(), pf.getName());
         assertEquals(p2.getAddress(), pf.getAddress());
-        
+
     }
-    
+
     @Test
-    public void testBlob() throws DBException
+    public void testBlob() throws DBException, SQLException
     {
-        fail("not implemented");
+        FileWithBlob f = storage.create(new FileWithBlob());
+        f.setTitle("hello.txt");
+        String blobMessage = "hello world";
+        f.setSize(blobMessage.length());
+        f.setFileData(new BlobImpl(blobMessage.getBytes()));
+
+        storage.save(f);
+
+        FileWithBlob f2 = storage.get(FileWithBlob.class, f.getId());
+        assertEquals(f.getId(), f2.getId());
+        assertEquals(f.getTitle(), f2.getTitle());
+        assertEquals(f.getSize(), f2.getSize());
+
+        Blob b = f2.getFileData();
+        String blobMessage2 = new String(b.getBytes(0, (int) b.length()));
+
+        assertEquals(blobMessage, blobMessage2);
+
     }
 
 }
