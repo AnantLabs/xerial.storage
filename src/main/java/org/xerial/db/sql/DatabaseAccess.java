@@ -239,4 +239,6 @@ public interface DatabaseAccess
      * @return
      */
     public boolean hasTable(String tableName) throws DBException;
+
+    public int insertAndRetrieveKeysWithPreparedStatement(String sqlForPreparedStatment, PreparedStatementHandler handler) throws DBException; 
 }

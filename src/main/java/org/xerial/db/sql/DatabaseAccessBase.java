@@ -639,4 +639,35 @@ public class DatabaseAccessBase implements DatabaseAccess
     {
         return autoCommit;
     }
+
+    public int insertAndRetrieveKeysWithPreparedStatement(String sqlForPreparedStatment,
+            PreparedStatementHandler handler) throws DBException
+    {
+        Connection connection = null;
+        try
+        {
+            connection = getConnection(false);
+            connection.setAutoCommit(autoCommit);
+            PreparedStatement preparedStatement = getPreparedStatement(connection, sqlForPreparedStatment);
+            handler.setup(preparedStatement);
+            int ret = preparedStatement.executeUpdate();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            int id = (rs == null) ? -1 : rs.getInt(1);
+            rs.close();
+            preparedStatement.close();
+            return id;
+        }
+        catch (SQLException e)
+        {
+            throw new DBException(DBErrorCode.UpdateError, e);
+        }
+        finally
+        {
+            if (connection != null)
+            {
+                _connectionPool.returnConnection(connection);
+            }
+        }
+    }
 }

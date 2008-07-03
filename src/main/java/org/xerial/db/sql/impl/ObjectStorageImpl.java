@@ -42,6 +42,7 @@ import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.TypeName;
+import org.xerial.db.sql.ByteArray;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
 import org.xerial.db.sql.PreparedStatementHandler;
@@ -112,10 +113,28 @@ public class ObjectStorageImpl implements ObjectStorage
             setCreatedAtTimeStamp(bean, now);
             setModifiedAtTimeStamp(bean, now);
 
+            final Pair<List<Pair<DataType, String>>, List<ByteArray>> valueData = retrieveColumnValueAndBlobList(r, bean);
+                     
+            ArrayList<String> valueList = new ArrayList<String>();
+            for(Pair<DataType, String> pair : valueData.getFirst())
+            {
+                valueList.add(pair.getSecond());
+            }
+            
             String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
-                    writableAttributeList(r), ", "), createSQLValuesStatement(r, bean));
+                    writableAttributeList(r), ", "), StringUtil.join(valueList, ", "));
 
-            int lastGeneratedID = dbAccess.insertAndRetrieveKeys(sql);
+            int lastGeneratedID = dbAccess.insertAndRetrieveKeysWithPreparedStatement(sql, new PreparedStatementHandler(){
+
+                public void setup(PreparedStatement preparedStatement) throws SQLException
+                {
+                    int index = 1;
+                    for(ByteArray blob : valueData.getSecond())
+                    {
+                        preparedStatement.setBytes(index++, blob.getBytes());
+                    }
+                    
+                }});
             setBeanID(bean, lastGeneratedID);
         }
         catch (BeanException e)
@@ -258,9 +277,10 @@ public class ObjectStorageImpl implements ObjectStorage
         }
     }
 
-    public static <T> ArrayList<Object> createSQLValueList(Relation relation, T bean)
+    public static <T> Pair<List<Pair<DataType, String>>, List<ByteArray>> retrieveColumnValueAndBlobList(Relation relation, T bean)
     {
-        ArrayList<Object> valueList = new ArrayList<Object>();
+        ArrayList<Pair<DataType, String>> valueList = new ArrayList<Pair<DataType, String>>();
+        ArrayList<ByteArray> blobList = new ArrayList<ByteArray>();
         for (DataType dt : relation.getDataTypeList())
         {
             if (dt.getName().equals("id"))
@@ -281,30 +301,24 @@ public class ObjectStorageImpl implements ObjectStorage
             case LONG:
             case DOUBLE:
                 // no quotation
-                valueList.add(value == null ? "" : value.toString());
+                valueList.add(new Pair<DataType, String>(dt, value == null ? "" : value.toString()));
                 break;
             case DATETIME:
             {
                 Date date = Date.class.cast(value);
-                valueList.add(String.format("'%s'", DateFormat.getDateTimeInstance().format(date)));
+                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", DateFormat.getDateTimeInstance().format(date))));
                 break;
             }
             case BLOB:
             {
-                Blob blobData = Blob.class.cast(value);
+                valueList.add(new Pair<DataType, String>(dt, "?"));
+                ByteArray blobData = ByteArray.class.cast(value);
                 if (blobData != null)
                 {
-                    try
-                    {
-                        valueList.add(blobData.getBytes(0, (int) blobData.length()));
-                    }
-                    catch (SQLException e)
-                    {
-                        valueList.add(new byte[0]);
-                    }
+                    blobList.add(blobData);
                 }
                 else
-                    valueList.add(new byte[0]);
+                    blobList.add(new ByteArray());
                 break;
             }
             case BOOLEAN:
@@ -313,18 +327,14 @@ public class ObjectStorageImpl implements ObjectStorage
             case TEXT:
             default:
                 // with quotation
-                valueList.add(String.format("'%s'", value == null ? "" : value.toString()));
+                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", value == null ? "" : value.toString())));
                 break;
             }
         }
-        return valueList;
+        return new Pair<List<Pair<DataType, String>>, List<ByteArray>>(valueList, blobList);
 
     }
 
-    public static <T> String createSQLValuesStatement(Relation relation, T bean)
-    {
-        return StringUtil.join(createSQLValueList(relation, bean), ", ");
-    }
 
     public static List<String> writableAttributeList(Relation relation)
     {
@@ -603,28 +613,16 @@ public class ObjectStorageImpl implements ObjectStorage
         saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
     }
 
-    public static <T> Pair<String, ArrayList<Object>> createUpdateStatement(Relation relation, T bean)
+    public static <T> Pair<String, List<ByteArray>> createUpdateStatement(Relation relation, T bean)
     {
-        List<Object> valueList = createSQLValueList(relation, bean);
+        Pair<List<Pair<DataType, String>>,List<ByteArray>> valueData = retrieveColumnValueAndBlobList(relation, bean);
         ArrayList<String> setStatementList = new ArrayList<String>();
         int i = 0;
-        ArrayList<Object> blobList = new ArrayList<Object>();
-        for (DataType dt : relation.getDataTypeList())
+        for (Pair<DataType, String> pair : valueData.getFirst())
         {
-            if (dt.getName().equals("id"))
-                continue; // skip the id attribute
-            if (dt.getType() != TypeName.BLOB)
-                setStatementList.add(String.format("%s = %s", dt.getName(), valueList.get(i)));
-            else
-            {
-                // blob
-                setStatementList.add(String.format("%s = ?", dt.getName()));
-                blobList.add(valueList.get(i));
-            }
-
-            i++;
+            setStatementList.add(String.format("%s = %s", pair.getFirst().getName(), pair.getSecond()));
         }
-        return new Pair<String, ArrayList<Object>>(StringUtil.join(setStatementList, ", "), blobList);
+        return new Pair<String, List<ByteArray>>(StringUtil.join(setStatementList, ", "), valueData.getSecond());
     }
 
     public <T> void save(T bean) throws DBException
@@ -640,7 +638,7 @@ public class ObjectStorageImpl implements ObjectStorage
             Date now = getNowDate();
             setModifiedAtTimeStamp(bean, now);
 
-            final Pair<String, ArrayList<Object>> setValueList = createUpdateStatement(r, bean);
+            final Pair<String, List<ByteArray>> setValueList = createUpdateStatement(r, bean);
             String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList
                     .getFirst(), id);
 
@@ -648,9 +646,9 @@ public class ObjectStorageImpl implements ObjectStorage
                 public void setup(PreparedStatement preparedStatement) throws SQLException
                 {
                     int index = 1;
-                    for (Object blob : setValueList.getSecond())
+                    for (ByteArray blob : setValueList.getSecond())
                     {
-                        preparedStatement.setBytes(index++, (byte[]) blob);
+                        preparedStatement.setBytes(index++, blob.getBytes());
                     }
                 }
             });
@@ -679,7 +677,7 @@ public class ObjectStorageImpl implements ObjectStorage
 
                 setModifiedAtTimeStamp(bean, now);
 
-                final Pair<String, ArrayList<Object>> setValueList = createUpdateStatement(r, bean);
+                final Pair<String, List<ByteArray>> setValueList = createUpdateStatement(r, bean);
                 String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList
                         .getFirst(), id);
 
@@ -687,9 +685,9 @@ public class ObjectStorageImpl implements ObjectStorage
                     public void setup(PreparedStatement preparedStatement) throws SQLException
                     {
                         int index = 1;
-                        for (Object blob : setValueList.getSecond())
+                        for (ByteArray blob : setValueList.getSecond())
                         {
-                            preparedStatement.setBytes(index++, (byte[]) blob);
+                            preparedStatement.setBytes(index++, blob.getBytes());
                         }
                     }
                 });

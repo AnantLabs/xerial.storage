@@ -38,7 +38,7 @@ public class FileWithBlob
     int id = -1;
     String title;
     long size;
-    byte[] fileData = null;
+    ByteArray byteArray = new ByteArray();
 
     public FileWithBlob()
     {
@@ -75,27 +75,14 @@ public class FileWithBlob
         this.size = size;
     }
 
-    public Blob getFileData()
+    public ByteArray getFileData()
     {
-        return new BlobImpl(fileData);
+        return byteArray;
     }
 
-    public void setFileData(Blob fileData)
+    public void setFileData(ByteArray fileData)
     {
-        try
-        {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            BufferedInputStream in = new BufferedInputStream(fileData.getBinaryStream());
-            byte[] buf = new byte[1024];
-            for (int readLength = 0; (readLength = in.read(buf)) >= 0;)
-            {
-                out.write(buf, 0, readLength);
-            }
-        }
-        catch (Exception e)
-        {
-            _logger.error(e);
-        }
+        this.byteArray = fileData;
     }
 
 }
