@@ -25,7 +25,7 @@
 package org.xerial.db.sql;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
 
 import java.util.List;
 
@@ -104,77 +104,11 @@ public class DatabaseAccessTest
     }
 
     @Test
-    public void testQueryStringClassOfT()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testQueryStringResultSetHandlerOfT()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testQueryStringBeanResultHandlerOfT()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testToJSON()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSingleColumnQuery()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testAccumulate()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testUpdateString()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testUpdateStringBoolean()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testUpdateWithPreparedStatement()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
     public void testInsert() throws DBException
     {
         dbAccess
                 .update("create table student (id integer primary key autoincrement not null, name string, createdAt datetime)");
 
-    }
-
-    @Test
-    public void testSetQueryTimeout()
-    {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetAutoCommit()
-    {
-        fail("Not yet implemented");
     }
 
 }
