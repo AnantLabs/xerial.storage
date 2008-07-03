@@ -24,6 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql.impl;
 
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -36,16 +37,17 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.xerial.amoeba.query.impl.AmoebaQueryParser.updateExpr_return;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
+import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
 import org.xerial.db.sql.PreparedStatementHandler;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
+import org.xerial.util.Pair;
 import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
 import org.xerial.util.bean.BeanBinder;
@@ -256,9 +258,9 @@ public class ObjectStorageImpl implements ObjectStorage
         }
     }
 
-    public static <T> ArrayList<String> createSQLValueList(Relation relation, T bean)
+    public static <T> ArrayList<Object> createSQLValueList(Relation relation, T bean)
     {
-        ArrayList<String> valueList = new ArrayList<String>();
+        ArrayList<Object> valueList = new ArrayList<Object>();
         for (DataType dt : relation.getDataTypeList())
         {
             if (dt.getName().equals("id"))
@@ -285,6 +287,24 @@ public class ObjectStorageImpl implements ObjectStorage
             {
                 Date date = Date.class.cast(value);
                 valueList.add(String.format("'%s'", DateFormat.getDateTimeInstance().format(date)));
+                break;
+            }
+            case BLOB:
+            {
+                Blob blobData = Blob.class.cast(value);
+                if (blobData != null)
+                {
+                    try
+                    {
+                        valueList.add(blobData.getBytes(0, (int) blobData.length()));
+                    }
+                    catch (SQLException e)
+                    {
+                        valueList.add(new byte[0]);
+                    }
+                }
+                else
+                    valueList.add(new byte[0]);
                 break;
             }
             case BOOLEAN:
@@ -398,7 +418,7 @@ public class ObjectStorageImpl implements ObjectStorage
         String sql = SQLExpression.fillTemplate("select * from $1", tableName);
         return dbAccess.query(sql, classType, filterPredicate);
     }
-    
+
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException
     {
         int parentID;
@@ -442,8 +462,8 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableNameOfU = getTableName(associatedType);
         String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
 
-        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3 and id = $4", tableNameOfU, parentIDColumnName,
-                idOfT, idOfU);
+        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3 and id = $4", tableNameOfU,
+                parentIDColumnName, idOfT, idOfU);
         List<U> result = dbAccess.query(sql, associatedType);
         if (result.size() > 0)
             return result.get(0);
@@ -468,7 +488,8 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String parentTableName = getTableName(parentClass);
         String childTableName = getTableName(childClass);
-        String sql = SQLExpression.fillTemplate("select t.* from $1 t, $2 u where u.id = $3", parentTableName, childTableName, idOfU);
+        String sql = SQLExpression.fillTemplate("select t.* from $1 t, $2 u where u.id = $3", parentTableName,
+                childTableName, idOfU);
         List<T> result = dbAccess.query(sql, parentClass);
         if (result == null || result.size() <= 0)
             return null;
@@ -476,7 +497,6 @@ public class ObjectStorageImpl implements ObjectStorage
             return result.get(0);
 
     }
-
 
     public <T, U> void oneToOne(Class<T> from, Class<U> to) throws DBException
     {
@@ -565,6 +585,48 @@ public class ObjectStorageImpl implements ObjectStorage
         return relationOfEachClass.get(beanClass);
     }
 
+    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobData)
+            throws DBException
+    {
+        String tableName = getTableName(objectClass);
+        String sql = SQLExpression.fillTemplate("update $1 set $2 = ? where id = $3", tableName, parameterName, id);
+        dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
+            public void setup(PreparedStatement preparedStatement) throws SQLException
+            {
+                preparedStatement.setBytes(1, blobData);
+            }
+        });
+    }
+
+    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException
+    {
+        saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
+    }
+
+    public static <T> Pair<String, ArrayList<Object>> createUpdateStatement(Relation relation, T bean)
+    {
+        List<Object> valueList = createSQLValueList(relation, bean);
+        ArrayList<String> setStatementList = new ArrayList<String>();
+        int i = 0;
+        ArrayList<Object> blobList = new ArrayList<Object>();
+        for (DataType dt : relation.getDataTypeList())
+        {
+            if (dt.getName().equals("id"))
+                continue; // skip the id attribute
+            if (dt.getType() != TypeName.BLOB)
+                setStatementList.add(String.format("%s = %s", dt.getName(), valueList.get(i)));
+            else
+            {
+                // blob
+                setStatementList.add(String.format("%s = ?", dt.getName()));
+                blobList.add(valueList.get(i));
+            }
+
+            i++;
+        }
+        return new Pair<String, ArrayList<Object>>(StringUtil.join(setStatementList, ", "), blobList);
+    }
+
     public <T> void save(T bean) throws DBException
     {
         Class< ? > beanType = bean.getClass();
@@ -578,48 +640,26 @@ public class ObjectStorageImpl implements ObjectStorage
             Date now = getNowDate();
             setModifiedAtTimeStamp(bean, now);
 
-            String setValueList = createUpdateStatement(r, bean);
-            String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
+            final Pair<String, ArrayList<Object>> setValueList = createUpdateStatement(r, bean);
+            String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList
+                    .getFirst(), id);
 
-            dbAccess.update(sql);
+            dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
+                public void setup(PreparedStatement preparedStatement) throws SQLException
+                {
+                    int index = 1;
+                    for (Object blob : setValueList.getSecond())
+                    {
+                        preparedStatement.setBytes(index++, (byte[]) blob);
+                    }
+                }
+            });
+
         }
         catch (BeanException e)
         {
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
-    }
-    
-    
-    
-    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName,final byte[] blobData) throws DBException 
-    {
-        String tableName = getTableName(objectClass);
-        String sql = SQLExpression.fillTemplate("update $1 set $2 = ? where id = $3", tableName, parameterName, id);
-        dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
-            public void setup(PreparedStatement preparedStatement) throws SQLException
-            {
-                preparedStatement.setBytes(1, blobData);
-            }});
-    }
-    
-    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException 
-    {
-        saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
-    }
-
-    public static <T> String createUpdateStatement(Relation relation, T bean)
-    {
-        List<String> valueList = createSQLValueList(relation, bean);
-        ArrayList<String> setStatementList = new ArrayList<String>();
-        int i = 0;
-        for (DataType dt : relation.getDataTypeList())
-        {
-            if (dt.getName().equals("id"))
-                continue; // skip the id attribute
-            setStatementList.add(String.format("%s = %s", dt.getName(), valueList.get(i)));
-            i++;
-        }
-        return StringUtil.join(setStatementList, ", ");
     }
 
     public <T> void saveAll(Class<T> classType, Collection<T> objectList) throws DBException
@@ -639,9 +679,20 @@ public class ObjectStorageImpl implements ObjectStorage
 
                 setModifiedAtTimeStamp(bean, now);
 
-                String setValueList = createUpdateStatement(r, bean);
-                String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList, id);
-                dbAccess.update(sql);
+                final Pair<String, ArrayList<Object>> setValueList = createUpdateStatement(r, bean);
+                String sql = SQLExpression.fillTemplate("update $1 set $2 where id = $3", tableName, setValueList
+                        .getFirst(), id);
+
+                dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
+                    public void setup(PreparedStatement preparedStatement) throws SQLException
+                    {
+                        int index = 1;
+                        for (Object blob : setValueList.getSecond())
+                        {
+                            preparedStatement.setBytes(index++, (byte[]) blob);
+                        }
+                    }
+                });
             }
             dbAccess.update("commit");
         }
@@ -657,7 +708,7 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String tableName = getTableName(objectClass);
         String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", parameterName, tableName, id);
-        
+
         return null;
     }
 
