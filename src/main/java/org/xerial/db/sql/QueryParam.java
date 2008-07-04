@@ -24,6 +24,12 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
+/**
+ * Tuning parameters (where, order by, offset clauses) for a query
+ * 
+ * @author leo
+ * 
+ */
 public class QueryParam
 {
     public String whereCondition = null;

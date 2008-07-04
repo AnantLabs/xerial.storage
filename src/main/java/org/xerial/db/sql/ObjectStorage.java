@@ -222,6 +222,27 @@ public interface ObjectStorage
      */
     public <T> List<T> getAll(Class<T> classType, QueryParam queryParam) throws DBException;
 
+    /**
+     * Count the number of rows of the class T
+     * 
+     * @param <T>
+     * @param classType
+     * @return
+     * @throws DBException
+     */
+    public <T> int count(Class<T> classType) throws DBException;
+
+    /**
+     * Count the number of matching rows of the class T with the given condition
+     * 
+     * @param <T>
+     * @param classType
+     * @param queryParam
+     * @return
+     * @throws DBException
+     */
+    public <T> int count(Class<T> classType, QueryParam queryParam) throws DBException;
+
     public <T, U> T getParent(U child, Class<T> parentType) throws DBException;
 
     public <T, U> T getParent(Class<T> parentClass, Class<U> childClass, int idOfU) throws DBException;
