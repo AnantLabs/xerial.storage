@@ -24,7 +24,6 @@
 //--------------------------------------
 package org.xerial.db.sql.impl;
 
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -41,11 +40,11 @@ import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
-import org.xerial.db.datatype.TypeName;
 import org.xerial.db.sql.ByteArray;
 import org.xerial.db.sql.DatabaseAccess;
 import org.xerial.db.sql.ObjectStorage;
 import org.xerial.db.sql.PreparedStatementHandler;
+import org.xerial.db.sql.QueryParam;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
 import org.xerial.util.Pair;
@@ -113,28 +112,31 @@ public class ObjectStorageImpl implements ObjectStorage
             setCreatedAtTimeStamp(bean, now);
             setModifiedAtTimeStamp(bean, now);
 
-            final Pair<List<Pair<DataType, String>>, List<ByteArray>> valueData = retrieveColumnValueAndBlobList(r, bean);
-                     
+            final Pair<List<Pair<DataType, String>>, List<ByteArray>> valueData = retrieveColumnValueAndBlobList(r,
+                    bean);
+
             ArrayList<String> valueList = new ArrayList<String>();
-            for(Pair<DataType, String> pair : valueData.getFirst())
+            for (Pair<DataType, String> pair : valueData.getFirst())
             {
                 valueList.add(pair.getSecond());
             }
-            
+
             String sql = SQLExpression.fillTemplate("insert into $1($2) values($3)", tableName, StringUtil.join(
                     writableAttributeList(r), ", "), StringUtil.join(valueList, ", "));
 
-            int lastGeneratedID = dbAccess.insertAndRetrieveKeysWithPreparedStatement(sql, new PreparedStatementHandler(){
+            int lastGeneratedID = dbAccess.insertAndRetrieveKeysWithPreparedStatement(sql,
+                    new PreparedStatementHandler() {
 
-                public void setup(PreparedStatement preparedStatement) throws SQLException
-                {
-                    int index = 1;
-                    for(ByteArray blob : valueData.getSecond())
-                    {
-                        preparedStatement.setBytes(index++, blob.getBytes());
-                    }
-                    
-                }});
+                        public void setup(PreparedStatement preparedStatement) throws SQLException
+                        {
+                            int index = 1;
+                            for (ByteArray blob : valueData.getSecond())
+                            {
+                                preparedStatement.setBytes(index++, blob.getBytes());
+                            }
+
+                        }
+                    });
             setBeanID(bean, lastGeneratedID);
         }
         catch (BeanException e)
@@ -277,7 +279,8 @@ public class ObjectStorageImpl implements ObjectStorage
         }
     }
 
-    public static <T> Pair<List<Pair<DataType, String>>, List<ByteArray>> retrieveColumnValueAndBlobList(Relation relation, T bean)
+    public static <T> Pair<List<Pair<DataType, String>>, List<ByteArray>> retrieveColumnValueAndBlobList(
+            Relation relation, T bean)
     {
         ArrayList<Pair<DataType, String>> valueList = new ArrayList<Pair<DataType, String>>();
         ArrayList<ByteArray> blobList = new ArrayList<ByteArray>();
@@ -306,7 +309,8 @@ public class ObjectStorageImpl implements ObjectStorage
             case DATETIME:
             {
                 Date date = Date.class.cast(value);
-                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", DateFormat.getDateTimeInstance().format(date))));
+                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", DateFormat.getDateTimeInstance()
+                        .format(date))));
                 break;
             }
             case BLOB:
@@ -327,14 +331,14 @@ public class ObjectStorageImpl implements ObjectStorage
             case TEXT:
             default:
                 // with quotation
-                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", value == null ? "" : value.toString())));
+                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", value == null ? "" : value
+                        .toString())));
                 break;
             }
         }
         return new Pair<List<Pair<DataType, String>>, List<ByteArray>>(valueList, blobList);
 
     }
-
 
     public static List<String> writableAttributeList(Relation relation)
     {
@@ -372,11 +376,7 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T, U> List<U> getAll(T startPoint, Class<U> associatedType) throws DBException
     {
         int startPointID = getBeanID(startPoint);
-        String tableName = getTableName(associatedType);
-        String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
-        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3", tableName, parentIDColumnName,
-                startPointID);
-        return dbAccess.query(sql, associatedType);
+        return getAll(startPoint.getClass(), startPointID, associatedType);
     }
 
     public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException
@@ -389,17 +389,24 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess.query(sql, associatedType);
     }
 
-    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
+    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionalWhereClauseCondition)
             throws DBException
     {
-        throw new UnsupportedOperationException();
+        int startPointID = getBeanID(startPoint);
+        String tableName = getTableName(associatedType);
+        String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
+        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3 $4 order by u.id", tableName,
+                parentIDColumnName, startPointID, (additionalWhereClauseCondition != null) ? "and "
+                        + additionalWhereClauseCondition : "");
+        return dbAccess.query(sql, associatedType);
+
     }
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType) throws DBException
     {
         String tableName = getTableName(associtedType);
-        String parentIDColumnNString = getAssociatedIDColumnName(startPointClass);
-        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3", tableName, parentIDColumnNString,
+        String parentIDColumnnString = getAssociatedIDColumnName(startPointClass);
+        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3", tableName, parentIDColumnnString,
                 idOfT);
         return dbAccess.query(sql, associtedType);
     }
@@ -412,9 +419,7 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <T> List<T> getAll(Class<T> classType) throws DBException
     {
-        String tableName = getTableName(classType);
-        String sql = SQLExpression.fillTemplate("select * from $1", tableName);
-        return dbAccess.query(sql, classType);
+        return getAll(classType, (Predicate<T>) null);
     }
 
     public <T> List<T> getAll(Class<T> classType, String sql) throws DBException
@@ -426,7 +431,10 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String tableName = getTableName(classType);
         String sql = SQLExpression.fillTemplate("select * from $1", tableName);
-        return dbAccess.query(sql, classType, filterPredicate);
+        if (filterPredicate != null)
+            return dbAccess.query(sql, classType, filterPredicate);
+        else
+            return dbAccess.query(sql, classType);
     }
 
     public <T, U> U getOne(T startPoint, Class<U> associatedType) throws DBException
@@ -615,7 +623,7 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public static <T> Pair<String, List<ByteArray>> createUpdateStatement(Relation relation, T bean)
     {
-        Pair<List<Pair<DataType, String>>,List<ByteArray>> valueData = retrieveColumnValueAndBlobList(relation, bean);
+        Pair<List<Pair<DataType, String>>, List<ByteArray>> valueData = retrieveColumnValueAndBlobList(relation, bean);
         ArrayList<String> setStatementList = new ArrayList<String>();
         int i = 0;
         for (Pair<DataType, String> pair : valueData.getFirst())
@@ -713,6 +721,20 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> byte[] getBlob(T object, String parameterName) throws DBException
     {
         return getBlob(object.getClass(), getBeanID(object), parameterName);
+    }
+
+    public <T> T get(Class<T> classType, QueryParam queryParam) throws DBException
+    {
+        List<T> result = getAll(classType, queryParam);
+        return result.size() > 0 ? result.get(0) : null;
+    }
+
+    public <T> List<T> getAll(Class<T> classType, QueryParam queryParam) throws DBException
+    {
+        assert (queryParam != null);
+        String sql = SQLExpression.fillTemplate("select * from $1 $2", getTableName(classType), queryParam
+                .toSQLFragment());
+        return dbAccess.query(sql, classType);
     }
 
 }

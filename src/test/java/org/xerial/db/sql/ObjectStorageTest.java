@@ -29,7 +29,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +41,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
-import org.xerial.db.sql.impl.BlobImpl;
 import org.xerial.db.sql.impl.ObjectStorageImpl;
 import org.xerial.db.sql.sqlite.SQLiteAccess;
 import org.xerial.util.Predicate;
@@ -79,6 +77,13 @@ public class ObjectStorageTest
     public void testRegistWithTableName() throws DBException
     {
         storage.register("person_table", Person.class);
+        Person p = storage.create(new Person("leo"));
+
+        List<Person> personList = storage.getAll(Person.class);
+        assertEquals(1, personList.size());
+        Person p2 = personList.get(0);
+        assertEquals(p.getId(), p2.getId());
+        assertEquals(p.getName(), p2.getName());
     }
 
     @Test
@@ -224,21 +229,49 @@ public class ObjectStorageTest
         assertEquals(r2.getPersonId(), a2.getPersonId());
         assertEquals(r2.getCreatedAt(), a2.getCreatedAt());
         assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
+
+        // get all with additional condition
+        List<Report> reportList3 = storage.getAll(p, Report.class, "id > 1");
+        for (Report r : reportList3)
+        {
+            assertTrue(r.getId() > 1);
+        }
+
+    }
+
+    public static void isEqualPerson(Person p, Person q)
+    {
+        assertEquals(p.getId(), q.getId());
+        assertEquals(p.getName(), q.getName());
     }
 
     @Test
-    public void testGetAllTClassOfUString() throws DBException
+    public void testGetAllWithCondition() throws DBException
     {
-        storage.create(new Person("yui"));
-        storage.create(new Person("sam"));
+        Person yui = storage.create(new Person("yui"));
+        Person sam = storage.create(new Person("sam"));
         Person leo = storage.create(new Person("leo"));
 
         List<Person> personList = storage.getAll(Person.class, "select * from person where name = 'leo'");
         assertEquals(1, personList.size());
 
         Person r = personList.get(0);
-        assertEquals(leo.getId(), r.getId());
-        assertEquals(leo.getName(), r.getName());
+        isEqualPerson(leo, r);
+
+        List<Person> personList2 = storage.getAll(Person.class, new QueryParam().setWhereCondition("name = 'yui'"));
+        assertEquals(1, personList2.size());
+        Person r2 = personList2.get(0);
+        isEqualPerson(yui, r2);
+
+        Person r3 = storage.get(Person.class, new QueryParam().setWhereCondition("name = 'yui'"));
+        assertNotNull(r3);
+        isEqualPerson(yui, r3);
+
+        List<Person> personList3 = storage.getAll(Person.class, new QueryParam().setOrderByColumns("name"));
+        assertEquals(3, personList3.size());
+        isEqualPerson(personList3.get(0), leo);
+        isEqualPerson(personList3.get(1), sam);
+        isEqualPerson(personList3.get(2), yui);
     }
 
     @Test
