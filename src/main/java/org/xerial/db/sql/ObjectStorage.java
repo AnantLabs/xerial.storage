@@ -133,13 +133,94 @@ public interface ObjectStorage
 
     public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException;
 
-    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionlWhereClauseCondition)
+    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionalWhereClauseCondition)
             throws DBException;
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType) throws DBException;
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType,
             String additionalWhereCondition) throws DBException;
+
+    /**
+     * Retrieves all object instances in the corresponding table
+     * 
+     * @param <T>
+     * @param classType
+     *            the object type to be retrieved
+     * @return the list of objects of the specified type
+     * @throws DBException
+     */
+    public <T> List<T> getAll(Class<T> classType) throws DBException;
+
+    /**
+     * Retrieves object instances using an SQL statement.
+     * 
+     * @param <T>
+     * @param classType
+     *            the object type to be retrieved
+     * @param sql
+     *            the SQL statement
+     * @return
+     * @throws DBException
+     */
+    public <T> List<T> getAll(Class<T> classType, String sql) throws DBException;
+
+    /**
+     * Retrieves object instances that satisfy the predicate
+     * 
+     * @param <T>
+     * @param classType
+     * @param filterPredicate
+     * @return
+     * @throws DBException
+     */
+    public <T> List<T> getAll(Class<T> classType, Predicate<T> filterPredicate) throws DBException;
+
+    /**
+     * Retrieves the object from the database that matches the given id value
+     * 
+     * @param <T>
+     * @param id
+     *            the ID of the object
+     * @return the retrieved object, or null if not found
+     * @throws DBException
+     */
+    public <T> T get(Class<T> classType, int id) throws DBException;
+
+    /**
+     * Retrieves an object using an SQL statement
+     * 
+     * @param <T>
+     * @param classType
+     *            the object type to be retrieved
+     * @param sql
+     *            the SQL statment
+     * @return the retrieved object. or null if not found
+     * @throws DBException
+     */
+    public <T> T get(Class<T> classType, String sql) throws DBException;
+
+    /**
+     * Retrieves an object of the type T using {@link QueryParam}
+     * 
+     * @param <T>
+     * @param classType
+     * @param queryParam
+     * @return
+     * @throws DBException
+     */
+    public <T> T get(Class<T> classType, QueryParam queryParam) throws DBException;
+
+    /**
+     * Retrieves a list of objects of the type T using {@link QueryParam}
+     * 
+     * @param <T>
+     * @param classType
+     * @param queryParam
+     * @return
+     * @throws DBException
+     */
+    public <T> List<T> getAll(Class<T> classType, QueryParam queryParam) throws DBException;
 
     public <T, U> T getParent(U child, Class<T> parentType) throws DBException;
 
@@ -232,64 +313,5 @@ public interface ObjectStorage
      * @throws DBException
      */
     public <T> void saveAll(Class<T> classType, Collection<T> object) throws DBException;
-
-    /**
-     * Retrieves the object from the database that matches the given id value
-     * 
-     * @param <T>
-     * @param id
-     *            the ID of the object
-     * @return the retrieved object, or null if not found
-     * @throws DBException
-     */
-    public <T> T get(Class<T> classType, int id) throws DBException;
-
-    /**
-     * Retrieves an object using an SQL statement
-     * 
-     * @param <T>
-     * @param classType
-     *            the object type to be retrieved
-     * @param sql
-     *            the SQL statment
-     * @return the retrieved object. or null if not found
-     * @throws DBException
-     */
-    public <T> T get(Class<T> classType, String sql) throws DBException;
-
-    /**
-     * Retrieves all object instances in the corresponding table
-     * 
-     * @param <T>
-     * @param classType
-     *            the object type to be retrieved
-     * @return the list of objects of the specified type
-     * @throws DBException
-     */
-    public <T> List<T> getAll(Class<T> classType) throws DBException;
-
-    /**
-     * Retrieves object instances using an SQL statement.
-     * 
-     * @param <T>
-     * @param classType
-     *            the object type to be retrieved
-     * @param sql
-     *            the SQL statement
-     * @return
-     * @throws DBException
-     */
-    public <T> List<T> getAll(Class<T> classType, String sql) throws DBException;
-
-    /**
-     * Retrieves object instances that satisfy the predicate
-     * 
-     * @param <T>
-     * @param classType
-     * @param filterPredicate
-     * @return
-     * @throws DBException
-     */
-    public <T> List<T> getAll(Class<T> classType, Predicate<T> filterPredicate) throws DBException;
 
 }
