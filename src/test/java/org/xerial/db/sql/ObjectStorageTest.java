@@ -272,6 +272,16 @@ public class ObjectStorageTest
         isEqualPerson(personList3.get(0), leo);
         isEqualPerson(personList3.get(1), sam);
         isEqualPerson(personList3.get(2), yui);
+
+        assertEquals(3, storage.count(Person.class));
+
+        for (int i = 0; i < 10; i++)
+            storage.create(new Person());
+
+        assertEquals(13, storage.count(Person.class));
+
+        assertEquals(1, storage.count(Person.class, new QueryParam().setWhereCondition("name = 'leo'")));
+
     }
 
     @Test

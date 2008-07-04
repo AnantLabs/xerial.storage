@@ -737,4 +737,21 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess.query(sql, classType);
     }
 
+    public <T> int count(Class<T> classType) throws DBException
+    {
+        return count(classType, new QueryParam());
+    }
+
+    public <T> int count(Class<T> classType, QueryParam queryParam) throws DBException
+    {
+        assert (queryParam != null);
+        String sql = SQLExpression.fillTemplate("select count(*) as count from $1 $2", getTableName(classType),
+                queryParam.toSQLFragment());
+        List<ResultCount> countList = dbAccess.query(sql, ResultCount.class);
+        if (countList.size() > 0)
+            return countList.get(0).getCount();
+        else
+            return 0;
+    }
+
 }
