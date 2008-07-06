@@ -538,4 +538,22 @@ public class ObjectStorageTest
 
     }
 
+    @Test
+    public void testJoin() throws DBException
+    {
+        Person p = storage.create(new Person("leo", "xxx-xxxx"));
+        Report r1 = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
+
+        Person pr = storage.get(Person.class, p.id);
+        List<Report> reportList = storage.getAll(pr, Report.class);
+
+        SubmittedReport sr = new SubmittedReport(pr);
+        for (Report r : reportList)
+            sr.addReport(r);
+
+        assertEquals(2, reportList.size());
+
+    }
+
 }

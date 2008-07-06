@@ -335,4 +335,15 @@ public interface ObjectStorage
      */
     public <T> void saveAll(Class<T> classType, Collection<T> object) throws DBException;
 
+    //    /**
+    //     * Queries an object using the given initial values.
+    //     * 
+    //     * @param <Relation>
+    //     *            Relation
+    //     * @param object
+    //     *            initial values of the object
+    //     * @return
+    //     */
+    //    public <Relation> Relation get(Relation object);
+
 }
