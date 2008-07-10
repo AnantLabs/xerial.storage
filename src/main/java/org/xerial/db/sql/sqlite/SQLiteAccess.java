@@ -220,9 +220,9 @@ public class SQLiteAccess extends DatabaseAccessBase
         return queryWithHandler(sql, new JSONObjectReader());
     }
 
-    public boolean hasTable(String tableName) throws DBException
-    {
-        return getCatalog().getTableNameSet().contains(tableName);
-    }
+//    public boolean hasTable(String tableName) throws DBException
+//    {
+//        return getCatalog().getTableNameSet().contains(tableName);
+//    }
 
 }
