@@ -650,5 +650,22 @@ public class ObjectStorageTest
         assertEquals(1, storage.count(Person.class, p.getId(), Report.class, r2.getId(), PersonReport.class));
 
     }
+    
+    @Test
+    public void testView() throws DBException
+    {
+        Person p = storage.create(new Person("leo", "xxx-xxxx"));
+        List<PersonNameView> personNameView = storage.getAllFromView(PersonNameView.class, Person.class);
+        assertEquals(1, personNameView.size());
+        PersonNameView pv = personNameView.get(0);
+        assertEquals(p.getId(), pv.getId());
+        assertEquals(p.getName(), pv.getName());
+
+        PersonNameView pv2 = storage.getFromView(PersonNameView.class, Person.class);
+        assertEquals(p.getId(), pv2.getId());
+        assertEquals(p.getName(), pv2.getName());
+        
+        
+    }
 
 }
