@@ -207,6 +207,20 @@ public class ObjectStorageImpl implements ObjectStorage
         return create(associatedObject);
     }
 
+    public <T, U, V> V create(T parent, U parent2, V newObject) throws DBException
+    {
+        setParentBeanID(parent, newObject);
+        setParentBeanID(parent2, newObject);
+        return create(newObject);
+    }
+
+    public <T, U, V> V create(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, V newObject) throws DBException
+    {
+        setParentBeanID(parent, idOfT, newObject);
+        setParentBeanID(parent2, idOfU, newObject);
+        return create(newObject);
+    }
+
     public static <T> void setBeanID(T bean, int id) throws DBException
     {
         setValue(bean, "id", id);
@@ -215,8 +229,13 @@ public class ObjectStorageImpl implements ObjectStorage
     public static <T, U> void setParentBeanID(T parentObject, U associatedObject) throws DBException
     {
         int parentID = getBeanID(parentObject);
-        String parentIDParamName = parentObject.getClass().getSimpleName() + "Id";
-        setValue(associatedObject, parentIDParamName, parentID);
+        setParentBeanID(parentObject.getClass(), parentID, associatedObject);
+    }
+
+    public static <T, U> void setParentBeanID(Class<T> parentClass, int idOfT, U associatedObject) throws DBException
+    {
+        String parentIDParamName = parentClass.getSimpleName() + "Id";
+        setValue(associatedObject, parentIDParamName, idOfT);
     }
 
     public static <T> void setValue(T bean, String parameterName, Object value) throws DBException
@@ -459,6 +478,23 @@ public class ObjectStorageImpl implements ObjectStorage
         else
             return null;
 
+    }
+
+    public <T, U, V> V get(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
+            throws DBException
+    {
+        String tableNameOfV = getTableName(objectType);
+        String parentIDColumnName = getAssociatedIDColumnName(parent);
+        String parent2IDColumnName = getAssociatedIDColumnName(parent2);
+
+        String sql = SQLExpression.fillTemplate("select * from $1 where $2 = $3 and $4 = $5", tableNameOfV,
+                parentIDColumnName, idOfT, parent2IDColumnName, idOfU);
+
+        List<V> result = dbAccess.query(sql, objectType);
+        if (result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
     public <T, U> U getOne(Class<T> startPointClass, int idOfT, Class<U> associatedType) throws DBException

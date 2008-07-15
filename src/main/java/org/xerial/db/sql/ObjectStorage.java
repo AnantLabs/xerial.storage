@@ -277,51 +277,6 @@ public interface ObjectStorage
      */
     public <T> void save(T object) throws DBException;
 
-    //    /**
-    //     * Save the blob data 
-    //     * @param <T>
-    //     * @param <V>
-    //     * @param object
-    //     * @param parameterName
-    //     * @param blobData
-    //     * @throws DBException
-    //     */
-    //    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException;
-    //
-    //    /**
-    //     * Save the blob data
-    //     * @param <T>
-    //     * @param <V>
-    //     * @param objectClass
-    //     * @param id
-    //     * @param parameterName
-    //     * @param value
-    //     * @throws DBException
-    //     */
-    //    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobDat) throws DBException;
-    //
-    //    
-    //    /**
-    //     * Retrieves the blob data of the object class that matches the id value
-    //     * @param <T>
-    //     * @param objectClass
-    //     * @param id
-    //     * @param parameterName
-    //     * @return
-    //     * @throws DBException
-    //     */
-    //    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException;
-    //    
-    //    /**
-    //     * Retrieves the blob data of the object
-    //     * @param <T>
-    //     * @param object
-    //     * @param parameterName
-    //     * @return
-    //     * @throws DBException
-    //     */
-    //    public <T> byte[] getBlob(T object, String parameterName) throws DBException;
-
     /**
      * Save the all objects in the given collection
      * 
@@ -333,17 +288,6 @@ public interface ObjectStorage
      * @throws DBException
      */
     public <T> void saveAll(Class<T> classType, Collection<T> object) throws DBException;
-
-    //    /**
-    //     * Queries an object using the given initial values.
-    //     * 
-    //     * @param <Relation>
-    //     *            Relation
-    //     * @param object
-    //     *            initial values of the object
-    //     * @return
-    //     */
-    //    public <Relation> Relation get(Relation object);
 
     /**
      * Delete the object
@@ -363,4 +307,50 @@ public interface ObjectStorage
      * @throws DBException
      */
     public <T> void delete(Class<T> objectType, int id) throws DBException;
+
+    /**
+     * Create the object in many-many relationship (T <-- V --> U)
+     * 
+     * @param <T>
+     * @param <U>
+     * @param <V>
+     * @param parent
+     * @param parent2
+     * @param newObject
+     * @return
+     * @throws DBException
+     */
+    public <T, U, V> V create(T parent, U parent2, V newObject) throws DBException;
+
+    /**
+     * Create the object in many-many relationship (T <-- V --> U)
+     * 
+     * @param <T>
+     * @param <U>
+     * @param <V>
+     * @param parent
+     * @param idOfT
+     * @param parent2
+     * @param idOfU
+     * @param newObject
+     * @return
+     * @throws DBException
+     */
+    public <T, U, V> V create(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, V newObject) throws DBException;
+
+    /**
+     * Get many-many relationship V between T and U
+     * 
+     * @param <T>
+     * @param <U>
+     * @param <V>
+     * @param parent
+     * @param parent2
+     * @param objectType
+     * @return
+     * @throws DBException
+     */
+    public <T, U, V> V get(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
+            throws DBException;
+
 }
