@@ -599,4 +599,49 @@ public class ObjectStorageTest
 
     }
 
+    public static void isEqual(PersonReport p1, PersonReport p2)
+    {
+        assertEquals(p1.getId(), p2.getId());
+        assertEquals(p1.getReportId(), p2.getReportId());
+        assertEquals(p1.getPersonId(), p2.getPersonId());
+        assertEquals(p1.getTitle(), p2.getTitle());
+    }
+
+    @Test
+    public void testManyMany() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        Report r1 = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
+
+        PersonReport pr1 = storage.create(p, r1, new PersonReport("myreport"));
+        assertEquals("myreport", pr1.getTitle());
+        assertEquals(p.getId(), pr1.getPersonId());
+        assertEquals(r1.getId(), pr1.getReportId());
+
+        PersonReport pr2 = storage.create(p, r2, new PersonReport("second"));
+        assertEquals("second", pr2.getTitle());
+        assertEquals(p.getId(), pr2.getPersonId());
+        assertEquals(r2.getId(), pr2.getReportId());
+
+        PersonReport pr3 = storage.get(Person.class, p.getId(), Report.class, r1.getId(), PersonReport.class);
+        assertEquals("myreport", pr3.getTitle());
+        assertEquals(pr1.getId(), pr3.getId());
+        assertEquals(p.getId(), pr3.getPersonId());
+        assertEquals(r1.getId(), pr3.getReportId());
+
+        PersonReport pr4 = storage.get(Person.class, p.getId(), Report.class, r2.getId(), PersonReport.class);
+        assertEquals("second", pr4.getTitle());
+        assertEquals(pr2.getId(), pr4.getId());
+        assertEquals(p.getId(), pr4.getPersonId());
+        assertEquals(r2.getId(), pr4.getReportId());
+
+        List<PersonReport> prList = storage.getAll(Person.class, p.getId(), PersonReport.class);
+        assertNotNull(prList);
+        assertEquals(2, prList.size());
+        isEqual(prList.get(0), pr3);
+        isEqual(prList.get(1), pr4);
+
+    }
+
 }
