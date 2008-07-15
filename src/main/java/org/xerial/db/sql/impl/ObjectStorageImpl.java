@@ -309,8 +309,10 @@ public class ObjectStorageImpl implements ObjectStorage
             case DATETIME:
             {
                 Date date = Date.class.cast(value);
-                valueList.add(new Pair<DataType, String>(dt, String.format("'%s'", DateFormat.getDateTimeInstance()
-                        .format(date))));
+                String dateValue = (date == null) ? "" : String.format("'%s'", DateFormat.getDateTimeInstance().format(
+                        date));
+                valueList.add(new Pair<DataType, String>(dt, dateValue));
+
                 break;
             }
             case BLOB:
@@ -628,7 +630,10 @@ public class ObjectStorageImpl implements ObjectStorage
         int i = 0;
         for (Pair<DataType, String> pair : valueData.getFirst())
         {
-            setStatementList.add(String.format("%s = %s", pair.getFirst().getName(), pair.getSecond()));
+            String columnName = pair.getFirst().getName();
+            if (columnName.equals("createdAt"))
+                continue;
+            setStatementList.add(String.format("%s = %s", columnName, pair.getSecond()));
         }
         return new Pair<String, List<ByteArray>>(StringUtil.join(setStatementList, ", "), valueData.getSecond());
     }

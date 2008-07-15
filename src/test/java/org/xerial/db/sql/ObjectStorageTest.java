@@ -572,7 +572,16 @@ public class ObjectStorageTest
         storage.delete(Person.class, p2.getId());
         assertEquals(null, storage.get(Person.class, p2.getId()));
         assertEquals(1, storage.count(Person.class));
+    }
 
+    @Test
+    public void testOmitCreatedAtAttributeWhenUpdate() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        Report r = storage.create(p, new Report());
+        r.setCreatedAt(null);
+
+        storage.save(r);
     }
 
 }
