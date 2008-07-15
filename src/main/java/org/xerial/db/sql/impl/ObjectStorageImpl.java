@@ -754,4 +754,16 @@ public class ObjectStorageImpl implements ObjectStorage
             return 0;
     }
 
+    public <T> void delete(T object) throws DBException
+    {
+        int id = getBeanID(object);
+        delete(object.getClass(), id);
+    }
+
+    public <T> void delete(Class<T> objectType, int id) throws DBException
+    {
+        String sql = SQLExpression.fillTemplate("delete from $1 where id = $2", getTableName(objectType), id);
+        dbAccess.update(sql);
+    }
+
 }
