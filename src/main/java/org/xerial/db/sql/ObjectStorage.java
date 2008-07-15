@@ -346,4 +346,22 @@ public interface ObjectStorage
     //     */
     //    public <Relation> Relation get(Relation object);
 
+    /**
+     * Delete the object
+     * 
+     * @param <T>
+     * @param object
+     * @throws DBException
+     */
+    public <T> void delete(T object) throws DBException;
+
+    /**
+     * Delete the object of the specified id
+     * 
+     * @param <T>
+     * @param objectType
+     * @param id
+     * @throws DBException
+     */
+    public <T> void delete(Class<T> objectType, int id) throws DBException;
 }

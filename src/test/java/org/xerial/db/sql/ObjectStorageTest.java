@@ -556,4 +556,23 @@ public class ObjectStorageTest
 
     }
 
+    @Test
+    public void testDelete() throws DBException
+    {
+        Person p1 = storage.create(new Person("leo", "xxx-xxxx"));
+        Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
+        Person p3 = storage.create(new Person("nao", "xxx-xxxx"));
+
+        assertEquals(3, storage.count(Person.class));
+        storage.delete(p1);
+
+        assertEquals(null, storage.get(Person.class, p1.getId()));
+        assertEquals(2, storage.count(Person.class));
+
+        storage.delete(Person.class, p2.getId());
+        assertEquals(null, storage.get(Person.class, p2.getId()));
+        assertEquals(1, storage.count(Person.class));
+
+    }
+
 }
