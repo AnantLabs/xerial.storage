@@ -32,6 +32,7 @@ package org.xerial.db.sql;
  */
 public class QueryParam
 {
+    //public String selectColumns = null;
     public String whereCondition = null;
     public String orderByColumns = null;
     public String offset = null;
@@ -40,7 +41,33 @@ public class QueryParam
     {
 
     }
-
+    
+//    public QueryParam setSelectColumns(String selectColumns)
+//    {
+//        this.selectColumns = selectColumns;
+//        return this;
+//    }
+//    
+//    public boolean hasSelectColumns()
+//    {
+//        return selectColumns != null;
+//    }
+//    
+//    public String getSelectColumnns()
+//    {
+//        return selectColumns;
+//    }
+    
+    public boolean hasWhereCondition()
+    {
+        return whereCondition != null;
+    }
+    
+    public boolean hasOrderByColumns()
+    {
+        return orderByColumns != null;
+    }
+    
     public QueryParam setWhereCondition(String whereClause)
     {
         this.whereCondition = whereClause;
