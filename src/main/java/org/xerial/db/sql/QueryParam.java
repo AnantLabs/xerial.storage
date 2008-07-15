@@ -47,10 +47,20 @@ public class QueryParam
         return this;
     }
 
+    public String getWhereCondition()
+    {
+        return whereCondition;
+    }
+
     public QueryParam setOrderByColumns(String orderByColumns)
     {
         this.orderByColumns = orderByColumns;
         return this;
+    }
+
+    public String getOrderByColumns()
+    {
+        return orderByColumns;
     }
 
     /**

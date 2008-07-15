@@ -133,13 +133,12 @@ public interface ObjectStorage
 
     public <T, U> List<U> getAllWithSorting(T startPoint, Class<U> associatedType) throws DBException;
 
-    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionalWhereClauseCondition)
-            throws DBException;
+    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, QueryParam queryParam) throws DBException;
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType) throws DBException;
 
-    public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType,
-            String additionalWhereCondition) throws DBException;
+    public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType, QueryParam queryParam)
+            throws DBException;
 
     /**
      * Retrieves all object instances in the corresponding table
