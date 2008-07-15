@@ -361,6 +361,8 @@ public interface ObjectStorage
     
     // view query
     public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, String sql) throws DBException; 
     public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
+    public <View> View getFromView(Class<View> viewType, String sql) throws DBException; 
 
 }
