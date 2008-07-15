@@ -642,6 +642,13 @@ public class ObjectStorageTest
         isEqual(prList.get(0), pr3);
         isEqual(prList.get(1), pr4);
 
+        // count
+        assertEquals(2, storage.count(Person.class, p.getId(), PersonReport.class));
+        assertEquals(1, storage.count(Person.class, p.getId(), Report.class, r1.getId(), PersonReport.class));
+        assertEquals(0, storage.count(Person.class, p.getId(), Report.class, 10, PersonReport.class));
+
+        assertEquals(1, storage.count(Person.class, p.getId(), Report.class, r2.getId(), PersonReport.class));
+
     }
 
 }

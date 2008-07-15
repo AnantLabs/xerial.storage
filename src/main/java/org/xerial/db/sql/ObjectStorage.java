@@ -353,4 +353,9 @@ public interface ObjectStorage
     public <T, U, V> V get(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
             throws DBException;
 
+    public <T, U> int count(Class<T> parent, int idOfT, Class<U> objectType) throws DBException;
+
+    public <T, U, V> int count(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
+            throws DBException;
+
 }
