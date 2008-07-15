@@ -888,17 +888,26 @@ public class ObjectStorageImpl implements ObjectStorage
     public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
     {
         String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        return getAllFromView(viewType, sql);
+    }
+
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, String sql) throws DBException
+    {
         return dbAccess.query(sql, viewType);
     }
 
     public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
     {
         String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        return getFromView(viewType, sql);
+    }
+
+    public <View> View getFromView(Class<View> viewType, String sql) throws DBException
+    {
         List<View> result = dbAccess.query(sql, viewType);
         if(result.size() > 0)
             return result.get(0);
         else
             return null;
     }
-
 }
