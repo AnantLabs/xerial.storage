@@ -501,11 +501,6 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> String getSelectColumnList(Class<T> objectType, String prefix) throws DBException
     {
         Relation r = getRelation(objectType);
-        if(r == null)
-        {
-            register(objectType);
-            return getSelectColumnList(objectType, prefix);
-        }
         ArrayList<String> columnNameList = new ArrayList<String>();
         for(DataType dt : r.getDataTypeList())
         {
@@ -680,9 +675,22 @@ public class ObjectStorageImpl implements ObjectStorage
             return tableName;
     }
 
-    private Relation getRelation(Class< ? > beanClass)
+    private Relation getRelation(Class< ? > beanClass) throws DBException
     {
-        return relationOfEachClass.get(beanClass);
+        Relation r = relationOfEachClass.get(beanClass);
+        if(r == null)
+        {
+            try
+            {
+                r = RelationBuilder.createRelation(beanClass);
+                relationOfEachClass.put(beanClass, r);
+            }
+            catch(BeanException e)
+            {
+                throw new DBException(DBErrorCode.InvalidBeanClass, e);
+            }
+        }
+        return r;
     }
 
 //    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobData)
@@ -722,10 +730,10 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         Class< ? > beanType = bean.getClass();
         String tableName = getTableName(beanType);
-        Relation r = getRelation(beanType);
 
         try
         {
+            Relation r = getRelation(beanType);
             int id = getBeanID(bean);
 
             Date now = getNowDate();
@@ -756,11 +764,10 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> void saveAll(Class<T> classType, Collection<T> objectList) throws DBException
     {
         String tableName = getTableName(classType);
-        Relation r = getRelation(classType);
-
         Date now = getNowDate();
         try
         {
+            Relation r = getRelation(classType);
             dbAccess.update("begin transaction");
             for (T bean : objectList)
             {
@@ -876,6 +883,22 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String sql = SQLExpression.fillTemplate("delete from $1 where id = $2", getTableName(objectType), id);
         dbAccess.update(sql);
+    }
+    
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
+    {
+        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        return dbAccess.query(sql, viewType);
+    }
+
+    public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
+    {
+        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        List<View> result = dbAccess.query(sql, viewType);
+        if(result.size() > 0)
+            return result.get(0);
+        else
+            return null;
     }
 
 }

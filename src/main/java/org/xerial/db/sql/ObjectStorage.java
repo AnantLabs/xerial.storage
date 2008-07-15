@@ -357,5 +357,10 @@ public interface ObjectStorage
 
     public <T, U, V> int count(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
             throws DBException;
+    
+    
+    // view query
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
+    public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
 
 }
