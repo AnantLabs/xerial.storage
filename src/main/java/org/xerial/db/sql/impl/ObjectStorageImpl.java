@@ -391,17 +391,10 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess.query(sql, associatedType);
     }
 
-    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, String additionalWhereClauseCondition)
-            throws DBException
+    public <T, U> List<U> getAll(T startPoint, Class<U> associatedType, QueryParam queryParam) throws DBException
     {
         int startPointID = getBeanID(startPoint);
-        String tableName = getTableName(associatedType);
-        String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
-        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3 $4 order by u.id", tableName,
-                parentIDColumnName, startPointID, (additionalWhereClauseCondition != null) ? "and "
-                        + additionalWhereClauseCondition : "");
-        return dbAccess.query(sql, associatedType);
-
+        return getAll(startPoint.getClass(), startPointID, associatedType, queryParam);
     }
 
     public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType) throws DBException
@@ -413,10 +406,16 @@ public class ObjectStorageImpl implements ObjectStorage
         return dbAccess.query(sql, associtedType);
     }
 
-    public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associtedType,
-            String additionalWhereCondition) throws DBException
+    public <T, U> List<U> getAll(Class<T> startPointClass, int idOfT, Class<U> associatedType, QueryParam queryParam)
+            throws DBException
     {
-        throw new UnsupportedOperationException();
+        String tableName = getTableName(associatedType);
+        String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
+        String sql = SQLExpression.fillTemplate("select u.* from $1 u where $2 = $3 $4 order by $5", tableName,
+                parentIDColumnName, idOfT, (queryParam.getWhereCondition() != null) ? "and "
+                        + queryParam.getWhereCondition() : "", (queryParam.getOrderByColumns() != null) ? queryParam
+                        .getOrderByColumns() : "u.id");
+        return dbAccess.query(sql, associatedType);
     }
 
     public <T> List<T> getAll(Class<T> classType) throws DBException

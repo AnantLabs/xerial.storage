@@ -231,7 +231,7 @@ public class ObjectStorageTest
         assertEquals(r2.getModifiedAt(), a2.getModifiedAt());
 
         // get all with additional condition
-        List<Report> reportList3 = storage.getAll(p, Report.class, "id > 1");
+        List<Report> reportList3 = storage.getAll(p, Report.class, new QueryParam().setWhereCondition("id > 1"));
         for (Report r : reportList3)
         {
             assertTrue(r.getId() > 1);
@@ -582,6 +582,21 @@ public class ObjectStorageTest
         r.setCreatedAt(null);
 
         storage.save(r);
+    }
+
+    @Test
+    public void testGetAllAssociatedObjectsWithSorting() throws DBException
+    {
+        Person p = storage.create(new Person("leo"));
+        Report r1 = storage.create(p, new Report());
+        Report r2 = storage.create(p, new Report());
+
+        List<Report> reportList = storage.getAll(p, Report.class, new QueryParam().setOrderByColumns("id desc"));
+
+        assertEquals(2, reportList.size());
+        assertEquals(r2.getId(), reportList.get(0).getId());
+        assertEquals(r1.getId(), reportList.get(1).getId());
+
     }
 
 }
