@@ -270,7 +270,8 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public static <T> String getAssociatedIDColumnName(Class<T> parentClass)
     {
-        return parentClass.getSimpleName().toLowerCase() + "Id";
+        String parentClassName = parentClass.getSimpleName();
+        return parentClassName.substring(0, 1).toLowerCase() + parentClassName.substring(1) + "Id";
     }
 
     /**
