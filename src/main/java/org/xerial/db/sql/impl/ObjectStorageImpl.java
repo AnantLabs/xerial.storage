@@ -787,11 +787,37 @@ public class ObjectStorageImpl implements ObjectStorage
         assert (queryParam != null);
         String sql = SQLExpression.fillTemplate("select count(*) as count from $1 $2", getTableName(classType),
                 queryParam.toSQLFragment());
+        return count(sql);
+    }
+
+    int count(String sql) throws DBException
+    {
         List<ResultCount> countList = dbAccess.query(sql, ResultCount.class);
         if (countList.size() > 0)
             return countList.get(0).getCount();
         else
             return 0;
+    }
+
+    public <T, U> int count(Class<T> parent, int idOfT, Class<U> objectType) throws DBException
+    {
+        String parentIdColumn = getAssociatedIDColumnName(parent);
+
+        String sql = SQLExpression.fillTemplate("select count(*) as count from $1 where $2 = $3",
+                getTableName(objectType), parentIdColumn, idOfT);
+        return count(sql);
+    }
+
+    public <T, U, V> int count(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
+            throws DBException
+    {
+        String parentIdColumn = getAssociatedIDColumnName(parent);
+        String parent2IdColumn = getAssociatedIDColumnName(parent2);
+
+        String sql = SQLExpression.fillTemplate("select count(*) as count from $1 where $2 = $3 and $4 = $5",
+                getTableName(objectType), parentIdColumn, idOfT, parent2IdColumn, idOfU);
+
+        return count(sql);
     }
 
     public <T> void delete(T object) throws DBException
