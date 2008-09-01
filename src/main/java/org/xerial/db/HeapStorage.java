@@ -32,18 +32,16 @@ import org.xerial.db.storage.DBFile;
  */
 public class HeapStorage
 {
-    private final DBFile dbFile;  
-    
+    private final DBFile dbFile;
+
     public HeapStorage(DBFile dbFile)
     {
         this.dbFile = dbFile;
     }
-    
-    
+
     public void append(Tuple tuple)
     {
-        
+
     }
-    
-    public void 
+
 }
