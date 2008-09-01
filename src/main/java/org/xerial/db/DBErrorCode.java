@@ -28,52 +28,46 @@ import org.xerial.core.ErrorCode;
 
 /**
  * Error codes used to report {@link DBException} type
+ * 
  * @author leo
- *
+ * 
  */
-public enum DBErrorCode implements ErrorCode
-{
-    InvalidDataFormat,
-    InvalidPageHeader,
-    InvalidBeanClass,
-    InvalidInput,
-    
+public enum DBErrorCode implements ErrorCode {
+    InvalidDataFormat, InvalidPageHeader, InvalidBeanClass, InvalidInput,
+
     // parser
     InvalidToken,
-    
-    
-    
+
     TableIsNotFound,
-    
+
     IOError,
-    
+
     ThreadInterruption,
 
     PageIsFull,
-    
+
     UnknownJDBCDriver,
 
-    FailureOnConnectionClose,
-    QueryError,
-    UpdateError,
-    
-    SQLiteDBFileNotFound,
-    JDBCConnectionError,
-    
+    FailureOnConnectionClose, QueryError, UpdateError,
+
+    SQLiteDBFileNotFound, JDBCConnectionError,
+
     InvalidSQLExpression,
-    
-    InvalidFile, AssociatedObjectAlreadyExist;
+
+    InvalidFile, AssociatedObjectAlreadyExist, ExceedsTheCapacity, UnknownError;
 
     private final String description;
+
     private DBErrorCode()
     {
         this.description = "";
     }
+
     private DBErrorCode(String description)
     {
         this.description = description;
     }
-    
+
     public String getCodeName()
     {
         return this.name();
@@ -83,5 +77,5 @@ public enum DBErrorCode implements ErrorCode
     {
         return null;
     }
-    
+
 }
