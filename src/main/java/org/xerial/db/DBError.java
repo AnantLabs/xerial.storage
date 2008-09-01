@@ -61,6 +61,11 @@ public class DBError extends Error
         this(errorCode, null, cause);
     }
 
+    public DBError(DBErrorCode errorCode)
+    {
+        this(errorCode, null, null);
+    }
+
     public DBErrorCode getErrorCode()
     {
         return errorCode;

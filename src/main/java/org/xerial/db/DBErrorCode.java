@@ -54,7 +54,7 @@ public enum DBErrorCode implements ErrorCode {
 
     InvalidSQLExpression,
 
-    InvalidFile, AssociatedObjectAlreadyExist, ExceedsTheCapacity, UnknownError;
+    InvalidFile, AssociatedObjectAlreadyExist, ExceedsTheCapacity, UnknownError, OutOfIndex, NotSupported;
 
     private final String description;
 
