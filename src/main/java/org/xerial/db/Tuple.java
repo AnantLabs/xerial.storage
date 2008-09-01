@@ -29,60 +29,75 @@ import org.xerial.db.cache.BufferWriter;
 
 /**
  * {@link Tuple} interface represents an instance of a {@link Relation}.
+ * 
  * @author leo
- *
+ * 
  */
 public interface Tuple
 {
     /**
      * Gets the relational schema of this tuple
+     * 
      * @return
      */
-    Relation getRelation();
-    
+    //Relation getRelation();
     /**
-     * Sets the tuple value of the specified column 
-     * @param columnIndex the column index to which the value is set
-     * @param value the column value to set
+     * Sets the tuple value of the specified column
+     * 
+     * @param columnIndex
+     *            the column index to which the value is set
+     * @param value
+     *            the column value to set
      */
     void setValue(int columnIndex, Object value);
 
     /**
      * Gets the tuple value of the specified column name
-     * @param columnName the column name to which the value is set  
-     * @param value the column value to set
+     * 
+     * @param columnName
+     *            the column name to which the value is set
+     * @param value
+     *            the column value to set
      */
-    void setValue(String columnName, Object value);
-    
+    //void setValue(String columnName, Object value);
     /**
-     * Gets the column value 
-     * @param columnIndex the column index from which the value is read
+     * Gets the column value
+     * 
+     * @param columnIndex
+     *            the column index from which the value is read
      * @return the column value of the specfied column index
      */
     Object getValue(int columnIndex);
 
     /**
-     * Gets the column value 
-     * @param columnName the column name from which the value is read
+     * Gets the column value
+     * 
+     * @param columnName
+     *            the column name from which the value is read
      * @return the column value of the specfied column name
      */
-    Object getValue(String columnName);
-
+    //Object getValue(String columnName);
     /**
      * Gets the byte size of this tuple
+     * 
      * @return the byte size of this tuple
      */
     int getByteSize();
-    
+
     /**
-     * Loads the tuple from the buffer 
-     * @param reader the {@link BufferReader}
+     * Loads the tuple from the buffer
+     * 
+     * @param reader
+     *            the {@link BufferReader}
      * @return the byte size read (tuple size)
      */
     int load(BufferReader reader);
+
     /**
      * Saves the tuple to the buffer
-     * @param writer the {@link BufferWriter}
+     * 
+     * @param writer
+     *            the {@link BufferWriter}
      * @return the byte size wrote (tuple size)
      */
     int save(BufferWriter writer);
