@@ -45,7 +45,7 @@ public interface Tuple
      * Sets the tuple value of the specified column
      * 
      * @param columnIndex
-     *            the column index to which the value is set
+     *            the column index to which the value is set (0-origin)
      * @param value
      *            the column value to set
      */
@@ -64,7 +64,7 @@ public interface Tuple
      * Gets the column value
      * 
      * @param columnIndex
-     *            the column index from which the value is read
+     *            the column index from which the value is read (0-origin)
      * @return the column value of the specfied column index
      */
     Object getValue(int columnIndex);

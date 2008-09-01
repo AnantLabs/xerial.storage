@@ -47,12 +47,15 @@ import java.util.List;
  */
 public class ExternalMergeSort
 {
+    private int numBufferPage = 64;
+    private BufferPool bufferPool;
+
     public ExternalMergeSort()
     {
-    // TODO Auto-generated constructor stub
+        bufferPool = new BufferPool(numBufferPage);
     }
 
-    public static void sort(TupleIterator tupleIterator, TupleComparator tupleComparator)
+    public void sort(TupleIterator tupleIterator, TupleComparator tupleComparator)
     {
         TupleList tupleList = new TupleList();
 
@@ -74,8 +77,13 @@ public class ExternalMergeSort
 
     }
 
-    public static <T> void mergeSort(List<Iterable<T>> inputIterartorList, Comparator<T> comparator,
-            List<T> outputHolder)
+    public void mergeSort(Iterable<Tuple> input, Comparator<Tuple> comparator, List<Tuple> output)
+    {
+
+    }
+
+    public void mergeSort(List<Iterable<Tuple>> inputIterartorList, Comparator<Tuple> comparator,
+            List<Tuple> outputHolder)
     {
 
     }
