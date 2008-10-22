@@ -63,7 +63,7 @@ public class H2Access extends DatabaseAccessBase
             StringBuilder columnDef = new StringBuilder();
             String typeName = dt.getTypeName();
             if (dt.getType() == TypeName.STRING)
-                typeName = "text";
+                typeName = "varchar";
             columnDef.append(String.format("%s %s", dt.getName(), typeName));
 
             if (dt.getName().equals("id"))
