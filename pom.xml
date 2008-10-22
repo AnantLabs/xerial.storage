@@ -62,7 +62,7 @@
     <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
-      <version>3.6.0</version>
+      <version>3.6.4</version>
     </dependency>
 
     <dependency>
@@ -70,6 +70,13 @@
       <artifactId>postgresql</artifactId>
       <version>8.3-603.jdbc3</version>
       <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.1.101</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
