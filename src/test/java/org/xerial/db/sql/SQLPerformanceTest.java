@@ -39,35 +39,44 @@ import org.xerial.util.log.Logger;
 public class SQLPerformanceTest
 {
     private static Logger _logger = Logger.getLogger(SQLPerformanceTest.class);
-    static final int N = 10000;
+    static final int N = 100;
 
-    public void insertPerson(ObjectStorage storage) throws DBException
+    public void insertPerson(DatabaseAccess dbAccess, ObjectStorage storage) throws DBException
     {
         storage.drop(Person.class);
+
+        dbAccess.setAutoCommit(false);
         StopWatch timer = new StopWatch();
-        // insert 10000 person
+        // insert N people
         timer.reset();
         for (int i = 0; i < N; i++)
             storage.create(new Person("person" + Integer.toString(i)));
+
+        dbAccess.update("commit");
+
         _logger.debug(String.format("%f sec.", timer.getElapsedTime()));
     }
 
     @Test
     public void SQLite() throws DBException
     {
-        //ObjectStorage storage = new ObjectStorageImpl(new SQLiteAccess("target/sample.sqlite"));
-        ObjectStorage storage = new ObjectStorageImpl(new SQLiteAccess());
-
-        insertPerson(storage);
+        //DatabaseAccess sqlite = new SQLiteAccess("target/sample.sqlite");
+        DatabaseAccess sqlite = new SQLiteAccess();
+        sqlite.update("pragma synchronous=off");
+        ObjectStorage storage = new ObjectStorageImpl(sqlite);
+        insertPerson(sqlite, storage);
         assertEquals(N, storage.count(Person.class));
     }
 
     @Test
     public void H2() throws ClassNotFoundException, SQLException, DBException
     {
-        //ObjectStorage storage = new ObjectStorageImpl(new H2Access("target/h2/sample"));
-        ObjectStorage storage = new ObjectStorageImpl(new H2Access());
-        insertPerson(storage);
+        //DatabaseAccess h2 = new H2Access("target/h2/sample");
+        DatabaseAccess h2 = new H2Access();
+        h2.update("SET LOCK_MODE 0");
+        ObjectStorage storage = new ObjectStorageImpl(h2);
+        //ObjectStorage storage = new ObjectStorageImpl(new H2Access());
+        insertPerson(h2, storage);
         assertEquals(N, storage.count(Person.class));
     }
 
