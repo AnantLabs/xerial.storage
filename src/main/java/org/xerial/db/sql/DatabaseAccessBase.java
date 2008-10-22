@@ -36,6 +36,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -107,7 +108,6 @@ public class DatabaseAccessBase implements DatabaseAccess
         return queryWithHandler(sql, new BeanReader(resultRowType));
     }
 
-    
     public <T> void query(String sql, ResultSetHandler<T> pullHandler) throws DBException
     {
         Connection connection = null;
@@ -174,7 +174,7 @@ public class DatabaseAccessBase implements DatabaseAccess
         }
         return result;
     }
-    
+
     public <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException
     {
         Connection connection = null;
@@ -653,7 +653,11 @@ public class DatabaseAccessBase implements DatabaseAccess
             int ret = preparedStatement.executeUpdate();
 
             ResultSet rs = preparedStatement.getGeneratedKeys();
-            int id = (rs == null) ? -1 : rs.getInt(1);
+            int id = -1;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
             rs.close();
             preparedStatement.close();
             return id;
@@ -669,5 +673,28 @@ public class DatabaseAccessBase implements DatabaseAccess
                 _connectionPool.returnConnection(connection);
             }
         }
+    }
+
+    public String createTableSQL(String tableName, Relation r)
+    {
+        LinkedList<String> columnDefList = new LinkedList<String>();
+        for (DataType dt : r.getDataTypeList())
+        {
+            StringBuilder columnDef = new StringBuilder();
+            columnDef.append(String.format("%s %s", dt.getName(), dt.getTypeName()));
+
+            if (dt.getName().equals("id"))
+            {
+                columnDef.append(" primary key autoincrement not null");
+                // id attribute must be the first column
+                columnDefList.addFirst(columnDef.toString());
+            }
+            else
+                columnDefList.add(columnDef.toString());
+        }
+
+        String schema = StringUtil.join(columnDefList, ", ");
+        String sql = String.format("create table if not exists %s (%s)", tableName, schema);
+        return sql;
     }
 }

@@ -36,11 +36,12 @@ import org.xerial.util.Predicate;
  * Conventions used in the {@link ObjectStorage}:
  * 
  * <ul>
- * <li> column name id (setId(), getId()) is considered as an integer primary
- * key (auto-increment) value. </li>
- * <li> createdAt, updatedAt column names correspond to {@link DateTimeType} ({@link java.util.Date} )
- * of the creation, update time of the instance, respectively. </li>
- * <li> one-to-many relationship
+ * <li>column name id (setId(), getId()) is considered as an integer primary key
+ * (auto-increment) value.</li>
+ * <li>createdAt, updatedAt column names correspond to {@link DateTimeType} (
+ * {@link java.util.Date} ) of the creation, update time of the instance,
+ * respectively.</li>
+ * <li>one-to-many relationship
  * 
  * </li>
  * </ul>
@@ -84,6 +85,8 @@ public interface ObjectStorage
      */
     public <T> void register(Class<T> classType) throws DBException;
 
+    public <T> void drop(Class<T> classType) throws DBException;
+
     /**
      * Associate type T to type U with one-to-one relationship
      * 
@@ -101,7 +104,7 @@ public interface ObjectStorage
      * 
      * <pre>
      * T: (id, ...)
-     * U: (id, TId, ...) 
+     * U: (id, TId, ...)
      * </pre>
      * 
      * For example, when T = Student and U is report, the table structure will
@@ -357,12 +360,15 @@ public interface ObjectStorage
 
     public <T, U, V> int count(Class<T> parent, int idOfT, Class<U> parent2, int idOfU, Class<V> objectType)
             throws DBException;
-    
-    
+
     // view query
-    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
-    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, String sql) throws DBException; 
-    public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException; 
-    public <View> View getFromView(Class<View> viewType, String sql) throws DBException; 
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType)
+            throws DBException;
+
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, String sql) throws DBException;
+
+    public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException;
+
+    public <View> View getFromView(Class<View> viewType, String sql) throws DBException;
 
 }

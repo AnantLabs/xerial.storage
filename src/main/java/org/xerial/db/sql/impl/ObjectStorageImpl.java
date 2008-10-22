@@ -377,8 +377,7 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> T get(Class<T> classType, int id) throws DBException
     {
         String tableName = getTableName(classType);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", 
-                getSelectColumnList(classType),
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", getSelectColumnList(classType),
                 tableName, id);
 
         List<T> result = dbAccess.query(sql, classType);
@@ -408,10 +407,8 @@ public class ObjectStorageImpl implements ObjectStorage
         int startPointID = getBeanID(startPoint);
         String tableName = getTableName(associatedType);
         String parentIDColumnName = getAssociatedIDColumnName(startPoint.getClass());
-        String sql = SQLExpression.fillTemplate("select $1 from $2 u where $3 = $4 order by u.id", 
-                getSelectColumnList(associatedType, "u."),
-                tableName,
-                parentIDColumnName, startPointID);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 u where $3 = $4 order by u.id", getSelectColumnList(
+                associatedType, "u."), tableName, parentIDColumnName, startPointID);
         return dbAccess.query(sql, associatedType);
     }
 
@@ -425,10 +422,8 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String tableName = getTableName(associtedType);
         String parentIDColumnnString = getAssociatedIDColumnName(startPointClass);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4", 
-                getSelectColumnList(associtedType),
-                tableName, parentIDColumnnString,
-                idOfT);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4", getSelectColumnList(associtedType),
+                tableName, parentIDColumnnString, idOfT);
         return dbAccess.query(sql, associtedType);
     }
 
@@ -437,12 +432,10 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String tableName = getTableName(associatedType);
         String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 u where $3 = $4 $5 order by $6", 
-                getSelectColumnList(associatedType, "u."),
-                tableName,
-                parentIDColumnName, idOfT, (queryParam.getWhereCondition() != null) ? "and "
-                        + queryParam.getWhereCondition() : "", (queryParam.getOrderByColumns() != null) ? queryParam
-                        .getOrderByColumns() : "u.id");
+        String sql = SQLExpression.fillTemplate("select $1 from $2 u where $3 = $4 $5 order by $6",
+                getSelectColumnList(associatedType, "u."), tableName, parentIDColumnName, idOfT, (queryParam
+                        .getWhereCondition() != null) ? "and " + queryParam.getWhereCondition() : "", (queryParam
+                        .getOrderByColumns() != null) ? queryParam.getOrderByColumns() : "u.id");
         return dbAccess.query(sql, associatedType);
     }
 
@@ -459,9 +452,7 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> List<T> getAll(Class<T> classType, Predicate<T> filterPredicate) throws DBException
     {
         String tableName = getTableName(classType);
-        String sql = SQLExpression.fillTemplate("select $1 from $2", 
-                getSelectColumnList(classType),
-                tableName);
+        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(classType), tableName);
         if (filterPredicate != null)
             return dbAccess.query(sql, classType, filterPredicate);
         else
@@ -482,9 +473,7 @@ public class ObjectStorageImpl implements ObjectStorage
         int parentID = getBeanID(startPoint);
 
         String sql = SQLExpression.fillTemplate("select $5 from $1 where $2 = $3 and id = $4", tableNameOfU,
-                parentIDColumnName, parentID, idOfU, 
-                getSelectColumnList(associatedType)
-        );
+                parentIDColumnName, parentID, idOfU, getSelectColumnList(associatedType));
         List<U> result = dbAccess.query(sql, associatedType);
         if (result.size() > 0)
             return result.get(0);
@@ -502,7 +491,7 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         Relation r = getRelation(objectType);
         ArrayList<String> columnNameList = new ArrayList<String>();
-        for(DataType dt : r.getDataTypeList())
+        for (DataType dt : r.getDataTypeList())
         {
             columnNameList.add(prefix + dt.getName());
         }
@@ -516,10 +505,8 @@ public class ObjectStorageImpl implements ObjectStorage
         String parentIDColumnName = getAssociatedIDColumnName(parent);
         String parent2IDColumnName = getAssociatedIDColumnName(parent2);
 
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4 and $5 = $6", 
-                getSelectColumnList(objectType),
-                tableNameOfV,
-                parentIDColumnName, idOfT, parent2IDColumnName, idOfU);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4 and $5 = $6",
+                getSelectColumnList(objectType), tableNameOfV, parentIDColumnName, idOfT, parent2IDColumnName, idOfU);
 
         List<V> result = dbAccess.query(sql, objectType);
         if (result.size() > 0)
@@ -533,10 +520,8 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableNameOfU = getTableName(associatedType);
         String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
 
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4",
-                getSelectColumnList(associatedType),
-                tableNameOfU, parentIDColumnName,
-                idOfT);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4", getSelectColumnList(associatedType),
+                tableNameOfU, parentIDColumnName, idOfT);
         List<U> result = dbAccess.query(sql, associatedType);
         if (result.size() > 0)
             return result.get(0);
@@ -550,10 +535,8 @@ public class ObjectStorageImpl implements ObjectStorage
         String tableNameOfU = getTableName(associatedType);
         String parentIDColumnName = getAssociatedIDColumnName(startPointClass);
 
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4 and id = $5", 
-                getSelectColumnList(associatedType),
-                tableNameOfU,
-                parentIDColumnName, idOfT, idOfU);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where $3 = $4 and id = $5",
+                getSelectColumnList(associatedType), tableNameOfU, parentIDColumnName, idOfT, idOfU);
         List<U> result = dbAccess.query(sql, associatedType);
         if (result.size() > 0)
             return result.get(0);
@@ -565,8 +548,7 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         int parentID = getAssociatedBeanID(child, parentType);
         String parentTableName = getTableName(parentType);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", 
-                getSelectColumnList(parentType),
+        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", getSelectColumnList(parentType),
                 parentTableName, parentID);
         List<T> result = dbAccess.query(sql, parentType);
         if (result == null || result.size() <= 0)
@@ -580,10 +562,8 @@ public class ObjectStorageImpl implements ObjectStorage
     {
         String parentTableName = getTableName(parentClass);
         String childTableName = getTableName(childClass);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 t, $3 u where u.id = $4", 
-                getSelectColumnList(parentClass, "t."),
-                parentTableName,
-                childTableName, idOfU);
+        String sql = SQLExpression.fillTemplate("select $1 from $2 t, $3 u where u.id = $4", getSelectColumnList(
+                parentClass, "t."), parentTableName, childTableName, idOfU);
         List<T> result = dbAccess.query(sql, parentClass);
         if (result == null || result.size() <= 0)
             return null;
@@ -641,9 +621,7 @@ public class ObjectStorageImpl implements ObjectStorage
             if (!dbAccess.hasTable(tableName))
             {
                 // No corresponding table is found, so create a new table
-                String schema = createTableSchema(relation);
-                String sql = SQLExpression.fillTemplate("create table if not exists $1 ($2)", tableName, schema);
-
+                String sql = dbAccess.createTableSQL(tableName, relation);
                 _logger.info(String.format("create a new table %s", tableName));
                 dbAccess.update(sql);
             }
@@ -661,31 +639,45 @@ public class ObjectStorageImpl implements ObjectStorage
 
     }
 
-
-    private String getTableName(Class< ? > beanType) throws DBException
+    private String getTableNameWithoutRegister(Class< ? > beanType)
     {
         String tableName = tableNameOfEachClass.get(beanType);
         if (tableName == null)
+        {
+            return beanType.getSimpleName().toLowerCase();
+        }
+        else
+            return tableName;
+    }
+
+    private boolean isRegistered(Class< ? > beanType)
+    {
+        return tableNameOfEachClass.get(beanType) != null;
+    }
+
+    private String getTableName(Class< ? > beanType) throws DBException
+    {
+        if (!isRegistered(beanType))
         {
             // if no corresponding table name for the given beanType was found, register the class
             register(beanType);
             return getTableName(beanType);
         }
         else
-            return tableName;
+            return getTableNameWithoutRegister(beanType);
     }
 
     private Relation getRelation(Class< ? > beanClass) throws DBException
     {
         Relation r = relationOfEachClass.get(beanClass);
-        if(r == null)
+        if (r == null)
         {
             try
             {
                 r = RelationBuilder.createRelation(beanClass);
                 relationOfEachClass.put(beanClass, r);
             }
-            catch(BeanException e)
+            catch (BeanException e)
             {
                 throw new DBException(DBErrorCode.InvalidBeanClass, e);
             }
@@ -693,24 +685,24 @@ public class ObjectStorageImpl implements ObjectStorage
         return r;
     }
 
-//    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobData)
-//            throws DBException
-//    {
-//        String tableName = getTableName(objectClass);
-//        String sql = SQLExpression.fillTemplate("update $1 set $2 = ? where id = $3", tableName, parameterName, id);
-//        dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
-//            public void setup(PreparedStatement preparedStatement) throws SQLException
-//            {
-//                preparedStatement.setBytes(1, blobData);
-//            }
-//        });
-//    }
-//
-//    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException
-//    {
-//        saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
-//    }
-//
+    //    public <T> void saveBlob(Class<T> objectClass, int id, String parameterName, final byte[] blobData)
+    //            throws DBException
+    //    {
+    //        String tableName = getTableName(objectClass);
+    //        String sql = SQLExpression.fillTemplate("update $1 set $2 = ? where id = $3", tableName, parameterName, id);
+    //        dbAccess.updateWithPreparedStatement(sql, new PreparedStatementHandler() {
+    //            public void setup(PreparedStatement preparedStatement) throws SQLException
+    //            {
+    //                preparedStatement.setBytes(1, blobData);
+    //            }
+    //        });
+    //    }
+    //
+    //    public <T> void saveBlob(T object, String parameterName, final byte[] blobData) throws DBException
+    //    {
+    //        saveBlob(object.getClass(), getBeanID(object), parameterName, blobData);
+    //    }
+    //
     public static <T> Pair<String, List<ByteArray>> createUpdateStatement(Relation relation, T bean)
     {
         Pair<List<Pair<DataType, String>>, List<ByteArray>> valueData = retrieveColumnValueAndBlobList(relation, bean);
@@ -800,19 +792,19 @@ public class ObjectStorageImpl implements ObjectStorage
 
     }
 
-//    
-//    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException
-//    {
-//        String tableName = getTableName(objectClass);
-//        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", parameterName, tableName, id);
-//
-//        return null;
-//    }
-//
-//    public <T> byte[] getBlob(T object, String parameterName) throws DBException
-//    {
-//        return getBlob(object.getClass(), getBeanID(object), parameterName);
-//    }
+    //    
+    //    public <T> byte[] getBlob(Class<T> objectClass, int id, String parameterName) throws DBException
+    //    {
+    //        String tableName = getTableName(objectClass);
+    //        String sql = SQLExpression.fillTemplate("select $1 from $2 where id = $3", parameterName, tableName, id);
+    //
+    //        return null;
+    //    }
+    //
+    //    public <T> byte[] getBlob(T object, String parameterName) throws DBException
+    //    {
+    //        return getBlob(object.getClass(), getBeanID(object), parameterName);
+    //    }
 
     public <T> T get(Class<T> classType, QueryParam queryParam) throws DBException
     {
@@ -823,10 +815,8 @@ public class ObjectStorageImpl implements ObjectStorage
     public <T> List<T> getAll(Class<T> classType, QueryParam queryParam) throws DBException
     {
         assert (queryParam != null);
-        String sql = SQLExpression.fillTemplate("select $1 from $2 $3", 
-                getSelectColumnList(classType),
-                getTableName(classType), queryParam
-                .toSQLFragment());
+        String sql = SQLExpression.fillTemplate("select $1 from $2 $3", getSelectColumnList(classType),
+                getTableName(classType), queryParam.toSQLFragment());
         return dbAccess.query(sql, classType);
     }
 
@@ -884,10 +874,12 @@ public class ObjectStorageImpl implements ObjectStorage
         String sql = SQLExpression.fillTemplate("delete from $1 where id = $2", getTableName(objectType), id);
         dbAccess.update(sql);
     }
-    
-    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
+
+    public <View, ObjectType> List<View> getAllFromView(Class<View> viewType, Class<ObjectType> objectType)
+            throws DBException
     {
-        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType),
+                getTableName(objectType));
         return getAllFromView(viewType, sql);
     }
 
@@ -898,16 +890,24 @@ public class ObjectStorageImpl implements ObjectStorage
 
     public <View, ObjectType> View getFromView(Class<View> viewType, Class<ObjectType> objectType) throws DBException
     {
-        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType), getTableName(objectType));
+        String sql = SQLExpression.fillTemplate("select $1 from $2", getSelectColumnList(viewType),
+                getTableName(objectType));
         return getFromView(viewType, sql);
     }
 
     public <View> View getFromView(Class<View> viewType, String sql) throws DBException
     {
         List<View> result = dbAccess.query(sql, viewType);
-        if(result.size() > 0)
+        if (result.size() > 0)
             return result.get(0);
         else
             return null;
+    }
+
+    public <T> void drop(Class<T> classType) throws DBException
+    {
+        String sql = SQLExpression.fillTemplate("drop table if exists $1", getTableNameWithoutRegister(classType));
+        dbAccess.update(sql);
+
     }
 }

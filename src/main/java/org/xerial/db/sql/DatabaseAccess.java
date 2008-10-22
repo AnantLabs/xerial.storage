@@ -100,7 +100,9 @@ public interface DatabaseAccess
     public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
 
     /**
-     * Performs an SQL query, and retrieves the results that satisfy the filter predicate
+     * Performs an SQL query, and retrieves the results that satisfy the filter
+     * predicate
+     * 
      * @param <T>
      * @param sql
      * @param resultRowType
@@ -109,7 +111,7 @@ public interface DatabaseAccess
      * @throws DBException
      */
     public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException;
-    
+
     /**
      * @param <T>
      * @param sql
@@ -240,5 +242,9 @@ public interface DatabaseAccess
      */
     public boolean hasTable(String tableName) throws DBException;
 
-    public int insertAndRetrieveKeysWithPreparedStatement(String sqlForPreparedStatment, PreparedStatementHandler handler) throws DBException; 
+    public int insertAndRetrieveKeysWithPreparedStatement(String sqlForPreparedStatment,
+            PreparedStatementHandler handler) throws DBException;
+
+    public String createTableSQL(String tableName, Relation r);
+
 }
