@@ -31,6 +31,7 @@ import java.util.Comparator;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xerial.db.cache.BufferReader;
 import org.xerial.db.cache.BufferWriter;
@@ -96,6 +97,7 @@ public class ExternalMergeSortTest
 
     }
 
+    @Ignore
     @Test
     public void mergeSortTest()
     {
