@@ -209,7 +209,7 @@ public class DataModel
 
         for (NodeData node : nodeList)
         {
-            _graph.setNodeLabel(node.getId(), node.getName());
+            _graph.addNode(node.getName());
         }
         for (EdgeData edge : edgeList)
         {
