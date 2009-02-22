@@ -30,43 +30,39 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.Tree;
 import org.xerial.amoeba.query.impl.AmoebaQueryLexer;
 import org.xerial.amoeba.query.impl.AmoebaQueryParser;
+import org.xerial.core.XerialErrorCode;
+import org.xerial.core.XerialException;
 
 /**
- * Given an amoeba query expression, e.g., "select species, target, track from graph"
+ * Given an amoeba query expression, e.g.,
+ * "select species, target, track from graph"
  * 
- * (species, target, track)
- *  human, hg17, overview track
- *  human, hg17, ruler track
- *  human, hg17, base color track
- *  human, hg18, overview track 
- *  human, hg18, ruler track
- *  ...
+ * (species, target, track) human, hg17, overview track human, hg17, ruler track
+ * human, hg17, base color track human, hg18, overview track human, hg18, ruler
+ * track ...
  * 
- *  
- *   
+ * 
+ * 
  * 
  * @author leo
- *
+ * 
  */
-public class AmoebaQueryProcessor 
+public class AmoebaQueryProcessor
 {
-	public static void generateAmoebaQuery(String queryString) throws AmoebaQueryException
-	{
-		AmoebaQueryLexer lexer = new AmoebaQueryLexer(new ANTLRStringStream(queryString));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		AmoebaQueryParser parser = new AmoebaQueryParser(tokens);
-		try {
-			AmoebaQueryParser.amoebaQuery_return ret = parser.amoebaQuery();
-			Tree tree = (Tree) ret.getTree();
-		} 
-		catch (RecognitionException e) {
-			throw new AmoebaQueryException(e);
-		}
-	}
-	
-	
+    public static void generateAmoebaQuery(String queryString) throws XerialException
+    {
+        AmoebaQueryLexer lexer = new AmoebaQueryLexer(new ANTLRStringStream(queryString));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        AmoebaQueryParser parser = new AmoebaQueryParser(tokens);
+        try
+        {
+            AmoebaQueryParser.amoebaQuery_return ret = parser.amoebaQuery();
+            Tree tree = (Tree) ret.getTree();
+        }
+        catch (RecognitionException e)
+        {
+            throw new XerialException(XerialErrorCode.INVALID_INPUT, e);
+        }
+    }
+
 }
-
-
-
-

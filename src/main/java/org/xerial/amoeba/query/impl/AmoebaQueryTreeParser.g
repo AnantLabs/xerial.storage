@@ -11,7 +11,7 @@ options {
 	tokenVocab=AmoebaQuery;
 	ASTLabelType=CommonTree;
 }
-
+ 
 @header
 {
 package org.xerial.amoeba.query.impl;

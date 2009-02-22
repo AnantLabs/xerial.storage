@@ -32,13 +32,12 @@ import java.io.Writer;
 import java.util.LinkedList;
 import java.util.Random;
 
+import org.xerial.core.XerialErrorCode;
 import org.xerial.util.cui.OptionHandler;
 import org.xerial.util.cui.OptionParser;
 import org.xerial.util.cui.OptionParserException;
-import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
-
 
 /**
  * Generates Benchmark Tables
@@ -52,7 +51,6 @@ public class BenchmarkTableGenerator
         SIMPLE, HIERARCHICAL, RANDOM
     }
 
-    
     private int fanout = 2;
     private int numColumn = 4;
     private double factor = 0.1; // factor * 1,000 rows will be generated
@@ -63,20 +61,21 @@ public class BenchmarkTableGenerator
     private static enum Opt {
         HELP, FANOUT, COLUMN, SCALABILITY_FACTOR, MODE, OUTPUT
     }
-    
+
     private boolean isReady = true;
-    
+
     private OptionParser<Opt> optionParser;
 
     public BenchmarkTableGenerator(String[] args) throws OptionParserException
     {
         optionParser = new OptionParser<Opt>();
-        optionParser.addOption(Opt.HELP, "h", "help", "display help messsage", new OptionHandler<Opt>(){
+        optionParser.addOption(Opt.HELP, "h", "help", "display help messsage", new OptionHandler<Opt>() {
             public void handle(OptionParser<Opt> parser) throws OptionParserException
             {
                 System.out.println(optionParser.helpMessage());
                 isReady = false;
-            }});
+            }
+        });
         optionParser.addOptionWithArgument(Opt.FANOUT, "f", "fanout", "FANOUT", "set fanout. default = 5",
                 new OptionHandler<Opt>() {
                     public void handle(OptionParser<Opt> parser) throws OptionParserException
@@ -104,7 +103,7 @@ public class BenchmarkTableGenerator
                     public void handle(OptionParser<Opt> parser) throws OptionParserException
                     {
                         int value = parser.getIntValue(Opt.MODE);
-                        switch(value)
+                        switch (value)
                         {
                         case 0:
                             mode = Mode.SIMPLE;
@@ -116,48 +115,48 @@ public class BenchmarkTableGenerator
                             mode = Mode.RANDOM;
                             break;
                         default:
-                            throw new OptionParserException("Unknown mode: " + value);    
+                            throw new OptionParserException(XerialErrorCode.UNSUPPORTED, "Unknown mode: " + value);
                         }
                     }
                 });
-        optionParser.addOptionWithArgument(Opt.OUTPUT, "o", "output", "FILE", "output file name", new OptionHandler<Opt>(){
-            public void handle(OptionParser<Opt> parser) throws OptionParserException
-            {
-                String fileName = parser.getValue(Opt.OUTPUT);
-                try
-                {
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-                    out = writer;
-                }
-                catch (IOException e)
-                {
-                    throw new OptionParserException(e);
-                }
-            }});
-        
+        optionParser.addOptionWithArgument(Opt.OUTPUT, "o", "output", "FILE", "output file name",
+                new OptionHandler<Opt>() {
+                    public void handle(OptionParser<Opt> parser) throws OptionParserException
+                    {
+                        String fileName = parser.getValue(Opt.OUTPUT);
+                        try
+                        {
+                            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+                            out = writer;
+                        }
+                        catch (IOException e)
+                        {
+                            throw new OptionParserException(XerialErrorCode.IO_EXCEPTION, e);
+                        }
+                    }
+                });
 
         optionParser.parse(args);
-        
-        
+
     }
 
-    private String[] colName; 
-    
-    public void generate() throws InvalidXMLException, IOException
+    private String[] colName;
+
+    public void generate() throws IOException
     {
-        colName = new String[numColumn+1];
+        colName = new String[numColumn + 1];
         colName[0] = "item";
-        for(int i=1; i<colName.length; i++)
+        for (int i = 1; i < colName.length; i++)
         {
             char c = (char) ('a' + i - 1);
             colName[i] = String.valueOf(c);
         }
-        
+
         XMLGenerator xmlOut = new XMLGenerator(out);
         xmlOut.startTag("table");
 
         int numRow = (int) (factor * 1000);
-        switch(mode)
+        switch (mode)
         {
         case SIMPLE:
             Simple s = new Simple(numRow, xmlOut);
@@ -177,20 +176,18 @@ public class BenchmarkTableGenerator
         xmlOut.flush();
         out.close();
     }
-    
-    
-    
+
     public String getColName(int colIndex)
     {
         return colName[colIndex];
     }
-    
+
     public class Hierarchical
     {
         int numRow;
         XMLGenerator xmlOut;
 
-        public Hierarchical(int numRow, XMLGenerator xmlOut) throws InvalidXMLException
+        public Hierarchical(int numRow, XMLGenerator xmlOut)
         {
             this.numRow = numRow;
             this.xmlOut = xmlOut;
@@ -198,33 +195,32 @@ public class BenchmarkTableGenerator
             int treeSize = (int) (Math.pow((double) fanout, (double) numColumn));
             int numTree = numRow / treeSize + (numRow % treeSize == 0 ? 0 : 1);
         }
-        
-        public void generate() throws InvalidXMLException
+
+        public void generate()
         {
             int offset = 0;
-            while(numRow > 0)
+            while (numRow > 0)
             {
                 process(0, offset++);
             }
         }
-        
-        private void process(int col, int offset) throws InvalidXMLException
+
+        private void process(int col, int offset)
         {
-            if(col >= numColumn)
+            if (col >= numColumn)
             {
                 xmlOut.flush();
                 numRow--;
                 return;
             }
-            
-            
+
             int numChildren = (col == 0) ? 1 : fanout;
-            for(int f=0; f<numChildren; f++)
+            for (int f = 0; f < numChildren; f++)
             {
-                xmlOut.startTag(getColName(col), new XMLAttribute("value", f+1+offset));
+                xmlOut.startTag(getColName(col), new XMLAttribute("value", f + 1 + offset));
                 process(col + 1, 0);
                 xmlOut.endTag();
-                if(numRow <= 0)
+                if (numRow <= 0)
                     return;
             }
 
@@ -236,8 +232,8 @@ public class BenchmarkTableGenerator
         int numRow;
         XMLGenerator xmlOut;
         Random r = new Random(40);
-        
-        public RandomGen(int numRow, XMLGenerator xmlOut) throws InvalidXMLException
+
+        public RandomGen(int numRow, XMLGenerator xmlOut)
         {
             this.numRow = numRow;
             this.xmlOut = xmlOut;
@@ -245,12 +241,12 @@ public class BenchmarkTableGenerator
             int treeSize = (int) (Math.pow((double) fanout, (double) numColumn));
             int numTree = numRow / treeSize + (numRow % treeSize == 0 ? 0 : 1);
         }
-        
-        
+
         class Element
         {
             int col;
             int value;
+
             public Element(int col, int value)
             {
                 super();
@@ -258,37 +254,37 @@ public class BenchmarkTableGenerator
                 this.value = value;
             }
         }
-        
+
         private boolean canHaveMulpleNodes(LinkedList<Integer> randomOrder, int index)
         {
             int currentColumn = randomOrder.get(index);
             int maxInFirstHalf = -1;
-            for(int i=0; i<index; i++)
+            for (int i = 0; i < index; i++)
             {
                 int column = randomOrder.get(i);
-                if(column > currentColumn)
+                if (column > currentColumn)
                     return false;
-                if(maxInFirstHalf < column)
+                if (maxInFirstHalf < column)
                     maxInFirstHalf = column;
             }
-            for(int i=index+1; i<randomOrder.size(); i++)
+            for (int i = index + 1; i < randomOrder.size(); i++)
             {
-                if(maxInFirstHalf > randomOrder.get(i))
+                if (maxInFirstHalf > randomOrder.get(i))
                     return false;
             }
             return true;
         }
-        
+
         private int smallestFDColumnIndex(LinkedList<Integer> randomOrder, int index)
         {
-            
-            for(int i=0; i<index; i++)
+
+            for (int i = 0; i < index; i++)
             {
                 int column = randomOrder.get(i);
-                for(int j=randomOrder.size()-1; j>=index; j--)
+                for (int j = randomOrder.size() - 1; j >= index; j--)
                 {
                     int currentColumn = randomOrder.get(j);
-                    if(column > currentColumn)
+                    if (column > currentColumn)
                     {
                         return i;
                     }
@@ -296,19 +292,19 @@ public class BenchmarkTableGenerator
             }
             return -1;
         }
-        
-        public void generate() throws InvalidXMLException
+
+        public void generate()
         {
             int offset = 0;
-            while(numRow > 0)
+            while (numRow > 0)
             {
-                LinkedList<Integer> colSet = new LinkedList<Integer>();  
-                for(int i=1; i<numColumn; i++)
+                LinkedList<Integer> colSet = new LinkedList<Integer>();
+                for (int i = 1; i < numColumn; i++)
                 {
                     colSet.add(i);
                 }
-                LinkedList<Integer> randomOrder = new LinkedList<Integer>();  
-                while(!colSet.isEmpty())
+                LinkedList<Integer> randomOrder = new LinkedList<Integer>();
+                while (!colSet.isEmpty())
                 {
                     int targetIndex = r.nextInt(colSet.size());
                     int targetCol = colSet.remove(targetIndex);
@@ -319,41 +315,41 @@ public class BenchmarkTableGenerator
                 xmlOut.endTag();
             }
         }
-        
-        private void process(LinkedList<Integer> randomOrder, int cursor, LinkedList<Element> elementStack) throws InvalidXMLException
+
+        private void process(LinkedList<Integer> randomOrder, int cursor, LinkedList<Element> elementStack)
+
         {
-            if(cursor >= randomOrder.size())
+            if (cursor >= randomOrder.size())
             {
                 numRow--;
                 return;
             }
 
-
             int currentColumn = randomOrder.get(cursor);
             int smallestFDColumnIndex = smallestFDColumnIndex(randomOrder, cursor);
-            if(smallestFDColumnIndex == -1)
+            if (smallestFDColumnIndex == -1)
                 smallestFDColumnIndex = cursor;
-            for(int f=0; f<fanout; f++)
+            for (int f = 0; f < fanout; f++)
             {
-                Element e = new Element(currentColumn, f+1);
+                Element e = new Element(currentColumn, f + 1);
                 elementStack.add(e);
                 xmlOut.startTag(getColName(e.col), new XMLAttribute("value", e.value));
-                process(randomOrder, cursor+1, elementStack);
+                process(randomOrder, cursor + 1, elementStack);
                 xmlOut.endTag();
-                if(numRow <= 0)
+                if (numRow <= 0)
                 {
                     elementStack.removeLast();
                     break;
                 }
                 else
                 {
-                    if(f < (fanout - 1))
+                    if (f < (fanout - 1))
                     {
-                        for(int i=cursor-1; i>=smallestFDColumnIndex; i--)
+                        for (int i = cursor - 1; i >= smallestFDColumnIndex; i--)
                         {
                             xmlOut.endTag();
                         }
-                        for(int i=smallestFDColumnIndex; i<cursor; i++)
+                        for (int i = smallestFDColumnIndex; i < cursor; i++)
                         {
                             Element e2 = elementStack.get(i);
                             xmlOut.startTag(getColName(e2.col), new XMLAttribute("value", e2.value));
@@ -371,64 +367,62 @@ public class BenchmarkTableGenerator
         XMLGenerator xmlOut;
         int[] value = new int[numColumn];
 
-        public Simple(int numRow, XMLGenerator xmlOut) throws InvalidXMLException
+        public Simple(int numRow, XMLGenerator xmlOut)
         {
             this.numRow = numRow;
             this.xmlOut = xmlOut;
 
-            for(int i=0; i<value.length; i++)
+            for (int i = 0; i < value.length; i++)
                 value[i] = 1;
-            
-            int treeSize = (int) (Math.pow((double) fanout, (double) numColumn-1));
+
+            int treeSize = (int) (Math.pow((double) fanout, (double) numColumn - 1));
             int numTree = numRow / treeSize + (numRow % treeSize == 0 ? 0 : 1);
         }
-        
-        public void generate() throws InvalidXMLException
+
+        public void generate()
         {
             int offset = 0;
-            while(numRow > 0)
+            while (numRow > 0)
             {
                 xmlOut.startTag("item", new XMLAttribute("value", ++offset));
                 process(1);
                 xmlOut.endTag();
             }
         }
-        
-        private void process(int col) throws InvalidXMLException
-        {
-            if(numRow <= 0)
-                return;
-            
 
-            if(col >= numColumn)
+        private void process(int col)
+        {
+            if (numRow <= 0)
+                return;
+
+            if (col >= numColumn)
             {
-                for(int c=1; c<numColumn; c++)
+                for (int c = 1; c < numColumn; c++)
                     xmlOut.startTag(getColName(c), new XMLAttribute("value", value[c]));
-                for(int c=1; c<numColumn; c++)
+                for (int c = 1; c < numColumn; c++)
                     xmlOut.endTag();
                 xmlOut.flush();
                 numRow--;
                 return;
             }
-            
+
             int numChildren = (col == 0) ? 1 : fanout;
-            for(int f=0; f<numChildren; f++)
+            for (int f = 0; f < numChildren; f++)
             {
-                value[col] = f+1;
+                value[col] = f + 1;
                 process(col + 1);
-                
+
             }
 
         }
     }
-    
 
     public static void main(String[] args)
     {
         try
         {
             BenchmarkTableGenerator btg = new BenchmarkTableGenerator(args);
-            if(btg.isReady)
+            if (btg.isReady)
                 btg.generate();
         }
         catch (Exception e)

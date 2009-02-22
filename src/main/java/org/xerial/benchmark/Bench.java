@@ -26,64 +26,67 @@ package org.xerial.benchmark;
 
 import org.xerial.util.cui.OptionParser;
 import org.xerial.util.cui.OptionParserException;
-import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
 
 public class Bench
 {
-    private double _sf = 1;    // scaling factor
-    
+    private double _sf = 1; // scaling factor
+
     public Bench(double sf)
     {
         _sf = sf;
     }
-    
-    enum Opt {HELP, SCALINGFACTOR};
-    public static void main(String[] args) throws OptionParserException, InvalidXMLException
+
+    enum Opt {
+        HELP, SCALINGFACTOR
+    };
+
+    public static void main(String[] args) throws OptionParserException
     {
         OptionParser<Opt> opt = new OptionParser<Opt>();
         opt.addOption(Opt.HELP, "h", "help", "display help message");
-        opt.addOptionWithArgument(Opt.SCALINGFACTOR, "f", "f", "FACTOR", "scaling factor (> 0) sf = 1 will generate almost 1MB data", "1");
+        opt.addOptionWithArgument(Opt.SCALINGFACTOR, "f", "f", "FACTOR",
+                "scaling factor (> 0) sf = 1 will generate almost 1MB data", "1");
 
         opt.parse(args);
-        
-        if(opt.isSet(Opt.HELP))
+
+        if (opt.isSet(Opt.HELP))
         {
             System.out.println(opt.helpMessage());
             return;
         }
-        
+
         double scalingFactor = opt.getDoubleValue(Opt.SCALINGFACTOR);
-        
+
         Bench b = new Bench(scalingFactor);
         b.generate();
     }
-    
-    public void generate() throws InvalidXMLException
+
+    public void generate()
     {
         XMLGenerator xout = new XMLGenerator(System.out);
-        
+
         int logSize = 30;
-        
-        int estimatedFileSize = (int) (_sf * 1024 * 1024);  
+
+        int estimatedFileSize = (int) (_sf * 1024 * 1024);
         int numLog = estimatedFileSize / logSize;
-        
+
         int numTeam = 30;
         int numPlayer = 50;
         int numLogForEachPlayer = numLog / numPlayer / numTeam;
-        if(numLogForEachPlayer == 0)
+        if (numLogForEachPlayer == 0)
             numLogForEachPlayer = 1;
-                
-        xout.startTag("mlb"); 
+
+        xout.startTag("mlb");
         xout.startTag("db");
-        for(int team=0; team<numTeam; team++)
+        for (int team = 0; team < numTeam; team++)
         {
             xout.startTag("team", new XMLAttribute("id", team));
-            for(int player=0; player<numPlayer; player++)
+            for (int player = 0; player < numPlayer; player++)
             {
                 xout.startTag("player", new XMLAttribute("id", player));
-                for(int log=0; log<numLogForEachPlayer; log++)
+                for (int log = 0; log < numLogForEachPlayer; log++)
                 {
                     xout.startTag("log", new XMLAttribute("id", log));
                     xout.element("hits", Integer.toString(log));
@@ -94,14 +97,13 @@ public class Bench
             xout.endTag(); // team        
         }
         xout.endTag(); // base
-        
-        
-        for(int r=0; r<10; r++)
+
+        for (int r = 0; r < 10; r++)
         {
             xout.startTag("ranking");
-            for(int team=0; team<numTeam; team++)
+            for (int team = 0; team < numTeam; team++)
             {
-                for(int player=0; player<numPlayer; player++)
+                for (int player = 0; player < numPlayer; player++)
                 {
                     xout.startTag("player", new XMLAttribute("id", player));
                     xout.element("team", new XMLAttribute("id", team), "");
@@ -111,9 +113,9 @@ public class Bench
             }
             xout.endTag(); // ranking
         }
-        
+
         xout.endTag(); // mlb
         xout.endDocument();
     }
-    
+
 }
