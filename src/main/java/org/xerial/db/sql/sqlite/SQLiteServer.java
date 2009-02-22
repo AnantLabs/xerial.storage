@@ -59,11 +59,6 @@ public class SQLiteServer
 
     private static Logger _logger = Logger.getLogger(SQLiteServer.class);
 
-    static
-    {
-        SQLiteJDBCLoader.initialize();
-    }
-
     public SQLiteServer(String databasePath) throws DBException
     {
         _connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(databasePath));

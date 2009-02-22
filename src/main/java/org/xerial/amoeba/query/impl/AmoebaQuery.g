@@ -25,10 +25,13 @@ grammar AmoebaQuery;
 options 
 {
 	language=Java;
+	output=AST;
 	// some lexer & parser options
-	k=4;	// number of look-ahead characters 
-	output=AST;	
+	// number of look-ahead characters 
+	k=3;	
+	//backtrack=true;
 }
+
 tokens {
 NUMBER;
 STRING;
@@ -142,7 +145,6 @@ catch(RecognitionException e){
 
 
 
-
 ML_COMMENT
     :   '/*' (options {greedy=false;} : .)* '*/' {channel=HIDDEN;}
     ;
@@ -150,6 +152,7 @@ ML_COMMENT
 LINE_COMMENT
     : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     ;
+
 
 Dot: '.';
 Colon: ';';
@@ -210,6 +213,7 @@ QName
 
 integerLiteral: Digits;
 decimalLiteral: Dot Digits| Digits Dot Digits;
+
 
 literal:	
 	| numericLiteral -> ^(NUMBER numericLiteral)
@@ -396,11 +400,10 @@ attributeName
 	| relation=QName Dot Wildcard -> ^(REF_ALL $relation)
 	; 
 
-	
+	 
 function
 	: QName LParen labelExpr (Comma labelExpr)* RParen
 	-> ^(FUNCTION QName labelExpr+)
 	;	
-
 
 

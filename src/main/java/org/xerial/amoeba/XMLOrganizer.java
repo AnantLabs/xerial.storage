@@ -38,6 +38,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.xerial.core.XerialErrorCode;
 import org.xerial.core.XerialException;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
@@ -54,7 +55,6 @@ import org.xerial.util.cui.OptionHandler;
 import org.xerial.util.cui.OptionParser;
 import org.xerial.util.cui.OptionParserException;
 import org.xerial.util.log.Logger;
-import org.xerial.util.xml.InvalidXMLException;
 import org.xerial.util.xml.XMLAttribute;
 import org.xerial.util.xml.XMLGenerator;
 
@@ -112,7 +112,7 @@ public class XMLOrganizer
 
             if (option.getArgumentLength() <= 0)
             {
-                throw new OptionParserException("db file name is not specified");
+                throw new XerialException(XerialErrorCode.INVALID_INPUT, "db file name is not specified");
             }
 
             String dbFileName = option.getArgument(0);
@@ -160,7 +160,7 @@ public class XMLOrganizer
         }
             break;
         default:
-            throw new XerialException("Unknown Structure Type");
+            throw new XerialException(XerialErrorCode.INVALID_INPUT, "Unknown Structure Type");
         }
 
         xmlOut.endTag(); // database
@@ -169,7 +169,7 @@ public class XMLOrganizer
         System.out.flush();
     }
 
-    public void flatXML(SQLiteAccess sqliteDB, XMLGenerator xmlOut) throws InvalidXMLException, DBException
+    public void flatXML(SQLiteAccess sqliteDB, XMLGenerator xmlOut) throws DBException
     {
         for (String table : sqliteDB.getTableList())
         {
@@ -303,7 +303,7 @@ public class XMLOrganizer
         }
 
         public void recursivelyOutputColumnData(String tableName, LinkedList<DataType> columnDataTypeList,
-                LinkedList<String> conditionList, boolean isTopElement) throws DBException, InvalidXMLException
+                LinkedList<String> conditionList, boolean isTopElement) throws DBException
         {
             int rowCount = countQuery(tableName, conditionList);
             if (rowCount <= 0)
@@ -320,12 +320,13 @@ public class XMLOrganizer
             {
                 // no aggregation is required
 
-                List selectColumnList = CollectionUtil.collect(columnDataTypeList, new Functor<DataType>() {
-                    public Object apply(DataType input)
-                    {
-                        return input.getName();
-                    }
-                });
+                List<String> selectColumnList = CollectionUtil.collect(columnDataTypeList,
+                        new Functor<DataType, String>() {
+                            public String apply(DataType input)
+                            {
+                                return input.getName();
+                            }
+                        });
                 String selectColumn = StringUtil.join(selectColumnList, ", ");
                 String condition = generateWhereClause(conditionList);
 
@@ -389,7 +390,7 @@ public class XMLOrganizer
 
         }
 
-        public void process() throws InvalidXMLException, DBException
+        public void process() throws DBException
         {
             for (String table : sqliteDB.getTableList())
             {

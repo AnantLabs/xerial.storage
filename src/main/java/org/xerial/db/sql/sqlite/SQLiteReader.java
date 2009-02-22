@@ -30,85 +30,83 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.List;
 
-
+import org.xerial.core.XerialErrorCode;
+import org.xerial.core.XerialException;
 import org.xerial.db.DBException;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 import org.xerial.util.StringUtil;
 import org.xerial.util.cui.OptionParser;
-import org.xerial.util.cui.OptionParserException;
-
 
 public class SQLiteReader
 {
 
-	private enum Opt { HELP }
-	
+    private enum Opt {
+        HELP
+    }
 
-	public static void main(String[] args)
-	{
-		OptionParser<Opt> optionParser = new OptionParser<Opt>();
-		try {
-			optionParser.addOption(Opt.HELP, "h", "help", "display help messages");
+    public static void main(String[] args)
+    {
+        OptionParser<Opt> optionParser = new OptionParser<Opt>();
+        try
+        {
+            optionParser.addOption(Opt.HELP, "h", "help", "display help messages");
 
-			optionParser.parse(args);
+            optionParser.parse(args);
 
-			if(optionParser.isSet(Opt.HELP))
-			{
-				printUsage(optionParser);
-				return;
-			}
-			
-			if(optionParser.getArgumentLength() == 0)
-				throw new OptionParserException("no query is given");
-			
-			String query = optionParser.getArgument(0);
+            if (optionParser.isSet(Opt.HELP))
+            {
+                printUsage(optionParser);
+                return;
+            }
 
-			SQLiteReader reader = new SQLiteReader();
-			reader.query(query, new OutputStreamWriter(System.out));
-			
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	
-	private static void printUsage(OptionParser opt)
-	{
-		System.out.println("> java -jar SQLiteReader.jar  (json query)");
-		System.out.println(opt.helpMessage());
-	}
+            if (optionParser.getArgumentLength() == 0)
+                throw new XerialException(XerialErrorCode.MISSING_ARGUMENT, "no query is given");
 
-	private String _dbFile;
-	private SQLiteAccess _dbAccess;
+            String query = optionParser.getArgument(0);
 
-	public SQLiteReader() 
-	{
-		
-	}
-	
-	public void query(String query, OutputStream out) throws JSONException, DBException, IOException
-	{
-		query(query, new OutputStreamWriter(out));
-	}
-	
-	
-	public void query(String query, Writer out) throws JSONException, DBException, IOException {
-		JSONObject jsonQuery = new JSONObject(query);
-		String _dbFile = jsonQuery.getString("database");
-		String sql = jsonQuery.getString("sql");
-		
-		_dbAccess = new SQLiteAccess(_dbFile);
-		
-		out.append("[");
-		List<JSONObject> result = _dbAccess.jsonQuery(sql);
-		out.append(StringUtil.join(result, ","));
-		out.append("]\n");
-		out.flush();
-	}
+            SQLiteReader reader = new SQLiteReader();
+            reader.query(query, new OutputStreamWriter(System.out));
 
-	
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private static void printUsage(OptionParser opt)
+    {
+        System.out.println("> java -jar SQLiteReader.jar  (json query)");
+        System.out.println(opt.helpMessage());
+    }
+
+    private String _dbFile;
+    private SQLiteAccess _dbAccess;
+
+    public SQLiteReader()
+    {
+
+    }
+
+    public void query(String query, OutputStream out) throws JSONException, DBException, IOException
+    {
+        query(query, new OutputStreamWriter(out));
+    }
+
+    public void query(String query, Writer out) throws JSONException, DBException, IOException
+    {
+        JSONObject jsonQuery = new JSONObject(query);
+        String _dbFile = jsonQuery.getString("database");
+        String sql = jsonQuery.getString("sql");
+
+        _dbAccess = new SQLiteAccess(_dbFile);
+
+        out.append("[");
+        List<JSONObject> result = _dbAccess.jsonQuery(sql);
+        out.append(StringUtil.join(result, ","));
+        out.append("]\n");
+        out.flush();
+    }
+
 }
-
-
-
-

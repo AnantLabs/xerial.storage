@@ -63,14 +63,14 @@ public class SQLiteAccess extends DatabaseAccessBase
 
     /**
      * Create an memory database access
+     * 
      * @throws DBException
      */
     public SQLiteAccess() throws DBException
     {
-    	super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress(), 1));
+        super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress(), 1));
     }
-    
-    
+
     public SQLiteAccess(String filePath) throws DBException
     {
         super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
@@ -93,14 +93,14 @@ public class SQLiteAccess extends DatabaseAccessBase
     {
         return getCatalog().getTableNameSet();
     }
-    
+
     @Override
     public List<String> getTableNameList() throws DBException
     {
         ArrayList<String> list = new ArrayList<String>();
-        for(String s : super.getTableNameList())
+        for (String s : super.getTableNameList())
         {
-            if(s.equals("sqlite_sequence"))
+            if (s.equals("sqlite_sequence"))
                 continue;
             list.add(s);
         }
@@ -159,8 +159,8 @@ public class SQLiteAccess extends DatabaseAccessBase
     {
 
         List<String> attributeDefinitionList = CollectionUtil.collectFromNonGenericCollection(r.getDataTypeList(),
-                new Functor<DataType>() {
-                    public Object apply(DataType dt)
+                new Functor<DataType, String>() {
+                    public String apply(DataType dt)
                     {
                         String attributeDefinition = dt.getName() + " " + SQLite.getDataTypeName(dt);
                         if (dt.isPrimaryKey())
@@ -220,9 +220,9 @@ public class SQLiteAccess extends DatabaseAccessBase
         return queryWithHandler(sql, new JSONObjectReader());
     }
 
-//    public boolean hasTable(String tableName) throws DBException
-//    {
-//        return getCatalog().getTableNameSet().contains(tableName);
-//    }
+    //    public boolean hasTable(String tableName) throws DBException
+    //    {
+    //        return getCatalog().getTableNameSet().contains(tableName);
+    //    }
 
 }
