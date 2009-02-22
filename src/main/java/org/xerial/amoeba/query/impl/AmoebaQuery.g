@@ -146,7 +146,7 @@ catch(RecognitionException e){
 
 
 ML_COMMENT
-    :   '/*' (options {greedy=false;} : .)* '*/' {channel=HIDDEN;}
+    :   '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;}
     ;
     
 LINE_COMMENT
@@ -197,9 +197,13 @@ fragment NameChar: Letter | Digit | '_' | '-' | At;
 
 WhiteSpaceChar: ( ' ' | '\t' | '\n' | '\r' | '\u000C')+ { $channel=HIDDEN; };
 
+fragment Quot_s: (~'"')*;  
+fragment Apos_s: (~'\'')*;  
+
 StringLiteral
-: Quot! (~'"')* Quot!
-| Apos! (~'\'')* Apos!;
+: Quot q=Quot_s Quot { setText($q.text); }
+| Apos a=Apos_s Apos { setText($a.text); } 
+; 
 
 //DoubleLiteral: (Digits (Dot (Digit)*)?) (('e'|'E') ('+'|'-')? Digits);
 
@@ -209,7 +213,6 @@ QName
 	: Name Colon Name
 	| Name
 	;
-
 
 integerLiteral: Digits;
 decimalLiteral: Dot Digits| Digits Dot Digits;
@@ -405,5 +408,7 @@ function
 	: QName LParen labelExpr (Comma labelExpr)* RParen
 	-> ^(FUNCTION QName labelExpr+)
 	;	
+
+
 
 
