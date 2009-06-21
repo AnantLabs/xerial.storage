@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g 2009-02-22 12:35:29
+// $ANTLR 3.1.1 F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g 2009-04-13 13:55:42
 
 package org.xerial.amoeba.query.impl;
 
@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 public class AmoebaQueryTreeParser extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NUMBER", "STRING", "SELECTION", "CONDITION", "PROJECTION", "PROJECT_ALL", "ORDER_BY", "REF_ALL", "TARGET", "FUNCTION", "AND", "OR", "INPUT", "OUTPUT", "ASSIGN_LABEL", "COMPARE", "ATTRIBUTE", "REF", "VALUE", "CONTAINED_IN", "RELATION", "INSERT", "VALUE_SET", "NEW_VALUE", "NEW_RELATION", "UPDATE", "ATTRIBUTE_DEF", "SORT_TARGET", "ONE_TO_MANY", "ONE_TO_ONE", "OBJECT_DEF", "OBJECT", "LANG", "ML_COMMENT", "LINE_COMMENT", "Dot", "Colon", "Comma", "RParen", "LParen", "Quot", "Apos", "At", "Wildcard", "EQUAL", "NOT_EQUAL", "LESS", "LEQ", "GREATER", "GEQ", "SPLIT", "Select", "From", "Where", "In", "Insert", "Into", "Object", "Relationship", "HasMany", "HasOne", "DIVIDE", "DISTINCT", "RANGE", "DataType", "Letter", "Digit", "Digits", "NameChar", "WhiteSpaceChar", "StringLiteral", "Name", "QName", "'by'", "'auto'", "'AUTO'", "'update'", "'set'", "'{'", "'}'", "'as'", "'order'", "'or'", "'and'", "'like'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NUMBER", "STRING", "SELECTION", "CONDITION", "PROJECTION", "PROJECT_ALL", "ORDER_BY", "REF_ALL", "TARGET", "FUNCTION", "AND", "OR", "INPUT", "OUTPUT", "ASSIGN_LABEL", "COMPARE", "ATTRIBUTE", "REF", "VALUE", "CONTAINED_IN", "RELATION", "INSERT", "VALUE_SET", "NEW_VALUE", "NEW_RELATION", "UPDATE", "ATTRIBUTE_DEF", "SORT_TARGET", "ONE_TO_MANY", "ONE_TO_ONE", "OBJECT_DEF", "OBJECT", "LANG", "ML_COMMENT", "LINE_COMMENT", "Dot", "Colon", "Comma", "RParen", "LParen", "Quot", "Apos", "At", "Wildcard", "EQUAL", "NOT_EQUAL", "LESS", "LEQ", "GREATER", "GEQ", "SPLIT", "Select", "From", "Where", "In", "Insert", "Into", "Object", "Relationship", "HasMany", "HasOne", "DIVIDE", "DISTINCT", "RANGE", "DataType", "Letter", "Digit", "Digits", "NameChar", "WhiteSpaceChar", "Quot_s", "Apos_s", "StringLiteral", "Name", "QName", "'by'", "'auto'", "'AUTO'", "'update'", "'set'", "'{'", "'}'", "'as'", "'order'", "'or'", "'and'", "'like'"
     };
     public static final int DataType=68;
     public static final int OUTPUT=17;
     public static final int T__86=86;
     public static final int INPUT=16;
     public static final int LANG=36;
+    public static final int Quot_s=74;
     public static final int Apos=45;
     public static final int Digit=70;
     public static final int Relationship=62;
@@ -56,8 +57,8 @@ public class AmoebaQueryTreeParser extends TreeParser {
     public static final int DISTINCT=66;
     public static final int RANGE=67;
     public static final int NameChar=72;
-    public static final int T__78=78;
     public static final int CONTAINED_IN=23;
+    public static final int T__89=89;
     public static final int SPLIT=54;
     public static final int ORDER_BY=10;
     public static final int Wildcard=47;
@@ -68,14 +69,15 @@ public class AmoebaQueryTreeParser extends TreeParser {
     public static final int RELATION=24;
     public static final int UPDATE=29;
     public static final int RParen=42;
-    public static final int StringLiteral=74;
+    public static final int Apos_s=75;
+    public static final int StringLiteral=76;
     public static final int T__88=88;
     public static final int LINE_COMMENT=38;
-    public static final int T__77=77;
     public static final int In=58;
-    public static final int Name=75;
+    public static final int Name=77;
     public static final int LParen=43;
     public static final int T__84=84;
+    public static final int T__90=90;
     public static final int From=56;
     public static final int HasOne=64;
     public static final int Select=55;
@@ -83,7 +85,7 @@ public class AmoebaQueryTreeParser extends TreeParser {
     public static final int COMPARE=19;
     public static final int REF_ALL=11;
     public static final int ONE_TO_MANY=32;
-    public static final int QName=76;
+    public static final int QName=78;
     public static final int SELECTION=6;
     public static final int WhiteSpaceChar=73;
     public static final int EOF=-1;
@@ -113,16 +115,16 @@ public class AmoebaQueryTreeParser extends TreeParser {
         
 
     public String[] getTokenNames() { return AmoebaQueryTreeParser.tokenNames; }
-    public String getGrammarFileName() { return "c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g"; }
+    public String getGrammarFileName() { return "F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g"; }
 
 
 
     // $ANTLR start "query"
-    // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:21:1: query : selectClause ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:21:1: query : selectClause ;
     public final void query() throws RecognitionException {
         try {
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:22:2: ( selectClause )
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:22:4: selectClause
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:22:2: ( selectClause )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:22:4: selectClause
             {
             pushFollow(FOLLOW_selectClause_in_query45);
             selectClause();
@@ -145,11 +147,11 @@ public class AmoebaQueryTreeParser extends TreeParser {
 
 
     // $ANTLR start "selectClause"
-    // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:26:1: selectClause : ^( Select expr ) ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:26:1: selectClause : ^( Select expr ) ;
     public final void selectClause() throws RecognitionException {
         try {
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:27:2: ( ^( Select expr ) )
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:27:4: ^( Select expr )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:27:2: ( ^( Select expr ) )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:27:4: ^( Select expr )
             {
             match(input,Select,FOLLOW_Select_in_selectClause59); 
 
@@ -177,11 +179,11 @@ public class AmoebaQueryTreeParser extends TreeParser {
 
 
     // $ANTLR start "expr"
-    // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:1: expr : QName ;
+    // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:1: expr : QName ;
     public final void expr() throws RecognitionException {
         try {
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:5: ( QName )
-            // c:\\Users\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:7: QName
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:5: ( QName )
+            // F:\\cygwin\\home\\leo\\work\\eclipse\\workspace\\xerial\\xerial-storage\\src\\main\\java\\org\\xerial\\amoeba\\query\\impl\\AmoebaQueryTreeParser.g:31:7: QName
             {
             match(input,QName,FOLLOW_QName_in_expr74); 
 
