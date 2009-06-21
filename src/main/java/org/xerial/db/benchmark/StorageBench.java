@@ -77,12 +77,14 @@ public class StorageBench
         public String directory = "C:";
 
         @Option(symbol = "b", description = "block size in KB (default = 8)")
-        public int blockSizeInKB = 8; // 8KB
+        public int blockSizeInKB = 4; // 4KB
 
         @Option(symbol = "t", description = "total target data size in MB (default = 100)")
         public int tmpFileSizeInMB = 100;
 
-        public int repeat = 10;
+        public int numTrial = 1000;
+
+        public int repeat = 1;
     }
 
     public void run() throws Exception
@@ -104,10 +106,9 @@ public class StorageBench
 
             tmp = File.createTempFile("storage-bench", ".bench", tmpDir);
             _logger.info("preparing a test bench file: " + tmp.getAbsolutePath());
-
+            int tmpFileSize = config.tmpFileSizeInMB * 1024 * 1024;
             RandomAccessFile file = new RandomAccessFile(tmp, "rwd");
 
-            int tmpFileSize = config.tmpFileSizeInMB * 1024 * 1024;
             int wroteByteSize = 0;
             int pageCount = 0;
             while (wroteByteSize < tmpFileSize)
@@ -119,6 +120,9 @@ public class StorageBench
             _logger.info("preparation done. page count = " + pageCount);
 
             final int pageNumberMax = tmpFileSize / (config.blockSizeInKB * 1024);
+            file.close();
+
+            file = new RandomAccessFile(tmp, "rwd");
 
             // sequential read
             byte[] cache = new byte[config.blockSizeInKB * 1024];
@@ -128,7 +132,7 @@ public class StorageBench
                 file.seek(0);
                 for (int i = 0; i < pageCount; i++)
                 {
-                    file.readFully(cache);
+                    file.readFully(buf);
                 }
             }
             reportMBSec("sequential scan", timer.getElapsedTime());
@@ -187,11 +191,11 @@ public class StorageBench
 
     private void reportMBSec(String name, double elapsedTime)
     {
-        int pageNumberMax = config.tmpFileSizeInMB * 1024 * 1024 / (config.blockSizeInKB * 1024);
+        int pageNumberMax = config.tmpFileSizeInMB * 1024 / config.blockSizeInKB;
         int totalDataSize = pageNumberMax * config.blockSizeInKB * 1024 * config.repeat;
         double timeMBPerSec = (totalDataSize / 1024 / 1024) / elapsedTime;
 
-        _logger.info(String.format("%10s:\t%5.2f MB/sec.", name, timeMBPerSec));
+        _logger.info(String.format("%10s\t%5.2f MB/sec.", name, timeMBPerSec));
     }
 
     private void reportIOPS(String name, double elapsedTime)
