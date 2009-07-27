@@ -27,37 +27,37 @@ package org.xerial.db.sql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.commons.dbutils.BeanProcessor;
+public abstract class BeanResultHandler<T>
+{
 
-public abstract class BeanResultHandler<T> {
+    private Class<T> beanClass;
+    private BeanProcessor beanProcessor = new BeanProcessor();
 
-	private Class<T> beanClass;
-	private BeanProcessor beanProcessor = new BeanProcessor();
+    protected BeanResultHandler(Class<T> beanClass)
+    {
+        this.beanClass = beanClass;
+    }
 
-	protected BeanResultHandler(Class<T> beanClass)
-	{
-		this.beanClass = beanClass;
-	}
-	
-	public void init()
-	{
-		// do nothing in default 
-	}
-	public abstract void handle(T bean) throws SQLException;
-	
-	public T toBean(ResultSet resultSet) throws SQLException
-	{
-		return beanClass.cast(beanProcessor.toBean(resultSet, beanClass));
-	}
-	
-	public Class<T> getClassType()
-	{
-		return beanClass;
-	}
-	
-	public void finish()
-	{
-		// do nothing in default
-	}
+    public void init()
+    {
+    // do nothing in default 
+    }
+
+    public abstract void handle(T bean) throws SQLException;
+
+    public T toBean(ResultSet resultSet) throws SQLException
+    {
+        return beanClass.cast(beanProcessor.toBean(resultSet, beanClass));
+    }
+
+    public Class<T> getClassType()
+    {
+        return beanClass;
+    }
+
+    public void finish()
+    {
+    // do nothing in default
+    }
 
 }
