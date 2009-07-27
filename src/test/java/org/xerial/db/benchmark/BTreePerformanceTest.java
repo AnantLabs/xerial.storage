@@ -36,6 +36,7 @@ import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xerial.util.StopWatch;
 import org.xerial.util.log.Logger;
@@ -60,6 +61,7 @@ public class BTreePerformanceTest
     public void tearDown() throws Exception
     {}
 
+    @Ignore
     @Test
     public void btreeSearchTest() throws Exception
     {
@@ -95,6 +97,7 @@ public class BTreePerformanceTest
 
     boolean shuffle = true;
 
+    @Ignore
     @Test
     public void btreeInsert() throws Exception
     {

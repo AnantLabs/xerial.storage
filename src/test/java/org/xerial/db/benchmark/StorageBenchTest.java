@@ -26,6 +26,7 @@ package org.xerial.db.benchmark;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class StorageBenchTest
@@ -39,11 +40,12 @@ public class StorageBenchTest
     public void tearDown() throws Exception
     {}
 
+    @Ignore
     @Test
     public void testPerf() throws Exception
     {
         StorageBench.Config config = new StorageBench.Config();
-        config.directory = "F:";
+        config.directory = "C:";
         StorageBench bench = new StorageBench(config);
         bench.run();
     }
