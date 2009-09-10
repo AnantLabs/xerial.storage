@@ -32,137 +32,129 @@ import java.io.PrintStream;
 
 import org.xerial.core.XerialErrorCode;
 import org.xerial.core.XerialException;
-import org.xerial.util.cui.OptionParser;
-import org.xerial.util.cui.OptionParserException;
 import org.xerial.util.io.NullOutputStream;
+import org.xerial.util.opt.Argument;
+import org.xerial.util.opt.Option;
+import org.xerial.util.opt.OptionParser;
 import org.xerial.util.xml.index.DataGuide;
 import org.xmlpull.v1.XmlPullParser;
 
 public class MLPress
 {
 
-    enum Opt {
-        HELP, VERBOSE
+  enum Opt {
+    HELP, VERBOSE
+  }
+
+  private OptionParser _opt        = new OptionParser(this);
+  private OutputStream _log        = new PrintStream(new NullOutputStream());
+
+  @Option(symbol = "h", longName = "help", description = "display help messages")
+  private boolean      displayHelp = false;
+
+  @Option(symbol = "v", longName = "verbose", description = "display verbose messages")
+  private boolean      verbose     = false;
+
+  @Argument
+  private String       xmlFileName = null;
+
+  /**
+   * @param args
+   *          command-line arguments
+   */
+  public static void main(String[] args) {
+    try {
+      MLPress instance = new MLPress();
+      instance.run(args);
     }
+    catch (XerialException e) {
+      printExceptionMessage(e);
+    }
+    catch (IOException e) {
+      printExceptionMessage(e);
+    }
+  }
 
-    private OptionParser<Opt> _opt = new OptionParser<Opt>();
-    private OutputStream _log = new PrintStream(new NullOutputStream());
+  static private void printExceptionMessage(Exception e) {
+    System.err.println(e.getMessage());
+  }
 
-    /**
-     * @param args
-     *            command-line arguments
-     */
-    public static void main(String[] args)
+  public void printHelpMessage() {
+    System.out.println("> java -jar MLPress.jar [options] xmlfile");
+    _opt.printUsage();
+  }
+
+  public void run(String[] args) throws XerialException, IOException {
+    _opt.parse(args);
+
+    if (displayHelp) {
+      printHelpMessage();
+      return;
+    }
+    if (verbose)
+      _log = new PrintStream(System.out);
+
+    if (xmlFileName == null)
+      throw new XerialException(XerialErrorCode.MISSING_ARGUMENT, "no imput xml file is specified");
+
+    BufferedReader xmlReader = new BufferedReader(new FileReader(xmlFileName));
+    //XmlPullParser parser =PullParserUtil.newParser(xmlReader);
+
+    //xparse(parser);
+  }
+
+  private TagDictionary       _tagDict          = new TagDictionary();
+  private TagStructureEncoder _structureEncoder = new TagStructureEncoder(_tagDict);
+  private DataGuide           _dataGuide        = new DataGuide();
+
+  private void parse(XmlPullParser parser) {
+    int state;
+    /*
+    try
     {
-        try
+
+        while((state = parser.next()) != END_DOCUMENT)
         {
-            MLPress instance = new MLPress();
-            instance.run(args);
-        }
-        catch (XerialException e)
-        {
-            printExceptionMessage(e);
-        }
-        catch (IOException e)
-        {
-            printExceptionMessage(e);
-        }
-    }
-
-    static private void printExceptionMessage(Exception e)
-    {
-        System.err.println(e.getMessage());
-    }
-
-    public MLPress() throws OptionParserException
-    {
-        // setup OptionParser
-        _opt.addOption(Opt.HELP, "h", "help", "display help messages");
-        _opt.addOption(Opt.VERBOSE, "v", "verbose", "display verbose messages");
-
-    }
-
-    public void printHelpMessage()
-    {
-        System.out.println("> java -jar MLPress.jar [options] xmlfile");
-        System.out.println(_opt.helpMessage());
-    }
-
-    public void run(String[] args) throws XerialException, IOException
-    {
-        _opt.parse(args);
-
-        if (_opt.isSet(Opt.HELP))
-        {
-            printHelpMessage();
-            return;
-        }
-        if (_opt.isSet(Opt.VERBOSE))
-            _log = new PrintStream(System.out);
-
-        if (_opt.getArgumentLength() < 1)
-            throw new XerialException(XerialErrorCode.MISSING_ARGUMENT, "no imput xml file is specified");
-
-        String xmlFileName = _opt.getArgument(0);
-        BufferedReader xmlReader = new BufferedReader(new FileReader(xmlFileName));
-        //XmlPullParser parser =PullParserUtil.newParser(xmlReader);
-
-        //xparse(parser);
-    }
-
-    private TagDictionary _tagDict = new TagDictionary();
-    private TagStructureEncoder _structureEncoder = new TagStructureEncoder(_tagDict);
-    private DataGuide _dataGuide = new DataGuide();
-
-    private void parse(XmlPullParser parser)
-    {
-        int state;
-        /*
-        try
-        {
-
-            while((state = parser.next()) != END_DOCUMENT)
+            switch(state)
             {
-                switch(state)
-                {
-                case START_TAG:
-                    _dataGuide.startTag(parser);                    
-                    String tagName = parser.getName();
-                    
-                    
-                    for(int i=0; i<parser.getAttributeCount(); i++)
-                    {
-                        String attributeName = parser.getAttributeName(i);
-                          
-                    }
-                    break;      
-                case TEXT:
-                    String text = parser.getText();
-                    break;
-                case END_TAG:
-                    _dataGuide.endTag(parser);
-                    break;
+            case START_TAG:
+                _dataGuide.startTag(parser);                    
+                String tagName = parser.getName();
                 
+                
+                for(int i=0; i<parser.getAttributeCount(); i++)
+                {
+                    String attributeName = parser.getAttributeName(i);
+                      
                 }
-            }
+                break;      
+            case TEXT:
+                String text = parser.getText();
+                break;
+            case END_TAG:
+                _dataGuide.endTag(parser);
+                break;
             
-          
+            }
         }
-        catch (XmlPullParserException e)
-        {
-            // TODO Auto-generated catch block 
-            e.printStackTrace();
-        }
-        catch(XMLException e)
-        {
-            e.printStackTrace();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-          */
-
+        
+      
     }
+    catch (XmlPullParserException e)
+    {
+        // TODO Auto-generated catch block 
+        e.printStackTrace();
+    }
+    catch(XMLException e)
+    {
+        e.printStackTrace();
+    }
+    catch(IOException e)
+    {
+        e.printStackTrace();
+    }
+      */
+
+  }
 
 }
