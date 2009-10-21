@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.xerial.core.XerialErrorCode;
+import org.xerial.core.XerialException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.json.JSONArray;
@@ -37,8 +39,6 @@ import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
 import org.xerial.util.bean.BeanBinder;
 import org.xerial.util.bean.BeanBinderSet;
-import org.xerial.util.bean.BeanErrorCode;
-import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
 
 /**
@@ -55,25 +55,21 @@ import org.xerial.util.bean.BeanUtil;
 public class RelationBuilder
 {
 
-    public static List<String> extractBeanParameterList(Class beanClass) throws BeanException
-    {
+    public static List<String> extractBeanParameterList(Class beanClass) throws XerialException {
         ArrayList<String> parameterList = new ArrayList<String>();
 
         BeanBinderSet outputRuleSet = BeanUtil.getBeanOutputRule(beanClass);
-        for (BeanBinder rule : outputRuleSet.getBindRules())
-        {
+        for (BeanBinder rule : outputRuleSet.getBindRules()) {
             String parameterName = rule.getParameterName();
             parameterList.add(parameterName);
         }
         return parameterList;
     }
 
-    public static JSONObject toJSON(Relation r)
-    {
+    public static JSONObject toJSON(Relation r) {
         JSONObject obj = new JSONObject();
         JSONArray dataTypeList = new JSONArray();
-        for (Iterator it = r.getDataTypeList().iterator(); it.hasNext();)
-        {
+        for (Iterator it = r.getDataTypeList().iterator(); it.hasNext();) {
             DataType dt = (DataType) it.next();
             JSONArray dataTypePair = new JSONArray();
             dataTypePair.add(dt.getName());
@@ -84,8 +80,7 @@ public class RelationBuilder
         return obj;
     }
 
-    public static Relation createRelation(String jsonString) throws JSONException
-    {
+    public static Relation createRelation(String jsonString) throws JSONException {
         Relation r = new Relation();
         JSONObject json = new JSONObject(jsonString);
 
@@ -93,10 +88,8 @@ public class RelationBuilder
         dataTypeList = json.getJSONArray("relation");
         if (dataTypeList == null)
             throw new JSONException(JSONErrorCode.InvalidJSONData, "no relation is found");
-        for (int i = 0; i < dataTypeList.size(); i++)
-        {
-            try
-            {
+        for (int i = 0; i < dataTypeList.size(); i++) {
+            try {
                 JSONArray dataType = dataTypeList.getJSONArray(i);
                 if (dataType.size() != 2)
                     throw new JSONException(JSONErrorCode.InvalidJSONData);
@@ -107,8 +100,7 @@ public class RelationBuilder
                 DataType dt = Relation.getDataType(parameterName, typeName);
                 r.add(dt);
             }
-            catch (JSONException e)
-            {
+            catch (JSONException e) {
                 throw new JSONException(JSONErrorCode.InvalidJSONData, dataTypeList.toString()
                         + " does not contain a pair of [param_name, data_type_str]");
             }
@@ -118,44 +110,35 @@ public class RelationBuilder
         return r;
     }
 
-    public static Relation createRelation(Class<?> beanClass) throws BeanException
-    {
+    public static Relation createRelation(Class< ? > beanClass) throws XerialException {
         return new BeanToRelationProcess().createRelation(beanClass);
     }
-    
 
     private static class BeanToRelationProcess
     {
         private Relation _relation = new Relation();
 
-        public BeanToRelationProcess()
-        {}
+        public BeanToRelationProcess() {}
 
-
-
-        public Relation createRelation(Class<?> beanClass) throws BeanException
-        {
+        public Relation createRelation(Class< ? > beanClass) throws XerialException {
             if (beanClass == null)
                 return _relation;
 
             BeanBinderSet outputRuleSet = BeanUtil.getBeanOutputRule(beanClass);
-            for (BeanBinder rule : outputRuleSet.getBindRules())
-            {
+            for (BeanBinder rule : outputRuleSet.getBindRules()) {
                 Method getter = rule.getMethod();
                 String p = rule.getParameterName();
 
-                Class<?> returnType = getter.getReturnType();
-                if (returnType.isArray())
-                {
-//                    returnType = returnType.getComponentType();
-//                    if (returnType.isAssignableFrom(String.class))
-//                        _relation.add(new StringListType(p));
-//                    else
-                    throw new BeanException(BeanErrorCode.UnsupportedDataType, "array type of "
+                Class< ? > returnType = getter.getReturnType();
+                if (returnType.isArray()) {
+                    //                    returnType = returnType.getComponentType();
+                    //                    if (returnType.isAssignableFrom(String.class))
+                    //                        _relation.add(new StringListType(p));
+                    //                    else
+                    throw new XerialException(XerialErrorCode.UnsupportedDataType, "array type of "
                             + returnType.toString() + " is not supported");
                 }
-                else
-                {
+                else {
                     DataType dt = Relation.getDataType(p, returnType);
                     _relation.add(dt);
                 }

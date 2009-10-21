@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.xerial.core.XerialException;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
@@ -46,7 +47,6 @@ import org.xerial.json.JSONValue;
 import org.xerial.util.CollectionUtil;
 import org.xerial.util.Functor;
 import org.xerial.util.StringUtil;
-import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.log.Logger;
 
@@ -59,47 +59,40 @@ import org.xerial.util.log.Logger;
 public class SQLiteAccess extends DatabaseAccessBase
 {
     private SQLiteCatalog _catalog = null;
-    private static Logger _logger = Logger.getLogger(SQLiteAccess.class);
+    private static Logger _logger  = Logger.getLogger(SQLiteAccess.class);
 
     /**
      * Create an memory database access
      * 
      * @throws DBException
      */
-    public SQLiteAccess() throws DBException
-    {
+    public SQLiteAccess() throws DBException {
         super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress(), 1));
     }
 
-    public SQLiteAccess(String filePath) throws DBException
-    {
+    public SQLiteAccess(String filePath) throws DBException {
         super(new ConnectionPoolImpl(SQLite.driverName, SQLite.getDatabaseAddress(filePath)));
     }
 
-    public SQLiteAccess(ConnectionPool connectionPool) throws DBException
-    {
+    public SQLiteAccess(ConnectionPool connectionPool) throws DBException {
         super(connectionPool);
     }
 
-    public SQLiteCatalog getCatalog() throws DBException
-    {
+    public SQLiteCatalog getCatalog() throws DBException {
         if (_catalog == null)
             _catalog = new SQLiteCatalog(this);
 
         return _catalog;
     }
 
-    public Collection<String> getTableList() throws DBException
-    {
+    public Collection<String> getTableList() throws DBException {
         return getCatalog().getTableNameSet();
     }
 
     @Override
-    public List<String> getTableNameList() throws DBException
-    {
+    public List<String> getTableNameList() throws DBException {
         ArrayList<String> list = new ArrayList<String>();
-        for (String s : super.getTableNameList())
-        {
+        for (String s : super.getTableNameList()) {
             if (s.equals("sqlite_sequence"))
                 continue;
             list.add(s);
@@ -107,19 +100,16 @@ public class SQLiteAccess extends DatabaseAccessBase
         return list;
     }
 
-    public List<SQLiteDataTypeInfo> getSQLiteDataTypeInfo(String tableName) throws DBException
-    {
+    public List<SQLiteDataTypeInfo> getSQLiteDataTypeInfo(String tableName) throws DBException {
         String sql = SQLExpression.fillTemplate("pragma table_info($1)", tableName);
         return query(sql, SQLiteDataTypeInfo.class);
     }
 
-    public Relation getRelationSchema(String tableName) throws DBException
-    {
+    public Relation getRelationSchema(String tableName) throws DBException {
         Relation r = new Relation();
         List<SQLiteDataTypeInfo> dataTypeList = getSQLiteDataTypeInfo(tableName);
 
-        for (SQLiteDataTypeInfo typeInfo : dataTypeList)
-        {
+        for (SQLiteDataTypeInfo typeInfo : dataTypeList) {
             String name = typeInfo.getName();
             String type = typeInfo.getType();
             type = type.toLowerCase();
@@ -133,13 +123,11 @@ public class SQLiteAccess extends DatabaseAccessBase
         return r;
     }
 
-    public void deleteByKeyValue(Object bean, String tableName) throws DBException, BeanException
-    {
+    public void deleteByKeyValue(Object bean, String tableName) throws DBException, XerialException {
 
         List<SQLiteDataTypeInfo> keyAttribute = getCatalog().getKeyAttributeName(tableName);
         ArrayList<String> deleteTargetCondition = new ArrayList<String>();
-        for (SQLiteDataTypeInfo key : keyAttribute)
-        {
+        for (SQLiteDataTypeInfo key : keyAttribute) {
             JSONObject json = BeanUtil.toJSONObject(bean);
             JSONValue value = json.get(key.getName());
             if (value == null)
@@ -155,13 +143,11 @@ public class SQLiteAccess extends DatabaseAccessBase
     }
 
     @SuppressWarnings("unchecked")
-    public void createTable(String tableName, Relation r) throws DBException
-    {
+    public void createTable(String tableName, Relation r) throws DBException {
 
         List<String> attributeDefinitionList = CollectionUtil.collectFromNonGenericCollection(r.getDataTypeList(),
                 new Functor<DataType, String>() {
-                    public String apply(DataType dt)
-                    {
+                    public String apply(DataType dt) {
                         String attributeDefinition = dt.getName() + " " + SQLite.getDataTypeName(dt);
                         if (dt.isPrimaryKey())
                             attributeDefinition += " primary key";
@@ -181,8 +167,7 @@ public class SQLiteAccess extends DatabaseAccessBase
 
     }
 
-    public void dropTable(String tableName) throws DBException
-    {
+    public void dropTable(String tableName) throws DBException {
         String sql = SQLExpression.fillTemplate("drop table $1", tableName);
         update(sql);
 
@@ -190,23 +175,19 @@ public class SQLiteAccess extends DatabaseAccessBase
 
     }
 
-    public <T> List<T> amoebaQuery(Class<T> beanClass, String tableName) throws DBException
-    {
+    public <T> List<T> amoebaQuery(Class<T> beanClass, String tableName) throws DBException {
         List<String> parameterList;
-        try
-        {
+        try {
             parameterList = RelationBuilder.extractBeanParameterList(beanClass);
         }
-        catch (BeanException e)
-        {
+        catch (XerialException e) {
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
         String sql = SQLExpression.fillTemplate("select $1 from $2", StringUtil.join(parameterList, ", "), tableName);
         return query(sql, beanClass);
     }
 
-    public List<JSONValue> selectColumnData(String sql, String targetColumn) throws DBException
-    {
+    public List<JSONValue> selectColumnData(String sql, String targetColumn) throws DBException {
         return queryWithHandler(sql, new JSONValueReader(targetColumn));
     }
 
@@ -215,8 +196,7 @@ public class SQLiteAccess extends DatabaseAccessBase
      * @return
      * @throws DBException
      */
-    public List<JSONObject> jsonQuery(String sql) throws DBException
-    {
+    public List<JSONObject> jsonQuery(String sql) throws DBException {
         return queryWithHandler(sql, new JSONObjectReader());
     }
 

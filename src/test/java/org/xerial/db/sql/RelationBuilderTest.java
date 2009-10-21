@@ -24,62 +24,54 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.xerial.db.Relation;
-import org.xerial.json.JSONException;
-import org.xerial.util.bean.BeanException;
-
 
 class Sample
 {
-	int id;
-	String name;
-	boolean check;
-	
-	public Sample() {}
+    int     id;
+    String  name;
+    boolean check;
 
-	public boolean getCheck() {
-		return check;
-	}
+    public Sample() {}
 
-	public void setCheck(boolean check) {
-		this.check = check;
-	}
+    public boolean getCheck() {
+        return check;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
 
+public class RelationBuilderTest
+{
 
-public class RelationBuilderTest {
-	
-	@Test 
-	public void createRelation() throws BeanException, JSONException 
-	{
-		Relation r1;
-		r1 = RelationBuilder.createRelation(Sample.class);
-		String json = RelationBuilder.toJSON(r1).toString();
-		Relation r2 = RelationBuilder.createRelation(json);
-		assertEquals(r1.getDataTypeList().size(), r2.getDataTypeList().size());
-	}
+    @Test
+    public void createRelation() throws Exception {
+        Relation r1;
+        r1 = RelationBuilder.createRelation(Sample.class);
+        String json = RelationBuilder.toJSON(r1).toString();
+        Relation r2 = RelationBuilder.createRelation(json);
+        assertEquals(r1.getDataTypeList().size(), r2.getDataTypeList().size());
+    }
 }
-
-
-
-
