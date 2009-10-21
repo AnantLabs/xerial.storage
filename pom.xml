@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.xerial</groupId>
   <artifactId>xerial-storage</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.4</version>
   <name>Xerial Storage</name>
   <description>
     Xerial Storage System
@@ -74,4 +74,10 @@
     </dependency>
 
   </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://www.xerial.org/svn/project/XerialJ/tags/xerial-storage/xerial-storage-1.0.4</connection>
+    <developerConnection>scm:svn:https://www.xerial.org/svn/project/XerialJ/tags/xerial-storage/xerial-storage-1.0.4</developerConnection>
+    <url>http://www.xerial.org/svn/project/XerialJ/tags/xerial-storage/xerial-storage-1.0.4</url>
+  </scm>
 </project>
