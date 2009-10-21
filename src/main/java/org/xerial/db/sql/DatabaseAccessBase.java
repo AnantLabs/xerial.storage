@@ -40,6 +40,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.xerial.core.XerialException;
 import org.xerial.db.DBErrorCode;
 import org.xerial.db.DBException;
 import org.xerial.db.Relation;
@@ -48,7 +49,6 @@ import org.xerial.json.JSONObject;
 import org.xerial.json.JSONValue;
 import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
-import org.xerial.util.bean.BeanException;
 import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.log.Logger;
 
@@ -61,16 +61,15 @@ import org.xerial.util.log.Logger;
 public class DatabaseAccessBase implements DatabaseAccess
 {
 
-    private ConnectionPool _connectionPool;
-    private static Logger _logger = Logger.getLogger(DatabaseAccessBase.class);
+    private ConnectionPool            _connectionPool;
+    private static Logger             _logger              = Logger.getLogger(DatabaseAccessBase.class);
 
-    private int queryTimeout = 60;
-    private boolean autoCommit = true;
+    private int                       queryTimeout         = 60;
+    private boolean                   autoCommit           = true;
 
     private HashMap<String, Relation> tableRelationCatalog = new HashMap<String, Relation>();
 
-    public DatabaseAccessBase(ConnectionPool connectionPool) throws DBException
-    {
+    public DatabaseAccessBase(ConnectionPool connectionPool) throws DBException {
         _connectionPool = connectionPool;
 
         // validate connection
@@ -78,13 +77,11 @@ public class DatabaseAccessBase implements DatabaseAccess
         _connectionPool.returnConnection(con);
     }
 
-    public void dispose() throws DBException
-    {
+    public void dispose() throws DBException {
         _connectionPool.closeAll();
     }
 
-    protected Statement createStatement(Connection connection) throws SQLException
-    {
+    protected Statement createStatement(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(queryTimeout);
         return statement;
@@ -103,16 +100,13 @@ public class DatabaseAccessBase implements DatabaseAccess
      * @throws DBException
      */
     @SuppressWarnings("unchecked")
-    public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException
-    {
+    public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException {
         return queryWithHandler(sql, new BeanReader(resultRowType));
     }
 
-    public <T> void query(String sql, ResultSetHandler<T> pullHandler) throws DBException
-    {
+    public <T> void query(String sql, ResultSetHandler<T> pullHandler) throws DBException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
@@ -120,19 +114,16 @@ public class DatabaseAccessBase implements DatabaseAccess
             pullHandler.init();
 
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 pullHandler.handle(rs);
             }
             rs.close();
             statement.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
 
             if (connection != null)
                 _connectionPool.returnConnection(connection);
@@ -141,20 +132,17 @@ public class DatabaseAccessBase implements DatabaseAccess
         }
     }
 
-    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException
-    {
+    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException {
         Connection connection = null;
         BeanReader<T> beanReader = new BeanReader<T>(resultRowType);
         ArrayList<T> result = new ArrayList<T>();
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 T row = beanReader.handle(rs);
                 if (row != null && filter.apply(row))
                     result.add(row);
@@ -163,24 +151,20 @@ public class DatabaseAccessBase implements DatabaseAccess
             rs.close();
             statement.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
         }
         return result;
     }
 
-    public <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException
-    {
+    public <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException {
         Connection connection = null;
         ArrayList<T> result = new ArrayList<T>();
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
@@ -188,8 +172,7 @@ public class DatabaseAccessBase implements DatabaseAccess
             handler.init();
 
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 T row = handler.handle(rs);
                 if (row != null)
                     result.add(row);
@@ -200,12 +183,10 @@ public class DatabaseAccessBase implements DatabaseAccess
             rs.close();
             statement.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
 
@@ -224,12 +205,10 @@ public class DatabaseAccessBase implements DatabaseAccess
      * @return
      * @throws DBException
      */
-    public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException
-    {
+    public <T> T accumulate(String sql, ResultSetHandler<T> handler) throws DBException {
         Connection connection = null;
         T result = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
@@ -238,8 +217,7 @@ public class DatabaseAccessBase implements DatabaseAccess
 
             ResultSet rs = statement.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 result = handler.handle(rs);
             }
 
@@ -247,12 +225,10 @@ public class DatabaseAccessBase implements DatabaseAccess
             statement.close();
 
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
 
@@ -261,19 +237,16 @@ public class DatabaseAccessBase implements DatabaseAccess
         return result;
     }
 
-    private PreparedStatement getPreparedStatement(Connection connection, String sql) throws SQLException
-    {
+    private PreparedStatement getPreparedStatement(Connection connection, String sql) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setQueryTimeout(queryTimeout);
         return preparedStatement;
     }
 
     public int updateWithPreparedStatement(String sqlForPreparedStatement, PreparedStatementHandler handler)
-            throws DBException
-    {
+            throws DBException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(false);
             _logger.debug(sqlForPreparedStatement);
             PreparedStatement preparedStatement = getPreparedStatement(connection, sqlForPreparedStatement);
@@ -284,30 +257,24 @@ public class DatabaseAccessBase implements DatabaseAccess
 
             return ret;
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.UpdateError, e);
         }
-        finally
-        {
-            if (connection != null)
-            {
+        finally {
+            if (connection != null) {
                 _connectionPool.returnConnection(connection);
             }
         }
 
     }
 
-    public int update(String sql) throws DBException
-    {
+    public int update(String sql) throws DBException {
         return update(sql, autoCommit);
     }
 
-    public int update(String sql, boolean autoCommit) throws DBException
-    {
+    public int update(String sql, boolean autoCommit) throws DBException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(false);
             connection.setAutoCommit(autoCommit);
             Statement statement = createStatement(connection);
@@ -317,25 +284,20 @@ public class DatabaseAccessBase implements DatabaseAccess
             statement.close();
             return ret;
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.UpdateError, e);
         }
-        finally
-        {
-            if (connection != null)
-            {
+        finally {
+            if (connection != null) {
                 _connectionPool.returnConnection(connection);
             }
         }
 
     }
 
-    public <T> int insertAndRetrieveKeys(String sql) throws DBException
-    {
+    public <T> int insertAndRetrieveKeys(String sql) throws DBException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(false);
             connection.setAutoCommit(autoCommit);
             Statement statement = createStatement(connection);
@@ -349,72 +311,59 @@ public class DatabaseAccessBase implements DatabaseAccess
             statement.close();
             return id;
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.UpdateError, e);
         }
-        finally
-        {
-            if (connection != null)
-            {
+        finally {
+            if (connection != null) {
                 _connectionPool.returnConnection(connection);
             }
         }
     }
 
-    public ConnectionPool getConnectionPool()
-    {
+    public ConnectionPool getConnectionPool() {
         return _connectionPool;
     }
 
-    private Connection getConnection(boolean readOnly) throws DBException, SQLException
-    {
+    private Connection getConnection(boolean readOnly) throws DBException, SQLException {
         Connection conn = _connectionPool.getConnection();
         conn.setAutoCommit(autoCommit);
         // conn.setReadOnly(readOnly);
         return conn;
     }
 
-    public void setAutoCommit(boolean enableAutoCommit)
-    {
+    public void setAutoCommit(boolean enableAutoCommit) {
         autoCommit = enableAutoCommit;
     }
 
-    public void setQueryTimeout(int sec)
-    {
+    public void setQueryTimeout(int sec) {
         this.queryTimeout = sec;
     }
 
-    public Set<String> getPrimaryKeyColumns(String tableName) throws DBException
-    {
+    public Set<String> getPrimaryKeyColumns(String tableName) throws DBException {
 
         Connection connection = null;
 
-        try
-        {
+        try {
             connection = getConnection(true);
             DatabaseMetaData metadata = connection.getMetaData();
             return getPrimaryKeyColumns(metadata, tableName);
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
         }
 
     }
 
-    public Set<String> getPrimaryKeyColumns(DatabaseMetaData metadata, String tableName) throws SQLException
-    {
+    public Set<String> getPrimaryKeyColumns(DatabaseMetaData metadata, String tableName) throws SQLException {
         HashSet<String> primaryKeyColumnSet = new HashSet<String>();
         // retrieve primary key information
         ResultSet primaryKeyResult = metadata.getPrimaryKeys(null, null, tableName);
-        for (; primaryKeyResult.next();)
-        {
+        for (; primaryKeyResult.next();) {
             String columnName = primaryKeyResult.getString("COLUMN_NAME");
             primaryKeyColumnSet.add(columnName);
         }
@@ -423,16 +372,14 @@ public class DatabaseAccessBase implements DatabaseAccess
         return primaryKeyColumnSet;
     }
 
-    public Relation getRelation(String tableName) throws DBException
-    {
+    public Relation getRelation(String tableName) throws DBException {
         if (tableRelationCatalog.containsKey(tableName))
             return tableRelationCatalog.get(tableName);
 
         Relation relation = new Relation();
 
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             DatabaseMetaData metadata = connection.getMetaData();
 
@@ -440,8 +387,7 @@ public class DatabaseAccessBase implements DatabaseAccess
 
             int column = 1;
             ResultSet resultSet = metadata.getColumns(null, null, tableName, null);
-            for (; resultSet.next();)
-            {
+            for (; resultSet.next();) {
                 String columnName = resultSet.getString("COLUMN_NAME");
                 String typeName = resultSet.getString("TYPE_NAME");
                 DataType dt = Relation.getDataType(columnName, typeName);
@@ -458,13 +404,11 @@ public class DatabaseAccessBase implements DatabaseAccess
             }
             resultSet.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
 
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
         }
@@ -473,27 +417,22 @@ public class DatabaseAccessBase implements DatabaseAccess
         return relation;
     }
 
-    public List<String> getTableNameList() throws DBException
-    {
+    public List<String> getTableNameList() throws DBException {
         ArrayList<String> tableNameList = new ArrayList<String>();
 
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             DatabaseMetaData metadata = connection.getMetaData();
             for (ResultSet resultSet = metadata.getTables(null, null, "%", new String[] { "TABLE", "VIEW" }); resultSet
-                    .next();)
-            {
+                    .next();) {
                 tableNameList.add(resultSet.getString("TABLE_NAME").toLowerCase());
             }
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
         }
@@ -501,17 +440,14 @@ public class DatabaseAccessBase implements DatabaseAccess
         return tableNameList;
     }
 
-    public <T> List<T> singleColumnQuery(String sql, String targetColumn, Class<T> resultColumnType) throws DBException
-    {
+    public <T> List<T> singleColumnQuery(String sql, String targetColumn, Class<T> resultColumnType) throws DBException {
         return queryWithHandler(sql, new ColumnReader<T>(targetColumn));
     }
 
-    public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException
-    {
+    public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException {
 
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
@@ -519,19 +455,16 @@ public class DatabaseAccessBase implements DatabaseAccess
             beanResultHandler.init();
 
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 T bean = beanResultHandler.toBean(rs);
                 beanResultHandler.handle(bean);
             }
             rs.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
             beanResultHandler.finish();
@@ -539,17 +472,14 @@ public class DatabaseAccessBase implements DatabaseAccess
 
     }
 
-    public <T> int insert(String tableName, T bean) throws DBException
-    {
+    public <T> int insert(String tableName, T bean) throws DBException {
         String sql;
-        try
-        {
+        try {
             sql = SQLExpression.fillTemplate("insert into $1 values($2)", tableName, createValueTupleFromBean(
                     tableName, bean));
             return update(sql);
         }
-        catch (BeanException e)
-        {
+        catch (XerialException e) {
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
         }
     }
@@ -574,15 +504,13 @@ public class DatabaseAccessBase implements DatabaseAccess
      * @throws DBException
      * @throws InvalidBeanException
      */
-    protected String createValueTupleFromBean(String tableName, Object bean) throws DBException, BeanException
-    {
+    protected String createValueTupleFromBean(String tableName, Object bean) throws DBException, XerialException {
         Relation r = getRelation(tableName);
 
         JSONObject json = (JSONObject) BeanUtil.toJSONObject(bean);
 
         ArrayList<String> tupleValue = new ArrayList<String>();
-        for (DataType dt : r.getDataTypeList())
-        {
+        for (DataType dt : r.getDataTypeList()) {
             JSONValue jsonValue = json.get(dt.getName());
             String value = (jsonValue == null) ? "" : jsonValue.toJSONString();
             tupleValue.add(value);
@@ -591,22 +519,19 @@ public class DatabaseAccessBase implements DatabaseAccess
         return StringUtil.join(tupleValue, ",");
     }
 
-    public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException
-    {
+    public <T> void toJSON(String sql, Class<T> beanClass, Writer writer) throws DBException, IOException {
         writer.append("{");
         writer.append(StringUtil.quote(beanClass.getSimpleName().toLowerCase(), StringUtil.DOUBLE_QUOTE));
         writer.append(":[\n");
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
             int rowCount = 0;
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 if (rowCount > 0)
                     writer.append(",\n");
 
@@ -617,12 +542,10 @@ public class DatabaseAccessBase implements DatabaseAccess
             rs.close();
             statement.close();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally
-        {
+        finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
             writer.append("]}");
@@ -630,22 +553,18 @@ public class DatabaseAccessBase implements DatabaseAccess
 
     }
 
-    public boolean hasTable(String tableName) throws DBException
-    {
+    public boolean hasTable(String tableName) throws DBException {
         return getTableNameList().contains(tableName);
     }
 
-    public boolean isAutoCommit()
-    {
+    public boolean isAutoCommit() {
         return autoCommit;
     }
 
     public int insertAndRetrieveKeysWithPreparedStatement(String sqlForPreparedStatment,
-            PreparedStatementHandler handler) throws DBException
-    {
+            PreparedStatementHandler handler) throws DBException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = getConnection(false);
             connection.setAutoCommit(autoCommit);
             PreparedStatement preparedStatement = getPreparedStatement(connection, sqlForPreparedStatment);
@@ -654,37 +573,30 @@ public class DatabaseAccessBase implements DatabaseAccess
 
             ResultSet rs = preparedStatement.getGeneratedKeys();
             int id = -1;
-            if (rs.next())
-            {
+            if (rs.next()) {
                 id = rs.getInt(1);
             }
             rs.close();
             preparedStatement.close();
             return id;
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             throw new DBException(DBErrorCode.UpdateError, e);
         }
-        finally
-        {
-            if (connection != null)
-            {
+        finally {
+            if (connection != null) {
                 _connectionPool.returnConnection(connection);
             }
         }
     }
 
-    public String createTableSQL(String tableName, Relation r)
-    {
+    public String createTableSQL(String tableName, Relation r) {
         LinkedList<String> columnDefList = new LinkedList<String>();
-        for (DataType dt : r.getDataTypeList())
-        {
+        for (DataType dt : r.getDataTypeList()) {
             StringBuilder columnDef = new StringBuilder();
             columnDef.append(String.format("%s %s", dt.getName(), dt.getTypeName()));
 
-            if (dt.getName().equals("id"))
-            {
+            if (dt.getName().equals("id")) {
                 columnDef.append(" primary key autoincrement not null");
                 // id attribute must be the first column
                 columnDefList.addFirst(columnDef.toString());

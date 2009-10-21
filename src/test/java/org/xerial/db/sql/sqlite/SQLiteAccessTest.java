@@ -24,10 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql.sqlite;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -51,7 +48,6 @@ import org.xerial.db.sql.ConnectionPoolImpl;
 import org.xerial.db.sql.PreparedStatementHandler;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.util.CollectionUtil;
-import org.xerial.util.bean.BeanException;
 import org.xerial.util.log.Logger;
 
 public class SQLiteAccessTest
@@ -59,23 +55,20 @@ public class SQLiteAccessTest
 
     static private ConnectionPool _connectionPool;
 
-    static Logger _logger = Logger.getLogger(SQLiteAccessTest.class);
+    static Logger                 _logger = Logger.getLogger(SQLiteAccessTest.class);
 
     @BeforeClass
-    public static void openDatabase() throws DBException
-    {
+    public static void openDatabase() throws DBException {
 
     }
 
     @AfterClass
-    public static void closeDatabase() throws DBException
-    {}
+    public static void closeDatabase() throws DBException {}
 
     private SQLiteAccess query;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
 
         _connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
         query = new SQLiteAccess(_connectionPool);
@@ -83,44 +76,38 @@ public class SQLiteAccessTest
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         if (query != null)
             query.dispose();
 
     }
 
     @Test
-    public void getTableList() throws DBException
-    {
+    public void getTableList() throws DBException {
         List<String> tableList = CollectionUtil.toString(query.getTableList());
 
         assertTrue(tableList.contains("person"));
     }
 
     @Test
-    public void hasTable() throws DBException
-    {
+    public void hasTable() throws DBException {
         assertTrue(query.hasTable("person"));
     }
 
     @Test
-    public void getRelation() throws DBException
-    {
+    public void getRelation() throws DBException {
         Relation r = query.getRelationSchema("person");
         _logger.debug(r);
     }
 
     @Test
-    public void update() throws DBException, BeanException
-    {
+    public void update() throws DBException, Exception {
         query.insert("person", new Person(3, "leopard"));
         query.deleteByKeyValue(new Person(3), "person");
     }
 
     @Test
-    public void createTable() throws DBException
-    {
+    public void createTable() throws DBException {
         Relation r = new Relation();
         r.add(new DataTypeBase("id", TypeName.INTEGER, true, true));
         r.add(new DataTypeBase("name", TypeName.STRING));
@@ -130,8 +117,7 @@ public class SQLiteAccessTest
     }
 
     @Test
-    public void memoryDatabase() throws DBException, BeanException, IOException
-    {
+    public void memoryDatabase() throws DBException, Exception, IOException {
         ConnectionPool connectionPool = new ConnectionPoolImpl(SQLite.driverName, SQLite.getMemoryDatabaseAddress());
         SQLiteAccess query = new SQLiteAccess(connectionPool);
 
@@ -141,14 +127,11 @@ public class SQLiteAccessTest
 
         query.query("select * from person", new BeanResultHandler<Person>(Person.class) {
             @Override
-            public void handle(Person p) throws SQLException
-            {
-                if (p.getId() == 1)
-                {
+            public void handle(Person p) throws SQLException {
+                if (p.getId() == 1) {
                     assertEquals("leo", p.getName());
                 }
-                else if (p.getId() == 2)
-                {
+                else if (p.getId() == 2) {
                     assertEquals("yui", p.getName());
                 }
             }
@@ -162,14 +145,12 @@ public class SQLiteAccessTest
     }
 
     @Test
-    public void relation() throws DBException
-    {
+    public void relation() throws DBException {
         Relation r = query.getRelation("person");
         assertNotNull(r);
         assertEquals(2, r.getDataTypeList().size());
 
-        for (DataType dt : r.getDataTypeList())
-        {
+        for (DataType dt : r.getDataTypeList()) {
             if (dt.getName().equals("id"))
                 assertEquals("integer", dt.getTypeName());
             else if (dt.getName().equals("name"))
@@ -179,23 +160,22 @@ public class SQLiteAccessTest
         }
 
     }
-    
+
     @Test
-    public void preapredStatement() throws DBException
-    {
-        SQLiteAccess query = new SQLiteAccess();	// prepare a memory database
-    	final String blobData = "hello world!"; 
-        
+    public void preapredStatement() throws DBException {
+        SQLiteAccess query = new SQLiteAccess(); // prepare a memory database
+        final String blobData = "hello world!";
+
         query.update("create table blobdata (id integer primary key autoincrement not null, data blob)");
-        query.updateWithPreparedStatement("insert into blobdata(data) values(?)", new PreparedStatementHandler(){
-			public void setup(PreparedStatement preparedStatement) throws SQLException {
-				preparedStatement.setBytes(1, blobData.getBytes());
-			}});
-        
+        query.updateWithPreparedStatement("insert into blobdata(data) values(?)", new PreparedStatementHandler() {
+            public void setup(PreparedStatement preparedStatement) throws SQLException {
+                preparedStatement.setBytes(1, blobData.getBytes());
+            }
+        });
+
         List<BlobData> result = query.query("select * from blobdata", BlobData.class);
         assertEquals(1, result.size());
         assertEquals(blobData, result.get(0).getData());
     }
-    
 
 }
