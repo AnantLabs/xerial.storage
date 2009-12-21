@@ -48,6 +48,7 @@ import org.xerial.db.sql.PreparedStatementHandler;
 import org.xerial.db.sql.QueryParam;
 import org.xerial.db.sql.RelationBuilder;
 import org.xerial.db.sql.SQLExpression;
+import org.xerial.lens.ObjectLens;
 import org.xerial.util.Pair;
 import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
@@ -145,15 +146,9 @@ public class ObjectStorageImpl implements ObjectStorage
      * @throws BeanException
      */
     private static <T> void setTimeStamp(T bean, String timeStampParameterName, Date timeStamp) throws XerialException {
-        BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(bean.getClass());
-        BeanBinder binder = ruleSet.findRule(timeStampParameterName);
-
-        // no corresponding time stamp setter (CreatedAt(Date date), etc.) method found
-        if (binder == null)
-            return;
-
+        ObjectLens lens = ObjectLens.getObjectLens(bean.getClass());
         try {
-            binder.getMethod().invoke(bean, new Object[] { timeStamp });
+            lens.setParameter(bean, timeStampParameterName, timeStamp);
         }
         catch (Exception e) {
             throw new XerialException(XerialErrorCode.InvocationTargetException, e);
@@ -253,9 +248,8 @@ public class ObjectStorageImpl implements ObjectStorage
      */
     public static <T> Object getValue(T bean, String parameterName) throws DBException {
         try {
-            BeanBinderSet ruleSet = BeanUtil.getBeanOutputRule(bean.getClass());
-            BeanBinder binder = ruleSet.findRule(parameterName);
-            return binder.getMethod().invoke(bean, new Object[] {});
+            ObjectLens lens = ObjectLens.getObjectLens(bean.getClass());
+            return lens.getParameter(bean, parameterName);
         }
         catch (Exception e) {
             _logger.error(e);
@@ -621,10 +615,9 @@ public class ObjectStorageImpl implements ObjectStorage
     public static <T> Pair<String, List<byte[]>> createUpdateStatement(Relation relation, T bean) {
         Pair<List<Pair<DataType, String>>, List<byte[]>> valueData = retrieveColumnValueAndBlobList(relation, bean);
         ArrayList<String> setStatementList = new ArrayList<String>();
-        int i = 0;
         for (Pair<DataType, String> pair : valueData.getFirst()) {
             String columnName = pair.getFirst().getName();
-            if (columnName.equals("createdAt"))
+            if (columnName.equalsIgnoreCase("createdAt"))
                 continue;
             setStatementList.add(String.format("%s = %s", columnName, pair.getSecond()));
         }
