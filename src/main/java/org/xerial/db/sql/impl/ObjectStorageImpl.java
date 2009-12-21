@@ -52,9 +52,6 @@ import org.xerial.lens.ObjectLens;
 import org.xerial.util.Pair;
 import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
-import org.xerial.util.bean.BeanBinder;
-import org.xerial.util.bean.BeanBinderSet;
-import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.log.Logger;
 
 /**
@@ -210,12 +207,8 @@ public class ObjectStorageImpl implements ObjectStorage
     public static <T> void setValue(T bean, String parameterName, Object value) throws DBException {
         try {
             Class< ? > beanClass = bean.getClass();
-            BeanBinderSet ruleSet = BeanUtil.getBeanLoadRule(beanClass);
-            BeanBinder binder = ruleSet.findRule(parameterName);
-            if (binder == null) {
-                throw new DBException(DBErrorCode.InvalidBeanClass, "no getter for " + parameterName);
-            }
-            binder.getMethod().invoke(bean, new Object[] { value });
+            ObjectLens lens = ObjectLens.getObjectLens(beanClass);
+            lens.setParameter(bean, parameterName, value);
         }
         catch (Exception e) {
             throw new DBException(DBErrorCode.InvalidBeanClass, e);
