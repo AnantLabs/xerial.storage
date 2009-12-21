@@ -39,10 +39,9 @@ import org.xerial.util.log.Logger;
 public class SQLPerformanceTest
 {
     private static Logger _logger = Logger.getLogger(SQLPerformanceTest.class);
-    static final int N = 100;
+    static final int      N       = 100;
 
-    public void insertPerson(DatabaseAccess dbAccess, ObjectStorage storage) throws DBException
-    {
+    public void insertPerson(DatabaseAccess dbAccess, ObjectStorage storage) throws DBException {
         storage.drop(Person.class);
 
         dbAccess.setAutoCommit(false);
@@ -58,8 +57,7 @@ public class SQLPerformanceTest
     }
 
     @Test
-    public void SQLite() throws DBException
-    {
+    public void SQLite() throws DBException {
         //DatabaseAccess sqlite = new SQLiteAccess("target/sample.sqlite");
         DatabaseAccess sqlite = new SQLiteAccess();
         sqlite.update("pragma synchronous=off");
@@ -69,8 +67,7 @@ public class SQLPerformanceTest
     }
 
     @Test
-    public void H2() throws ClassNotFoundException, SQLException, DBException
-    {
+    public void H2() throws ClassNotFoundException, SQLException, DBException {
         //DatabaseAccess h2 = new H2Access("target/h2/sample");
         DatabaseAccess h2 = new H2Access();
         h2.update("SET LOCK_MODE 0");
