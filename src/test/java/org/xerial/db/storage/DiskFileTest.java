@@ -24,6 +24,8 @@
 //--------------------------------------
 package org.xerial.db.storage;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 
@@ -32,85 +34,70 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xerial.db.DBException;
 
-import static org.junit.Assert.*;
+public class DiskFileTest
+{
 
-public class DiskFileTest {
+    @Before
+    public void setUp() throws Exception {}
 
-	@Before
-	public void setUp() throws Exception {
-	}
+    @After
+    public void tearDown() throws Exception {}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-	
-	@Test
-	public void write() throws DBException, FileNotFoundException
-	{
-		DiskFile file = new DiskFile("diskfile.db");
-		try
-		{
-			String m = "hello world!";
-			byte[] buf = m.getBytes();
-			file.write(buf, 0, buf.length);
-			
-			
-			file.seek(0);
-			byte[] readBuf = new byte[1024];
-			file.read(readBuf, 0, m.length());
-			StringBuffer sb = new StringBuffer();
-			for(int i=0; i<m.length(); i++)
-			{
-				char c = (char) readBuf[i];
-				sb.append(c);
-			}
-			String m2 = sb.toString();
-			assertEquals(m, m2);
-		}
-		catch(DBException e)
-		{
-			fail(e.getMessage());
-		}	
-		finally
-		{
-			file.close();
-		}
-	}
-	
-	@Test
-	public void writeAtSpecificLocation() throws DBException, FileNotFoundException
-	{
-		DiskFile file = new DiskFile("diskfile.db");
-		try
-		{
-			String m = "hello world!";
-			byte[] buf = m.getBytes();
-			final int offset = 2048;
-			file.seek(offset);
-			file.write(buf, 0, buf.length);
-			
-			
-			file.seek(offset);
-			byte[] readBuf = new byte[1024];
-			file.read(readBuf, 0, m.length());
-			StringBuffer sb = new StringBuffer();
-			for(int i=0; i<m.length(); i++)
-			{
-				char c = (char) readBuf[i];
-				sb.append(c);
-			}
-			String m2 = sb.toString();
-			assertEquals(m, m2);
-		}
-		catch(DBException e)
-		{
-			fail(e.getMessage());
-		}	
-		finally
-		{
-			file.close();
-		}
-		
-	}
+    @Test
+    public void write() throws DBException, FileNotFoundException {
+        DiskFile file = new DiskFile("target/diskfile.db");
+        try {
+            String m = "hello world!";
+            byte[] buf = m.getBytes();
+            file.write(buf, 0, buf.length);
+
+            file.seek(0);
+            byte[] readBuf = new byte[1024];
+            file.read(readBuf, 0, m.length());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < m.length(); i++) {
+                char c = (char) readBuf[i];
+                sb.append(c);
+            }
+            String m2 = sb.toString();
+            assertEquals(m, m2);
+        }
+        catch (DBException e) {
+            fail(e.getMessage());
+        }
+        finally {
+            file.close();
+        }
+    }
+
+    @Test
+    public void writeAtSpecificLocation() throws DBException, FileNotFoundException {
+        DiskFile file = new DiskFile("diskfile.db");
+        try {
+            String m = "hello world!";
+            byte[] buf = m.getBytes();
+            final int offset = 2048;
+            file.seek(offset);
+            file.write(buf, 0, buf.length);
+
+            file.seek(offset);
+            byte[] readBuf = new byte[1024];
+            file.read(readBuf, 0, m.length());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < m.length(); i++) {
+                char c = (char) readBuf[i];
+                sb.append(c);
+            }
+            String m2 = sb.toString();
+            assertEquals(m, m2);
+        }
+        catch (DBException e) {
+            fail(e.getMessage());
+        }
+        finally {
+            file.close();
+        }
+
+    }
 
 }

@@ -28,61 +28,64 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-import org.xerial.db.DBException;
 import org.xerial.db.DBErrorCode;
+import org.xerial.db.DBException;
 
 /**
  * The {@link DiskFile} wraps read/write accesses to files
  * 
  * @author leo
- *
+ * 
  */
-public class DiskFile implements DBFile {
+public class DiskFile implements DBFile
+{
 
-	private RandomAccessFile file;
-	
-	public DiskFile(String filePath) throws FileNotFoundException
-	{
-		file = new RandomAccessFile(filePath, "rws");
-	}
-	
-	public DiskFile(String filePath, String mode) throws FileNotFoundException
-	{
-		file = new RandomAccessFile(filePath, mode);
-	}
-	
-	public void read(byte[] buffer, int offset, int byteSize) throws DBException {
-		assert(buffer.length >= byteSize);
-		
-		try {
-			file.readFully(buffer, offset, byteSize);
-		} catch (IOException e) {
-			throw new DBException(DBErrorCode.IOError, e);
-		}
-	}
+    private RandomAccessFile file;
 
-	public void seek(long filePos) throws DBException {
-		try {
-			file.seek(filePos);
-		} catch (IOException e) {
-			throw new DBException(DBErrorCode.IOError, e);
-		}
-	}
+    public DiskFile(String filePath) throws FileNotFoundException {
+        file = new RandomAccessFile(filePath, "rws");
+    }
 
-	public void write(byte[] buffer, int offset, int byteSize) throws DBException {
-		try {
-			file.write(buffer, offset, byteSize);
-		} catch (IOException e) {
-			throw new DBException(DBErrorCode.IOError, e);
-		}
-	}
+    public DiskFile(String filePath, String mode) throws FileNotFoundException {
+        file = new RandomAccessFile(filePath, mode);
+    }
 
-	public void close() throws DBException {
-		try {
-			file.close();
-		} catch (IOException e) {
-			throw new DBException(DBErrorCode.IOError, e);
-		}
-	}
+    public void read(byte[] buffer, int offset, int byteSize) throws DBException {
+        assert (buffer.length >= byteSize);
+
+        try {
+            file.readFully(buffer, offset, byteSize);
+        }
+        catch (IOException e) {
+            throw new DBException(DBErrorCode.IOError, e);
+        }
+    }
+
+    public void seek(long filePos) throws DBException {
+        try {
+            file.seek(filePos);
+        }
+        catch (IOException e) {
+            throw new DBException(DBErrorCode.IOError, e);
+        }
+    }
+
+    public void write(byte[] buffer, int offset, int byteSize) throws DBException {
+        try {
+            file.write(buffer, offset, byteSize);
+        }
+        catch (IOException e) {
+            throw new DBException(DBErrorCode.IOError, e);
+        }
+    }
+
+    public void close() throws DBException {
+        try {
+            file.close();
+        }
+        catch (IOException e) {
+            throw new DBException(DBErrorCode.IOError, e);
+        }
+    }
 
 }
