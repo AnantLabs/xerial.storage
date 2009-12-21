@@ -125,8 +125,7 @@ public class SQLiteAccessTest
         query.insert("person", new Person(1, "leo"));
         query.insert("person", new Person(2, "yui"));
 
-        query.query("select * from person", new BeanResultHandler<Person>(Person.class) {
-            @Override
+        query.query("select * from person", Person.class, new BeanResultHandler<Person>() {
             public void handle(Person p) throws SQLException {
                 if (p.getId() == 1) {
                     assertEquals("leo", p.getName());
@@ -134,6 +133,18 @@ public class SQLiteAccessTest
                 else if (p.getId() == 2) {
                     assertEquals("yui", p.getName());
                 }
+            }
+
+            public void finish() {
+
+            }
+
+            public void init() {
+
+            }
+
+            public void handleException(Exception e) throws Exception {
+                _logger.error(e);
             }
         });
 

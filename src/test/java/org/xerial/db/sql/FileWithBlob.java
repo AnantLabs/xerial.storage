@@ -24,64 +24,50 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.sql.Blob;
-
-import org.xerial.db.sql.impl.BlobImpl;
 import org.xerial.util.log.Logger;
 
 public class FileWithBlob
 {
-    private static Logger _logger = Logger.getLogger(FileWithBlob.class);
+    private static Logger _logger   = Logger.getLogger(FileWithBlob.class);
 
-    int id = -1;
-    String title;
-    long size;
-    ByteArray byteArray = new ByteArray();
+    int                   id        = -1;
+    String                title;
+    long                  size;
+    ByteArray             byteArray = new ByteArray();
 
-    public FileWithBlob()
-    {
+    public FileWithBlob() {
 
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public long getSize()
-    {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(long size)
-    {
+    public void setSize(long size) {
         this.size = size;
     }
 
-    public ByteArray getFileData()
-    {
+    public ByteArray getFileData() {
         return byteArray;
     }
 
-    public void setFileData(ByteArray fileData)
-    {
+    public void setFileData(ByteArray fileData) {
         this.byteArray = fileData;
     }
 

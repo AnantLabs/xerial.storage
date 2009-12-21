@@ -24,10 +24,7 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,24 +45,21 @@ import org.xerial.util.log.Logger;
 
 public class ObjectStorageTest
 {
-    private static Logger _logger = Logger.getLogger(ObjectStorageTest.class);
+    private static Logger     _logger = Logger.getLogger(ObjectStorageTest.class);
     private ObjectStorageImpl storage;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         storage = new ObjectStorageImpl(new SQLiteAccess()); // use an on-memory database of SQLite
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         storage.getDatabaseAccess().dispose();
     }
 
     @Test
-    public void testRegister() throws DBException
-    {
+    public void testRegister() throws DBException {
         storage.register(Person.class);
         List<String> tableNameList = storage.getDatabaseAccess().getTableNameList();
 
@@ -74,8 +68,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testRegistWithTableName() throws DBException
-    {
+    public void testRegistWithTableName() throws DBException {
         storage.register("person_table", Person.class);
         Person p = storage.create(new Person("leo"));
 
@@ -87,8 +80,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void createAssocatedObject() throws DBException
-    {
+    public void createAssocatedObject() throws DBException {
         Person p = storage.create(new Person("leo"));
         _logger.debug(p);
         Report r = storage.create(p, new Report());
@@ -100,8 +92,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void timeStampTest() throws DBException
-    {
+    public void timeStampTest() throws DBException {
         Person p = storage.create(new Person("leo"));
         _logger.debug(p);
         Report r = storage.create(p, new Report());
@@ -128,12 +119,10 @@ public class ObjectStorageTest
 
         Date rCreatedAt = (Date) r.getCreatedAt().clone();
 
-        try
-        {
+        try {
             Thread.sleep(1000 * 1);
         }
-        catch (InterruptedException e)
-        {
+        catch (InterruptedException e) {
             fail(e.getMessage());
         }
         storage.save(r);
@@ -148,8 +137,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testOneToOne() throws DBException
-    {
+    public void testOneToOne() throws DBException {
         storage.oneToOne(Person.class, Report.class);
 
         Person p = storage.create(new Person("leo"));
@@ -163,13 +151,11 @@ public class ObjectStorageTest
         assertEquals(r.getCreatedAt(), r2.getCreatedAt());
         assertEquals(r.getModifiedAt(), r2.getModifiedAt());
 
-        try
-        {
+        try {
             Report r3 = storage.create(p, new Report());
             fail("cannot not create two or more duplicate objects associated as one to one");
         }
-        catch (DBException e)
-        {
+        catch (DBException e) {
             assertEquals(DBErrorCode.AssociatedObjectAlreadyExist, e.getErrorCode());
         }
 
@@ -192,8 +178,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testOneToMany() throws DBException
-    {
+    public void testOneToMany() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -232,22 +217,19 @@ public class ObjectStorageTest
 
         // get all with additional condition
         List<Report> reportList3 = storage.getAll(p, Report.class, new QueryParam().setWhereCondition("id > 1"));
-        for (Report r : reportList3)
-        {
+        for (Report r : reportList3) {
             assertTrue(r.getId() > 1);
         }
 
     }
 
-    public static void isEqualPerson(Person p, Person q)
-    {
+    public static void isEqualPerson(Person p, Person q) {
         assertEquals(p.getId(), q.getId());
         assertEquals(p.getName(), q.getName());
     }
 
     @Test
-    public void testGetAllWithCondition() throws DBException
-    {
+    public void testGetAllWithCondition() throws DBException {
         Person yui = storage.create(new Person("yui"));
         Person sam = storage.create(new Person("sam"));
         Person leo = storage.create(new Person("leo"));
@@ -285,8 +267,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetAllClassOfTIntClassOfUString() throws DBException
-    {
+    public void testGetAllClassOfTIntClassOfUString() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -296,8 +277,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetParentClassOfUInt() throws DBException
-    {
+    public void testGetParentClassOfUInt() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -312,8 +292,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testCreate() throws DBException
-    {
+    public void testCreate() throws DBException {
         Person p = storage.create(new Person("leo"));
         _logger.debug(p.toString());
         assertTrue(p.getId() >= 0);
@@ -327,8 +306,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testSave() throws DBException
-    {
+    public void testSave() throws DBException {
         Person p = storage.create(new Person("leo"));
         assertTrue(p.getId() >= 0);
         assertEquals("leo", p.getName());
@@ -343,8 +321,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testSaveAll() throws DBException
-    {
+    public void testSaveAll() throws DBException {
         Person p = storage.create(new Person("leo"));
         Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
         assertTrue(p.getId() >= 0);
@@ -381,8 +358,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testAbortInSaveAll() throws DBException
-    {
+    public void testAbortInSaveAll() throws DBException {
         Person p = storage.create(new Person("leo"));
         Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
         assertTrue(p.getId() >= 0);
@@ -396,13 +372,11 @@ public class ObjectStorageTest
         list.add(null);
 
         p.setName("Taro L. Saito");
-        try
-        {
+        try {
             storage.saveAll(Person.class, list);
             fail("cannot reach here");
         }
-        catch (DBException e)
-        {
+        catch (DBException e) {
             _logger.debug("intended abort: " + e.getMessage());
         }
 
@@ -425,8 +399,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetClassOfTInt() throws DBException
-    {
+    public void testGetClassOfTInt() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxx"));
         int id = p.getId();
 
@@ -438,8 +411,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetClassOfTString() throws DBException
-    {
+    public void testGetClassOfTString() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxx"));
         int id = p.getId();
 
@@ -451,8 +423,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetAllClassOfT() throws DBException
-    {
+    public void testGetAllClassOfT() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
 
@@ -473,8 +444,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetAllClassOfTString() throws DBException
-    {
+    public void testGetAllClassOfTString() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
 
@@ -495,14 +465,12 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetAllWithPredicate() throws DBException
-    {
+    public void testGetAllWithPredicate() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         Person p2 = storage.create(new Person("yui", "yyy-yyyy"));
 
         TreeSet<Person> personList = new TreeSet<Person>(storage.getAll(Person.class, new Predicate<Person>() {
-            public boolean apply(Person input)
-            {
+            public boolean apply(Person input) {
                 return input.getName().contains("yui");
             }
         }));
@@ -516,8 +484,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testBlob() throws DBException, SQLException
-    {
+    public void testBlob() throws DBException, SQLException {
         FileWithBlob f = storage.create(new FileWithBlob());
         f.setTitle("hello.txt");
         String blobMessage = "hello world";
@@ -539,8 +506,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testJoin() throws DBException
-    {
+    public void testJoin() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -557,8 +523,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testDelete() throws DBException
-    {
+    public void testDelete() throws DBException {
         Person p1 = storage.create(new Person("leo", "xxx-xxxx"));
         Person p2 = storage.create(new Person("yui", "xxx-xxxx"));
         Person p3 = storage.create(new Person("nao", "xxx-xxxx"));
@@ -575,8 +540,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testOmitCreatedAtAttributeWhenUpdate() throws DBException
-    {
+    public void testOmitCreatedAtAttributeWhenUpdate() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r = storage.create(p, new Report());
         r.setCreatedAt(null);
@@ -585,8 +549,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testGetAllAssociatedObjectsWithSorting() throws DBException
-    {
+    public void testGetAllAssociatedObjectsWithSorting() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -599,8 +562,7 @@ public class ObjectStorageTest
 
     }
 
-    public static void isEqual(PersonReport p1, PersonReport p2)
-    {
+    public static void isEqual(PersonReport p1, PersonReport p2) {
         assertEquals(p1.getId(), p2.getId());
         assertEquals(p1.getReportId(), p2.getReportId());
         assertEquals(p1.getPersonId(), p2.getPersonId());
@@ -608,8 +570,7 @@ public class ObjectStorageTest
     }
 
     @Test
-    public void testManyMany() throws DBException
-    {
+    public void testManyMany() throws DBException {
         Person p = storage.create(new Person("leo"));
         Report r1 = storage.create(p, new Report());
         Report r2 = storage.create(p, new Report());
@@ -650,10 +611,9 @@ public class ObjectStorageTest
         assertEquals(1, storage.count(Person.class, p.getId(), Report.class, r2.getId(), PersonReport.class));
 
     }
-    
+
     @Test
-    public void testView() throws DBException
-    {
+    public void testView() throws DBException {
         Person p = storage.create(new Person("leo", "xxx-xxxx"));
         List<PersonNameView> personNameView = storage.getAllFromView(PersonNameView.class, Person.class);
         assertEquals(1, personNameView.size());
@@ -664,8 +624,7 @@ public class ObjectStorageTest
         PersonNameView pv2 = storage.getFromView(PersonNameView.class, Person.class);
         assertEquals(p.getId(), pv2.getId());
         assertEquals(p.getName(), pv2.getName());
-        
-        
+
     }
 
 }

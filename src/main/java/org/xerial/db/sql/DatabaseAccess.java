@@ -97,7 +97,8 @@ public interface DatabaseAccess
      * @param beanResultHandler
      * @throws DBException
      */
-    public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException;
+    public <T> void query(String sql, Class<T> resultRowType, BeanResultHandler<T> beanResultHandler)
+            throws DBException;
 
     /**
      * Performs an SQL query, and retrieves the results that satisfy the filter

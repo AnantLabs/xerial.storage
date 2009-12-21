@@ -24,40 +24,21 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public abstract class BeanResultHandler<T>
+/**
+ * BeanResultHandler interface
+ * 
+ * @author leo
+ * 
+ * @param <T>
+ */
+public interface BeanResultHandler<T>
 {
+    public void init();
 
-    private Class<T> beanClass;
-    private BeanProcessor beanProcessor = new BeanProcessor();
+    public void handle(T bean) throws Exception;
 
-    protected BeanResultHandler(Class<T> beanClass)
-    {
-        this.beanClass = beanClass;
-    }
+    public void handleException(Exception e) throws Exception;
 
-    public void init()
-    {
-    // do nothing in default 
-    }
-
-    public abstract void handle(T bean) throws SQLException;
-
-    public T toBean(ResultSet resultSet) throws SQLException
-    {
-        return beanClass.cast(beanProcessor.toBean(resultSet, beanClass));
-    }
-
-    public Class<T> getClassType()
-    {
-        return beanClass;
-    }
-
-    public void finish()
-    {
-    // do nothing in default
-    }
+    public void finish();
 
 }
