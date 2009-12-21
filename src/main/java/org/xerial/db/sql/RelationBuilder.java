@@ -24,12 +24,10 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.xerial.core.XerialErrorCode;
 import org.xerial.core.XerialException;
 import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
@@ -37,6 +35,8 @@ import org.xerial.json.JSONArray;
 import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
 import org.xerial.json.JSONObject;
+import org.xerial.lens.ObjectLens;
+import org.xerial.lens.impl.ParameterSetter;
 import org.xerial.util.bean.BeanBinder;
 import org.xerial.util.bean.BeanBinderSet;
 import org.xerial.util.bean.BeanUtil;
@@ -124,26 +124,16 @@ public class RelationBuilder
             if (beanClass == null)
                 return _relation;
 
-            BeanBinderSet outputRuleSet = BeanUtil.getBeanOutputRule(beanClass);
-            for (BeanBinder rule : outputRuleSet.getBindRules()) {
-                Method getter = rule.getMethod();
-                String p = rule.getParameterName();
+            ObjectLens lens = ObjectLens.getObjectLens(beanClass);
+            for (ParameterSetter setter : lens.getSetterList()) {
+                Class< ? > returnType = setter.getParameterType();
+                String p = setter.getParameterName();
 
-                Class< ? > returnType = getter.getReturnType();
-                if (returnType.isArray()) {
-                    //                    returnType = returnType.getComponentType();
-                    //                    if (returnType.isAssignableFrom(String.class))
-                    //                        _relation.add(new StringListType(p));
-                    //                    else
-                    throw new XerialException(XerialErrorCode.UnsupportedDataType, "array type of "
-                            + returnType.toString() + " is not supported");
-                }
-                else {
-                    DataType dt = Relation.getDataType(p, returnType);
-                    _relation.add(dt);
-                }
+                DataType dt = Relation.getDataType(p, returnType);
+                _relation.add(dt);
 
             }
+
             return _relation;
 
         }

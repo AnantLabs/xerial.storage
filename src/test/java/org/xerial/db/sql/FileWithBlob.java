@@ -28,12 +28,12 @@ import org.xerial.util.log.Logger;
 
 public class FileWithBlob
 {
-    private static Logger _logger   = Logger.getLogger(FileWithBlob.class);
+    private static Logger _logger = Logger.getLogger(FileWithBlob.class);
 
-    int                   id        = -1;
+    int                   id      = -1;
     String                title;
     long                  size;
-    ByteArray             byteArray = new ByteArray();
+    byte[]                byteArray;
 
     public FileWithBlob() {
 
@@ -63,11 +63,11 @@ public class FileWithBlob
         this.size = size;
     }
 
-    public ByteArray getFileData() {
+    public byte[] getFileData() {
         return byteArray;
     }
 
-    public void setFileData(ByteArray fileData) {
+    public void setFileData(byte[] fileData) {
         this.byteArray = fileData;
     }
 

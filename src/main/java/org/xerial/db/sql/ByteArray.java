@@ -25,38 +25,35 @@
 package org.xerial.db.sql;
 
 /**
- * byte[] data wrapper for representing BLOB data  
+ * byte[] data wrapper for representing BLOB data
  * 
  * @author leo
- *
+ * 
+ * @deprecated use public byte[] fields instead
+ * 
  */
 public class ByteArray
 {
     byte[] data = null;
-    
-    public ByteArray()
-    {
+
+    public ByteArray() {
 
     }
-    
-    public ByteArray(byte[] byteArray)
-    {
+
+    public ByteArray(byte[] byteArray) {
         this.data = byteArray;
     }
-    
-    public byte[] getBytes()
-    {
+
+    public byte[] getBytes() {
         return data;
     }
-    
-    public void setBytes(byte[] byteArray)
-    {
+
+    public void setBytes(byte[] byteArray) {
         this.data = byteArray;
     }
-    
-    public int size()
-    {
-        return data == null? 0 : data.length;
+
+    public int size() {
+        return data == null ? 0 : data.length;
     }
-    
+
 }

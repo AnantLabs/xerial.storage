@@ -90,10 +90,9 @@ public class BeanProcessor
      * returned. These are the same as the defaults that ResultSet get* methods
      * return in the event of a NULL column.
      */
-    private static final Map primitiveDefaults = new HashMap();
+    private static final Map   primitiveDefaults  = new HashMap();
 
-    static
-    {
+    static {
         primitiveDefaults.put(Integer.TYPE, new Integer(0));
         primitiveDefaults.put(Short.TYPE, new Short((short) 0));
         primitiveDefaults.put(Byte.TYPE, new Byte((byte) 0));
@@ -107,8 +106,7 @@ public class BeanProcessor
     /**
      * Constructor for BeanProcessor.
      */
-    public BeanProcessor()
-    {
+    public BeanProcessor() {
         super();
     }
 
@@ -143,8 +141,7 @@ public class BeanProcessor
      *             if a database access error occurs
      * @return the newly created bean
      */
-    public Object toBean(ResultSet rs, Class type) throws SQLException
-    {
+    public Object toBean(ResultSet rs, Class type) throws SQLException {
 
         PropertyDescriptor[] props = this.propertyDescriptors(type);
 
@@ -185,12 +182,10 @@ public class BeanProcessor
      *             if a database access error occurs
      * @return the newly created List of beans
      */
-    public List toBeanList(ResultSet rs, Class type) throws SQLException
-    {
+    public List toBeanList(ResultSet rs, Class type) throws SQLException {
         List results = new ArrayList();
 
-        if (!rs.next())
-        {
+        if (!rs.next()) {
             return results;
         }
 
@@ -198,8 +193,7 @@ public class BeanProcessor
         ResultSetMetaData rsmd = rs.getMetaData();
         int[] columnToProperty = this.mapColumnsToProperties(rsmd, props);
 
-        do
-        {
+        do {
             results.add(this.createBean(rs, type, props, columnToProperty));
         }
         while (rs.next());
@@ -223,16 +217,13 @@ public class BeanProcessor
      *             if a database error occurs.
      */
     private Object createBean(ResultSet rs, Class type, PropertyDescriptor[] props, int[] columnToProperty)
-            throws SQLException
-    {
+            throws SQLException {
 
         Object bean = this.newInstance(type);
 
-        for (int i = 1; i < columnToProperty.length; i++)
-        {
+        for (int i = 1; i < columnToProperty.length; i++) {
 
-            if (columnToProperty[i] == PROPERTY_NOT_FOUND)
-            {
+            if (columnToProperty[i] == PROPERTY_NOT_FOUND) {
                 continue;
             }
 
@@ -241,8 +232,7 @@ public class BeanProcessor
 
             Object value = this.processColumn(rs, i, propType);
 
-            if (propType != null && value == null && propType.isPrimitive())
-            {
+            if (propType != null && value == null && propType.isPrimitive()) {
                 value = primitiveDefaults.get(propType);
             }
 
@@ -265,62 +255,49 @@ public class BeanProcessor
      * @throws SQLException
      *             if an error occurs setting the property.
      */
-    private void callSetter(Object target, PropertyDescriptor prop, Object value) throws SQLException
-    {
+    private void callSetter(Object target, PropertyDescriptor prop, Object value) throws SQLException {
 
         Method setter = prop.getWriteMethod();
 
-        if (setter == null)
-        {
+        if (setter == null) {
             return;
         }
 
         Class[] params = setter.getParameterTypes();
-        try
-        {
+        try {
             // convert types for some popular ones
-            if (value != null)
-            {
-                if (value instanceof java.util.Date)
-                {
-                    if (params[0].getName().equals("java.sql.Date"))
-                    {
+            if (value != null) {
+                if (value instanceof java.util.Date) {
+                    if (params[0].getName().equals("java.sql.Date")) {
                         value = new java.sql.Date(((java.util.Date) value).getTime());
                     }
-                    else if (params[0].getName().equals("java.sql.Time"))
-                    {
+                    else if (params[0].getName().equals("java.sql.Time")) {
                         value = new java.sql.Time(((java.util.Date) value).getTime());
                     }
-                    else if (params[0].getName().equals("java.sql.Timestamp"))
-                    {
+                    else if (params[0].getName().equals("java.sql.Timestamp")) {
                         value = new java.sql.Timestamp(((java.util.Date) value).getTime());
                     }
                 }
             }
 
             // Don't call setter if the value object isn't the right type 
-            if (this.isCompatibleType(value, params[0]))
-            {
+            if (this.isCompatibleType(value, params[0])) {
                 setter.invoke(target, new Object[] { value });
             }
-            else
-            {
+            else {
                 throw new SQLException("Cannot set " + prop.getName() + ": incompatible types.");
             }
 
         }
-        catch (IllegalArgumentException e)
-        {
+        catch (IllegalArgumentException e) {
             throw new SQLException("Cannot set " + prop.getName() + ": " + e.getMessage());
 
         }
-        catch (IllegalAccessException e)
-        {
+        catch (IllegalAccessException e) {
             throw new SQLException("Cannot set " + prop.getName() + ": " + e.getMessage());
 
         }
-        catch (InvocationTargetException e)
-        {
+        catch (InvocationTargetException e) {
             throw new SQLException("Cannot set " + prop.getName() + ": " + e.getMessage());
         }
     }
@@ -338,60 +315,45 @@ public class BeanProcessor
      *            The setter's parameter type.
      * @return boolean True if the value is compatible.
      */
-    private boolean isCompatibleType(Object value, Class type)
-    {
+    private boolean isCompatibleType(Object value, Class type) {
         // Do object check first, then primitives
-        if (value == null || type.isInstance(value))
-        {
+        if (value == null || type.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Integer.TYPE) && Integer.class.isInstance(value))
-        {
+        else if (type.equals(Integer.TYPE) && Integer.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Long.TYPE) && Long.class.isInstance(value))
-        {
+        else if (type.equals(Long.TYPE) && Long.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Double.TYPE) && Double.class.isInstance(value))
-        {
+        else if (type.equals(Double.TYPE) && Double.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Float.TYPE) && Float.class.isInstance(value))
-        {
+        else if (type.equals(Float.TYPE) && Float.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Short.TYPE) && Short.class.isInstance(value))
-        {
+        else if (type.equals(Short.TYPE) && Short.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Byte.TYPE) && Byte.class.isInstance(value))
-        {
+        else if (type.equals(Byte.TYPE) && Byte.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Character.TYPE) && Character.class.isInstance(value))
-        {
+        else if (type.equals(Character.TYPE) && Character.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(Boolean.TYPE) && Boolean.class.isInstance(value))
-        {
+        else if (type.equals(Boolean.TYPE) && Boolean.class.isInstance(value)) {
             return true;
 
         }
-        else if (type.equals(ByteArray.class))
-        {
-            return true;
-        }
-        else
-        {
+        else {
             return false;
         }
 
@@ -408,20 +370,16 @@ public class BeanProcessor
      * @throws SQLException
      *             if creation failed.
      */
-    protected Object newInstance(Class c) throws SQLException
-    {
-        try
-        {
+    protected Object newInstance(Class c) throws SQLException {
+        try {
             return c.newInstance();
 
         }
-        catch (InstantiationException e)
-        {
+        catch (InstantiationException e) {
             throw new SQLException("Cannot create " + c.getName() + ": " + e.getMessage());
 
         }
-        catch (IllegalAccessException e)
-        {
+        catch (IllegalAccessException e) {
             throw new SQLException("Cannot create " + c.getName() + ": " + e.getMessage());
         }
     }
@@ -435,17 +393,14 @@ public class BeanProcessor
      * @throws SQLException
      *             if introspection failed.
      */
-    private PropertyDescriptor[] propertyDescriptors(Class c) throws SQLException
-    {
+    private PropertyDescriptor[] propertyDescriptors(Class c) throws SQLException {
         // Introspector caches BeanInfo classes for better performance
         BeanInfo beanInfo = null;
-        try
-        {
+        try {
             beanInfo = Introspector.getBeanInfo(c);
 
         }
-        catch (IntrospectionException e)
-        {
+        catch (IntrospectionException e) {
             throw new SQLException("Bean introspection failed: " + e.getMessage());
         }
 
@@ -472,21 +427,17 @@ public class BeanProcessor
      * @return An int[] with column index to property index mappings. The 0th
      *         element is meaningless because JDBC column indexing starts at 1.
      */
-    protected int[] mapColumnsToProperties(ResultSetMetaData rsmd, PropertyDescriptor[] props) throws SQLException
-    {
+    protected int[] mapColumnsToProperties(ResultSetMetaData rsmd, PropertyDescriptor[] props) throws SQLException {
 
         int cols = rsmd.getColumnCount();
         int columnToProperty[] = new int[cols + 1];
         Arrays.fill(columnToProperty, PROPERTY_NOT_FOUND);
 
-        for (int col = 1; col <= cols; col++)
-        {
+        for (int col = 1; col <= cols; col++) {
             String columnName = rsmd.getColumnLabel(col);
-            for (int i = 0; i < props.length; i++)
-            {
+            for (int i = 0; i < props.length; i++) {
 
-                if (columnName.equalsIgnoreCase(props[i].getName()))
-                {
+                if (columnName.equalsIgnoreCase(props[i].getName())) {
                     columnToProperty[col] = i;
                     break;
                 }
@@ -528,69 +479,51 @@ public class BeanProcessor
      *         index after optional type processing or <code>null</code> if the
      *         column value was SQL NULL.
      */
-    protected Object processColumn(ResultSet rs, int index, Class propType) throws SQLException
-    {
+    protected Object processColumn(ResultSet rs, int index, Class propType) throws SQLException {
 
-        if (propType.equals(String.class))
-        {
+        if (propType.equals(String.class)) {
             return rs.getString(index);
 
         }
-        else if (propType.equals(Integer.TYPE) || propType.equals(Integer.class))
-        {
+        else if (propType.equals(Integer.TYPE) || propType.equals(Integer.class)) {
             return new Integer(rs.getInt(index));
 
         }
-        else if (propType.equals(Boolean.TYPE) || propType.equals(Boolean.class))
-        {
+        else if (propType.equals(Boolean.TYPE) || propType.equals(Boolean.class)) {
             return new Boolean(rs.getBoolean(index));
 
         }
-        else if (propType.equals(Long.TYPE) || propType.equals(Long.class))
-        {
+        else if (propType.equals(Long.TYPE) || propType.equals(Long.class)) {
             return new Long(rs.getLong(index));
 
         }
-        else if (propType.equals(Double.TYPE) || propType.equals(Double.class))
-        {
+        else if (propType.equals(Double.TYPE) || propType.equals(Double.class)) {
             return new Double(rs.getDouble(index));
 
         }
-        else if (propType.equals(Float.TYPE) || propType.equals(Float.class))
-        {
+        else if (propType.equals(Float.TYPE) || propType.equals(Float.class)) {
             return new Float(rs.getFloat(index));
 
         }
-        else if (propType.equals(Short.TYPE) || propType.equals(Short.class))
-        {
+        else if (propType.equals(Short.TYPE) || propType.equals(Short.class)) {
             return new Short(rs.getShort(index));
 
         }
-        else if (propType.equals(Byte.TYPE) || propType.equals(Byte.class))
-        {
+        else if (propType.equals(Byte.TYPE) || propType.equals(Byte.class)) {
             return new Byte(rs.getByte(index));
         }
-        else if (propType.equals(ByteArray.class))
-        {
-            return new ByteArray(rs.getBytes(index));
-        }
-        else if (propType.equals(Timestamp.class))
-        {
+        else if (propType.equals(Timestamp.class)) {
             return rs.getTimestamp(index);
         }
-        else if (propType.equals(Date.class))
-        {
-            try
-            {
+        else if (propType.equals(Date.class)) {
+            try {
                 return DateFormat.getDateTimeInstance().parse(rs.getString(index));
             }
-            catch (ParseException e)
-            {
+            catch (ParseException e) {
                 throw new SQLException(e.getMessage());
             }
         }
-        else
-        {
+        else {
             return rs.getObject(index);
         }
 

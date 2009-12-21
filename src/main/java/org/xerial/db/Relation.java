@@ -24,7 +24,6 @@
 //--------------------------------------
 package org.xerial.db;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -33,7 +32,6 @@ import java.util.List;
 import org.xerial.db.datatype.DataType;
 import org.xerial.db.datatype.DataTypeBase;
 import org.xerial.db.datatype.TypeName;
-import org.xerial.db.sql.ByteArray;
 import org.xerial.json.JSONArray;
 import org.xerial.json.JSONErrorCode;
 import org.xerial.json.JSONException;
@@ -63,22 +61,18 @@ public class Relation
 {
     private ArrayList<DataType> dataTypeList = new ArrayList<DataType>();
 
-    public Relation()
-    {}
+    public Relation() {}
 
-    public Relation(String jsonStr) throws JSONException
-    {
+    public Relation(String jsonStr) throws JSONException {
         JSONObject json = new JSONObject(jsonStr);
         parse(json);
     }
 
-    public Relation(JSONObject jsonObj) throws JSONException
-    {
+    public Relation(JSONObject jsonObj) throws JSONException {
         parse(jsonObj);
     }
 
-    private void parse(JSONObject jsonObj) throws JSONException
-    {
+    private void parse(JSONObject jsonObj) throws JSONException {
         if (jsonObj == null)
             throw new JSONException(JSONErrorCode.InvalidJSONData, "null json object");
 
@@ -87,8 +81,7 @@ public class Relation
         JSONArray relationList = jsonObj.getJSONArray("relation");
         if (relationList == null)
             return;
-        for (int i = 0; i < relationList.size(); i++)
-        {
+        for (int i = 0; i < relationList.size(); i++) {
             JSONArray dataTypePair = relationList.getJSONArray(i);
             if (dataTypePair == null || dataTypePair.size() != 2)
                 throw new JSONException(JSONErrorCode.InvalidJSONData,
@@ -101,8 +94,7 @@ public class Relation
         }
     }
 
-    public static DataType getDataType(String parameterName, String typeName)
-    {
+    public static DataType getDataType(String parameterName, String typeName) {
         if (typeName.equalsIgnoreCase("boolean"))
             return new DataTypeBase(parameterName, TypeName.BOOLEAN);
         else if (typeName.equalsIgnoreCase("int") || typeName.equalsIgnoreCase("integer") || typeName.equals("serial"))
@@ -125,8 +117,7 @@ public class Relation
             return new DataTypeBase(parameterName, TypeName.STRING);
     }
 
-    public static <T> DataType getDataType(String parameterName, Class<T> valueType)
-    {
+    public static <T> DataType getDataType(String parameterName, Class<T> valueType) {
         if (valueType.isAssignableFrom(Integer.class) || valueType.isAssignableFrom(int.class))
             return new DataTypeBase(parameterName, TypeName.INTEGER);
         else if (valueType.isAssignableFrom(String.class))
@@ -139,27 +130,23 @@ public class Relation
             return new DataTypeBase(parameterName, TypeName.LONG);
         else if (valueType.isAssignableFrom(Date.class))
             return new DataTypeBase(parameterName, TypeName.DATETIME);
-        else if (valueType.isAssignableFrom(ByteArray.class))
+        else if (valueType.isAssignableFrom(byte[].class))
             return new DataTypeBase(parameterName, TypeName.BLOB);
         else
             return new DataTypeBase(parameterName, TypeName.STRING);
     }
 
-    public void add(DataType dataType)
-    {
+    public void add(DataType dataType) {
         dataTypeList.add(dataType);
     }
 
-    public DataType getDataType(int index)
-    {
+    public DataType getDataType(int index) {
         return dataTypeList.get(index);
     }
 
-    public int getDataTypeIndex(String parameterName)
-    {
+    public int getDataTypeIndex(String parameterName) {
         int index = 0;
-        for (DataType dt : dataTypeList)
-        {
+        for (DataType dt : dataTypeList) {
             if (dt.getName().equals(parameterName))
                 return index;
             index++;
@@ -167,17 +154,14 @@ public class Relation
         throw new IllegalArgumentException("unknown parameter: " + parameterName);
     }
 
-    public List<DataType> getDataTypeList()
-    {
+    public List<DataType> getDataTypeList() {
         return dataTypeList;
     }
 
-    public String toString()
-    {
+    public String toString() {
         StringBuffer s = new StringBuffer();
         s.append("(");
-        for (Iterator it = dataTypeList.iterator(); it.hasNext();)
-        {
+        for (Iterator it = dataTypeList.iterator(); it.hasNext();) {
             DataType dt = (DataType) it.next();
             s.append(dt.toString());
             s.append(" ");
