@@ -74,4 +74,10 @@
     </dependency>
 
   </dependencies>
+  
+  <scm>
+    <connection>scm:hg:https://storage.xerial.googlecode.com/hg/</connection>
+    <developerConnection>scm:hg:default</developerConnection>
+  </scm>
+  
 </project>
