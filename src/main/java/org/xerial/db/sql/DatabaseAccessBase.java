@@ -47,8 +47,10 @@ import org.xerial.db.Relation;
 import org.xerial.db.datatype.DataType;
 import org.xerial.json.JSONObject;
 import org.xerial.json.JSONValue;
+import org.xerial.lens.Lens;
 import org.xerial.util.Predicate;
 import org.xerial.util.StringUtil;
+import org.xerial.util.bean.BeanHandler;
 import org.xerial.util.bean.BeanUtil;
 import org.xerial.util.log.Logger;
 
@@ -87,23 +89,77 @@ public class DatabaseAccessBase implements DatabaseAccess
         return statement;
     }
 
-    /**
-     * perforam a given SQL query, then output its results
-     * 
-     * @param <T>
-     *            row type : Bean class type
-     * @param sql
-     *            sql statement
-     * @param resultRowType
-     *            it must be equal to the T
-     * @param result
-     * @throws DBException
-     */
-    @SuppressWarnings("unchecked")
-    public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException {
-        return queryWithHandler(sql, new BeanReader(resultRowType));
+    private static class BeanCollector<T> implements BeanResultHandler<T>
+    {
+        ArrayList<T> result = new ArrayList<T>();
+
+        public void handle(T bean) throws Exception {
+            if (bean != null)
+                result.add(bean);
+        }
+
+        public void finish() {
+
+        }
+
+        public void init() {
+
+        }
+
+        public void handleException(Exception e) throws Exception {
+            throw e;
+        }
     }
 
+    private static class BeanCollectorWithPredicate<T> extends BeanCollector<T>
+    {
+        private final Predicate<T> pred;
+
+        public BeanCollectorWithPredicate(Predicate<T> pred) {
+            this.pred = pred;
+        }
+
+        public void handle(T bean) throws Exception {
+            if (bean != null && pred.apply(bean))
+                result.add(bean);
+        }
+
+        public void finish() {
+
+        }
+
+        public void init() {
+
+        }
+    }
+
+    private static class Redirector<T> implements BeanHandler<T>
+    {
+        final BeanResultHandler<T> handler;
+
+        public Redirector(BeanResultHandler<T> handler) {
+            this.handler = handler;
+        }
+
+        public void handle(T bean) throws Exception {
+            handler.handle(bean);
+        }
+
+        public void handleException(Exception e) throws Exception {
+            handler.handleException(e);
+        }
+
+    }
+
+    /**
+     * Handle each row of the given SQL query result using the specified handler
+     * 
+     * @param <T>
+     * @param sql
+     * @param handler
+     * @return
+     * @throws DBException
+     */
     public <T> void query(String sql, ResultSetHandler<T> pullHandler) throws DBException {
         Connection connection = null;
         try {
@@ -132,67 +188,65 @@ public class DatabaseAccessBase implements DatabaseAccess
         }
     }
 
-    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException {
-        Connection connection = null;
-        BeanReader<T> beanReader = new BeanReader<T>(resultRowType);
-        ArrayList<T> result = new ArrayList<T>();
-        try {
-            connection = getConnection(true);
-            Statement statement = createStatement(connection);
-            _logger.debug(sql);
-
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                T row = beanReader.handle(rs);
-                if (row != null && filter.apply(row))
-                    result.add(row);
-            }
-
-            rs.close();
-            statement.close();
-        }
-        catch (SQLException e) {
-            throw new DBException(DBErrorCode.QueryError, e);
-        }
-        finally {
-            if (connection != null)
-                _connectionPool.returnConnection(connection);
-        }
-        return result;
+    /**
+     * perform an SQL query, then convert its result into a list of objects of
+     * the specified type
+     * 
+     * @param <T>
+     *            row type : Bean class type
+     * @param sql
+     *            sql statement
+     * @param resultRowType
+     *            it must be equal to the T
+     * @param result
+     * @throws DBException
+     */
+    public <T> List<T> query(String sql, Class<T> resultRowType) throws DBException {
+        BeanCollector<T> beanCollector = new BeanCollector<T>();
+        query(sql, resultRowType, beanCollector);
+        return beanCollector.result;
     }
 
-    public <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException {
+    public <T> List<T> query(String sql, Class<T> resultRowType, Predicate<T> filter) throws DBException {
+        BeanCollectorWithPredicate<T> beanCollectorWithPredicate = new BeanCollectorWithPredicate<T>(filter);
+        query(sql, resultRowType, beanCollectorWithPredicate);
+        return beanCollectorWithPredicate.result;
+    }
+
+    public <T> void query(String sql, Class<T> resultRowType, BeanResultHandler<T> beanResultHandler)
+            throws DBException {
+
+        Redirector<T> r = new Redirector<T>(beanResultHandler);
         Connection connection = null;
-        ArrayList<T> result = new ArrayList<T>();
+        ResultSet rs = null;
+        Statement stat = null;
         try {
-            connection = getConnection(true);
-            Statement statement = createStatement(connection);
-            _logger.debug(sql);
+            try {
+                connection = getConnection(true);
+                stat = createStatement(connection);
+                _logger.debug(sql);
 
-            handler.init();
-
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                T row = handler.handle(rs);
-                if (row != null)
-                    result.add(row);
-                else
-                    _logger.warn("null handler result is returned");
+                rs = stat.executeQuery(sql);
+                r.handler.init();
+                Lens.loadJDBCResultSet(resultRowType, rs, r);
+                r.handler.finish();
             }
-
-            rs.close();
-            statement.close();
+            catch (Exception e) {
+                throw new DBException(DBErrorCode.QueryError, e);
+            }
+            finally {
+                if (rs != null)
+                    rs.close();
+                if (stat != null)
+                    stat.close();
+                if (connection != null)
+                    _connectionPool.returnConnection(connection);
+            }
         }
         catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
         }
-        finally {
-            if (connection != null)
-                _connectionPool.returnConnection(connection);
 
-            handler.finish();
-        }
-        return result;
     }
 
     /**
@@ -444,22 +498,27 @@ public class DatabaseAccessBase implements DatabaseAccess
         return queryWithHandler(sql, new ColumnReader<T>(targetColumn));
     }
 
-    public <T> void query(String sql, BeanResultHandler<T> beanResultHandler) throws DBException {
-
+    protected <T> List<T> queryWithHandler(String sql, ResultSetHandler<T> handler) throws DBException {
         Connection connection = null;
+        ArrayList<T> result = new ArrayList<T>();
         try {
             connection = getConnection(true);
             Statement statement = createStatement(connection);
             _logger.debug(sql);
 
-            beanResultHandler.init();
+            handler.init();
 
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                T bean = beanResultHandler.toBean(rs);
-                beanResultHandler.handle(bean);
+                T row = handler.handle(rs);
+                if (row != null)
+                    result.add(row);
+                else
+                    _logger.warn("null handler result is returned");
             }
+
             rs.close();
+            statement.close();
         }
         catch (SQLException e) {
             throw new DBException(DBErrorCode.QueryError, e);
@@ -467,9 +526,10 @@ public class DatabaseAccessBase implements DatabaseAccess
         finally {
             if (connection != null)
                 _connectionPool.returnConnection(connection);
-            beanResultHandler.finish();
-        }
 
+            handler.finish();
+        }
+        return result;
     }
 
     public <T> int insert(String tableName, T bean) throws DBException {
