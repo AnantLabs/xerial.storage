@@ -24,7 +24,10 @@
 //--------------------------------------
 package org.xerial.db.sql;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -489,7 +492,7 @@ public class ObjectStorageTest
         f.setTitle("hello.txt");
         String blobMessage = "hello world";
         f.setSize(blobMessage.length());
-        f.setFileData(new ByteArray(blobMessage.getBytes()));
+        f.setFileData(blobMessage.getBytes());
 
         storage.save(f);
 
@@ -498,9 +501,7 @@ public class ObjectStorageTest
         assertEquals(f.getTitle(), f2.getTitle());
         assertEquals(f.getSize(), f2.getSize());
 
-        ByteArray b = f2.getFileData();
-        String blobMessage2 = new String(b.getBytes());
-
+        String blobMessage2 = new String(f2.getFileData());
         assertEquals(blobMessage, blobMessage2);
 
     }
